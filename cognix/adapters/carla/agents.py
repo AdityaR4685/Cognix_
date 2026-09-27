@@ -36,9 +36,17 @@ class CarlAnomalyAgent(AgentInterface):
         obs = self._extract_data(observation)
         probs = self.feature_fn(obs)
         prob_hazard = float(probs[0])
+        # Pipeline fuses PredictionResult.value as P(ACT/safe).
+        # Feature extractors return P(hazard), so invert here at the adapter
+        # boundary. The original hazard probability is retained in metadata.
+        prob_act = 1.0 - prob_hazard
         return PredictionResult(
-            value=prob_hazard,
-            confidence=max(prob_hazard, 1.0 - prob_hazard)
+            value=prob_act,
+            confidence=prob_act,
+            metadata={
+                "hazard_probability": prob_hazard,
+                "prediction_semantics": "P(ACT/safe)",
+            }
         )
 
     def estimate_uncertainty(self, observation: Any) -> UncertaintyResult:

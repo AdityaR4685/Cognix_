@@ -233,9 +233,12 @@ def run_cognix_cycle() -> dict:
         
     explanation_text = f"Collective probability: {result.confidence*100:.1f}% | Risk: {result.risk_level.name}"
     
-    conformal_set = [result.decision.name]
-    if result.decision.name == 'ACT' and result.confidence < 0.95:
-         conformal_set.append('ESCALATE')
+    # Only expose a conformal prediction set when a genuine ConformalPredictor
+    # was injected and produced one. The live dashboard engine has no calibrator,
+    # so this will be None — the frontend must display "Unavailable".
+    calibration_metrics = result.calibration_metrics or {}
+    real_prediction_set = calibration_metrics.get("prediction_set", None)
+    conformal_set = real_prediction_set if real_prediction_set is not None else None
     
     # Genuine measured stage latencies from CognixPipeline (perf_counter)
     pipe_lat = result.latency_ms or {}
@@ -274,7 +277,13 @@ def run_cognix_cycle() -> dict:
         "comparison_table_note": "Illustrative reference baselines",
         "decision": result.decision.name,
         "confidence": result.confidence,
-        "calibrated_confidence": result.calibrated_confidence or result.confidence,
+        # Three separate calibration fields so the frontend can label correctly:
+        #   collective_probability  — raw fused P(ACT/safe), always present
+        #   calibrated_confidence   — None when no ConformalPredictor injected
+        #   calibration_available   — bool flag for conditional UI label
+        "collective_probability": result.confidence,
+        "calibrated_confidence": result.calibrated_confidence,
+        "calibration_available": result.calibrated_confidence is not None,
         "conformal_set": conformal_set,
         "risk_level": result.risk_level.name,
         "escalation": result.escalation_required,

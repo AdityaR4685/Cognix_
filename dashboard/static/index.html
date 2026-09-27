@@ -216,7 +216,7 @@
   <section class="card card-decision glow-purple">
     <div class="card-title">SYSTEM DECISION</div>
     <div class="dec-large" id="dec-action">—</div>
-    <div class="dec-sub"><span id="dec-conf">—%</span> Calibrated Probability</div>
+    <div class="dec-sub"><span id="dec-conf">—%</span> <span id="dec-conf-label">Collective ACT Probability</span></div>
     <div class="dec-risk" id="dec-risk">LOW RISK</div>
   </section>
 
@@ -485,7 +485,17 @@ function updateDashboard(d) {
     const decEl = document.getElementById('dec-action');
     decEl.textContent = d.decision;
     decEl.style.color = d.decision === 'ESCALATE' ? 'var(--red)' : 'var(--green)';
-    document.getElementById('dec-conf').textContent = (d.calibrated_confidence * 100).toFixed(1);
+    // Use calibrated_confidence when genuinely available; otherwise collective P(ACT/safe)
+    const dispProb = d.calibration_available ? d.calibrated_confidence : d.collective_probability;
+    document.getElementById('dec-conf').textContent = (dispProb * 100).toFixed(1);
+    const labelEl = document.getElementById('dec-conf-label');
+    if (d.calibration_available) {
+        labelEl.textContent = 'Calibrated Probability';
+        labelEl.style.color = '';
+    } else {
+        labelEl.textContent = 'Collective ACT Probability (UNCALIBRATED)';
+        labelEl.style.color = 'var(--text-dim)';
+    }
     document.getElementById('dec-risk').textContent = d.risk_level + " RISK";
     
     // Graph
@@ -521,9 +531,13 @@ function updateDashboard(d) {
     
     // Fusion
     document.getElementById('fus-coll').textContent = (d.confidence*100).toFixed(1) + "%";
-    if (d.conformal_set) {
+    if (d.conformal_set && d.conformal_set.length > 0) {
         document.getElementById('fus-set').textContent = `{${d.conformal_set.join(', ')}}`;
         document.getElementById('fus-set-size').textContent = d.conformal_set.length;
+    } else {
+        document.getElementById('fus-set').textContent = 'Unavailable';
+        document.getElementById('fus-set').style.color = 'var(--text-dim)';
+        document.getElementById('fus-set-size').textContent = '—';
     }
     
     const sortedAgents = [...d.agents].sort((a,b) => b.weight - a.weight);
