@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "dataset": "CarlAnomalyDataset (Synthetic)",
+  "created_at": "2026-09-27T14:30:08Z",
+  "graph": {
+    "type": "EpistemicGAT",
+    "input_dim": 3,
+    "hidden_dim": 8,
+    "output_dim": 1,
+    "num_layers": 2,
+    "epochs": 25,
+    "learning_rate": 0.001,
+    "train_seed": 42,
+    "train_samples": 125
+  },
+  "standard_gat": {
+    "type": "StandardGAT",
+    "input_dim": 3,
+    "hidden_dim": 8,
+    "output_dim": 1,
+    "num_layers": 2,
+    "epochs": 25,
+    "learning_rate": 0.001,
+    "train_seed": 42,
+    "train_samples": 125
+  },
+  "calibration": {
+    "method": "split_conformal",
+    "alpha": 0.05,
+    "target_coverage": 0.95,
+    "cal_seed": 1042,
+    "n_calibration_samples": 125
+  },
+  "agents": [
+    "Camera",
+    "Depth",
+    "GNSS",
+    "IMU",
+    "LiDAR",
+    "Seg"
+  ]
+}

@@ -30,10 +30,22 @@ class ConformalPredictor(Calibrator):
         cal_labels: (N,) true integer labels
         """
         N = cal_outputs.shape[0]
-        # nonconformity score: 1 - prob(true_class)
         scores = 1.0 - cal_outputs[np.arange(N), cal_labels]
         self.cal_scores = np.sort(scores)
         self.n_cal = N
+
+    def save(self, filepath: str) -> None:
+        """Save calibration scores to a .npy file."""
+        from cognix.artifacts.persistence import save_conformal
+        save_conformal(self, filepath)
+
+    def load(self, filepath: str) -> "ConformalPredictor":
+        """Load calibration scores from a .npy file."""
+        from cognix.artifacts.persistence import load_conformal
+        loaded = load_conformal(filepath)
+        self.cal_scores = loaded.cal_scores
+        self.n_cal = loaded.n_cal
+        return self
 
     def predict(self, test_outputs: np.ndarray, alpha: float = 0.05) -> list[ConformalPredictionSet]:
         """

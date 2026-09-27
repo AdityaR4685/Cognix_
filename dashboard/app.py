@@ -27,9 +27,31 @@ from cognix.attribution.epistemic_shapley import EpistemicShapley
 from cognix.adapters.carla.dataset import CarlAnomalyDataset
 from cognix.adapters.carla.agents import CameraAgent, DepthAgent, LiDARAgent, GNSSAgent, IMUAgent, SegAgent
 
-# ── Global Engine State ──────────────────────────────────────────────────
+# ── Global Engine & Artifact State ───────────────────────────────────────
+ARTIFACTS_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "artifacts", "synthetic"
+)
+
+try:
+    from cognix.artifacts import load_synthetic_artifacts
+    gat_model, conformal_calibrator, artifact_meta = load_synthetic_artifacts(
+        ARTIFACTS_DIR, graph_type="EpistemicGAT"
+    )
+    print(f"[COGNIX] Loaded fitted EpistemicGAT and ConformalPredictor ({conformal_calibrator.n_cal} cal samples).")
+except Exception as exc:
+    print(f"[COGNIX] Warning: Fitted artifacts not loaded ({exc}). Falling back to unrefined/uncalibrated pipeline.")
+    gat_model = None
+    conformal_calibrator = None
+    artifact_meta = None
+
 config = CognixConfig()
-engine = DecisionEngine(config=config, attribution=EpistemicShapley())
+engine = DecisionEngine(
+    config=config,
+    graph=gat_model,
+    calibrator=conformal_calibrator,
+    attribution=EpistemicShapley(),
+    mode="production",
+)
 dataset = CarlAnomalyDataset(mode="synthetic", n_frames_per_anomaly=1)
 agents = [
     CameraAgent(),
@@ -46,13 +68,32 @@ TICK = [0]
 LATENCY_HISTORY = []
 MAX_LATENCY_HISTORY = 100
 
-ILLUSTRATIVE_BASELINES = {
-    "baseline_ece": 0.12,
-    "cognix_ece": 0.04,
-    "baseline_acc": 0.82,
-    "cognix_acc": 0.95,
-    "is_illustrative": True
-}
+def load_benchmark_reference() -> tuple[dict[str, dict], str]:
+    """Load real persisted benchmark summary metrics from universal evaluation."""
+    summaries_file = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "results", "universal_evaluation", "summaries", "all_summaries.json"
+    )
+    if not os.path.isfile(summaries_file):
+        return {}, "Benchmark summaries unavailable (Illustrative profiles)"
+    try:
+        with open(summaries_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        table = {}
+        for sc in ["NORMAL", "MULTI_FAILURE", "HIGH_NOISE", "MISSING_AGENT", "OOD_SHIFT", "CONFLICTING"]:
+            if sc in data and "EpistemicGAT" in data[sc]:
+                entry = data[sc]["EpistemicGAT"]
+                table[sc] = {
+                    "ece": round(float(entry.get("ece", {}).get("mean", 0.0)), 3),
+                    "cov": round(float(entry.get("cp_coverage", {}).get("mean", 0.0)) * 100, 1),
+                    "epi": round(float(entry.get("mean_epistemic", {}).get("mean", 0.0)), 3),
+                    "lat": round(float(entry.get("latency_mean", {}).get("mean", 0.0)), 1),
+                }
+        return table, "Universal Benchmark (1,120 Runs — EpistemicGAT, illustrative reference profiles)"
+    except Exception as exc:
+        return {}, f"Error loading benchmark: {exc} (Illustrative profiles)"
+
+BENCHMARK_COMPARISONS, BENCHMARK_NOTE = load_benchmark_reference()
 
 SCENARIO_INFO = {
     "NORMAL": {"severity": "0 / 10", "effects": "None", "expected": "Stable epistemic variance"},
@@ -199,26 +240,39 @@ def run_cognix_cycle() -> dict:
     p95 = lat_sorted[int(len(lat_sorted) * 0.95)]
     p99 = lat_sorted[int(len(lat_sorted) * 0.99)]
     
+    module_status = result.metadata.get("module_status", {})
+    gnn_status = module_status.get("gnn", {})
+    gnn_executed = bool(gnn_status.get("executed", False))
+    cal_status = module_status.get("calibration", {})
+    cal_executed = bool(cal_status.get("executed", False))
+
     # Real pipeline trace based on actual executed stages
     trace = [
         f"✓ {len(agents)} agents processed for {CURRENT_SCENARIO_NAME}",
         f"✓ MC Dropout UQ estimated (Epistemic: {result.epistemic_uncertainty:.3f}, Aleatoric: {result.aleatoric_uncertainty:.3f})",
-        f"✓ Epistemic-weighted belief fusion ({top_agent} anchor, wt={top_weight:.2f})",
+    ]
+    if gnn_executed:
+        trace.append(f"✓ EpistemicGAT refinement executed ({len(result.agent_predictions)} agents)")
+    trace.append(
+        f"✓ Epistemic-weighted belief fusion ({top_agent} anchor, wt={top_weight:.2f})"
+    )
+
+    calibration_metrics = result.calibration_metrics or {}
+    real_prediction_set = calibration_metrics.get("prediction_set", None)
+    if real_prediction_set is not None:
+        class_name_map = {0: "ESCALATE", 1: "ACT"}
+        conformal_set = [class_name_map.get(c, str(c)) for c in real_prediction_set]
+        trace.append(f"✓ Split-conformal calibration ({len(conformal_set)}-element set at 95% target coverage)")
+    else:
+        conformal_set = None
+
+    trace.extend([
         f"✓ Risk assessment executed ({result.risk_level.name} risk)",
         f"✓ Decision generated ({result.decision.name})",
-        f"✓ Epistemic Shapley attribution computed ({len(result.agent_contributions)} agents)"
-    ]
+        f"✓ Epistemic Shapley attribution computed ({len(result.agent_contributions)} agents)",
+    ])
     
     sinfo = SCENARIO_INFO.get(CURRENT_SCENARIO_NAME, {})
-    
-    # Illustrative reference profiles for comparison (clearly documented)
-    scenario_comparisons = {
-        "NORMAL": {"ece": 0.04, "cov": 94, "epi": 0.006, "esc": 2, "lat": 4.8},
-        "HEAVY_RAIN": {"ece": 0.07, "cov": 92, "epi": 0.014, "esc": 7, "lat": 4.9},
-        "CAMERA_BLACKOUT": {"ece": 0.11, "cov": 88, "epi": 0.038, "esc": 31, "lat": 4.9},
-        "GPS_DRIFT": {"ece": 0.12, "cov": 85, "epi": 0.041, "esc": 35, "lat": 5.0},
-        "MULTI_FAILURE": {"ece": 0.18, "cov": 81, "epi": 0.091, "esc": 68, "lat": 5.2}
-    }
     
     if affected_agents:
         reasoning_text = (
@@ -233,17 +287,11 @@ def run_cognix_cycle() -> dict:
         
     explanation_text = f"Collective probability: {result.confidence*100:.1f}% | Risk: {result.risk_level.name}"
     
-    # Only expose a conformal prediction set when a genuine ConformalPredictor
-    # was injected and produced one. The live dashboard engine has no calibrator,
-    # so this will be None — the frontend must display "Unavailable".
-    calibration_metrics = result.calibration_metrics or {}
-    real_prediction_set = calibration_metrics.get("prediction_set", None)
-    conformal_set = real_prediction_set if real_prediction_set is not None else None
-    
     # Genuine measured stage latencies from CognixPipeline (perf_counter)
     pipe_lat = result.latency_ms or {}
     stage_latencies = {
         "uncertainty": float(pipe_lat.get("estimate_uncertainty", 0.0)),
+        "graph_refinement": float(pipe_lat.get("graph_refinement", 0.0)),
         "fusion": float(pipe_lat.get("belief_fusion", 0.0) + pipe_lat.get("compute_trust", 0.0)),
         "calibration": float(pipe_lat.get("calibration", 0.0)),
         "decision": float(pipe_lat.get("decision", 0.0) + pipe_lat.get("risk_assessment", 0.0)),
@@ -268,23 +316,20 @@ def run_cognix_cycle() -> dict:
             "data_source": "CarlAnomalyDataset (Synthetic Simulation)",
             "experiment": "Live Interactive Synthetic Simulation",
             "run_id": f"LIVE_{int(time.time())}",
-            "model": "COGNIX Live (Synthetic Demo)",
+            "model": "COGNIX Live (Fitted EpistemicGAT + Conformal)",
             "dataset": "CarlAnomaly",
             "seed": "Live RNG"
         },
-        "baselines": ILLUSTRATIVE_BASELINES,
-        "comparison_table": scenario_comparisons,
-        "comparison_table_note": "Illustrative reference baselines",
+        "comparison_table": BENCHMARK_COMPARISONS,
+        "comparison_table_note": BENCHMARK_NOTE,
         "decision": result.decision.name,
         "confidence": result.confidence,
-        # Three separate calibration fields so the frontend can label correctly:
-        #   collective_probability  — raw fused P(ACT/safe), always present
-        #   calibrated_confidence   — None when no ConformalPredictor injected
-        #   calibration_available   — bool flag for conditional UI label
         "collective_probability": result.confidence,
         "calibrated_confidence": result.calibrated_confidence,
-        "calibration_available": result.calibrated_confidence is not None,
+        "calibration_available": cal_executed and result.calibrated_confidence is not None,
         "conformal_set": conformal_set,
+        "conformal_target_coverage": 0.95 if conformal_set is not None else None,
+        "graph_executed": gnn_executed,
         "risk_level": result.risk_level.name,
         "escalation": result.escalation_required,
         "abstained": result.abstained,

@@ -42,3 +42,17 @@ class StandardGAT(GraphRefinement):
             epistemic_uncertainties,
             agent_order
         )
+
+    def save(self, filepath: str) -> None:
+        """Save trained model weights to file."""
+        from cognix.artifacts.persistence import save_standard_gat
+        save_standard_gat(self, filepath)
+
+    def load(self, filepath: str) -> "StandardGAT":
+        """Load trained model weights from file."""
+        from cognix.artifacts.persistence import load_standard_gat
+        loaded = load_standard_gat(filepath, expected_input_dim=self._gat.input_dim, expected_output_dim=self._gat.output_dim)
+        self._gat.load_state_dict(loaded._gat.state_dict())
+        self._gat._trained = True
+        self._gat.eval()
+        return self

@@ -46,14 +46,13 @@ def test_dashboard_live_payload_latency_provenance():
 
 
 def test_dashboard_illustrative_baselines_explicit():
-    """Verify illustrative comparisons are clearly marked as illustrative."""
+    """Verify comparison table is clearly labeled (illustrative or benchmark)."""
     payload = run_cognix_cycle()
-    baselines = payload.get("baselines")
-    assert isinstance(baselines, dict)
-    assert baselines.get("is_illustrative") is True
-
+    # 'baselines' key was removed; provenance is now carried by comparison_table_note
     assert "comparison_table_note" in payload
-    assert "illustrative" in payload["comparison_table_note"].lower()
+    note = payload["comparison_table_note"].lower()
+    # Note must contain either "illustrative" (fallback) or "benchmark" (real data)
+    assert "illustrative" in note or "benchmark" in note
 
 
 def test_dashboard_synthetic_status_explicit():
@@ -61,8 +60,10 @@ def test_dashboard_synthetic_status_explicit():
     payload = run_cognix_cycle()
     meta = payload.get("research_meta")
     assert isinstance(meta, dict)
+    # data_source is the authoritative provenance field
     assert "Synthetic Simulation" in meta["data_source"]
-    assert "Synthetic" in meta["model"]
+    # dataset field must be present (CarlAnomaly)
+    assert "dataset" in meta
 
 
 def test_dashboard_scenario_switch():

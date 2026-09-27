@@ -334,3 +334,17 @@ class EpistemicGAT(nn.Module, GraphRefinement):
 
     def is_trained(self) -> bool:
         return self._trained
+
+    def save(self, filepath: str) -> None:
+        """Save trained model weights to file."""
+        from cognix.artifacts.persistence import save_epistemic_gat
+        save_epistemic_gat(self, filepath)
+
+    def load(self, filepath: str) -> "EpistemicGAT":
+        """Load trained model weights from file."""
+        from cognix.artifacts.persistence import load_epistemic_gat
+        loaded = load_epistemic_gat(filepath, expected_input_dim=self.input_dim, expected_output_dim=self.output_dim)
+        self.load_state_dict(loaded.state_dict())
+        self._trained = True
+        self.eval()
+        return self
