@@ -36,7 +36,7 @@ class DecisionResult:
     # Agent-level information
     agent_contributions: dict[str, float]
     agent_trust_weights: dict[str, float]
-    agent_predictions: dict[str, Any]
+    agent_predictions: dict[str, float]
     
     # Communication
     communication_statistics: Optional[dict]

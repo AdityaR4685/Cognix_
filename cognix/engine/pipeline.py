@@ -156,7 +156,13 @@ class CognixPipeline:
             duration_ms=0, failure_reason=None
         )
         comm_info: dict = {}
-        refined_predictions = dict(predictions)  # start with originals
+        # Canonical normalization: extract float prediction probabilities p_i in [0, 1]
+        # for all agents upfront, ensuring consistent Dict[str, float] across all paths.
+        normalized_predictions: dict[str, float] = {
+            a: float(self._extract_prediction_probability(predictions[a]))
+            for a in predictions
+        }
+        refined_predictions = dict(normalized_predictions)
 
         if self.graph is not None:
             try:
@@ -166,7 +172,7 @@ class CognixPipeline:
                 # Node features: [p_i, sigma_e_i, sigma_a_i] — shape (N, 3)
                 node_features = np.array([
                     [
-                        float(self._extract_prediction_probability(predictions[a])),
+                        normalized_predictions[a],
                         float(uncertainties[a].get("epistemic", 0.0)),
                         float(uncertainties[a].get("aleatoric", 0.0)),
                     ]
@@ -179,53 +185,64 @@ class CognixPipeline:
                 epi_unc = {a: uncertainties[a].get("epistemic", 0.0) for a in agent_order}
 
 
-                # Research mode: refuse to run untrained GAT
-                if self.mode == RESEARCH_MODE and hasattr(self.graph, "is_trained"):
-                    if not self.graph.is_trained():
+                # Guard against untrained learned graph models (exposing is_trained)
+                if hasattr(self.graph, "is_trained") and not self.graph.is_trained():
+                    if self.mode == RESEARCH_MODE:
                         raise RuntimeError(
-                            "RESEARCH MODE: EpistemicGAT has not been trained. "
+                            "RESEARCH MODE: Graph model has not been trained. "
                             "Call shared_gat.fit(agents, X_train, y_train) on "
                             "training data before running the research pipeline. "
                             "Untrained random W produces arbitrary outputs."
                         )
-
-                # Execute Graph Refinement
-                graph_result = self.graph.forward(
-                    node_features, adjacency, epi_unc, agent_order
-                )
-                
-                H_prime = graph_result.node_outputs
-                attn_list = graph_result.attention
-
-                # Extract refined probabilities:
-                # p_i_refined = sigmoid(H_prime[i, 0])
-                # This is the documented mapping: first output dimension -> probability.
-                refined_probs = 1.0 / (1.0 + np.exp(-H_prime[:, 0]))
-
-                for idx, a in enumerate(agent_order):
-                    refined_predictions[a] = float(
-                        np.clip(refined_probs[idx], 1e-7, 1 - 1e-7)
+                    logger.warning(
+                        "PRODUCTION MODE: Graph model exposes is_trained() but is not trained. "
+                        "Skipping graph refinement to avoid random-weight contamination; "
+                        "retaining original agent predictions."
                     )
+                    gnn_status = ModuleStatus(
+                        executed=False,
+                        method="epistemic_gat",
+                        duration_ms=_ms(t),
+                        failure_reason="graph model not trained",
+                    )
+                else:
+                    # Execute Graph Refinement
+                    graph_result = self.graph.forward(
+                        node_features, adjacency, epi_unc, agent_order
+                    )
+                    
+                    H_prime = graph_result.node_outputs
+                    attn_list = graph_result.attention
 
-                # Build communication info from last layer attention
-                attn_matrix = attn_list[-1]  # (N, N)
-                attn_dict = {
-                    agent_order[i]: float(attn_matrix[i].sum())
-                    for i in range(N)
-                }
-                comm_info = {
-                    "edges": [[agent_order[i], agent_order[j]]
-                              for i in range(N) for j in range(N) if i != j],
-                    "attention_weights": attn_dict,
-                    "attention_matrix_shape": list(attn_matrix.shape),
-                    "adjacency_type": "fully_connected",
-                }
+                    # Extract refined probabilities:
+                    # p_i_refined = sigmoid(H_prime[i, 0])
+                    # This is the documented mapping: first output dimension -> probability.
+                    refined_probs = 1.0 / (1.0 + np.exp(-H_prime[:, 0]))
 
-                gnn_status = ModuleStatus(
-                    executed=True, method="epistemic_gat",
-                    duration_ms=_ms(t), failure_reason=None,
-                    inputs_validated=True, outputs_validated=True,
-                )
+                    for idx, a in enumerate(agent_order):
+                        refined_predictions[a] = float(
+                            np.clip(refined_probs[idx], 1e-7, 1 - 1e-7)
+                        )
+
+                    # Build communication info from last layer attention
+                    attn_matrix = attn_list[-1]  # (N, N)
+                    attn_dict = {
+                        agent_order[i]: float(attn_matrix[i].sum())
+                        for i in range(N)
+                    }
+                    comm_info = {
+                        "edges": [[agent_order[i], agent_order[j]]
+                                  for i in range(N) for j in range(N) if i != j],
+                        "attention_weights": attn_dict,
+                        "attention_matrix_shape": list(attn_matrix.shape),
+                        "adjacency_type": "fully_connected",
+                    }
+
+                    gnn_status = ModuleStatus(
+                        executed=True, method="epistemic_gat",
+                        duration_ms=_ms(t), failure_reason=None,
+                        inputs_validated=True, outputs_validated=True,
+                    )
 
             except Exception as exc:
                 gnn_status = ModuleStatus(
