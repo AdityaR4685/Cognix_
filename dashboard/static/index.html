@@ -180,15 +180,15 @@
 <header>
   <div class="logo-container">
     <div class="logo-text">COGNIX</div>
-    <div class="logo-badge">v0.2.0-LIVE</div>
+    <div class="logo-badge">v0.2.0-SYNTHETIC</div>
   </div>
   <div class="hdr-metrics">
     <div class="hdr-pill">Domain: <span style="color:var(--text)">Autonomous Driving</span></div>
-    <div class="hdr-pill">Data Mode: <span style="color:var(--cyan)">SYNTHETIC</span></div>
+    <div class="hdr-pill">Data Mode: <span style="color:var(--cyan)">SYNTHETIC SIMULATION</span></div>
     <div class="hdr-pill">Tick: <span id="hdr-tick" style="color:var(--purple)">#0</span></div>
     <div class="live-badge">
       <div class="live-dot" id="live-dot"></div>
-      <span id="live-text">LIVE SIMULATION</span>
+      <span id="live-text">SYNTHETIC SIMULATION</span>
     </div>
   </div>
 </header>
@@ -222,7 +222,7 @@
 
   <!-- COMPARISON -->
   <section class="card card-comparison">
-    <div class="card-title">LIVE SCENARIO MONITOR</div>
+    <div class="card-title">SCENARIO REFERENCE <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Illustrative Profiles)</span></div>
     <table class="comp-table">
       <thead>
         <tr>
@@ -241,7 +241,7 @@
 
   <!-- EPISTEMIC GRAPH -->
   <section class="card card-graph">
-    <div class="card-title">EPISTEMIC AGENT GRAPH <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Edge = GAT attention weight)</span></div>
+    <div class="card-title">EPISTEMIC AGENT GRAPH <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Edge = Belief fusion weight)</span></div>
     <div class="graph-container" style="position:relative">
       <canvas id="graph-canvas" class="graph-edges"></canvas>
       <div class="graph-nodes" id="graph-nodes">
@@ -314,12 +314,12 @@
 
   <!-- LATENCY -->
   <section class="card card-lat">
-    <div class="card-title">LIVE INFERENCE LATENCY</div>
+    <div class="card-title">LIVE MEASURED LATENCY <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(High-res timer)</span></div>
     <div id="lat-rows"></div>
     <div class="lat-divider"></div>
-    <div class="lat-row"><span class="lat-name">CURRENT TRACE</span><span class="lat-total" id="lat-tot">—</span></div>
+    <div class="lat-row"><span class="lat-name">CURRENT CYCLE</span><span class="lat-total" id="lat-tot">—</span></div>
     
-    <div style="font-size:0.6rem; color:var(--text-muted); text-transform:uppercase; margin:12px 0 6px 0">LATENCY DISTRIBUTION</div>
+    <div style="font-size:0.6rem; color:var(--text-muted); text-transform:uppercase; margin:12px 0 6px 0">LATENCY DISTRIBUTION (Live measured)</div>
     <div class="lat-percentiles">
       <div class="lat-pct"><div class="lat-pct-l">P50</div><div class="lat-pct-v" id="lat-p50">—</div></div>
       <div class="lat-pct"><div class="lat-pct-l">P95</div><div class="lat-pct-v" id="lat-p95">—</div></div>
@@ -329,7 +329,7 @@
 
   <!-- SHAPLEY -->
   <section class="card card-shapley">
-    <div class="card-title">EPISTEMIC SHAPLEY ATTRIBUTION <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Proposed mechanism)</span></div>
+    <div class="card-title">EPISTEMIC SHAPLEY ATTRIBUTION <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Uncertainty contribution)</span></div>
     <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:12px; display:flex; justify-content:space-between">
       <span>Agent</span>
       <span>Δ Collective Epistemic Uncertainty</span>
@@ -351,7 +351,7 @@
         <!-- JS -->
       </div>
       <div class="trace-why">
-        <div class="trace-why-title">WHY ACT?</div>
+        <div class="trace-why-title" id="trace-why-title">DECISION RATIONALE</div>
         <div class="trace-why-text" id="trace-reasoning">
           Waiting for pipeline data...
         </div>
@@ -587,6 +587,8 @@ function updateDashboard(d) {
         document.getElementById('trace-list').innerHTML = d.decision_trace.map(t => `<div class="done">${t}</div>`).join('');
     }
     
+    const whyEl = document.getElementById('trace-why-title');
+    if (whyEl) whyEl.textContent = d.decision === 'ESCALATE' ? 'WHY ESCALATE?' : 'WHY ACT?';
     document.getElementById('trace-reasoning').innerHTML = (d.explanation || "") + "<br><br>" + (d.reasoning || "");
     
     // History

@@ -23,12 +23,13 @@ import uvicorn
 import numpy as np
 
 from cognix import DecisionEngine, CognixConfig
+from cognix.attribution.epistemic_shapley import EpistemicShapley
 from cognix.adapters.carla.dataset import CarlAnomalyDataset
 from cognix.adapters.carla.agents import CameraAgent, DepthAgent, LiDARAgent, GNSSAgent, IMUAgent, SegAgent
 
 # ── Global Engine State ──────────────────────────────────────────────────
 config = CognixConfig()
-engine = DecisionEngine(config)
+engine = DecisionEngine(config=config, attribution=EpistemicShapley())
 dataset = CarlAnomalyDataset(mode="synthetic", n_frames_per_anomaly=1)
 agents = [
     CameraAgent(),
@@ -45,11 +46,12 @@ TICK = [0]
 LATENCY_HISTORY = []
 MAX_LATENCY_HISTORY = 100
 
-BASELINES = {
+ILLUSTRATIVE_BASELINES = {
     "baseline_ece": 0.12,
     "cognix_ece": 0.04,
     "baseline_acc": 0.82,
-    "cognix_acc": 0.95
+    "cognix_acc": 0.95,
+    "is_illustrative": True
 }
 
 SCENARIO_INFO = {
@@ -188,14 +190,6 @@ def run_cognix_cycle() -> dict:
     top_agent = max(result.agent_trust_weights, key=result.agent_trust_weights.get) if result.agent_trust_weights else "N/A"
     top_weight = result.agent_trust_weights.get(top_agent, 0.0)
     
-    # Make baselines totally dynamic
-    noise = float(np.random.normal(0, 0.01))
-    penalty = len(affected_agents) * 0.05
-    BASELINES["baseline_ece"] = max(0.01, BASELINES["baseline_ece"] * 0.9 + (0.12 + penalty + noise) * 0.1)
-    BASELINES["cognix_ece"] = max(0.01, BASELINES["cognix_ece"] * 0.9 + (0.04 + noise * 0.5) * 0.1)
-    BASELINES["baseline_acc"] = min(0.99, BASELINES["baseline_acc"] * 0.9 + (0.85 - penalty + noise) * 0.1)
-    BASELINES["cognix_acc"] = min(0.99, BASELINES["cognix_acc"] * 0.9 + (0.95 + noise * 0.2) * 0.1)
-    
     LATENCY_HISTORY.append(latency_ms)
     if len(LATENCY_HISTORY) > MAX_LATENCY_HISTORY:
         LATENCY_HISTORY.pop(0)
@@ -205,19 +199,19 @@ def run_cognix_cycle() -> dict:
     p95 = lat_sorted[int(len(lat_sorted) * 0.95)]
     p99 = lat_sorted[int(len(lat_sorted) * 0.99)]
     
-    # Make text dynamic
+    # Real pipeline trace based on actual executed stages
     trace = [
-        f"✓ 6 agents received data for {CURRENT_SCENARIO_NAME}",
-        f"✓ UQ estimated (Max Epi: {result.epistemic_uncertainty:.3f})",
-        f"✓ Epistemic graph executed",
-        f"✓ Belief fusion executed ({top_agent} anchor)",
-        f"✓ Conformal calibration executed",
-        f"✓ Risk assessment executed ({result.risk_level.name})",
-        f"✓ Decision generated ({result.decision.name})"
+        f"✓ {len(agents)} agents processed for {CURRENT_SCENARIO_NAME}",
+        f"✓ MC Dropout UQ estimated (Epistemic: {result.epistemic_uncertainty:.3f}, Aleatoric: {result.aleatoric_uncertainty:.3f})",
+        f"✓ Epistemic-weighted belief fusion ({top_agent} anchor, wt={top_weight:.2f})",
+        f"✓ Risk assessment executed ({result.risk_level.name} risk)",
+        f"✓ Decision generated ({result.decision.name})",
+        f"✓ Epistemic Shapley attribution computed ({len(result.agent_contributions)} agents)"
     ]
     
     sinfo = SCENARIO_INFO.get(CURRENT_SCENARIO_NAME, {})
     
+    # Illustrative reference profiles for comparison (clearly documented)
     scenario_comparisons = {
         "NORMAL": {"ece": 0.04, "cov": 94, "epi": 0.006, "esc": 2, "lat": 4.8},
         "HEAVY_RAIN": {"ece": 0.07, "cov": 92, "epi": 0.014, "esc": 7, "lat": 4.9},
@@ -228,13 +222,13 @@ def run_cognix_cycle() -> dict:
     
     if affected_agents:
         reasoning_text = (
-            f"Primary evidence: {top_agent} remains stable.<br>"
-            f"Uncertainty response: {', '.join(affected_agents)} influence severely reduced due to elevated epistemic uncertainty."
+            f"Primary evidence: {top_agent} anchor weight ({top_weight:.1%}).<br>"
+            f"Uncertainty response: {', '.join(affected_agents)} influence reduced due to elevated epistemic uncertainty."
         )
     else:
         reasoning_text = (
-            f"Primary evidence: Multi-agent agreement centered on {top_agent}.<br>"
-            f"Uncertainty response: Influences scaled dynamically by Epistemic GAT."
+            f"Primary evidence: Multi-agent agreement centered on {top_agent} ({top_weight:.1%}).<br>"
+            f"Uncertainty response: Influences scaled inversely by agent epistemic uncertainty."
         )
         
     explanation_text = f"Collective probability: {result.confidence*100:.1f}% | Risk: {result.risk_level.name}"
@@ -243,6 +237,21 @@ def run_cognix_cycle() -> dict:
     if result.decision.name == 'ACT' and result.confidence < 0.95:
          conformal_set.append('ESCALATE')
     
+    # Genuine measured stage latencies from CognixPipeline (perf_counter)
+    pipe_lat = result.latency_ms or {}
+    stage_latencies = {
+        "uncertainty": float(pipe_lat.get("estimate_uncertainty", 0.0)),
+        "fusion": float(pipe_lat.get("belief_fusion", 0.0) + pipe_lat.get("compute_trust", 0.0)),
+        "calibration": float(pipe_lat.get("calibration", 0.0)),
+        "decision": float(pipe_lat.get("decision", 0.0) + pipe_lat.get("risk_assessment", 0.0)),
+        "attribution": float(pipe_lat.get("attribution", 0.0)),
+        "total": latency_ms,
+        "p50": p50,
+        "p95": p95,
+        "p99": p99,
+        "measured_timer": "time.perf_counter"
+    }
+
     return {
         "timestamp": time.time(),
         "tick": TICK[0],
@@ -253,20 +262,16 @@ def run_cognix_cycle() -> dict:
             "expected": sinfo.get("expected", "")
         },
         "research_meta": {
-            "data_source": "CarlAnomalyDataset (Synthetic Mode)",
-            "experiment": "Live Interactive Simulation",
+            "data_source": "CarlAnomalyDataset (Synthetic Simulation)",
+            "experiment": "Live Interactive Synthetic Simulation",
             "run_id": f"LIVE_{int(time.time())}",
-            "model": "COGNIX Live",
+            "model": "COGNIX Live (Synthetic Demo)",
             "dataset": "CarlAnomaly",
             "seed": "Live RNG"
         },
-        "baselines": {
-            "baseline_ece": BASELINES["baseline_ece"],
-            "cognix_ece": BASELINES["cognix_ece"],
-            "baseline_acc": BASELINES["baseline_acc"],
-            "cognix_acc": BASELINES["cognix_acc"]
-        },
+        "baselines": ILLUSTRATIVE_BASELINES,
         "comparison_table": scenario_comparisons,
+        "comparison_table_note": "Illustrative reference baselines",
         "decision": result.decision.name,
         "confidence": result.confidence,
         "calibrated_confidence": result.calibrated_confidence or result.confidence,
@@ -281,17 +286,7 @@ def run_cognix_cycle() -> dict:
         "agents": agents_payload,
         "top_agent": top_agent,
         "shapley": result.agent_contributions,
-        "latency": {
-            "uncertainty": latency_ms * 0.4,
-            "fusion": latency_ms * 0.2,
-            "calibration": latency_ms * 0.1,
-            "decision": latency_ms * 0.1,
-            "attribution": latency_ms * 0.2,
-            "total": latency_ms,
-            "p50": p50,
-            "p95": p95,
-            "p99": p99
-        },
+        "latency": stage_latencies,
         "decision_trace": trace,
         "reasoning": reasoning_text,
         "explanation": explanation_text
