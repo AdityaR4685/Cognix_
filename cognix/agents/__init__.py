@@ -1,4 +1,11 @@
 from .base import StandardAgent
+from .adapters import (
+    CallableAgentAdapter,
+    SklearnAgentAdapter,
+    PyTorchAgentAdapter,
+    LLMAgentAdapter,
+)
+
 # Provide backward compatibility aliases for tests
 BaseAgent = StandardAgent
 
@@ -10,5 +17,9 @@ class NullAgent(StandardAgent):
 __all__ = [
     "StandardAgent",
     "BaseAgent",
-    "NullAgent"
+    "NullAgent",
+    "CallableAgentAdapter",
+    "SklearnAgentAdapter",
+    "PyTorchAgentAdapter",
+    "LLMAgentAdapter",
 ]
