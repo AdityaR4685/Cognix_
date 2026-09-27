@@ -202,6 +202,30 @@ def generate_report():
             rows
         )
 
+    # Confusion Matrix for NORMAL scenario
+    h("Confusion Matrix (NORMAL scenario, mean counts over 200 test samples ± SD)", 3)
+    cm_rows = []
+    for gt in GRAPH_MODES:
+        tps, tns, fps, fns = [], [], [], []
+        for s in range(42, 62):
+            raw_f = RAW_DIR / f"NORMAL_{gt}_{s}.json"
+            if raw_f.exists():
+                with open(raw_f) as fp:
+                    d = json.load(fp)
+                tps.append(d.get("clf_TP", 0))
+                tns.append(d.get("clf_TN", 0))
+                fps.append(d.get("clf_FP", 0))
+                fns.append(d.get("clf_FN", 0))
+        import numpy as np
+        cm_rows.append([
+            gt,
+            f"{np.mean(tps):.1f} ± {np.std(tps, ddof=1):.1f}",
+            f"{np.mean(tns):.1f} ± {np.std(tns, ddof=1):.1f}",
+            f"{np.mean(fps):.1f} ± {np.std(fps, ddof=1):.1f}",
+            f"{np.mean(fns):.1f} ± {np.std(fns, ddof=1):.1f}",
+        ])
+    table(["Mode", "TP", "TN", "FP", "FN"], cm_rows)
+
     # ── 4. Calibration ────────────────────────────────────────────────────────
     h("4. Calibration", 2)
     for scenario in ["NORMAL", "HIGH_NOISE", "MISSING_AGENT", "OOD_SHIFT"]:
@@ -273,18 +297,27 @@ def generate_report():
         rob_data = rob_sweep.get("data", {}).get(gt, {})
         rows = []
         baseline_acc = None
+        baseline_f1 = None
         baseline_ece = None
+        baseline_brier = None
+        baseline_nll = None
         for noise in NOISE_SEVERITY_LEVELS:
             d = rob_data.get(str(noise), {})
             acc  = d.get("accuracy", {}).get("mean")
-            ece  = d.get("ece", {}).get("mean")
             f1   = d.get("f1", {}).get("mean")
+            ece  = d.get("ece", {}).get("mean")
             brier= d.get("brier", {}).get("mean")
             nll  = d.get("nll", {}).get("mean")
+            epi  = d.get("epistemic", {}).get("mean")
+            cov  = d.get("coverage", {}).get("mean")
+            ss   = d.get("set_size", {}).get("mean")
 
             if noise == 0.0:
                 baseline_acc = acc
+                baseline_f1 = f1
                 baseline_ece = ece
+                baseline_brier = brier
+                baseline_nll = nll
 
             def _delta(v, base):
                 if v is not None and base is not None:
@@ -293,12 +326,17 @@ def generate_report():
 
             rows.append([
                 f"{noise:.1f}",
-                _fmt(acc), _fmt(ece), _fmt(f1), _fmt(brier), _fmt(nll),
+                _fmt(acc), _fmt(f1), _fmt(ece), _fmt(brier), _fmt(nll),
+                _fmt(epi, 4), _fmt(cov), _fmt(ss),
                 _delta(acc, baseline_acc),
+                _delta(f1, baseline_f1),
                 _delta(ece, baseline_ece),
+                _delta(brier, baseline_brier),
+                _delta(nll, baseline_nll),
             ])
         table(
-            ["Noise σ", "Accuracy", "ECE", "F1", "Brier", "NLL", "ΔAccuracy", "ΔECE"],
+            ["Noise σ", "Accuracy", "F1", "ECE", "Brier", "NLL", "Epistemic", "Coverage", "Set Size",
+             "ΔAccuracy", "ΔF1", "ΔECE", "ΔBrier", "ΔNLL"],
             rows
         )
 
@@ -411,19 +449,50 @@ def generate_report():
         f"{10} warmup runs before measurement. End-to-end per-decision latency."
     )
 
+    # Compute true mean latency across 20 seeds from raw files
+    raw_means = {}
+    for gt in GRAPH_MODES:
+        m_list = []
+        for s in range(42, 62):
+            raw_f = RAW_DIR / f"NORMAL_{gt}_{s}.json"
+            if raw_f.exists():
+                with open(raw_f) as fp:
+                    d = json.load(fp)
+                m_list.append(d.get("latency", {}).get("total", {}).get("mean"))
+        m_list = [x for x in m_list if x is not None]
+        import numpy as np
+        raw_means[gt] = float(np.mean(m_list)) if m_list else None
+
     rows = []
+    p50_dict = {}
+    p95_dict = {}
+    p99_dict = {}
     for gt in GRAPH_MODES:
         s = all_summaries.get("NORMAL", {}).get(gt, {})
         p50 = s.get("latency_p50", {}).get("mean")
         p95 = s.get("latency_p95", {}).get("mean")
         p99 = s.get("latency_p99", {}).get("mean")
-        rows.append([gt, _fmt(p50, 2), _fmt(p50, 2), _fmt(p95, 2), _fmt(p99, 2)])
+        p50_dict[gt] = p50
+        p95_dict[gt] = p95
+        p99_dict[gt] = p99
+        mean_val = raw_means.get(gt)
+        rows.append([gt, _fmt(mean_val, 2), _fmt(p50, 2), _fmt(p95, 2), _fmt(p99, 2)])
     table(
         ["Mode", "Mean (ms)", "P50 (ms)", "P95 (ms)", "P99 (ms)"],
         rows
     )
 
-    p("**Latency comparison deltas:**")
+    # Transposed table
+    h("Latency Matrix (Transposed)", 3)
+    t_rows = [
+        ["Mean latency", _fmt(raw_means.get("NoGraph"), 2) + " ms", _fmt(raw_means.get("StandardGAT"), 2) + " ms", _fmt(raw_means.get("EpistemicGAT"), 2) + " ms"],
+        ["p50 latency",  _fmt(p50_dict.get("NoGraph"), 2) + " ms",  _fmt(p50_dict.get("StandardGAT"), 2) + " ms",  _fmt(p50_dict.get("EpistemicGAT"), 2) + " ms"],
+        ["p95 latency",  _fmt(p95_dict.get("NoGraph"), 2) + " ms",  _fmt(p95_dict.get("StandardGAT"), 2) + " ms",  _fmt(p95_dict.get("EpistemicGAT"), 2) + " ms"],
+        ["p99 latency",  _fmt(p99_dict.get("NoGraph"), 2) + " ms",  _fmt(p99_dict.get("StandardGAT"), 2) + " ms",  _fmt(p99_dict.get("EpistemicGAT"), 2) + " ms"],
+    ]
+    table(["Metric", "NoGraph", "StandardGAT", "EpistemicGAT"], t_rows)
+
+    p("**P50 Latency Comparisons:**")
     comps = lat_table.get("comparisons", {})
     for comp_name, comp_data in comps.items():
         if comp_data.get("delta_ms") is not None:
@@ -436,6 +505,21 @@ def generate_report():
             )
         else:
             lines.append(f"- **{comp_name.replace('_', ' ')}**: N/A (insufficient data)")
+
+    p("**Mean Latency Comparisons:**")
+    def _mean_delta(b_mode, e_mode):
+        bv = raw_means.get(b_mode)
+        ev = raw_means.get(e_mode)
+        if bv is not None and ev is not None:
+            delta = ev - bv
+            pct = (delta / bv) * 100
+            dir_str = "increase" if delta > 0 else "decrease"
+            return f"- **{e_mode} vs {b_mode}**: {delta:+.2f} ms ({pct:+.1f}%) — latency **{dir_str}**"
+        return f"- **{e_mode} vs {b_mode}**: N/A"
+
+    lines.append(_mean_delta("NoGraph", "StandardGAT"))
+    lines.append(_mean_delta("StandardGAT", "EpistemicGAT"))
+    lines.append(_mean_delta("NoGraph", "EpistemicGAT"))
     lines.append("")
 
     # ── 13. Throughput ────────────────────────────────────────────────────────

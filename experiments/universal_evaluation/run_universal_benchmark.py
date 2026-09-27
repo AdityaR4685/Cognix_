@@ -36,6 +36,7 @@ import torch.nn as nn
 # ── Path setup ────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(Path(__file__).parent))
 
 # ── Cognix imports ────────────────────────────────────────────────────────────
 from cognix.evaluation.scenarios import DataGenerator
@@ -339,14 +340,24 @@ def run_evaluation(
             num_features=num_agents, noise_level=noise_level or 3.0,
             missing_agents=missing_agents if missing_agents else [1, 2])
     else:
+        # Determine condition name for apply_condition
+        if scenario_name == "NOISE_SWEEP":
+            cond = "HIGH_NOISE" if (noise_level is not None and noise_level > 0.0) else "NORMAL"
+        elif scenario_name in ["NORMAL", "HIGH_NOISE", "OOD_SHIFT", "MISSING_AGENT"]:
+            cond = scenario_name
+        else:
+            cond = "NORMAL"
+
         X_test, y_test, ood_labels = gen_te.apply_condition(
             X_test_base, y_test_base,
-            condition=scenario_name if scenario_name in ["NORMAL", "HIGH_NOISE", "OOD_SHIFT", "MISSING_AGENT"]
-                      else "NORMAL",
+            condition=cond,
             noise_level=noise_level,
             ood_severity=ood_severity,
             missing_agent_idx=missing_agents if missing_agents else [1],
         )
+
+    injected_noise_max = float(np.max(np.abs(X_test[:, 1] - X_test_base[:, 1])))
+    injected_noise_mean = float(np.mean(np.abs(X_test[:, 1] - X_test_base[:, 1])))
 
     # ── Agents ────────────────────────────────────────────────────────────
     agents = [HeterogeneousAgent(f"Agent_{i}", i) for i in range(num_agents)]
@@ -535,6 +546,8 @@ def run_evaluation(
         "noise_level":   noise_level,
         "ood_severity":  ood_severity,
         "missing_agents": list(missing_agents),
+        "injected_noise_max": injected_noise_max,
+        "injected_noise_mean": injected_noise_mean,
         "use_avg_fusion": use_avg_fusion,
         "use_conformal":  use_conformal,
         "n_train": n_train, "n_cal": n_cal, "n_test": n_test,
@@ -1081,6 +1094,9 @@ def aggregate_summaries():
                 "selective_risk":     compute_summary_stats(_get("selective_full_risk")),
                 "selective_aurc":     compute_summary_stats(_get("selective_aurc")),
                 "throughput":         compute_summary_stats(_get("throughput_decisions_per_sec")),
+                "latency_mean":       compute_summary_stats(
+                    [r.get("latency", {}).get("total", {}).get("mean") for r in results
+                     if r.get("latency")]),
                 "latency_p50":        compute_summary_stats(
                     [r.get("latency", {}).get("total", {}).get("p50") for r in results
                      if r.get("latency")]),
@@ -1185,8 +1201,9 @@ def compute_latency_comparison(all_summaries: Dict):
     for graph_type in GRAPH_MODES:
         if "NORMAL" in all_summaries and graph_type in all_summaries["NORMAL"]:
             s = all_summaries["NORMAL"][graph_type]
+            mean_val = s.get("latency_mean", {}).get("mean") if s.get("latency_mean") else s.get("latency_p50", {}).get("mean")
             lat_table[graph_type] = {
-                "mean_ms":   s.get("latency_p50", {}).get("mean"),  # p50 is stored as mean of p50s
+                "mean_ms":   mean_val,
                 "p50_ms":    s.get("latency_p50", {}).get("mean"),
                 "p95_ms":    s.get("latency_p95", {}).get("mean"),
                 "p99_ms":    s.get("latency_p99", {}).get("mean"),
@@ -1210,6 +1227,11 @@ def compute_latency_comparison(all_summaries: Dict):
         "StandardGAT_vs_NoGraph":    _delta("NoGraph", "StandardGAT", "p50_ms"),
         "EpistemicGAT_vs_StandardGAT": _delta("StandardGAT", "EpistemicGAT", "p50_ms"),
         "EpistemicGAT_vs_NoGraph":   _delta("NoGraph", "EpistemicGAT", "p50_ms"),
+    }
+    lat_table["mean_comparisons"] = {
+        "StandardGAT_vs_NoGraph":    _delta("NoGraph", "StandardGAT", "mean_ms"),
+        "EpistemicGAT_vs_StandardGAT": _delta("StandardGAT", "EpistemicGAT", "mean_ms"),
+        "EpistemicGAT_vs_NoGraph":   _delta("NoGraph", "EpistemicGAT", "mean_ms"),
     }
 
     with open(LATENCY_DIR / "latency_comparison.json", "w") as f:
