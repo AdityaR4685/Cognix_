@@ -1,0 +1,59 @@
+{
+  "additional_official_TEST_scenario_ids_established": [],
+  "amendment_id": "001_pre_TEST_historical_exposure_correction",
+  "archive": "carlanomaly-base-test.tar.gz",
+  "do_not_infer": "Additional IDs, file-level completeness, specific RGB tick filenames, or earlier probe byte ranges",
+  "earlier_probes": [
+    {
+      "inspected": "beginning of test/anomaly/Town01/change-weather/scenario-1",
+      "reported_size": "64 KB"
+    },
+    {
+      "inspected": "beginning of test/anomaly/Town01/change-weather/scenario-1",
+      "reported_size": "8 MB"
+    }
+  ],
+  "evidence_scope": "Historical facts supplied in text; no new official TEST or metadata access",
+  "historical_file_level_ledger_complete": false,
+  "main_probe": {
+    "HTTP_status": 206,
+    "byte_range_inclusive": [
+      0,
+      125829119
+    ],
+    "captured_bytes": 125829120,
+    "parsing": "sequential gzip/tar",
+    "scenario_10_partial_RGB_frames": 93,
+    "scenario_1_complete": true
+  },
+  "official_TEST_archive": true,
+  "scenario_exposures": [
+    {
+      "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+      "earlier_probes_inspected_beginning": true,
+      "excluded_from": [
+        "FINAL_CONFORMAL_CAL",
+        "FINAL_EVALUATION"
+      ],
+      "exposure_extent": "complete",
+      "historically_exposed": true,
+      "main_probe_captured_scenario_completely": true,
+      "official_TEST": true,
+      "scenario_id": "test/anomaly/Town01/change-weather/scenario-1"
+    },
+    {
+      "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+      "excluded_from": [
+        "FINAL_CONFORMAL_CAL",
+        "FINAL_EVALUATION"
+      ],
+      "exposure_extent": "partial",
+      "historically_exposed": true,
+      "main_probe_captured_RGB_frame_count": 93,
+      "official_TEST": true,
+      "scenario_id": "test/anomaly/Town01/change-weather/scenario-10"
+    }
+  ],
+  "source": "User amendment request describing preserved historical evidence",
+  "temporary_probe_files_deleted_afterward": true
+}

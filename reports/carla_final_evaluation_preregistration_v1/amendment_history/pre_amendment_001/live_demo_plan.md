@@ -1,0 +1,15 @@
+# Live CARLA Demonstration Plan
+
+Scientific evaluation and demonstration are separate deliverables. The demo is not an official held-out benchmark and cannot establish coverage under live distribution shift.
+
+Live front RGB / semantic segmentation / IMU -> frozen deterministic compact feature extraction (Camera18, Seg29, IMU10) -> the five existing bootstrap one-class members and frozen probability mappings per primary agent -> canonical p/E/A -> each of the 15 fixed graph/NoGraph checkpoints -> existing mean(node sigmoid) collective readout -> separately exported scenario conformal state -> conservative evidence/abstention/review logic -> dashboard. GNSS is excluded. Do not substitute pretrained embeddings or a newly trained model.
+
+The IMU buffer contains the trailing 12 ticks, resets at the declared start of each finite scenario, and emits from tick1 after at least two samples. RGB and segmentation tick identifiers must align; use the frozen segmentation palette/channel semantics and IMU column semantics. A live CARLA adapter must explicitly validate coordinate fields, sensor synchronization and compatibility; different simulator sensor semantics cannot be silently coerced. Do not infer a sample rate from dataset row counts.
+
+Export locally after final freeze: immutable extractor/agent/model source and feature schema, one-class fitted member parameters, frozen accepted upstream calibrators and validity audit, node order/dtypes/adjacency/prior, all 15 ledger-bound selected checkpoints and their content/file hashes, all 15 development hard thresholds, conformal scenario scores/counts/strata/alpha/cutoffs/global envelopes and infinite-cutoff status, final partition/exclusion/target manifests and protocol seals, decision semantics, pinned inference environment, and row-keyed golden replay evidence. Artifact restoration must reproduce q without any fit/refit. Do not export raw TEST frames to a demo bundle.
+
+Keep each seed/method identifiable; no best-seed selection or unregistered prediction ensemble. Dashboard declares LIVE SIMULATION and scientific coverage status, shows normality/anomaly evidence, per-agent UQ, support sets, failure/abstention and review flags, and labels attention as routing. It never claims a safe action probability. Display real recorded inference/feature/transport latency when available; no real-time claim before measurement. No control actuation is proposed.
+
+The conservative conformal envelope requires no oracle official normal/anomaly/type metadata at inference. Its mathematical guarantee still assumes a finite scenario generated within registered exchangeable conditions. An indefinite live stream or a new town/type is unsupported: show experimental sets with guarantee unavailable and request review. No automatic online adaptation, threshold optimization, conformal refresh or calibration accumulation. Validate separately on simulator-generated development scenarios, preserving official final sets.
+
+This milestone exports no checkpoints, fits no conformal state, builds no dashboard, and implements no live loop.
