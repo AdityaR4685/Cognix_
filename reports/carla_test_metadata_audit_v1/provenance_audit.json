@@ -1,0 +1,74 @@
+{
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "milestone": "OFFICIAL TEST METADATA INVENTORY / PROVENANCE / COUNT AUDIT ONLY",
+  "no_sensor_similarity_inference": true,
+  "protocol_manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+  "publisher_does_not_supply_seed_route_independence_evidence_in_inspected_pages": true,
+  "relationships": [
+    {
+      "classification": "VERIFIED",
+      "evidence": "Publisher introductory metadata states CARLA generation",
+      "relationship": "generation platform",
+      "scope": "Dataset-level, not independent seed/route identity"
+    },
+    {
+      "classification": "VERIFIED",
+      "evidence": "Publisher directory-structure documentation",
+      "relationship": "split/town/type directory hierarchy",
+      "scope": "Naming grammar only; schematic scenario-1 is not an exhaustive listing"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "same route"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "same simulator seed"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "normal/anomaly versions of same drive"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "weather variants sharing a base drive"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "anomaly variants sharing a base drive"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "shared generation family"
+    },
+    {
+      "classification": "UNKNOWN",
+      "evidence": "No explicit scenario-level keys or mapping available in inspected metadata",
+      "relationship": "explicit per-scenario provenance key"
+    },
+    {
+      "classification": "SUPPORTED BUT INCOMPLETE",
+      "evidence": "Publisher resource catalogue describes Hydra configs and CARLA API; its CarlaGen link is # and supplies no configuration/family mapping",
+      "relationship": "generation configuration could be available through CarlaGen"
+    }
+  ],
+  "release_binding": {
+    "archive_checksum_catalogue": "official_archive_checksums.json",
+    "checksum_verified_against_archive_bytes": false
+  },
+  "reliable_grouping_identifier_available": false,
+  "sources": [
+    "https://carlanomaly.de/dataset/",
+    "https://carlanomaly.de/resources/",
+    "https://carlanomaly.de/about/",
+    "https://data.carlanomaly.de/v1/"
+  ],
+  "time_utc": "2026-10-02T14:57:52.430214+00:00"
+}

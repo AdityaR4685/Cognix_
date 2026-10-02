@@ -1,0 +1,14 @@
+{
+  "source": "https://carlanomaly.de/dataset/",
+  "sections": {
+    "introduction_composition": "Dataset | CarlAnomaly\nCarlAnomaly\n\n\nHome\nDataset\n\nDataset Overview\nSensor Setup\nDirectory Structure\nCameras\nLIDAR\nAnomalies\nAdditional Data\nTasks\n\nAnomaly Detection\nSecondary Tasks\nDownload\nResources\nAbout\n\n\n\nESC\n\n\nAll Results\n\n\n\n\nHEADING : \n\nSearching...\n\nHEADING : No results found\n\nClear search\u2191\u2193\nNavigate\n\u21b5\nSelect\n\n\nPowered by Hugo BloxDataset Overview\nSensor Setup\nAnomaly Types\nEnvironmental Conditions\nDirectory Structure\nCameras\nSemantic LiDAR\nAnomaly Annotations\nAdditional Data\nCarlAnomaly contains synchronized multi-modal autonomous-driving scenarios generated in CARLA, with train, normal test, and anomaly test splits.728\nScenarios491,100\nTimesteps6\nCARLA towns9\nAnomaly typesScenario SplitTimestep SplitAnomaly Type Composition\nSplitScenariosTimestepsTownsAnomaly types\nTrain101303,00060\nTest normal10732,10060\nTest anomaly520156,00069",
+    "directory_structure": "HEADING directory-structure: Directory Structure\nScenarios are grouped by split and CARLA town (Town01\u2013Town05, Town10HD). In the anomaly test split, scenarios are additionally grouped by anomaly type (e.g. change-weather, vanish-actor).\ncarlanomaly/\n\u251c\u2500\u2500 train/\n\u2502   \u251c\u2500\u2500 Town01/\n\u2502   \u2502   \u251c\u2500\u2500 scenario-1/\n\u2502   \u2502   \u2514\u2500\u2500 ...\n\u2502   \u2514\u2500\u2500 ...\n\u2514\u2500\u2500 test/\n    \u251c\u2500\u2500 normal/\n    \u2502   \u251c\u2500\u2500 Town01/\n    \u2502   \u2502   \u251c\u2500\u2500 scenario-1/\n    \u2502   \u2502   \u2514\u2500\u2500 ...\n    \u2502   \u2514\u2500\u2500 ...\n    \u2514\u2500\u2500 anomaly/\n        \u251c\u2500\u2500 Town01/\n        \u2502   \u251c\u2500\u2500 <anomaly-type>/\n        \u2502   \u2502   \u251c\u2500\u2500 scenario-1/\n        \u2502   \u2502   \u2514\u2500\u2500 ...\n        \u2502   \u2514\u2500\u2500 ...\n        \u2514\u2500\u2500 ..."
+  },
+  "excluded_sections": [
+    "sensor setup",
+    "anomaly descriptions",
+    "environmental conditions",
+    "all sensor/annotation/sample/timestep/scenario label examples",
+    "additional data values"
+  ]
+}

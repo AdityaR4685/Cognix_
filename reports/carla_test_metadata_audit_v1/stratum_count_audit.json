@@ -1,0 +1,73 @@
+{
+  "anomaly_strata": null,
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "exact_sparse_strata": null,
+  "milestone": "OFFICIAL TEST METADATA INVENTORY / PROVENANCE / COUNT AUDIT ONLY",
+  "minimum_CAL_for_noninfinite_augmented_rank": 19,
+  "minimum_eligible_N_h": 91,
+  "normal_sparse_strata_lower_bound": 5,
+  "normal_strata": [
+    {
+      "CAL_count": null,
+      "EVAL_count": null,
+      "N_h": null,
+      "anomaly_type": "NORMAL",
+      "condition": "normal",
+      "cutoff_is_infinite": null,
+      "town": "Town01"
+    },
+    {
+      "CAL_count": null,
+      "EVAL_count": null,
+      "N_h": null,
+      "anomaly_type": "NORMAL",
+      "condition": "normal",
+      "cutoff_is_infinite": null,
+      "town": "Town02"
+    },
+    {
+      "CAL_count": null,
+      "EVAL_count": null,
+      "N_h": null,
+      "anomaly_type": "NORMAL",
+      "condition": "normal",
+      "cutoff_is_infinite": null,
+      "town": "Town03"
+    },
+    {
+      "CAL_count": null,
+      "EVAL_count": null,
+      "N_h": null,
+      "anomaly_type": "NORMAL",
+      "condition": "normal",
+      "cutoff_is_infinite": null,
+      "town": "Town04"
+    },
+    {
+      "CAL_count": null,
+      "EVAL_count": null,
+      "N_h": null,
+      "anomaly_type": "NORMAL",
+      "condition": "normal",
+      "cutoff_is_infinite": null,
+      "town": "Town05"
+    },
+    {
+      "CAL_count": null,
+      "EVAL_count": null,
+      "N_h": null,
+      "anomaly_type": "NORMAL",
+      "condition": "normal",
+      "cutoff_is_infinite": null,
+      "town": "Town10HD"
+    }
+  ],
+  "protocol_manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+  "quota": "n_cal=(N_h+4)//5; n_eval=N_h-n_cal",
+  "rank": "k=(19*(n_cal+1)+19)//20",
+  "reason": "Six nonempty normal town strata sum to 107; at most one can have N_h>=91. At least five have N_h<=90 and n_cal<19. At least one has N_h<=floor(107/6)=17 and n_cal<=4.",
+  "registered_stratum": "(town, official directory condition, anomaly-type or NORMAL)",
+  "status": "EXACT_STRATUM_COUNTS_UNAVAILABLE",
+  "time_utc": "2026-10-02T14:57:52.430214+00:00"
+}

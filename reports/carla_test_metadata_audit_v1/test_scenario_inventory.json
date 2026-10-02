@@ -1,0 +1,54 @@
+{
+  "additional_exposed_ids_inferred": [],
+  "blocker": "No standalone official scenario manifest or route/seed/family catalogue is exposed by the inspected publisher indexes. Complete archive traversal would decompress intervening TEST payloads and is prohibited. Stop official access.",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "complete": false,
+  "directory_grammar": [
+    "test/normal/<town>/scenario-N",
+    "test/anomaly/<town>/<anomaly-type>/scenario-N"
+  ],
+  "discovered_scenario_count": null,
+  "known_excluded_scenario_records": [
+    {
+      "anomaly_type": "change-weather",
+      "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+      "eligible": false,
+      "excluded_roles": [
+        "FINAL_CONFORMAL_CAL",
+        "FINAL_EVALUATION"
+      ],
+      "exclusion_reason": "Frozen historical schema exposure; entire scenario permanently excluded from both final sets",
+      "historical_exposure_extent": "complete",
+      "metadata_identity_source": "Sealed amended historical exposure record; not independently enumerated in this audit",
+      "official_directory_condition": "anomaly",
+      "official_existence_independently_verified_this_milestone": false,
+      "provenance_family_group_id": null,
+      "scenario_id": "test/anomaly/Town01/change-weather/scenario-1",
+      "town": "Town01"
+    },
+    {
+      "anomaly_type": "change-weather",
+      "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+      "eligible": false,
+      "excluded_roles": [
+        "FINAL_CONFORMAL_CAL",
+        "FINAL_EVALUATION"
+      ],
+      "exclusion_reason": "Frozen historical schema exposure; entire scenario permanently excluded from both final sets",
+      "historical_exposure_extent": "partial",
+      "metadata_identity_source": "Sealed amended historical exposure record; not independently enumerated in this audit",
+      "official_directory_condition": "anomaly",
+      "official_existence_independently_verified_this_milestone": false,
+      "provenance_family_group_id": null,
+      "scenario_id": "test/anomaly/Town01/change-weather/scenario-10",
+      "town": "Town01"
+    }
+  ],
+  "milestone": "OFFICIAL TEST METADATA INVENTORY / PROVENANCE / COUNT AUDIT ONLY",
+  "protocol_manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+  "scenario_directory_completion_verified": false,
+  "scenario_ids_enumerated_from_official_index": [],
+  "status": "INCOMPLETE_METADATA_UNAVAILABLE",
+  "time_utc": "2026-10-02T14:57:52.430214+00:00"
+}

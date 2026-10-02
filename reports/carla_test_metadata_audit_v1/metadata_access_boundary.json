@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-10-02T14:49:53.912585+00:00",
+  "allowed_initial_sources": [
+    {
+      "source": "https://carlanomaly.de/download/",
+      "operation": "Read public download-index HTML/text and links",
+      "fields": [
+        "archive names",
+        "split names",
+        "release/version",
+        "published composition counts",
+        "metadata-index links"
+      ],
+      "reason": "Publisher download catalogue, not sensor or label payload"
+    },
+    {
+      "source": "https://data.carlanomaly.de/v1/",
+      "operation": "Read public HTTP directory index if offered",
+      "fields": [
+        "file/index names",
+        "sizes",
+        "metadata catalogue links"
+      ],
+      "reason": "Server directory metadata only"
+    }
+  ],
+  "later_sources": "Only explicit metadata indexes or provenance documentation identified by these catalogues, logged before access. No sample visualizations or anomaly event descriptions.",
+  "denied": [
+    "TEST archive GET/range/decompression",
+    "RGB or segmentation",
+    "feather sensor/label tables",
+    "GNSS/IMU values",
+    "anomaly-observation timesteps",
+    "predictions/model outputs/metrics",
+    "model execution",
+    "partition RNG execution",
+    "conformal fit"
+  ],
+  "archive_policy": "No sequential tar.gz listing: it would require reading/decompressing intervening sensor payloads. No archive byte range probes.",
+  "stop_condition": "If complete scenario identities/provenance require payload access, stop and report unknowns."
+}

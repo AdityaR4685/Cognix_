@@ -1,0 +1,42 @@
+{
+  "Q_global_necessarily_infinite_under_published_counts": true,
+  "alpha_unchanged": 0.05,
+  "applies_to_every_frozen_method_and_seed": true,
+  "candidate_culprit_strata": [
+    "(Town01, normal, NORMAL)",
+    "(Town02, normal, NORMAL)",
+    "(Town03, normal, NORMAL)",
+    "(Town04, normal, NORMAL)",
+    "(Town05, normal, NORMAL)",
+    "(Town10HD, normal, NORMAL)"
+  ],
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "conformal_sets_created": false,
+  "cutoff_computed_from_scores": false,
+  "cutoff_value": null,
+  "exact_culprit_strata_and_counts": null,
+  "is_performance_evaluation": false,
+  "method_seed_pairs": 15,
+  "milestone": "OFFICIAL TEST METADATA INVENTORY / PROVENANCE / COUNT AUDIT ONLY",
+  "no_protocol_repair": true,
+  "normal_sparse_strata_at_least": 5,
+  "pigeonhole_witness_bound": {
+    "CAL_max_for_that_stratum": 4,
+    "N_h_max_for_at_least_one_normal_stratum": 17,
+    "rank_at_n_CAL_4": 5
+  },
+  "proof": [
+    "Six positive normal town counts sum to 107.",
+    "Two normal strata of size >=91 would require at least 182 scenarios; at most one can reach 91.",
+    "At least five normal strata therefore have N_h<=90, ceil(N_h/5)<=18, and ceil(.95*(n_CAL+1))>n_CAL.",
+    "The augmented rank selects +infinity for each such stratum, irrespective of scores/method/seed.",
+    "Q=max_h Q_h is consequently +infinity for every method/seed.",
+    "The inclusive rule 1-P(y)<=+infinity admits both labels at every valid future prediction tick, giving {normal, anomaly}."
+  ],
+  "protocol_manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+  "quantile_is_infinite": true,
+  "scope": "Mathematical implication of published normal count and six nonempty town strata, not a fitted result or verified inventory.",
+  "status": "GLOBAL_INFINITY_NECESSARY_CONDITIONAL_ON_PUBLISHER_AGGREGATES",
+  "time_utc": "2026-10-02T14:57:52.430214+00:00"
+}

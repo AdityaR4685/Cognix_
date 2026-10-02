@@ -1,0 +1,204 @@
+{
+  "commit_changes": [
+    "reports/carla_final_evaluation_preregistration_v1/SHA256SUMS",
+    "reports/carla_final_evaluation_preregistration_v1/SHA256SUMS.sha256",
+    "reports/carla_final_evaluation_preregistration_v1/amend_protocol.py",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/SHA256SUMS",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/SHA256SUMS.sha256",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/audit_integrity.py",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/build_protocol.py",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/conformal_protocol.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/current_train_content_verification.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/decision_semantics.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/dependency_audit.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/exposure_evidence.md",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/exposure_source_lines.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/final_metrics_spec.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/frozen_method_bindings.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/integrity_results.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/live_demo_plan.md",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/milestone_scope.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/pipeline_map.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/preservation_snapshot.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/protocol_validation.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/readiness.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/report.md",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/seed_aggregation_spec.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/source_evidence.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/test_exposure_record.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/test_partition_protocol.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/train_dataset_integrity.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_history/pre_amendment_001/verify_protocol.py",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_initial_state.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_integrity.json",
+    "reports/carla_final_evaluation_preregistration_v1/amendment_record.json",
+    "reports/carla_final_evaluation_preregistration_v1/audit_integrity.py",
+    "reports/carla_final_evaluation_preregistration_v1/build_protocol.py",
+    "reports/carla_final_evaluation_preregistration_v1/conformal_protocol.json",
+    "reports/carla_final_evaluation_preregistration_v1/current_train_content_verification.json",
+    "reports/carla_final_evaluation_preregistration_v1/decision_semantics.json",
+    "reports/carla_final_evaluation_preregistration_v1/dependency_audit.json",
+    "reports/carla_final_evaluation_preregistration_v1/exposure_evidence.md",
+    "reports/carla_final_evaluation_preregistration_v1/exposure_source_lines.json",
+    "reports/carla_final_evaluation_preregistration_v1/final_metrics_spec.json",
+    "reports/carla_final_evaluation_preregistration_v1/frozen_method_bindings.json",
+    "reports/carla_final_evaluation_preregistration_v1/integrity_results.json",
+    "reports/carla_final_evaluation_preregistration_v1/live_demo_plan.md",
+    "reports/carla_final_evaluation_preregistration_v1/milestone_scope.json",
+    "reports/carla_final_evaluation_preregistration_v1/pipeline_map.json",
+    "reports/carla_final_evaluation_preregistration_v1/preservation_snapshot.json",
+    "reports/carla_final_evaluation_preregistration_v1/protocol_validation.json",
+    "reports/carla_final_evaluation_preregistration_v1/readiness.json",
+    "reports/carla_final_evaluation_preregistration_v1/recovered_historical_evidence.json",
+    "reports/carla_final_evaluation_preregistration_v1/report.md",
+    "reports/carla_final_evaluation_preregistration_v1/seed_aggregation_spec.json",
+    "reports/carla_final_evaluation_preregistration_v1/source_evidence.json",
+    "reports/carla_final_evaluation_preregistration_v1/test_exposure_record.json",
+    "reports/carla_final_evaluation_preregistration_v1/test_partition_protocol.json",
+    "reports/carla_final_evaluation_preregistration_v1/train_dataset_integrity.json",
+    "reports/carla_final_evaluation_preregistration_v1/verify_protocol.py"
+  ],
+  "commit_reconciliation": "Current HEAD is the direct child committing only the sealed preregistration. Scientific tree is unchanged from the recorded pre-sealing HEAD. No arbitrary HEAD rebinding.",
+  "completed_utc": "2026-10-02T14:49:22.148823+00:00",
+  "current_git_commit": "0ad893172d533fc8a048a503ad681c706d5312b8",
+  "external_files_verified": 36,
+  "failures": [],
+  "passed": true,
+  "protocol_verification": {
+    "JSON_syntax": "all JSON parsed with nonfinite constants rejected",
+    "TEST_partition_ready": false,
+    "all_seal_hashes_passed": true,
+    "amendment_001_exact_exposures_and_previous_seal": "verified against recovered textual evidence and preserved original archive",
+    "checks_scope": "Static protocol/evidence consistency only; no science module imports, model load, inference, training, conformal fit or TEST payload reads",
+    "conformal_fitting_ready": false,
+    "manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+    "method_seed_checkpoint_threshold_bindings": 15,
+    "no_TEST_metadata_partition_prediction_training_fitting_tuning": true,
+    "passed": true,
+    "preservation_and_current_TRAIN_hash_evidence": "passed",
+    "rank_and_quota_algebra": "passed without scores/fitting/partition execution",
+    "report_sections": 18,
+    "required_artifacts": 10,
+    "scientific_design_artifacts_byte_identical": true,
+    "sealed_files": 55
+  },
+  "recorded_pre_sealing_commit": "36fe79f310973321947d8d96dd78d14128cf719d",
+  "seals": [
+    {
+      "files_verified": 153,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_runs_v1\\SHA256SUMS",
+      "passed": true,
+      "sha256": "886250f8c157bf6aec46ca70f3e7fe88ec2fcc16653dd4e3933eefbdc18fc6dd"
+    },
+    {
+      "files_verified": 7,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_execution_v1\\local_delivery_SHA256SUMS",
+      "passed": true,
+      "sha256": "c103a6c3ea814d1b3742dc21f98f180433c4e015e8ff0d2585ff8d83b95ebb0f"
+    },
+    {
+      "files_verified": 10,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\SHA256SUMS",
+      "passed": true,
+      "sha256": "07faf35caa538ce9ab74e21d2c46755ce1805fd6d6330a741f5a4393f16bbc7d"
+    },
+    {
+      "files_verified": 12,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_kaggle_environment_lock_v1\\SHA256SUMS",
+      "passed": true,
+      "sha256": "7074ff80cd8d5e828a37e64adf68070646cc000ddaa4a6362454a631ef8b9f0c"
+    },
+    {
+      "files_verified": 46,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_101\\SHA256SUMS",
+      "passed": true,
+      "sha256": "849853c987858a446fe44412dd30626c55325b59bb5a30765f0576a6c86fff1d"
+    },
+    {
+      "files_verified": 47,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_202\\SHA256SUMS",
+      "passed": true,
+      "sha256": "bf14bf23b9c5b07aec9f11a7d379b443c5c12ba6f9f0c800d8125c0633e83e54"
+    },
+    {
+      "files_verified": 40,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_303\\SHA256SUMS",
+      "passed": true,
+      "sha256": "634b0d445b5dd5a8261e158ae298f46a5f7d15f1d62001f1978350460fefec44"
+    },
+    {
+      "files_verified": 50,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_404\\SHA256SUMS",
+      "passed": true,
+      "sha256": "c9f456ea9596a84c7c62b770607b5e06f655ad780894233f152cd67911f2fe68"
+    },
+    {
+      "files_verified": 50,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_505\\SHA256SUMS",
+      "passed": true,
+      "sha256": "a40b660fe517e6929c0936ad6c00e4e441495dbb48724cf95996e8ba3c7e1288"
+    },
+    {
+      "files_verified": 10,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_101\\SHA256SUMS",
+      "passed": true,
+      "sha256": "f562c493b40016d3c54f962e627b0a32dc4dc9ff6170034f64fc5bff0351ed1f"
+    },
+    {
+      "files_verified": 10,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_202\\SHA256SUMS",
+      "passed": true,
+      "sha256": "4844e69096f20b0c33eac2c6e520c70872577ff751184c4753e272b39415d43b"
+    },
+    {
+      "files_verified": 11,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_303\\SHA256SUMS",
+      "passed": true,
+      "sha256": "1b95aa1e624ec6236ae6f43f7e44408356a64a919b0303b3d600979a6998ea45"
+    },
+    {
+      "files_verified": 10,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_404\\SHA256SUMS",
+      "passed": true,
+      "sha256": "4259da862df04080794f17da8e17634baaa2752c86aa23cc26fb1936fc82b093"
+    },
+    {
+      "files_verified": 10,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_505\\SHA256SUMS",
+      "passed": true,
+      "sha256": "afa196db18ad0b330a581dd868494d5781ff624513bd507beff255b534bcf6e3"
+    },
+    {
+      "files_verified": 46,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_101\\SHA256SUMS",
+      "passed": true,
+      "sha256": "6f9010a344ec3b3774770e5be520056297d0c64022b703007f932c3439acb18b"
+    },
+    {
+      "files_verified": 47,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_202\\SHA256SUMS",
+      "passed": true,
+      "sha256": "a4116b20bd431d41da4e5a5c56fbdf11165c021524d54c5f5793291c4e84517d"
+    },
+    {
+      "files_verified": 40,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_303\\SHA256SUMS",
+      "passed": true,
+      "sha256": "9e92c9ffd550c0c006f0375006a88f076912c55c4dd6b69480869e7f941bd80a"
+    },
+    {
+      "files_verified": 49,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_404\\SHA256SUMS",
+      "passed": true,
+      "sha256": "9f3acc6982af0f331885e7ade27202ec015189e9956f88014a39356e784d48af"
+    },
+    {
+      "files_verified": 50,
+      "manifest": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_505\\SHA256SUMS",
+      "passed": true,
+      "sha256": "9fce28b1c5e44643a7886bccf0889ca7827e5d92462e1513d8e3e93e65791d2e"
+    }
+  ],
+  "started_utc": "2026-10-02T14:49:21.169404+00:00",
+  "workspace_files_verified": 3764
+}

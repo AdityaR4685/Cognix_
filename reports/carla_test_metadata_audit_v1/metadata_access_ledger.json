@@ -1,0 +1,225 @@
+{
+  "attestation_limit": "Executed-action ledger, not an OS-wide trace.",
+  "completed_utc": "2026-10-02T14:57:52.463504+00:00",
+  "conformal_fits": 0,
+  "directory_identity_completeness": false,
+  "entries": [
+    {
+      "external_files_hashed": 36,
+      "fields_inspected": [
+        "seal entries",
+        "exact exclusions",
+        "partition algorithm",
+        "conformal rank rule",
+        "binding hashes",
+        "Git parent/tree"
+      ],
+      "manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+      "operation": "SHA256 verification and Git tree/commit verification",
+      "order": 1,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_evaluation_preregistration_v1",
+      "source": "sealed local preregistration and frozen development bindings",
+      "timestamp_utc": "2026-10-02T14:49:22.223175+00:00",
+      "why_metadata": "Preflight and immutable-artifact integrity; no official TEST or sensor/label payload",
+      "workspace_files_hashed": 3764
+    }
+  ],
+  "limitation": "No standalone official scenario manifest or route/seed/family catalogue is exposed by the inspected publisher indexes. Complete archive traversal would decompress intervening TEST payloads and is prohibited. Stop official access.",
+  "model_executions": 0,
+  "official_archive_requests": 0,
+  "official_metadata_accesses": [
+    {
+      "bytes_inspected": 54226,
+      "completed_utc": "2026-10-02T14:50:54.227149+00:00",
+      "direct_fetch_error": "<urlopen error [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions>",
+      "fields_inspected": [
+        "archive names",
+        "split names",
+        "release/version",
+        "published composition counts",
+        "metadata-index links"
+      ],
+      "file_path_member": "https://carlanomaly.de/download/",
+      "hash": null,
+      "operation": "Read public download-index HTML/text and links",
+      "order": 2,
+      "sha256": "b113e81bb6b52ade43daeafd4ca63444babf9ad51632da8817f4a4c8d706dbba",
+      "source": "https://carlanomaly.de/download/",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:49:53.912585+00:00",
+      "why_metadata": "Publisher download catalogue, not sensor or label payload"
+    },
+    {
+      "bytes_inspected": null,
+      "fields_inspected": [
+        "file/index names",
+        "sizes",
+        "metadata catalogue links"
+      ],
+      "file_path_member": "https://data.carlanomaly.de/v1/",
+      "hash": null,
+      "operation": "Read public HTTP directory index if offered",
+      "order": 2,
+      "result": "No index returned; no archive requested",
+      "source": "https://data.carlanomaly.de/v1/",
+      "state": "failed_web_tool_unavailable",
+      "timestamp_utc": "2026-10-02T14:49:53.912585+00:00",
+      "why_metadata": "Server directory metadata only"
+    },
+    {
+      "HTTP_status": 200,
+      "bytes_transferred": 1858,
+      "fields_inspected": [
+        "catalogue links",
+        "generation/provenance documentation",
+        "published composition"
+      ],
+      "file_path_member": "https://data.carlanomaly.de/v1/",
+      "inspection_limit": "Documentation text only",
+      "operation": "GET bounded public HTML catalogue/provenance prose",
+      "order": 4,
+      "raw_document_sha256": "5a41f588112a451661ef9d25aea1e4c7ace30b061e4d4dc99eef8d5a98843b71",
+      "result_sha256": "3bb78c2d205f0ca55620f620563cd135d8232f446fc11d1f00f6669a4c6b17c9",
+      "source": "https://data.carlanomaly.de/v1/",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:51:59.483432+00:00",
+      "why_metadata": "Publisher documentation/index only; no archive, sensor member, event annotation or label table"
+    },
+    {
+      "HTTP_status": 200,
+      "bytes_transferred": 53953,
+      "fields_inspected": [
+        "catalogue links",
+        "generation/provenance documentation",
+        "published composition"
+      ],
+      "file_path_member": "https://carlanomaly.de/resources/",
+      "inspection_limit": "Documentation text only",
+      "operation": "GET bounded public HTML catalogue/provenance prose",
+      "order": 5,
+      "raw_document_sha256": "0a71195ce5fad44839e4c13dcf3a7a7bcb95c79ee44aaddfb889b6f993933213",
+      "result_sha256": "6cb56e092a6dc7ef1a41f255e109cf3125a923dd3be0ac9b9c2469f19771c734",
+      "source": "https://carlanomaly.de/resources/",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:52:00.821370+00:00",
+      "why_metadata": "Publisher documentation/index only; no archive, sensor member, event annotation or label table"
+    },
+    {
+      "HTTP_status": 200,
+      "bytes_transferred": 53186,
+      "fields_inspected": [
+        "catalogue links",
+        "generation/provenance documentation",
+        "published composition"
+      ],
+      "file_path_member": "https://carlanomaly.de/about/",
+      "inspection_limit": "Documentation text only",
+      "operation": "GET bounded public HTML catalogue/provenance prose",
+      "order": 6,
+      "raw_document_sha256": "7be07a3ad26996c9fd0f4dd147babd07fa348ddcc45d07beed6aca06b93bfa2d",
+      "result_sha256": "4ecc1a7eb9c449401b7fd2ef527af77aa2a9940da64dc44e9753b5a08e377e23",
+      "source": "https://carlanomaly.de/about/",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:52:01.866013+00:00",
+      "why_metadata": "Publisher documentation/index only; no archive, sensor member, event annotation or label table"
+    },
+    {
+      "HTTP_status": 200,
+      "bytes_transferred": 73626,
+      "fields_inspected": [
+        "section names/IDs only"
+      ],
+      "file_path_member": "https://carlanomaly.de/dataset/",
+      "inspection_limit": "No non-heading text retained/interpreted",
+      "operation": "GET bounded public HTML; extract section headings only",
+      "order": 7,
+      "raw_document_sha256": "6d2010bf6d3bc758efb9d9b0b7b8a351d37bcae286a7c91b4dc7618c9b941554",
+      "result_sha256": "35b42af58aa6002ad487f54222d9fc395e5944489e0f9f674fe7af6412c2bd98",
+      "source": "https://carlanomaly.de/dataset/",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:52:03.045071+00:00",
+      "why_metadata": "Publisher documentation/index only; no archive, sensor member, event annotation or label table"
+    },
+    {
+      "fields_inspected": [
+        "published scenario counts",
+        "split/town/condition/type path grammar",
+        "provenance statements"
+      ],
+      "file_path_member": "https://carlanomaly.de/dataset/",
+      "operation": "Read only introductory composition and directory-structure documentation sections",
+      "order": 8,
+      "result": "Initial selector rejected minified unquoted heading IDs; retry recorded separately. Bytes/hash were not retained for this failed attempt.",
+      "source": "https://carlanomaly.de/dataset/",
+      "state": "completed_transport_selector_failed_no_selected_fields_returned",
+      "timestamp_utc": "2026-10-02T14:52:56.251685+00:00",
+      "why_metadata": "Publisher catalogue/documentation; no actual scenario sensor/label/event payload"
+    },
+    {
+      "HTTP_status": 200,
+      "bytes_transferred": 73626,
+      "fields_inspected": [
+        "published scenario counts",
+        "split/town/condition/type path grammar",
+        "provenance statements"
+      ],
+      "file_path_member": "https://carlanomaly.de/dataset/",
+      "inspection_limit": "Only selected metadata sections retained/interpreted; raw HTML is documentation, never a dataset payload",
+      "operation": "Read only introductory composition and directory-structure documentation sections",
+      "order": 9,
+      "raw_document_sha256": "6d2010bf6d3bc758efb9d9b0b7b8a351d37bcae286a7c91b4dc7618c9b941554",
+      "result_sha256": "41b0bfb328d8375559a443060caf4bc252856fe044dd09ac1863e056c0014e6f",
+      "source": "https://carlanomaly.de/dataset/",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:53:15.546194+00:00",
+      "why_metadata": "Publisher catalogue/documentation; no actual scenario sensor/label/event payload"
+    },
+    {
+      "HTTP_status": 200,
+      "bytes_transferred": 1198,
+      "fields_inspected": [
+        "archive filename",
+        "sha256"
+      ],
+      "file_path_member": "https://data.carlanomaly.de/v1/SHA256SUMS.txt",
+      "inspection_limit": "Only selected metadata sections retained/interpreted; raw HTML is documentation, never a dataset payload",
+      "operation": "Read archive checksum catalogue",
+      "order": 10,
+      "raw_document_sha256": "1fe3af85b89224f3d21c9993d00a51ab11cc3dbe7ab2ebbbec85c973b7011760",
+      "result_sha256": "599c6fa766889b80a1ca9b6d86008f8ebff7cdaf6c7e0ddf2acd88db2b5b9d92",
+      "source": "https://data.carlanomaly.de/v1/SHA256SUMS.txt",
+      "state": "completed",
+      "timestamp_utc": "2026-10-02T14:53:16.554919+00:00",
+      "why_metadata": "Publisher catalogue/documentation; no actual scenario sensor/label/event payload"
+    }
+  ],
+  "official_sensor_member_reads": 0,
+  "official_timestep_label_reads": 0,
+  "partition_executions": 0,
+  "planned_boundary": "metadata_access_boundary.json",
+  "scope": "Preflight integrity reads only. Opaque hashes of already completed development artifacts are not interpreted as predictions or metrics. No official TEST files, archive bytes, sensor members or labels may be read.",
+  "started_utc": "2026-10-02T14:49:20.689806+00:00",
+  "stopped_before_official_archive_or_payload": true,
+  "web_tool_accesses": [
+    {
+      "bytes": null,
+      "fields": [
+        "archive names/sizes",
+        "catalogue links"
+      ],
+      "hash": null,
+      "operation": "web open publisher download page",
+      "order": "before direct catalogue fetches",
+      "reason": "Publisher index; web tool does not return raw byte accounting",
+      "result": "success",
+      "source": "https://carlanomaly.de/download/"
+    },
+    {
+      "bytes": 0,
+      "operation": "web open directory index",
+      "order": "same batch",
+      "result": "web tool inaccessible; later direct metadata-only GET succeeded",
+      "source": "https://data.carlanomaly.de/v1/"
+    }
+  ]
+}
