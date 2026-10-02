@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "status": "GENERATOR MECHANISM KNOWN",
+  "release_binding_status": "MAPPING NOT RECOVERABLE",
+  "entrypoint": "sim.py",
+  "configuration": {
+    "framework": "Hydra",
+    "default_seed": 12345,
+    "default_town": "Town02",
+    "optional_local_overrides": true,
+    "command_line_overrides": true,
+    "hydra_version_unpinned": true,
+    "carla_client_version": "0.9.14"
+  },
+  "execution": "New Simulation and client.load_world per invocation; live actor creation and autopilot drive; callbacks run on live ticks. Recorder writes recordings but no replay API is called in public generator text.",
+  "timing": {
+    "normal_test_seconds": 30,
+    "anomaly_test_seconds": 30,
+    "train_seconds": 300,
+    "fixed_delta_seconds": 0.1,
+    "skip_start_ticks": 200
+  },
+  "seed_sources": {
+    "ego": "simulation.ego.seed",
+    "npc_vehicles": "simulation.vehicles.seed",
+    "pedestrians": "simulation.pedestrians.seed",
+    "weather": "callbacks.*.cb_seed",
+    "anomalies": "seed/scheduler_seed or inconsistent legacy parameter names",
+    "traffic_manager": "hard-coded 12345"
+  },
+  "output_layout": {
+    "normal_prefix": "./outputs/test/normal/${simulation.world_name}",
+    "anomaly_prefix": "./outputs/test/anomaly/${simulation.world_name}/<configured-type>",
+    "run_suffix": "${now:%Y-%m-%d}/${now:%H-%M-%S}",
+    "multirun_suffix": "multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}/${hydra.job.num}",
+    "released_scenario_suffix_writer_found": false
+  },
+  "evidence": [
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/default.yaml",
+      "line_start": 3,
+      "line_end": 22,
+      "detail": "Hydra defaults, optional local override, data_dir and default seed.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/default.yaml#L3"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/simulation/default.yaml",
+      "line_start": 3,
+      "line_end": 57,
+      "detail": "Town, ego/NPC/pedestrian seed interpolation, autopilot and timing.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/simulation/default.yaml#L3"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "sim.py",
+      "line_start": 15,
+      "line_end": 58,
+      "detail": "Hydra entrypoint, config logging, callback instantiation; exception handling does not supply completion manifest.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/sim.py#L15"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "carlagen/simulation.py",
+      "line_start": 271,
+      "line_end": 350,
+      "detail": "Fresh world loading, actor creation and autopilot setup.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/simulation.py#L271"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "carlagen/simulation.py",
+      "line_start": 229,
+      "line_end": 267,
+      "detail": "Callback initialization, skipped startup ticks and live simulation loop.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/simulation.py#L229"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "carlagen/utils/carla.py",
+      "line_start": 38,
+      "line_end": 53,
+      "detail": "Traffic Manager seed is hard-coded to 12345.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L38"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/experiment/test.yaml",
+      "line_start": 1,
+      "line_end": 10,
+      "detail": "Normal test uses test-clip callbacks, 30 seconds, normal output prefix.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/test.yaml#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/experiment/train.yaml",
+      "line_start": 1,
+      "line_end": 20,
+      "detail": "Train uses train-clip callbacks, 300 seconds.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/train.yaml#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/hydra/default.yaml",
+      "line_start": 1,
+      "line_end": 11,
+      "detail": "Run timestamp naming and multirun job-number naming.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/hydra/default.yaml#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "carlagen/callback/saving.py",
+      "line_start": 22,
+      "line_end": 37,
+      "detail": "CARLA recording creation and stop; no playback call.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/saving.py#L22"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "requirements.txt",
+      "line_start": 1,
+      "line_end": 24,
+      "detail": "CARLA client 0.9.14; Hydra and several dependencies unpinned.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/requirements.txt#L1"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+defaults:
+    - weather: good.yaml
+
+world_name: 'Town02'
+
+carla:
+    # WARNING: this binary will be executed if spawn is True
+    bin: ""
+    file: "CarlaUE4.sh"
+    quality_level: "Epic"
+    spawn: True
+    host: localhost
+    port: 2000
+    timeout: 10.0 # seconds
+
+ego:
+    index: 0
+    mode: "seed"
+    seed: ${seed} # not required when mode is manual
+    model: "vehicle.tesla.model3"
+    autopilot: True
+    # distance_to_leading: 2
+    percentage_speed: -10.0
+    auto_lane_change: True
+    ignore_walkers_percentage: 0 # ignore walkers so we do not slow down all the time
+    ignore_lights_percentage: 0
+
+
+pedestrians:
+    mode: "seed"
+    seed: ${seed}
+    number: 100 # if you spawn too many, the simulation crashes
+    models: []
+    pedestrians_cross_factor: 10.0 # allow crossing streets some times, otherwise pedestrians might get stuck
+
+
+vehicles:
+    mode: "seed"
+    seed: ${seed}
+    number: 50 # 100 results in clogged streets
+    filter: "*vehicle*"
+    broken_cars: ["vehicle.mitsubishi.fusorosa", "vehicle.carlamotors.firetruck", "vehicle.ford.ambulance"]
+    att_filters:
+        # only select vehicles with 4 wheels
+        # number_of_wheels: 4
+
+# number of ticks to skip at the start of the simulation
+# to wait for everything to spawn etc.
+skip_start_ticks: 200
+
+# scene duration in seconds
+scene_duration: 7200
+
+# temporal resolution of simulation
+fixed_delta_seconds: 0.10 # 1/10s
+max_substep_delta_time: 0.005
+max_substeps: 16

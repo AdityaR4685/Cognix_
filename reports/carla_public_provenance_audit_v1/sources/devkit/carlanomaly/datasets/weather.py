@@ -1,0 +1,25 @@
+from __future__ import annotations
+
+import torch
+
+from ._base import AtomicDataset
+
+
+class WeatherDataset(AtomicDataset):
+    """Per-timestep weather parameters.
+
+    Returns a ``FloatTensor (T, 14)`` with columns: cloudiness, precipitation,
+    sun_altitude_angle, sun_azimuth_angle, fog_density, fog_distance,
+    fog_falloff, precipitation_deposits, wind_intensity, wetness,
+    scattering_intensity, mie_scattering_scale, rayleigh_scattering_scale,
+    dust_storm.
+    """
+
+    modality = "weather"
+
+    def __getitem__(self, idx: int) -> torch.Tensor:
+        rec, start = self._index[idx]
+        timesteps = self._index.timesteps_for(idx)
+        arr = self._read_feather_cached(rec, "weather")
+        item = torch.from_numpy(arr[timesteps])  # (T, 14)
+        return self._apply_transform(item)

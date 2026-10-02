@@ -1,0 +1,213 @@
+camera:
+    _target_: carlagen.Sensor
+    name: "RGB Camera"
+    blueprint: "sensor.camera.rgb"
+    location: [0,0,1.8]
+    rotation: [0,0,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+        # where FOV should be sharp in cm
+        focal_distance: 1000.0
+        blur_amount: 1.0
+        motion_blur_intensity: 0.45
+        motion_blur_max_distortion: 0.35
+
+instance_segmentation:
+    _target_: carlagen.Sensor
+    name: "Instance Segmentation"
+    blueprint: "sensor.camera.instance_segmentation"
+    location: [0,0,1.8]
+    rotation: [ 0,0,0 ]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+lidar:
+    _target_: carlagen.Sensor
+    name: "Semantic LIDAR"
+    blueprint: "sensor.lidar.ray_cast_semantic"
+    location: [0,0,1.80]
+    # location: [0,0,1.80]
+    rotation: [0,0,0]
+    attributes:
+        # 2 x 20
+        channels: 64
+        rotation_frequency: 60 # kitti paper: 10Hz
+        points_per_second: 1300000 # kitti paper: 1300000
+        range: 120 # kitti paper: range 120m
+        # noise_stddev: 0.0
+#        dropoff_general_rate: 0.4
+#        dropoff_intensity_limit: 0.8
+#        dropoff_zero_intensity: 0.4
+#        atmosphere_attenuation_rate: 0.004
+        upper_fov: 14 # kitti paper: 26.9
+        lower_fov: -16 # kitti paper: 26.9
+
+depth:
+    _target_: carlagen.Sensor
+    name: "Depth Camera"
+    blueprint: "sensor.camera.depth"
+    location: [0,0,1.8]
+    rotation: [0,0,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+camera_rear:
+    _target_: carlagen.Sensor
+    name: "RGB Camera Rear"
+    blueprint: "sensor.camera.rgb"
+    location: [-2.5,0,1]
+    rotation: [0,180,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+        # where FOV should be sharp in cm
+        focal_distance: 1000.0
+        blur_amount: 1.0
+        motion_blur_intensity: 0.45
+        motion_blur_max_distortion: 0.35
+
+instance_segmentation_rear:
+    _target_: carlagen.Sensor
+    name: "Instance Segmentation Rear"
+    blueprint: "sensor.camera.instance_segmentation"
+    location: [-2.5,0,1]
+    rotation: [0,180,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+depth_rear:
+    _target_: carlagen.Sensor
+    name: "Depth Camera Rear"
+    blueprint: "sensor.camera.depth"
+    location: [-2.5,0,1]
+    rotation: [0,180,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+camera_right:
+    _target_: carlagen.Sensor
+    name: "RGB Camera Right"
+    blueprint: "sensor.camera.rgb"
+    location: [-1,0.90,1]
+    rotation: [0,90,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+        # where FOV should be sharp in cm
+        focal_distance: 1000.0
+        blur_amount: 1.0
+        motion_blur_intensity: 0.45
+        motion_blur_max_distortion: 0.35
+
+instance_segmentation_right:
+    _target_: carlagen.Sensor
+    name: "Instance Segmentation Right"
+    blueprint: "sensor.camera.instance_segmentation"
+    location: [-1,0.90,1]
+    rotation: [0,90,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+depth_right:
+    _target_: carlagen.Sensor
+    name: "Depth Camera Right"
+    blueprint: "sensor.camera.depth"
+    location: [-1,0.90,1]
+    rotation: [0,90,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+camera_left:
+    _target_: carlagen.Sensor
+    name: "RGB Camera Left"
+    blueprint: "sensor.camera.rgb"
+    location: [-1,-0.90,1]
+    rotation: [0,270,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+        # where FOV should be sharp in cm
+        focal_distance: 1000.0
+        blur_amount: 1.0
+        motion_blur_intensity: 0.45
+        motion_blur_max_distortion: 0.35
+
+instance_segmentation_left:
+    _target_: carlagen.Sensor
+    name: "Instance Segmentation Left"
+    blueprint: "sensor.camera.instance_segmentation"
+    location: [-1,-0.90,1]
+    rotation: [0,270,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+depth_left:
+    _target_: carlagen.Sensor
+    name: "Depth Camera Left"
+    blueprint: "sensor.camera.depth"
+    location: [-1,-0.90,1]
+    rotation: [0,270,0]
+    attributes:
+        image_size_x: 1920
+        image_size_y: 1080
+        fov: 105
+
+gnss:
+    _target_: carlagen.Sensor
+    name: "GNSS"
+    blueprint: "sensor.other.gnss"
+    location: [0,0,0]
+    rotation: [0,0,0]
+    attributes:
+        noise_alt_bias: 0
+        noise_alt_stddev: 0
+        noise_lat_bias: 0
+        noise_lat_stddev: 0
+        noise_lon_bias: 0
+        noise_lon_stddev: 0
+        noise_seed: 0
+        sensor_tick: 0
+
+imu:
+    _target_: carlagen.Sensor
+    name: "IMU"
+    blueprint: "sensor.other.imu"
+    location: [0,0,0]
+    rotation: [0,0,0]
+    attributes:
+        noise_accel_stddev_x: 0
+        noise_accel_stddev_y: 0
+        noise_accel_stddev_z: 0
+        noise_gyro_bias_x: 0
+        noise_gyro_bias_y: 0
+        noise_gyro_bias_z: 0
+        noise_gyro_stddev_x: 0
+        noise_gyro_stddev_y: 0
+        noise_gyro_stddev_z: 0
+        noise_seed: 0
+        sensor_tick: 0
+
+collision:
+  _target_: carlagen.Sensor
+  name: "collision"
+  blueprint: "sensor.other.collision"
+  attributes: []

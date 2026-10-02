@@ -1,0 +1,30 @@
+# @package _global_
+defaults:
+  - override /callbacks: test-clip.yaml
+
+callbacks:
+  anomaly:
+    _target_: carlagen.callback.FlickerTrafficLightCallback
+    scheduler_mode: "frequency"
+    frequency: 1
+    duration: [25,35]
+    seed: ${seed}
+    scheduler_seed: ${seed}
+    sensors:
+      - name: "Instance Segmentation"
+        directory: "anomaly-front"
+      # - name: "Instance Segmentation Rear"
+      #   directory: "anomaly-rear"
+      # - name: "Instance Segmentation Left"
+      #   directory: "anomaly-left"
+      # - name: "Instance Segmentation Right"
+      #   directory: "anomaly-right"
+      # - name: "Semantic LIDAR"
+      #   directory: "anomaly-lidar"
+
+name: test-ano-traffic-light-flicker
+data_dir: ./outputs/test/anomaly/${simulation.world_name}/traffic-light-flicker
+
+simulation:
+  scene_duration: 30
+  world_name: 'Town02'

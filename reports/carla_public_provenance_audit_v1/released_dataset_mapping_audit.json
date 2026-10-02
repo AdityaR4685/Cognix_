@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "status": "MAPPING NOT RECOVERABLE",
+  "answer_to_exact_family_recovery": "NO within the inspected public sources as of this audit",
+  "public_627_scenario_inventory_found": false,
+  "aggregate_count": 627,
+  "aggregate_count_provenance": "Sealed parent publisher composition metadata; 107 normal + 520 anomaly. Not an enumeration.",
+  "actual_released_IDs_enumerated": 0,
+  "scenario_to_seed": null,
+  "scenario_to_route": null,
+  "scenario_to_run_directory": null,
+  "scenario_to_family": null,
+  "missing_chain": [
+    "Released full scenario ID -> retained generation run/timestamp or recorder identity",
+    "Run -> composed config/overrides, configured and effective seeds, simulator/map/software revision",
+    "Variants -> explicit common base-drive/route parent identity",
+    "Complete 627-scenario inventory, selection/renaming policy and completion/retention records"
+  ],
+  "export_release_references": [
+    {
+      "reference": "scripts/generate.sh",
+      "found": true,
+      "scope": "Generation launcher, comment claims entire dataset; only Town10HD seed range 150..200; no normal-test command, no selection or renaming manifest, and two invoked experiment names absent from tree.",
+      "establishes_release_inventory": false,
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "scripts/generate.sh",
+          "line_start": 1,
+          "line_end": 98,
+          "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+        }
+      ]
+    },
+    {
+      "reference": "scripts/generate-train.sh",
+      "found": true,
+      "scope": "Training launch configurations including active Town11/Town12; not the documented six-town release inventory.",
+      "establishes_release_inventory": false,
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "scripts/generate-train.sh",
+          "line_start": 1,
+          "line_end": 82,
+          "detail": "Mostly commented Town01..Town06/Town10HD loops; active Town11/Town12 train generation.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate-train.sh#L1"
+        }
+      ]
+    },
+    {
+      "reference": "package_dataset.sh",
+      "found": "REFERENCE_ONLY",
+      "referenced_in": "devkit/carlanomaly/download.py:44",
+      "present_in_inspected_current_or_historical_file_trees": false,
+      "scope": "Packaging script reference provides a specific missing publisher artifact; implementation/retention/renaming unknown.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/download.py",
+          "line_start": 37,
+          "line_end": 74,
+          "detail": "References package_dataset.sh and shasums.md; part registry includes raw recordings, not provenance mapping.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L37"
+        }
+      ]
+    },
+    {
+      "reference": "shasums.md",
+      "found": "REFERENCE_ONLY",
+      "referenced_in": "devkit/carlanomaly/download.py:59",
+      "present_in_inspected_current_or_historical_file_trees": false,
+      "scope": "Archive checksums, not scenario-level provenance.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/download.py",
+          "line_start": 37,
+          "line_end": 74,
+          "detail": "References package_dataset.sh and shasums.md; part registry includes raw recordings, not provenance mapping.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L37"
+        }
+      ]
+    },
+    {
+      "reference": "devkit ScenarioIndex",
+      "found": true,
+      "scope": "Discovers local paths from observation-sidecar existence and counts RGB files; no bundled 627 record list or family fields. Not instantiated.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/index.py",
+          "line_start": 25,
+          "line_end": 31,
+          "detail": "Record contains path/count/split/town/type; no family/seed/route fields.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L25"
+        },
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/index.py",
+          "line_start": 170,
+          "line_end": 240,
+          "detail": "Discovers local observation sidecar paths and counts RGB files; no embedded inventory.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L170"
+        }
+      ]
+    },
+    {
+      "reference": "devkit download registry",
+      "found": true,
+      "scope": "Archive part/split registry and checksums, including recordings; no public provenance manifest endpoint. Download module not imported or run; no linked server contacted.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/download.py",
+          "line_start": 37,
+          "line_end": 74,
+          "detail": "References package_dataset.sh and shasums.md; part registry includes raw recordings, not provenance mapping.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L37"
+        },
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/download.py",
+          "line_start": 145,
+          "line_end": 146,
+          "detail": "Archive names are part/split names, not scenario-seed manifest.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L145"
+        }
+      ]
+    }
+  ],
+  "generator_release_inconsistencies": [
+    "generate.sh invokes ano-test-06-crazy-cars and ano-test-11-driver-steering, but neither experiment config exists.",
+    "Generator tree offers spawn-actor and unknown-object configs in addition to the nine devkit anomaly categories; availability is not release inclusion.",
+    "README contains obsolete experiment/callback examples and describes a training duration inconsistent with current train.yaml.",
+    "Legacy cb_seed/sc_seed option names, unseeded global RNG calls, unpinned Hydra/dependencies, manual map patches, and unpublished runtime overrides prevent treating this snapshot as a certified release recipe."
+  ],
+  "negative_claim_scope": "Complete generator public main source and advertised generator history/branches/tags/releases/issues/PRs; current publisher software source trees, their main historical file trees, removed devkit plan/docs, additional baselines branch tree, and publisher provenance docs. Not a claim that private, deleted/unadvertised, or future artifacts cannot exist. Historical related-repository blob contents and extra branch blob contents were not exhaustively searched.",
+  "future_public_only_recovery_requirements": [
+    "Publisher-issued scenario-only full-ID inventory bound to release version/checksums",
+    "Explicit retained-run and base-drive/variant mapping, or documented and complete deterministic renaming/selection script with its input manifest",
+    "Only provenance fields, excluding sensor values, timestep/event labels and model outputs",
+    "Configured/effective seeds alone are insufficient without a documented common-parent or route relationship"
+  ],
+  "evidence": [
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "scripts/generate.sh",
+      "line_start": 1,
+      "line_end": 98,
+      "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "scripts/generate-train.sh",
+      "line_start": 1,
+      "line_end": 82,
+      "detail": "Mostly commented Town01..Town06/Town10HD loops; active Town11/Town12 train generation.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate-train.sh#L1"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "carlanomaly/index.py",
+      "line_start": 25,
+      "line_end": 31,
+      "detail": "Record contains path/count/split/town/type; no family/seed/route fields.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L25"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "carlanomaly/index.py",
+      "line_start": 170,
+      "line_end": 240,
+      "detail": "Discovers local observation sidecar paths and counts RGB files; no embedded inventory.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L170"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "carlanomaly/download.py",
+      "line_start": 37,
+      "line_end": 74,
+      "detail": "References package_dataset.sh and shasums.md; part registry includes raw recordings, not provenance mapping.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L37"
+    }
+  ]
+}

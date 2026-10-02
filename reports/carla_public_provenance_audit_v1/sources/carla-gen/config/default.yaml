@@ -1,0 +1,23 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - simulation: default.yaml
+  - callbacks: default.yaml
+  - sensors: default.yaml
+  - experiment: null
+  - hydra: default.yaml
+  # optional local config for machine/user specific settings
+  # it's optional since it doesn't need to exist and is excluded from version control
+  - optional local: default
+
+data_dir: ./outputs/${simulation.world_name}
+name: no-name-set
+
+# kill all carla processes at the end?
+kill_carla: True
+print_config: True
+
+# random seed used for all sources
+seed: 12345
+

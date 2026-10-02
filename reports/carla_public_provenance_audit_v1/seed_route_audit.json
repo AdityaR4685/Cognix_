@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "status": "GENERATOR MECHANISM KNOWN",
+  "released_seed_route_mapping_status": "MAPPING NOT RECOVERABLE",
+  "mechanisms": [
+    {
+      "relationship": "ego initial spawn",
+      "known": "In seed mode: seed modulo length of map.get_spawn_points(); spawn failure adds a seeded random integer in [100,1000) to a local seed and logs it.",
+      "limits": "Map-specific, not injective. Spawn ordering is not pinned. Configured seed is not necessarily successful spawn seed and is not a route ID.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 344,
+          "line_end": 383,
+          "detail": "Ego spawn = seed modulo map spawn count; retry changes local seed; stable ordering TODO.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L344"
+        }
+      ]
+    },
+    {
+      "relationship": "NPC initial conditions",
+      "known": "Per-component NumPy generators select vehicle blueprints/spawns and pedestrian blueprints, destinations/speeds. Pedestrian world seed is set.",
+      "limits": "Mode, map content, blueprint order, actor spawn success and environment affect outcomes.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 88,
+          "line_end": 148,
+          "detail": "Seeded vehicle blueprint/spawn choices; random/manual modes also exist.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L88"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 175,
+          "line_end": 225,
+          "detail": "Pedestrian seed, sorted spawn list and seeded blueprint choices.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L175"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 278,
+          "line_end": 305,
+          "detail": "Seeded pedestrian destination and speed selection.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L278"
+        }
+      ]
+    },
+    {
+      "relationship": "traffic routing",
+      "known": "Traffic Manager autopilot with hard-coded random_device_seed=12345; no explicit ego waypoint route file, set_path/set_route, route_id or base-drive ID found.",
+      "limits": "A Traffic Manager seed is not proof of identical released trajectories; no realized route or seed-to-release lookup is public.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 38,
+          "line_end": 53,
+          "detail": "Traffic Manager seed is hard-coded to 12345.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L38"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/simulation.py",
+          "line_start": 271,
+          "line_end": 350,
+          "detail": "Fresh world loading, actor creation and autopilot setup.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/simulation.py#L271"
+        }
+      ]
+    },
+    {
+      "relationship": "weather",
+      "known": "Normal and anomaly test templates share seeded daytime and weather callbacks; preset transition selection is tied to top-level seed.",
+      "limits": "No released weather-to-base-drive mapping; no public factorial weather-replay manifest.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/callbacks/test-clip.yaml",
+          "line_start": 1,
+          "line_end": 13,
+          "detail": "Daytime and weather callbacks receive the same top-level seed.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/callbacks/test-clip.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/misc.py",
+          "line_start": 233,
+          "line_end": 310,
+          "detail": "Separate seeded daytime/weather RNGs; weather preset interpolation.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/misc.py#L233"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/experiment/ano-test-03-instant-weather.yaml",
+          "line_start": 1,
+          "line_end": 29,
+          "detail": "Weather anomaly extends test-clip and uses weather-type output prefix.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/ano-test-03-instant-weather.yaml#L1"
+        }
+      ]
+    },
+    {
+      "relationship": "anomaly randomness",
+      "known": "Base callback takes seed and scheduler_seed; spawn-props and steer-driver configs instead use cb_seed/sc_seed. Some callback branches use global RNGs.",
+      "limits": "Static call-chain indicates these legacy names do not set the base RNG/scheduler seed; defaults can remain 1234. No source execution or released behavior claim.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/ano.py",
+          "line_start": 234,
+          "line_end": 255,
+          "detail": "Anomaly RNG and EventScheduler use seed and scheduler_seed.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/ano.py#L234"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/experiment/ano-test-06-steer-driver.yaml",
+          "line_start": 5,
+          "line_end": 12,
+          "detail": "cb_seed/sc_seed names differ from base constructor seed/scheduler_seed.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/ano-test-06-steer-driver.yaml#L5"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/ano.py",
+          "line_start": 803,
+          "line_end": 810,
+          "detail": "Steering direction uses global NumPy RNG.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/ano.py#L803"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/ano.py",
+          "line_start": 995,
+          "line_end": 1019,
+          "detail": "Traffic-light switching uses global Python random.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/ano.py#L995"
+        }
+      ]
+    }
+  ],
+  "storage_audit": [
+    {
+      "location": "generator filenames",
+      "status": "GENERATOR MECHANISM KNOWN",
+      "finding": "Town/condition/type prefixes and timestamps or multirun job number; frame filenames use tick count. No seed/route encoded in default run suffix.",
+      "release_presence": "UNVERIFIED",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/hydra/default.yaml",
+          "line_start": 1,
+          "line_end": 11,
+          "detail": "Run timestamp naming and multirun job-number naming.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/hydra/default.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/saving.py",
+          "line_start": 364,
+          "line_end": 386,
+          "detail": "Saved camera filenames encode simulation tick count, not generator seed/route.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/saving.py#L364"
+        }
+      ]
+    },
+    {
+      "location": "Hydra config sidecars",
+      "status": "GENERATOR MECHANISM KNOWN",
+      "finding": "Under documented Hydra defaults, .hydra/config.yaml, .hydra/hydra.yaml and .hydra/overrides.yaml persist run configuration/overrides. Repository enables chdir and does not override output_subdir.",
+      "release_presence": "UNVERIFIED; none accessed; no public per-release copies or binding table found",
+      "documentation": "https://hydra.cc/docs/1.2/tutorials/basic/running_your_app/working_directory/",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "sim.py",
+          "line_start": 15,
+          "line_end": 58,
+          "detail": "Hydra entrypoint, config logging, callback instantiation; exception handling does not supply completion manifest.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/sim.py#L15"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/hydra/default.yaml",
+          "line_start": 1,
+          "line_end": 11,
+          "detail": "Run timestamp naming and multirun job-number naming.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/hydra/default.yaml#L1"
+        }
+      ]
+    },
+    {
+      "location": "application logs",
+      "status": "GENERATOR MECHANISM KNOWN",
+      "finding": "Entrypoint logs configuration; pedestrian seed, adjusted ego seed and weather are logged. Shell script suppresses stdout/stderr; default Hydra file logging is distinct.",
+      "release_presence": "UNVERIFIED; no generation-run log inspected",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "sim.py",
+          "line_start": 15,
+          "line_end": 58,
+          "detail": "Hydra entrypoint, config logging, callback instantiation; exception handling does not supply completion manifest.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/sim.py#L15"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 175,
+          "line_end": 225,
+          "detail": "Pedestrian seed, sorted spawn list and seeded blueprint choices.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L175"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 344,
+          "line_end": 383,
+          "detail": "Ego spawn = seed modulo map spawn count; retry changes local seed; stable ordering TODO.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L344"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/misc.py",
+          "line_start": 233,
+          "line_end": 310,
+          "detail": "Separate seeded daytime/weather RNGs; weather preset interpolation.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/misc.py#L233"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "scripts/generate.sh",
+          "line_start": 1,
+          "line_end": 98,
+          "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+        }
+      ]
+    },
+    {
+      "location": "CARLA recorder log",
+      "status": "GENERATOR MECHANISM KNOWN",
+      "finding": "Default generator writes carla.log; public devkit describes a recordings shard containing sim.log. No rename/conversion binding is public.",
+      "release_presence": "Only public source description known; no recording requested",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/saving.py",
+          "line_start": 22,
+          "line_end": 37,
+          "detail": "CARLA recording creation and stop; no playback call.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/saving.py#L22"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/callbacks/default.yaml",
+          "line_start": 1,
+          "line_end": 3,
+          "detail": "Default callback enables recorder with carla.log filename.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/callbacks/default.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/download.py",
+          "line_start": 37,
+          "line_end": 74,
+          "detail": "References package_dataset.sh and shasums.md; part registry includes raw recordings, not provenance mapping.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L37"
+        }
+      ]
+    },
+    {
+      "location": "generation/release manifest",
+      "status": "MAPPING NOT RECOVERABLE",
+      "finding": "No public manifest connects released full IDs to configured/effective seeds, routes or generation run directories.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/index.py",
+          "line_start": 25,
+          "line_end": 31,
+          "detail": "Record contains path/count/split/town/type; no family/seed/route fields.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L25"
+        },
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/index.py",
+          "line_start": 170,
+          "line_end": 240,
+          "detail": "Discovers local observation sidecar paths and counts RGB files; no embedded inventory.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L170"
+        },
+        {
+          "repository": "carlanomaly/devkit",
+          "commit": "91304c6ca5482789188965164013627be2504e12",
+          "path": "carlanomaly/download.py",
+          "line_start": 37,
+          "line_end": 74,
+          "detail": "References package_dataset.sh and shasums.md; part registry includes raw recordings, not provenance mapping.",
+          "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/download.py#L37"
+        }
+      ]
+    }
+  ],
+  "released_scenario_seed_assignments": [],
+  "released_scenario_route_assignments": [],
+  "simulator_executed": false
+}

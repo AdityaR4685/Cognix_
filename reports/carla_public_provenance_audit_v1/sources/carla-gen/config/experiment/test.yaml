@@ -1,0 +1,10 @@
+# @package _global_
+defaults:
+  - override /callbacks: test-clip.yaml
+
+name: test_normal
+data_dir: ./outputs/test/normal/${simulation.world_name}
+
+simulation:
+  scene_duration: 30
+  world_name: 'Town02'

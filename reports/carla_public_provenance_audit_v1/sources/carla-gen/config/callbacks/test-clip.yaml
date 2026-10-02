@@ -1,0 +1,14 @@
+defaults:
+  - default.yaml
+
+random_daytime:
+  _target_: carlagen.callback.RandomDayTimeCallback
+  cb_seed: ${seed}
+
+random_weather:
+  _target_: carlagen.callback.RandomWeatherCallback
+  cb_seed: ${seed}
+
+create_video:
+    _target_: carlagen.callback.CreateVideoCallback
+

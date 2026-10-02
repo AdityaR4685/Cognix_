@@ -1,0 +1,31 @@
+recorder:
+  _target_: carlagen.callback.CarlaRecorderCallback
+  recorder_file: "carla.log"
+
+car_light_control:
+  _target_: carlagen.callback.misc.ControlCarLightsCallback
+
+save_camera:
+  _target_: carlagen.callback.SaveCameraCallback
+  directory: "rgb-front"
+  sensor_name: "RGB Camera"
+
+save_instance_segmentation:
+  _target_: carlagen.callback.SaveInstanceSegmentationCallback
+  directory: "segmentation-front"
+  sensor_name: "Instance Segmentation"
+
+
+RandomDayTimeCallback:
+  _target_: carlagen.callback.RandomDayTimeCallback
+  cb_seed: ${seed}
+
+RandomWeatherCallback:
+  _target_: carlagen.callback.RandomWeatherCallback
+  cb_seed: ${seed}
+
+Driver:
+  _target_: carlagen.callback.driver.ModelDriverCallback
+  model_path: /run/media/ki/data/carlagen-tmp/2025-12-06/resnet18_carla_epoch1.pth
+  sensor_name: "RGB Camera"
+

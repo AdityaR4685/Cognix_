@@ -1,0 +1,30 @@
+# @package _global_
+# NOTE: the callback will only mark the corresponding objects as anomalous
+#   but the objects themselves have to be part of the map in CARLA!!!
+# This will not spawn unknown objects or anything
+defaults:
+  - override /callbacks: test-clip.yaml
+
+callbacks:
+  anomaly:
+    _target_: carlagen.callback.UnknownObjectsCallback
+    unknown_object_classes: [25]
+    seed: ${seed}
+    sensors:
+    - name: "Instance Segmentation"
+      directory: "anomaly-front"
+    #- name: "Instance Segmentation Rear"
+    #  directory: "anomaly-rear"
+    #- name: "Instance Segmentation Left"
+    #  directory: "anomaly-left"
+    #- name: "Instance Segmentation Right"
+    #  directory: "anomaly-right"
+    #- name: "Semantic LIDAR"
+    #  directory: "anomaly-lidar"
+
+name: test-ano-unknown-object
+data_dir: ./outputs/test/anomaly/${simulation.world_name}/unknown-object/
+
+simulation:
+  scene_duration: 30
+  world_name: 'Town02'

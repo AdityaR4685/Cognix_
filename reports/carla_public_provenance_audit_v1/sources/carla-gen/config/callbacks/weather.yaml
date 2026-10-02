@@ -1,0 +1,23 @@
+defaults:
+  - default.yaml
+
+change_weather_to_good:
+  _target_: carlagen.callback.ChangeWeatherCallback
+  delay: 100
+  duration: 200
+  weather:
+    # this is bad weather
+    cloudiness: 5.0
+    precipitation: 10.0
+    sun_altitude_angle: 45.0
+    sun_azimuth_angle: -1.0
+    fog_density: 100.0
+    fog_distance: 0.0
+    fog_falloff: 0.0
+    precipitation_deposits: 0.0
+    wind_intensity: 40.0
+    wetness: 5.0
+    scattering_intensity: 1.0
+    mie_scattering_scale: 0.03
+    rayleigh_scattering_scale: 0.033100
+    dust_storm: 10.0

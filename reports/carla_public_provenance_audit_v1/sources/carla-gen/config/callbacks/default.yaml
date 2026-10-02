@@ -1,0 +1,130 @@
+recorder:
+  _target_: carlagen.callback.CarlaRecorderCallback
+  recorder_file: "carla.log"
+
+car_light_control:
+  _target_: carlagen.callback.misc.ControlCarLightsCallback
+
+save_autopilot_actions:
+  _target_: carlagen.callback.saving.SaveAutopilotActions
+
+save_collisions:
+  _target_: carlagen.callback.saving.SaveCollisions
+  sensor_name: "collision"
+
+# greenlights:
+#     _target_: carlagen.callback.GreenTrafficLightsCallback
+#     max_waiting_time: 10
+
+#RandomDayTimeCallback:
+#  _target_: carlagen.callback.RandomDayTimeCallback
+#  cb_seed: 42
+
+#RandomWeatherCallback:
+#  _target_: carlagen.callback.RandomWeatherCallback
+#  cb_seed: 42
+
+save_semantic_lidar:
+  _target_: carlagen.callback.SaveSemanticLidarCallback
+  sensor_name: "Semantic LIDAR"
+  directory: "pointclouds"
+
+save_kitti_front:
+  _target_: carlagen.callback.SaveKITTICallback
+  directory: "kitti-front"
+  lidar_name: "Semantic LIDAR"
+  rgb_cam_name: "RGB Camera"
+  depth_cam_name: "Depth Camera"
+
+save_kitti_rear:
+  _target_: carlagen.callback.SaveKITTICallback
+  directory: "kitti-rear"
+  lidar_name: "Semantic LIDAR"
+  rgb_cam_name: "RGB Camera Rear"
+  depth_cam_name: "Depth Camera Rear"
+
+save_kitti_right:
+  _target_: carlagen.callback.SaveKITTICallback
+  directory: "kitti-right"
+  lidar_name: "Semantic LIDAR"
+  rgb_cam_name: "RGB Camera Right"
+  depth_cam_name: "Depth Camera Right"
+
+save_kitti_left:
+  _target_: carlagen.callback.SaveKITTICallback
+  directory: "kitti-left"
+  lidar_name: "Semantic LIDAR"
+  rgb_cam_name: "RGB Camera Left"
+  depth_cam_name: "Depth Camera Left"
+
+save_imu:
+  _target_: carlagen.callback.SaveIMUCallback
+  filename: "imu.feather"
+
+save_gnss:
+  _target_: carlagen.callback.SaveGNSSCallback
+  filename: "gnss.feather"
+
+save_weather:
+  _target_: carlagen.callback.SaveWeatherCallback
+  filename: "weather.feather"
+
+save_camera:
+  _target_: carlagen.callback.SaveCameraCallback
+  directory: "rgb-front"
+  sensor_name: "RGB Camera"
+
+save_instance_segmentation:
+  _target_: carlagen.callback.SaveInstanceSegmentationCallback
+  directory: "segmentation-front"
+  sensor_name: "Instance Segmentation"
+
+save_camera_back:
+  _target_: carlagen.callback.SaveCameraCallback
+  directory: "rgb-rear"
+  sensor_name: "RGB Camera Rear"
+
+save_instance_segmentation_back:
+  _target_: carlagen.callback.SaveInstanceSegmentationCallback
+  directory: "segmentation-rear"
+  sensor_name: "Instance Segmentation Rear"
+
+save_camera_left:
+  _target_: carlagen.callback.SaveCameraCallback
+  directory: "rgb-left"
+  sensor_name: "RGB Camera Left"
+
+save_instance_segmentation_left:
+  _target_: carlagen.callback.SaveInstanceSegmentationCallback
+  directory: "segmentation-left"
+  sensor_name: "Instance Segmentation Left"
+
+save_camera_right:
+  _target_: carlagen.callback.SaveCameraCallback
+  directory: "rgb-right"
+  sensor_name: "RGB Camera Right"
+
+save_instance_segmentation_right:
+  _target_: carlagen.callback.SaveInstanceSegmentationCallback
+  directory: "segmentation-right"
+  sensor_name: "Instance Segmentation Right"
+
+save_depth_front:
+  _target_: carlagen.callback.SaveDepthCameraCallback
+  sensor_name: "Depth Camera"
+  directory: "depth-front"
+
+save_depth_left:
+  _target_: carlagen.callback.SaveDepthCameraCallback
+  sensor_name: "Depth Camera Left"
+  directory: "depth-left"
+
+save_depth_right:
+  _target_: carlagen.callback.SaveDepthCameraCallback
+  sensor_name: "Depth Camera Right"
+  directory: "depth-right"
+
+save_depth_rear:
+  _target_: carlagen.callback.SaveDepthCameraCallback
+  sensor_name: "Depth Camera Rear"
+  directory: "depth-rear"

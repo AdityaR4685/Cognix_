@@ -1,0 +1,32 @@
+networks:
+  carla-net:
+    driver: bridge
+
+services:
+  carla:
+    image: carlasim/carla:0.9.14
+    networks: [carla-net]
+    runtime: nvidia
+    # Run as your host UID/GID if you need host-mount write parity
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      # Choose a single GPU per stack (index or UUID). REQUIRED per stack.
+      NVIDIA_VISIBLE_DEVICES: "${CARLA_GPU_ID:?set GPU id or UUID}"
+      NVIDIA_DRIVER_CAPABILITIES: "all"
+    command: ["bash", "CarlaUE4.sh", "-RenderOffScreen", "-nosound"]
+    restart: unless-stopped
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks: [carla-net]
+    depends_on: [carla]
+    volumes:
+      # Per-stack host output dir; override OUTPUTS_DIR when launching
+      - "${OUTPUTS_DIR:-./outputs}:/app/outputs"
+    environment:
+      CARLA_HOST: "carla"
+      CARLA_PORT: "2000"
+    command: ["bash", "-lc", "tail -f /dev/null"]
+    restart: unless-stopped

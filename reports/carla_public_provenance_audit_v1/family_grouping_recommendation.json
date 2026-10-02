@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "status": "MAPPING NOT RECOVERABLE",
+  "exact_family_grouping_feasible_now": false,
+  "safe_exact_family_IDs_constructible_now": false,
+  "group_assignments_created": [],
+  "partition_executed": false,
+  "protocol_amendment": false,
+  "recommendation": "Defer final evaluation. Obtain publisher scenario-only provenance and completeness metadata. Do not manufacture families from scenario suffixes, town/type/condition, sensor similarity, or bare seed equality.",
+  "scenario_level_randomization": {
+    "assessment": "The only currently supportable randomization unit among evidenced individual-scenario versus recovered-family designs is the full scenario, conditional on a future complete eligible inventory and explicit unresolved-dependence assumptions. It is a limited fallback, not a certified independent-family evaluation and not authorized here.",
+    "only_defensible_design_unconditionally": false,
+    "limitations": [
+      "Scenario randomization does not eliminate latent-family leakage or establish exchangeability.",
+      "Town/type strata and a fixed random seed do not supply missing independence evidence.",
+      "A random split of a fixed catalogue supports a catalogue-specific sampling interpretation; this alone does not supply a conformal new-scenario coverage theorem.",
+      "The current protocol remains mathematically vacuous and not ready; the missing inventory/exposure clearance also remains unresolved."
+    ],
+    "assumptions_to_state": [
+      "Treat full scenarios as sampling/calibration units; any between-scenario exchangeability conditional on required strata is an unverified scientific assumption.",
+      "Family/route/seed duplicates and normal/anomaly relatives may cross calibration and evaluation; the amount is unknown.",
+      "Dependence from shared town geometry, simulator settings, seeds and generator templates can affect uncertainty and calibration; no independent-family coverage or novel-route generalization claim is supported.",
+      "Conclusions are conditional on the available release catalogue and eligible scenario mix, with exposure exclusions and inventory completeness independently verified before any allocation.",
+      "A conformal coverage claim requires appropriate calibration/evaluation exchangeability and a score construction compatible with it; randomization alone does not guarantee this."
+    ]
+  },
+  "if_public_family_mapping_arrives": {
+    "proposal_only": true,
+    "steps": [
+      "Verify explicit publisher full-ID-to-parent/base-drive relations and release binding before any partition.",
+      "Construct groups from verified shared-parent/route relationships; seed equality is not sufficient by itself.",
+      "Consider transitive closure only over valid common-family relations and keep groups indivisible.",
+      "Audit cross-stratum groups, eligibility/exposure and calibration counts. Any changes to units, quotas, calibration or exposure treatment require separate authorization and sealing."
+    ]
+  },
+  "coarse_groups": "Whole-town or town/type clusters could be defined from known categorical fields once inventory exists, but are not recovered drive families, may miss other dependencies, and would change the evaluation target/strata/quota behavior; no such design is adopted.",
+  "frozen_design": {
+    "alpha_changed": false,
+    "strata_changed": false,
+    "ratio_changed": false,
+    "score_changed": false,
+    "pooling_changed": false,
+    "envelope_changed": false,
+    "metrics_changed": false,
+    "model_changed": false,
+    "threshold_changed": false,
+    "seed_changed": false,
+    "current_global_cutoff_math": "Q=max_h Q_h remains +infinity under the parent published-count audit; no fit or score computation performed."
+  },
+  "evidence": [
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "scripts/generate.sh",
+      "line_start": 1,
+      "line_end": 98,
+      "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "carlagen/utils/carla.py",
+      "line_start": 344,
+      "line_end": 383,
+      "detail": "Ego spawn = seed modulo map spawn count; retry changes local seed; stable ordering TODO.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L344"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "carlagen/utils/carla.py",
+      "line_start": 38,
+      "line_end": 53,
+      "detail": "Traffic Manager seed is hard-coded to 12345.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L38"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "carlanomaly/index.py",
+      "line_start": 25,
+      "line_end": 31,
+      "detail": "Record contains path/count/split/town/type; no family/seed/route fields.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L25"
+    }
+  ]
+}

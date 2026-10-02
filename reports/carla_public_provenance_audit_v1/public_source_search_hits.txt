@@ -1,0 +1,150 @@
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_evaluator.py:180:    assert res["scenario_macro"]["n_scenarios"] == 1
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_evaluator.py:218:def test_scenario_evaluator_label_from_path():
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:22:        ScenarioRecord(path=Path("/x/test/normal/Town01/scenario-0"), n_timesteps=3,
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:24:        ScenarioRecord(path=Path("/x/test/anomaly/Town01/vanish-actor/scenario-1"),
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:44:    assert set(item) == {"data", "scenario_id", "timesteps"}
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:45:    assert item["scenario_id"] == str(stub_discovery[1].path)
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:74:def test_anomaly_scenario_labels_from_split(stub_discovery):
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:80:def test_anomaly_scenario_label_is_scalar(stub_discovery):
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_identifiers.py:94:        lambda self: [ScenarioRecord(path=Path("/x/train/Town01/scenario-0"),
+reports\carla_public_provenance_audit_v1\sources\devkit\tests\test_datasets_download.py:123:def test_anomaly_scenario_downloads_base_only(record_download):
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\download.py:6:reconstructs the ``train/<town>/scenario-N/...`` / ``test/...`` layout that
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\download.py:44:#: directories each one contributes to a scenario (see ``package_dataset.sh``).
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\download.py:59:#: SHA-256 checksums keyed by ``(part, split)``.  Sourced from ``shasums.md``.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\index.py:177:            # path: test/normal/{town}/scenario-N
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\index.py:199:            # path: test/anomaly/{town}/{anomaly_type}/scenario-N
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\api\evaluator.rst:10:Every evaluator identifies data by ``scenario_id`` (the filesystem path to the
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\api\datasets.rst:90:identifiers ``scenario_id`` and ``timesteps``.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:6:provides anomaly *scores* plus identifiers (``scenario_id`` and
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:12:``scenario_id`` is the filesystem path to the scenario directory (the value
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:81:def _parse_anomaly_type(scenario_id: str) -> Optional[str]:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:88:    match = re.search(r"/test/anomaly/[^/]+/([^/]+)/", scenario_id)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:94:def _parse_town(scenario_id: str) -> Optional[str]:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:95:    match = re.search(r"/(Town\w+)/", scenario_id)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:159:_DEFAULT_SCENARIO_BINS = 4096
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:261:    - **scenario_macro**: per-scenario metrics averaged over scenarios that
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:273:        scenario_bins: int = _DEFAULT_SCENARIO_BINS,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:277:        if n_bins % scenario_bins != 0:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:279:                f"n_bins ({n_bins}) must be a multiple of scenario_bins ({scenario_bins})"
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:282:        self._scenario_bins = scenario_bins
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:297:        scenario_id: str,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:310:        atype = _parse_anomaly_type(scenario_id)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:319:                return pos, neg, int(clamped.sum().item()), atype, scenario_id
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:344:        group = self._n_bins // self._scenario_bins
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:349:            ds_pos = pos.view(self._scenario_bins, group).sum(1)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:350:            ds_neg = neg.view(self._scenario_bins, group).sum(1)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:351:            self._accumulate(self._by_scenario, sid, ds_pos, ds_neg, self._scenario_bins)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:376:        # Scenario-macro: average over scenarios that contain both classes.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:384:        results["scenario_macro"] = {
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:413:    ``{scenario_id}/anomaly-{sensor}/{timestep_id:06d}.png`` (any non-zero pixel
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:426:    scenario_bins:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:442:        scenario_bins: int = _DEFAULT_SCENARIO_BINS,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:448:            n_bins=n_bins, scenario_bins=scenario_bins,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:458:        scenario_ids: Sequence[str],
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:472:        scenario_ids:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:479:            sid = scenario_ids[i]
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:487:    def _load_mask(self, scenario_id: str, timestep_id: int) -> torch.Tensor:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:488:        path = Path(scenario_id) / f"anomaly-{self.sensor}" / f"{timestep_id:06d}.png"
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:499:    ``{scenario_id}/anomaly-lidar/{timestep_id:06d}.feather`` (``anomaly`` column)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:501:    (``num_workers``, ``max_inflight``, ``n_bins``, ``scenario_bins``,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:509:        scenario_ids: Sequence[str],
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:518:        scenario_ids:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:525:            sid = scenario_ids[i]
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:534:    def _load_labels(self, scenario_id: str, timestep_id: int, n_points: int) -> torch.Tensor:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:535:        path = Path(scenario_id) / "anomaly-lidar" / f"{timestep_id:06d}.feather"
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:564:        self._scenario_ids: List[str] = []
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:569:    def _label_path(self, scenario_id: str) -> Path:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:575:        scenario_ids: Sequence[str],
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:584:        scenario_ids:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:590:        for score, sid, tid in zip(score_list, scenario_ids, timestep_ids):
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:595:            self._scenario_ids.append(sid)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:598:    def _labels_for_scenario(self, scenario_id: str) -> np.ndarray:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:599:        if scenario_id not in self._label_cache:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:600:            df = pd.read_feather(self._label_path(scenario_id))
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:601:            self._label_cache[scenario_id] = df["anomaly"].values.astype(bool)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:602:        return self._label_cache[scenario_id]
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:607:        for score, sid in zip(self._scores, self._scenario_ids):
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:643:            "scenario_id": self._scenario_ids,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:648:            "town": [_parse_town(s) for s in self._scenario_ids],
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:655:        self._scenario_ids.clear()
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:665:    ``{scenario_id}/anomaly-{sensor}/sensor.feather``.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:680:    def _label_path(self, scenario_id: str) -> Path:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:681:        return Path(scenario_id) / f"anomaly-{self.sensor}" / "sensor.feather"
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:693:    ``{scenario_id}/anomaly-observation.feather``.  Accepts fused multi-sensor
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:697:    def _label_path(self, scenario_id: str) -> Path:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:698:        return Path(scenario_id) / "anomaly-observation.feather"
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:707:    """Scenario-level AUROC: one score per scenario.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:720:        self._scenario_ids: List[str] = []
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:722:    def update(self, score: float, scenario_id: str) -> None:
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:725:        self._labels.append("/test/anomaly/" in scenario_id)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:726:        self._types.append(_parse_anomaly_type(scenario_id))
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:727:        self._scenario_ids.append(scenario_id)
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:754:            "scenario_id": self._scenario_ids,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:758:            "town": [_parse_town(s) for s in self._scenario_ids],
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\evaluator.py:765:        self._scenario_ids.clear()
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\_base.py:183:    ``{"data": <wrapped item>, "scenario_id": str, "timesteps": LongTensor (T,)}``,
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\_base.py:191:        item["scenario_id"]  # str, e.g. ".../test/normal/Town10HD/scenario-3"
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\_base.py:221:            "scenario_id": str(rec.path),
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\index.rst:48:       evaluator.update(scores, batch["scenario_id"], batch["timesteps"][:, 0])
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:39:       evaluator.update(scores, scenario_ids, timestep_ids)
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:59:``scenario_id`` (the scenario directory's path, as a string) and
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:63:under the ``"scenario_id"`` and ``"timesteps"`` keys.  For the single-modality
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:71:   rgb[0]   # {"data": FloatTensor (T, 3, H, W), "scenario_id": str,
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:75:                                           # scenario_id list[str], timesteps (B, T)
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:94:           pixel_eval.update(scores, batch["scenario_id"],
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:100:   #  'scenario_macro': {...}, 'by_type': {...}}
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:130:       sensor_eval.update(timestep_scores, batch["scenario_id"],
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:132:       timestep_eval.update(timestep_scores, batch["scenario_id"],
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:139:``(scenario_id, timestep_id, score, label, anomaly_type, town)`` table for
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:151:   scenario_eval = ScenarioEvaluator()
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:152:   for scenario_id, score in timestep_eval.max_per_scenario().items():
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:153:       scenario_eval.update(score, scenario_id)
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:155:   print(scenario_eval.compute())  # {'auroc': ..., 'n_scenarios': ..., 'by_type': {...}}
+reports\carla_public_provenance_audit_v1\sources\devkit\docs\evaluation.rst:167:- ``scenario_macro`` (sample level only) — per-scenario metrics averaged over
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:94:        "scenario_id": [b["scenario_id"] for b in batch],
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:166:    scenario_eval = ScenarioEvaluator()
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:196:                point_scores_list, batch["scenario_id"], batch["timestep_id"],
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:200:            frame_sids.extend(batch["scenario_id"])
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:208:        scenario_eval.update(score, sid)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:214:        "scenario": scenario_eval.compute(),
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\lidar_segmentation\evaluate.py:238:    scenario_eval.to_dataframe().to_feather(out_dir / "scores_scenario.feather")
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\lidar.py:21:    identifiers ``'scenario_id'`` and ``'timesteps'``.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\lidar.py:74:            "scenario_id": str(rec.path),
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\anomaly_scenario.py:9:    """Scenario-level anomaly labels (one label per scenario).
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\camera.py:27:    plus the evaluator identifiers ``'scenario_id'`` and ``'timesteps'``.
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\camera.py:87:            "scenario_id": str(rec.path),
+reports\carla_public_provenance_audit_v1\sources\devkit\carlanomaly\datasets\joint.py:99:            "scenario_id": str(rec.path),
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:138:    scenario_eval = ScenarioEvaluator()
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:150:            scenario_ids = batch["scenario_id"]
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:169:            pixel_eval.update(pixel_scores, scenario_ids, timestep_ids)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:172:            frame_sids.extend(scenario_ids)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:180:        scenario_eval.update(score, sid)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:186:        "scenario": scenario_eval.compute(),
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\frame_prediction\evaluate.py:208:    scenario_eval.to_dataframe().to_feather(out_dir / "scores_scenario.feather")
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\detectors.py:3:Each public function returns a ``dict[(scenario_id, frame_id) -> float]`` of
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\detectors.py:13:``scenario_id`` is ``str(record.path)`` to match the keys used by the saved
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\detectors.py:112:        for sid, fid, s in zip(batch["scenario_id"], timestep_ids, frame):
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\detectors.py:152:        "scenario_id": [b["scenario_id"] for b in batch],
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\detectors.py:187:        for sid, fid, s in zip(batch["scenario_id"], batch["timestep_id"], frame):
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:22:The scenario-level score does **not** simply take the max-per-scenario of that
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:27:**quantile** for the dense/noisy learned detectors (``--scenario-quantile``), and
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:116:def _scenario_scores(
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:138:    scenario_scores: Dict[str, float],
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:146:    for sid, score in scenario_scores.items():
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:159:        "--scenario-quantile", type=float, default=0.95,
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:269:        return float(np.quantile(a, args.scenario_quantile))
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:274:    scen_seg = _scenario_scores(seg_n, sids, fids, quantile)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:275:    scen_point = _scenario_scores(point_n, sids, fids, quantile)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:276:    scen_coll = _scenario_scores(collision_test, sids, fids, maximum)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:277:    scen_weather = _scenario_scores(weather_test, sids, fids, maximum)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:282:    scenario_scores = {
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:292:        name: _eval_detector(component_scores[name], sids, fids, scenario_scores[name])
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:311:        "scenario_quantile": args.scenario_quantile,
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\multimodal\evaluate.py:312:        "scenario_agg": "quantile(seg,point) + max(collision,weather), fused by max",
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:161:    scenario_eval = ScenarioEvaluator()
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:171:            scenario_ids = batch["scenario_id"]
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:193:            pixel_eval.update(pixel_scores, scenario_ids, timestep_ids)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:196:            frame_sids.extend(scenario_ids)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:204:        scenario_eval.update(score, sid)
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:210:        "scenario": scenario_eval.compute(),
+reports\carla_public_provenance_audit_v1\sources\baselines\baselines\rgb_segmentation\evaluate.py:234:    scenario_eval.to_dataframe().to_feather(out_dir / "scores_scenario.feather")

@@ -1,0 +1,20 @@
+# @package _global_
+defaults:
+  - override /callbacks: train-clip.yaml
+
+
+callbacks:
+#  change_weather:
+#    _target_: carlagen.callback.ChangeWeatherTrainingCallback
+#    fps: 10
+  create_video:
+    _target_: carlagen.callback.CreateVideoCallback
+    directorys: []
+
+
+name: train-town01
+data_dir: ./outputs/train/${simulation.world_name}/
+
+simulation:
+  scene_duration: 300 # 5 minutes
+  world_name: 'Town01'

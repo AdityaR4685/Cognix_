@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "generator_status": "GENERATOR MECHANISM KNOWN",
+  "released_linkage_status": "MAPPING NOT RECOVERABLE",
+  "findings": [
+    {
+      "question": "Do normal and anomaly clips share base scenarios/routes?",
+      "generator_answer": "They share the test-clip setup/template; at the same verified town, seed, configuration and environment, source supports shared initialization choices before live interventions.",
+      "released_answer": "UNKNOWN. No public paired normal/anomaly inventory or base-drive identity is supplied. The generation script does not invoke experiment=test.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/experiment/test.yaml",
+          "line_start": 1,
+          "line_end": 10,
+          "detail": "Normal test uses test-clip callbacks, 30 seconds, normal output prefix.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/test.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/callbacks/test-clip.yaml",
+          "line_start": 1,
+          "line_end": 13,
+          "detail": "Daytime and weather callbacks receive the same top-level seed.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/callbacks/test-clip.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/experiment/ano-test-03-instant-weather.yaml",
+          "line_start": 1,
+          "line_end": 29,
+          "detail": "Weather anomaly extends test-clip and uses weather-type output prefix.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/ano-test-03-instant-weather.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/simulation.py",
+          "line_start": 271,
+          "line_end": 350,
+          "detail": "Fresh world loading, actor creation and autopilot setup.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/simulation.py#L271"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "scripts/generate.sh",
+          "line_start": 1,
+          "line_end": 98,
+          "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+        }
+      ]
+    },
+    {
+      "question": "Are anomaly variants generated with common seeds?",
+      "generator_answer": "generate.sh explicitly reuses seeds 150 through 200 for several Town10HD anomaly commands; running-pedestrians additionally changes crossing factor.",
+      "released_answer": "UNKNOWN. Script intentions do not certify execution, success, retention, release selection, suffix mapping or common base-drive membership.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "scripts/generate.sh",
+          "line_start": 1,
+          "line_end": 98,
+          "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+        }
+      ]
+    },
+    {
+      "question": "Are anomaly variants replayed versions of a common drive?",
+      "generator_answer": "Public generator creates a fresh world and actors per run. It records CARLA logs; no replay_file or saved-route playback mechanism was found.",
+      "released_answer": "NOT_ESTABLISHED. Public source does not prove paired replay, identical trajectories or lack of repeated trajectories in release.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "sim.py",
+          "line_start": 15,
+          "line_end": 58,
+          "detail": "Hydra entrypoint, config logging, callback instantiation; exception handling does not supply completion manifest.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/sim.py#L15"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/simulation.py",
+          "line_start": 271,
+          "line_end": 350,
+          "detail": "Fresh world loading, actor creation and autopilot setup.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/simulation.py#L271"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/simulation.py",
+          "line_start": 229,
+          "line_end": 267,
+          "detail": "Callback initialization, skipped startup ticks and live simulation loop.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/simulation.py#L229"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/saving.py",
+          "line_start": 22,
+          "line_end": 37,
+          "detail": "CARLA recording creation and stop; no playback call.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/saving.py#L22"
+        }
+      ]
+    },
+    {
+      "question": "Are weather variants linked?",
+      "generator_answer": "Initial daytime/weather callbacks share the top-level seed across test templates; change-weather mutates weather during a live run.",
+      "released_answer": "UNKNOWN. No parent run ID, weather variant manifest or retained pairing list.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/callbacks/test-clip.yaml",
+          "line_start": 1,
+          "line_end": 13,
+          "detail": "Daytime and weather callbacks receive the same top-level seed.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/callbacks/test-clip.yaml#L1"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/callback/misc.py",
+          "line_start": 233,
+          "line_end": 310,
+          "detail": "Separate seeded daytime/weather RNGs; weather preset interpolation.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/callback/misc.py#L233"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "config/experiment/ano-test-03-instant-weather.yaml",
+          "line_start": 1,
+          "line_end": 29,
+          "detail": "Weather anomaly extends test-clip and uses weather-type output prefix.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/ano-test-03-instant-weather.yaml#L1"
+        }
+      ]
+    },
+    {
+      "question": "Can repeated trajectories be identified?",
+      "generator_answer": "Reused initialization and autopilot settings create a mechanism for dependence; seed modulo spawn count also permits shared initial spawn positions.",
+      "released_answer": "No exact repetitions or families established. No sensor comparison, matching-number inference or trajectory reconstruction was performed.",
+      "evidence": [
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 344,
+          "line_end": 383,
+          "detail": "Ego spawn = seed modulo map spawn count; retry changes local seed; stable ordering TODO.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L344"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "carlagen/utils/carla.py",
+          "line_start": 38,
+          "line_end": 53,
+          "detail": "Traffic Manager seed is hard-coded to 12345.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/carlagen/utils/carla.py#L38"
+        },
+        {
+          "repository": "carlanomaly/carla-gen",
+          "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+          "path": "scripts/generate.sh",
+          "line_start": 1,
+          "line_end": 98,
+          "detail": "Town10HD, repeated seed range 150..200 across train/anomaly commands; two experiment names absent from configs.",
+          "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate.sh#L1"
+        }
+      ]
+    }
+  ],
+  "observed_released_pairings": [],
+  "limitations": [
+    "Sharing a template is not sharing an observed drive.",
+    "A repeated seed across distinct towns is not a common route.",
+    "Anomaly interventions may alter traffic and ego motion.",
+    "Published generator/config mismatches limit reconstruction."
+  ],
+  "evidence": [
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "scripts/generate-train.sh",
+      "line_start": 1,
+      "line_end": 82,
+      "detail": "Mostly commented Town01..Town06/Town10HD loops; active Town11/Town12 train generation.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/scripts/generate-train.sh#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "requirements.txt",
+      "line_start": 1,
+      "line_end": 24,
+      "detail": "CARLA client 0.9.14; Hydra and several dependencies unpinned.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/requirements.txt#L1"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# CarlAnomaly dev kit (data loading + evaluation). Brings in numpy, pandas,
+# pyarrow, Pillow, torch and torchmetrics transitively.
+carlanomaly @ git+https://github.com/carlanomaly/devkit
+
+# Baseline-specific dependencies
+torchvision
+tqdm
+tensorboard  # SummaryWriter logging in the train scripts

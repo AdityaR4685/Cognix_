@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "required_artifacts_valid": true,
+  "evidence_ranges_valid": true,
+  "public_text_blob_hashes_valid": true,
+  "public_current_source_counts": {
+    "carla-gen": 74,
+    "devkit": 40,
+    "baselines": 20
+  },
+  "parent_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "parent_entries_verified": 26,
+  "protected_audit_protocol_files_unchanged": 85,
+  "git_head_before": "15c24f8384aab61472fb347f518f1e2efadd676e",
+  "git_head_after": "15c24f8384aab61472fb347f518f1e2efadd676e",
+  "git_status_outside_new_audit_unchanged": true,
+  "changes_confined_to": "reports/carla_public_provenance_audit_v1/",
+  "test_archives_requested": 0,
+  "test_payload_files_opened": 0,
+  "test_timestep_labels_opened": 0,
+  "model_output_files_opened": 0,
+  "partition_executed": false,
+  "inference_executed": false,
+  "fitting_executed": false,
+  "training_executed": false,
+  "protocol_amended": false,
+  "commit_created": false,
+  "pushed": false,
+  "code_verification": "JSON/schema-presence checks, citation range checks and source/hash preservation only; no public software tests or simulator executed",
+  "checks_completed_at_utc": "2026-10-02T15:32:26.6702567Z",
+  "scope": "Audit/protocol metadata hashed; no broader raw payload or model-output rehash. Other workspace preservation evidenced by confined writes and unchanged Git status, not a full untracked-content checksum."
+}

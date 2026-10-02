@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "status": "MAPPING NOT RECOVERABLE",
+  "supported_release_grammar_status": "NAMING GRAMMAR KNOWN",
+  "dataset_scenario_mapping_status": "MAPPING NOT RECOVERABLE",
+  "supported_release_grammar_scope": "Field interpretation of a supplied full path only; not an enumerated ID inventory or family relationship.",
+  "grammar": {
+    "train": "train/<town>/scenario-N",
+    "normal": "test/normal/<town>/scenario-N",
+    "anomaly": "test/anomaly/<town>/<type>/scenario-N"
+  },
+  "suffix_semantics": {
+    "scenario_N_is_generator_seed": "NOT_ESTABLISHED",
+    "scenario_N_is_route_ID": "NOT_ESTABLISHED",
+    "scenario_N_is_family_ID": "NOT_ESTABLISHED",
+    "stable_meaning_across_towns": "NOT_ESTABLISHED",
+    "stable_meaning_across_anomaly_types": "NOT_ESTABLISHED",
+    "is_sequential_renumbering": "NOT_ESTABLISHED; no renaming source was found",
+    "cross_namespace_equality_is_linkage": false
+  },
+  "generator_naming": "Timestamp-based run directories differ from released scenario-N grammar. Hydra multirun job numbers identify sweep jobs, with no public mapping to released suffixes.",
+  "test_fixture_warning": "Public devkit fixtures explicitly use in-memory stub records; their scenario-0/scenario-1 examples do not prove release existence or relationships.",
+  "safe_identifier": "Full split-qualified scenario path can identify an individual scenario if a publisher metadata inventory later supplies it; this audit constructs no such inventory or family IDs.",
+  "evidence": [
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/hydra/default.yaml",
+      "line_start": 1,
+      "line_end": 11,
+      "detail": "Run timestamp naming and multirun job-number naming.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/hydra/default.yaml#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/experiment/test.yaml",
+      "line_start": 1,
+      "line_end": 10,
+      "detail": "Normal test uses test-clip callbacks, 30 seconds, normal output prefix.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/test.yaml#L1"
+    },
+    {
+      "repository": "carlanomaly/carla-gen",
+      "commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+      "path": "config/experiment/ano-test-03-instant-weather.yaml",
+      "line_start": 1,
+      "line_end": 29,
+      "detail": "Weather anomaly extends test-clip and uses weather-type output prefix.",
+      "url": "https://github.com/carlanomaly/carla-gen/blob/9b3b284721b41e7aea87ffe2aa812766775be146/config/experiment/ano-test-03-instant-weather.yaml#L1"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "carlanomaly/index.py",
+      "line_start": 170,
+      "line_end": 240,
+      "detail": "Discovers local observation sidecar paths and counts RGB files; no embedded inventory.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/index.py#L170"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "carlanomaly/datasets/_base.py",
+      "line_start": 179,
+      "line_end": 222,
+      "detail": "WithIdentifiers returns full record path, not a family ID.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/carlanomaly/datasets/_base.py#L179"
+    },
+    {
+      "repository": "carlanomaly/devkit",
+      "commit": "91304c6ca5482789188965164013627be2504e12",
+      "path": "tests/test_datasets_identifiers.py",
+      "line_start": 1,
+      "line_end": 28,
+      "detail": "In-memory stub scenario examples are synthetic fixtures, not released inventory.",
+      "url": "https://github.com/carlanomaly/devkit/blob/91304c6ca5482789188965164013627be2504e12/tests/test_datasets_identifiers.py#L1"
+    }
+  ]
+}

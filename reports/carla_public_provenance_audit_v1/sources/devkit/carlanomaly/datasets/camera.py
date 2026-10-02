@@ -1,0 +1,96 @@
+from __future__ import annotations
+
+from typing import Any, Callable, Dict, Optional
+
+import torch
+from torch.utils.data import Dataset
+
+from ..index import ScenarioIndex
+from ._base import PathLike, ensure_parts_for, required_parts, resolve_index
+from .anomaly_seg import AnomalySegmentationDataset
+from .depth import DepthDataset
+from .rgb import RGBDataset
+from .segmentation import SegmentationDataset
+
+#: Modalities a single-camera composite reads (used for ``download`` parts).
+_CAMERA_MODALITIES = ("rgb", "depth", "segmentation", "anomaly_seg")
+
+
+class CameraDataset(Dataset):
+    """Composite dataset for a single camera direction.
+
+    Wraps :class:`RGBDataset`, :class:`DepthDataset`,
+    :class:`SegmentationDataset`, and :class:`AnomalySegmentationDataset`.
+
+    Returns a dict with keys ``'rgb'``, ``'depth'``, ``'segmentation'``
+    (sub-dict with ``'semantic'`` and ``'instance'``), and ``'anomaly_mask'``,
+    plus the evaluator identifiers ``'scenario_id'`` and ``'timesteps'``.
+
+    Parameters
+    ----------
+    root:
+        Path to the CarlAnomaly dataset directory.
+    split:
+        ``'train'``, ``'test_normal'``, ``'test_anomaly'``, or ``'test'``.
+    direction:
+        Camera direction (``'front'``, ``'left'``, ``'right'``, ``'rear'``).
+    transform:
+        Optional transform applied to the merged output dict.
+    download:
+        If ``True``, fetch the archive parts this composite needs (``base`` +
+        ``depth``, plus ``camera-extended`` for non-front directions) into
+        ``root`` before loading.
+
+    Additional keyword arguments (``clip_len``, ``stride``, ``parts``, ...)
+    are forwarded to :class:`~carlanomaly.index.ScenarioIndex`.
+    """
+
+    def __init__(
+        self,
+        root: Optional[PathLike] = None,
+        split: str = "train",
+        direction: str = "front",
+        *,
+        transform: Optional[Callable] = None,
+        index: Optional[ScenarioIndex] = None,
+        download: bool = True,
+        **index_kwargs: Any,
+    ) -> None:
+        if download:
+            parts = index_kwargs.pop("parts", None) or required_parts(
+                (m, direction) for m in _CAMERA_MODALITIES
+            )
+            ensure_parts_for(root, split, index, parts,
+                             verify=index_kwargs.get("download_verify", True))
+        index = resolve_index(root, split, index=index, download=False, **index_kwargs)
+        self._index = index
+        self.direction = direction
+        self.transform = transform
+
+        # Parts already fetched above; children must not re-download.
+        self.rgb = RGBDataset(direction=direction, index=index, download=False)
+        self.depth = DepthDataset(direction=direction, index=index, download=False)
+        self.segmentation = SegmentationDataset(direction=direction, index=index, download=False)
+        self.anomaly_seg = AnomalySegmentationDataset(direction=direction, index=index, download=False)
+
+    @property
+    def index(self) -> ScenarioIndex:
+        """The :class:`ScenarioIndex` this dataset is built on (shareable)."""
+        return self._index
+
+    def __len__(self) -> int:
+        return len(self._index)
+
+    def __getitem__(self, idx: int) -> Dict:
+        rec, _ = self._index[idx]
+        item = {
+            "scenario_id": str(rec.path),
+            "timesteps": torch.tensor(self._index.timesteps_for(idx), dtype=torch.long),
+            "rgb": self.rgb[idx],
+            "depth": self.depth[idx],
+            "segmentation": self.segmentation[idx],
+            "anomaly_mask": self.anomaly_seg[idx],
+        }
+        if self.transform is not None:
+            item = self.transform(item)
+        return item

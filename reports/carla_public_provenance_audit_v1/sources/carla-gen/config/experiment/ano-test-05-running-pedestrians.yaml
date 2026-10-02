@@ -1,0 +1,31 @@
+# @package _global_
+defaults:
+  - override /callbacks: test-clip.yaml
+
+callbacks:
+  anomaly:
+    _target_: carlagen.callback.RunningPedestrianCallback
+    speed: [5,8]
+    scheduler_mode: "frequency"
+    frequency: 2
+    duration: [40,60]
+    seed: ${seed}
+    scheduler_seed: ${seed}
+    sensors:
+    - name: "Instance Segmentation"
+      directory: "anomaly-front"
+    - name: "Instance Segmentation Rear"
+      directory: "anomaly-rear"
+    - name: "Instance Segmentation Left"
+      directory: "anomaly-left"
+    - name: "Instance Segmentation Right"
+      directory: "anomaly-right"
+    - name: "Semantic LIDAR"
+      directory: "anomaly-lidar"
+
+name: test-ano-running-pedestrian
+data_dir: ./outputs/test/anomaly/${simulation.world_name}/running-pedestrian
+
+simulation:
+  scene_duration: 30
+  world_name: 'Town02'

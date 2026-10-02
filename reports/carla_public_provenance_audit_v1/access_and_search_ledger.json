@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "milestone": "PUBLIC PROVENANCE RECOVERY / GENERATOR AUDIT ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "parent_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "generator_commit": "9b3b284721b41e7aea87ffe2aa812766775be146",
+  "evidence_policy": "Static public source/documentation only. Generator options and script intentions do not bind released scenarios. No matching numbers, filenames alone, or sensor similarity used as linkage evidence.",
+  "operations": [
+    {
+      "kind": "web",
+      "scope": "Public generator landing page and publisher resources/about pages",
+      "purpose": "Identify public source and documentation provenance",
+      "test_endpoints_followed": false
+    },
+    {
+      "kind": "public_GitHub_API",
+      "scope": "carla-gen repository, complete recursive tree, commits, branches, tags, releases, issues, pull requests; owner repository listing",
+      "purpose": "Pin source and inspect advertised history"
+    },
+    {
+      "kind": "raw_public_source",
+      "scope": "All 74 generator text blobs at pinned commit; excludes assets/example.gif",
+      "purpose": "Static source/config/script analysis"
+    },
+    {
+      "kind": "public_GitHub_API_and_source",
+      "scope": "Devkit and baselines current trees/text sources, six main-history trees each, removed devkit source/docs/plan; baselines extra branch tree",
+      "purpose": "Find embedded inventory and release/export references",
+      "historical_blobs_exhaustive": false,
+      "extra_branch_blob_contents_accessed": false
+    },
+    {
+      "kind": "documentation",
+      "url": "https://hydra.cc/docs/1.2/tutorials/basic/running_your_app/working_directory/",
+      "purpose": "Distinguish expected run config/log storage from release retention"
+    },
+    {
+      "kind": "local_metadata",
+      "scope": "Parent audit/protocol source and metadata seal verification; Git status names",
+      "purpose": "Bind prior audit and preserve protocol; no raw dataset/model-output contents read"
+    },
+    {
+      "kind": "blocked_network_attempt",
+      "operation": "git ls-remote https://github.com/carlanomaly/carla-gen.git",
+      "result": "Default sandbox connection failed; no Git checkout created. Public API/source requests subsequently authorized by automatic approval review."
+    }
+  ],
+  "searches": [
+    {
+      "query": "site:github.com/carlanomaly carla-gen manifest scenario seed",
+      "finding": "Generator repository returned; no recovered release mapping from this search",
+      "absence_claim": "Search results are not proof of universal absence"
+    },
+    {
+      "query": "site:carlanomaly.de \"627\" \"scenario\"",
+      "finding": "Publisher aggregate counts; no enumerated released provenance recovered"
+    },
+    {
+      "query": "\"carlanomaly\" \"generator\" \"seed\"",
+      "finding": "Generator and unrelated CARLA repositories; unrelated results not used as linkage evidence"
+    },
+    {
+      "scope": "Complete generator public text tree",
+      "patterns": [
+        "scenario[-_]",
+        "family",
+        "base drive",
+        "route_id",
+        "replay",
+        "set_path",
+        "set_route",
+        "manifest",
+        "rename",
+        "copytree",
+        "archive",
+        "release",
+        "export",
+        "Hydra config/log storage",
+        "bounded numeric count 627"
+      ],
+      "finding": "No scenario-N writer, released inventory, parent-family table or replay API call. KITTI export is sensor-format export, not release provenance."
+    },
+    {
+      "scope": "Current devkit/baselines public text; removed devkit plan/docs",
+      "patterns": [
+        "package_dataset",
+        "shasums.md",
+        "family",
+        "base drive",
+        "route_id",
+        "generation manifest",
+        "scenario naming",
+        "bounded numeric count 627"
+      ],
+      "finding": "Packaging/checksum-document references in devkit. Other seeds are training/validation RNGs or synthetic tests, not generator-to-release mappings."
+    },
+    {
+      "scope": "Related public repository historical trees and extra baselines branch tree",
+      "finding": "No package_dataset.sh, shasums.md, dedicated scenario inventory or family manifest filename found",
+      "limits": "Tree absence is a filename-level finding; historical blob contents not exhaustively searched"
+    }
+  ],
+  "forbidden_operations_performed": [],
+  "test_bytes_transferred": 0,
+  "official_archive_requests": 0,
+  "test_label_records_accessed": 0,
+  "public_source_only": true,
+  "code_executed_from_public_repositories": false
+}
