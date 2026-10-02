@@ -1,0 +1,116 @@
+{
+  "status": "proposed_not_executed",
+  "protocol_version": "carla_multiscenario_train_v1",
+  "source_split": "official TRAIN only",
+  "acquisition_rule": "first N complete TRAIN scenarios in observed archive order; choose N=10 or N=20 before acquisition; completeness only, never performance",
+  "split": {
+    "seed": 2026,
+    "rule": "sorted unique canonical town/scenario IDs -> numpy PCG64(seed).permutation(N); first max(1, round(0.25*N)) -> CAL_NORMAL; remaining -> FIT_NORMAL; Python round uses ties-to-even",
+    "scenario_level_only": true,
+    "expected_counts": {
+      "10": {
+        "FIT_NORMAL": 8,
+        "CAL_NORMAL": 2
+      },
+      "20": {
+        "FIT_NORMAL": 15,
+        "CAL_NORMAL": 5
+      }
+    },
+    "immutable_after_inventory": true,
+    "current_builder_label_mapping": {
+      "TRAIN_NORMAL": "FIT_NORMAL",
+      "CAL_NORMAL": "CAL_NORMAL"
+    }
+  },
+  "agent_fit": {
+    "partition": "FIT_NORMAL",
+    "seed": 42,
+    "n_members": 5,
+    "fit_only_normal": true
+  },
+  "pseudo": {
+    "seed": 0,
+    "window_length_ticks": 12,
+    "severities": "unchanged a-priori recipe defaults",
+    "fit_pseudo_use": "graph training only; never one-class fitting",
+    "cal_pseudo_use": "probability calibration only",
+    "provenance_required": true
+  },
+  "calibration": {
+    "partition": "CAL_NORMAL + CAL-derived pseudo",
+    "objective": "mean_i BCE(y_i, mean_t sigmoid(a*s_it+b))",
+    "target": "target_normal",
+    "invalid_probability_and_uq": "null in scientific handoff; raw scores retained; diagnostics separately flagged",
+    "class_balance": "record counts per agent and sampling rule; freeze before fitting"
+  },
+  "scenario_manifest_example": {
+    "scenario_id": "Town01/scenario-X",
+    "town": "Town01",
+    "source_split": "train",
+    "archive_ordinal": "integer",
+    "complete": "boolean",
+    "partition": "FIT_NORMAL or CAL_NORMAL",
+    "n_ticks": "integer",
+    "window_policy": "causal ticks [max(0,t-11),t], cached ticks >=1",
+    "source_file_hashes": "mapping",
+    "feature_hash": "sha256",
+    "cache_hash": "sha256"
+  },
+  "artifact_schema": {
+    "schema_version": 1,
+    "protocol_version": "carla_multiscenario_train_v1",
+    "scenario_dictionary": "canonical IDs, town, source_split and partition",
+    "rows": [
+      "scenario_index",
+      "tick",
+      "partition",
+      "65 compact float64 features",
+      "20 member float64 normality scores",
+      "4 nullable prob_normal",
+      "4 nullable epistemic",
+      "4 nullable aleatoric",
+      "4 nullable total",
+      "per-agent calibration_valid/status",
+      "target_normal",
+      "constructed_target_scope",
+      "pseudo_parent_scenario/tick",
+      "modality",
+      "recipe_id",
+      "severity",
+      "seed",
+      "window_start_tick",
+      "window_end_tick"
+    ],
+    "manifest": [
+      "source/cache/feature hashes",
+      "feature definitions/dimensions",
+      "normality fit parameters or separate fitted artifact",
+      "calibration parameters and complete validity audit",
+      "calibration class balance",
+      "protocol and code version",
+      "seeds and sampling policy",
+      "row counts",
+      "artifact content hash"
+    ],
+    "target_scope_note": "Per-agent labels apply to the corrupted modality; graph any-pseudo target is distinct and never physical safety."
+  },
+  "kaggle_workflow": [
+    "load compact artifact and verify hashes/schema",
+    "construct graph samples; keep whole scenarios in their fixed partition",
+    "train StandardGAT on FIT-derived examples only",
+    "train EpistemicGAT on identical FIT samples and paired seeds",
+    "save checkpoints/configuration",
+    "save per-seed metrics and row-keyed predictions"
+  ],
+  "paired_graph_seeds_proposed": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "graph_validation": "If needed, pre-register a scenario-level validation subset within FIT before graph training. CAL is reserved for probability calibration. No hyperparameter selection on the frozen two-scenario diagnostic study.",
+  "raw_kaggle_upload": false,
+  "official_test_access": false
+}

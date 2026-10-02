@@ -1,0 +1,139 @@
+{
+  "accepted_proposal_sha256": "5ef3115a605f26e36aad0ed8b1cd3f2d510c5781c870eddcdb455b863063a1f7",
+  "agent": {
+    "calibration": "CAL clean + modality-matched CAL pseudo",
+    "fit": "FIT clean only",
+    "n_members": 5,
+    "seed": 42,
+    "validity_audit": "current production unchanged"
+  },
+  "archive_url": "https://data.carlanomaly.de/v1/carlanomaly-base-train.tar.gz",
+  "baseline_tests": 505,
+  "existing_scenario_paths": {
+    "Town01/scenario-1": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_probe\\dataset\\train\\Town01\\scenario-1",
+    "Town01/scenario-10": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_probe\\dataset\\train\\Town01\\scenario-10",
+    "Town01/scenario-11": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-11",
+    "Town01/scenario-12": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-12",
+    "Town01/scenario-13": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-13",
+    "Town01/scenario-14": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-14",
+    "Town01/scenario-15": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-15",
+    "Town01/scenario-2": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-2",
+    "Town01/scenario-3": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-3",
+    "Town01/scenario-4": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\raw_train_v1\\train\\Town01\\scenario-4"
+  },
+  "features": {
+    "cache_schema_version": 2,
+    "dims": {
+      "camera": 18,
+      "gnss": 8,
+      "imu": 10,
+      "seg": 29
+    },
+    "extractor_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b"
+  },
+  "final_planned_train_development_target": 20,
+  "git_head": "f3f876119b0d21655b3ba5c7db7bd996e628b2a2",
+  "independent_copy_required": true,
+  "no_automatic_further_expansion": true,
+  "original_prefix": {
+    "bytes": 12547522560,
+    "path": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\train_prefix_expand10.tar.gz",
+    "sha256": "c565f5f416b264b7725c15e79d0fe7bee92e8439866647826d8c8e58afb02be0"
+  },
+  "parser_recovery": "one sequential replay of the preserved N10 staging copy through one live gzip/TAR decoder; the prior process has ended and its zlib state cannot safely be serialized",
+  "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration",
+  "preserved_N10": {
+    "acquisition_config_sha256": "e038ff835bd468a0894d37f23a922bacde39936a05a0bbc14147d7af9a25ca4a",
+    "archive_order_ids": [
+      "Town01/scenario-1",
+      "Town01/scenario-10",
+      "Town01/scenario-11",
+      "Town01/scenario-12",
+      "Town01/scenario-13",
+      "Town01/scenario-14",
+      "Town01/scenario-15",
+      "Town01/scenario-2",
+      "Town01/scenario-3",
+      "Town01/scenario-4"
+    ],
+    "dataset_manifest_sha256": "c1e1e9fb31b63e15ebb4422214a01579be943bd9d7730bbe9a1954b4ccb0ff89",
+    "prefix_boundary": {
+      "kind": "subsequent_scenario_header",
+      "member": "train/Town01/scenario-5/rgb-front",
+      "next_scenario_id": "Town01/scenario-5",
+      "tar_header_offset": 13534343168
+    },
+    "remote_total_bytes": 146453559283,
+    "remote_validator": "\"6a200b7a-22194ff7f3\"",
+    "report_sha256": "4b7ee4c51e3b04009f98b860ba091093f487936843beec72d81fd924bc9251c3"
+  },
+  "prohibited": [
+    "official TEST",
+    "calibration or recipe tuning",
+    "regularization",
+    "slope caps",
+    "GAT implementation/training",
+    "conformal fitting",
+    "generic/frozen core edits",
+    "commits/pushes"
+  ],
+  "protocol_version": "carla_train_expand20_v1",
+  "pseudo": {
+    "default_severities": {
+      "camera_brightness_shift": 0.35,
+      "camera_occlusion": 0.25,
+      "gnss_bias": 25.0,
+      "gnss_drift": 50.0,
+      "imu_bias_scale": 0.5,
+      "imu_spike": 15.0,
+      "seg_region_corruption": 0.2
+    },
+    "max_pseudo_per_tick": 1,
+    "recipes": [
+      "camera_brightness_shift",
+      "camera_occlusion",
+      "seg_region_corruption",
+      "gnss_bias",
+      "gnss_drift",
+      "imu_spike",
+      "imu_bias_scale"
+    ],
+    "seed": 0,
+    "source": "CAL_NORMAL only"
+  },
+  "resource_limits": {
+    "compressed_read_chunk_bytes": 262144,
+    "max_decompressed_chunk_bytes": 1048576,
+    "max_staged_compressed_bytes": 70000000000,
+    "minimum_free_bytes_to_start": 100000000000
+  },
+  "schema_version": 1,
+  "selection_rule": "first 20 complete official TRAIN scenarios in parsed archive order; whole scenarios; selection independent of model results",
+  "source_hashes": {
+    "cognix/adapters/carla/cache_builder.py": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+    "cognix/adapters/carla/carlanomaly_loader.py": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+    "cognix/adapters/carla/normality.py": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+    "cognix/adapters/carla/pseudo_anomalies.py": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+    "cognix/adapters/carla/real_agents.py": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+    "cognix/adapters/carla/real_features.py": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+    "cognix/adapters/carla/train_acquisition.py": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4"
+  },
+  "source_split": "train",
+  "split": {
+    "CAL_NORMAL": 5,
+    "FIT_NORMAL": 15,
+    "builder_label_mapping": {
+      "CAL_NORMAL": "CAL_NORMAL",
+      "TRAIN_NORMAL": "FIT_NORMAL"
+    },
+    "do_not_manually_extend_N10_membership": true,
+    "recompute_once_from_complete_N20_list": true,
+    "rule": "existing NumPy PCG64 permutation of sorted canonical IDs; n_cal=max(1,round(0.25*N)), Python ties-to-even",
+    "seed": 2026
+  },
+  "staging_prefix_name": "train_prefix_expand20.tar.gz",
+  "staging_root": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20",
+  "study_role": "N=20 is the final planned pre-GAT TRAIN-development expansion; invalid calibration leads to a methodology decision, not automatic acquisition beyond N=20",
+  "target_complete_train_scenarios": 20,
+  "window_length_ticks": 12
+}

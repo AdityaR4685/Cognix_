@@ -1,0 +1,190 @@
+{
+  "epistemic_sender_adjustment": {
+    "Camera": {
+      "E_max": 2.3524449034639794e-05,
+      "E_mean": 2.4775321525934247e-06,
+      "E_min": 0.0,
+      "log_sender_adjustment_max": 0.0,
+      "log_sender_adjustment_min": -2.354411299165804e-05,
+      "rounded_neutral_fraction": 0.06129821051461598,
+      "sender_weight_max": 1.0,
+      "sender_weight_mean": 0.9999974966049194,
+      "sender_weight_min": 0.9999764561653137
+    },
+    "IMU": {
+      "E_max": 0.0012616922814733256,
+      "E_mean": 2.5596651928314423e-05,
+      "E_min": 0.0,
+      "log_sender_adjustment_max": 0.0,
+      "log_sender_adjustment_min": -0.001260896329768002,
+      "rounded_neutral_fraction": 0.7533622318550628,
+      "sender_weight_max": 1.0,
+      "sender_weight_mean": 0.9999743700027466,
+      "sender_weight_min": 0.9987398982048035
+    },
+    "Seg": {
+      "E_max": 0.017310018241831315,
+      "E_mean": 7.033952123714618e-05,
+      "E_min": 0.0,
+      "log_sender_adjustment_max": 0.0,
+      "log_sender_adjustment_min": -0.017161883413791656,
+      "rounded_neutral_fraction": 0.11776147604757141,
+      "sender_weight_max": 1.0,
+      "sender_weight_mean": 0.9999297857284546,
+      "sender_weight_min": 0.9829845428466797
+    }
+  },
+  "model_selection_uses_attention": false,
+  "no_prior_tuning": true,
+  "normalization": {
+    "epistemic_gat_101": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "epistemic_gat_202": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "epistemic_gat_303": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "epistemic_gat_404": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "epistemic_gat_505": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "standard_gat_101": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "standard_gat_202": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "standard_gat_303": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "standard_gat_404": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    },
+    "standard_gat_505": {
+      "finite": true,
+      "maximum_incoming_sum_error": 5.960464477539063e-08,
+      "normalization_checked_by_frozen_model": true,
+      "self_edge_maximum": 0.0,
+      "shape": [
+        17994,
+        2,
+        3,
+        3
+      ]
+    }
+  },
+  "per_seed_descriptive_differences": {
+    "101": {
+      "interpretation": "descriptive selected-model difference; learned tensors can differ; not an isolated causal prior effect",
+      "maximum_absolute_attention_difference": 0.004334181547164917,
+      "mean_absolute_attention_difference": 1.3285702152643353e-05
+    },
+    "202": {
+      "interpretation": "descriptive selected-model difference; learned tensors can differ; not an isolated causal prior effect",
+      "maximum_absolute_attention_difference": 0.1379915177822113,
+      "mean_absolute_attention_difference": 0.005178825929760933
+    },
+    "303": {
+      "interpretation": "descriptive selected-model difference; learned tensors can differ; not an isolated causal prior effect",
+      "maximum_absolute_attention_difference": 0.0043413639068603516,
+      "mean_absolute_attention_difference": 1.9199633243260905e-05
+    },
+    "404": {
+      "interpretation": "descriptive selected-model difference; learned tensors can differ; not an isolated causal prior effect",
+      "maximum_absolute_attention_difference": 0.0037459731101989746,
+      "mean_absolute_attention_difference": 2.0339444745332003e-05
+    },
+    "505": {
+      "interpretation": "descriptive selected-model difference; learned tensors can differ; not an isolated causal prior effect",
+      "maximum_absolute_attention_difference": 0.006590902805328369,
+      "mean_absolute_attention_difference": 3.278447547927499e-05
+    }
+  },
+  "prior": "1/(1+raw_E), unchanged strength 1",
+  "relationship": "For fixed learned logits and other senders, increasing sender E decreases eligible normalized attention before dropout."
+}

@@ -1,0 +1,262 @@
+{
+  "CUDA_smoke_evidence": {
+    "epistemic_gat": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    },
+    "nograph": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    },
+    "standard_gat": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    }
+  },
+  "CUDA_smoke_validation_passed": true,
+  "Kaggle_observed_versions": {
+    "AMP": false,
+    "CPU_threads": 1,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "CUDA_available": true,
+    "CUDA_validation": "external frozen-source engineering harness; see sealed CUDA evidence",
+    "DataLoader_workers": 0,
+    "GPU_exposure_policy": "user authorized GPU 0 isolation from Kaggle T4 x2 allocation; one visible GPU; no distributed execution",
+    "NumPy": "2.0.2",
+    "PyTorch": "2.10.0+cu128",
+    "Python": "3.12.13",
+    "autocast_CPU_enabled": false,
+    "autocast_CUDA_enabled": false,
+    "cuDNN_TF32": false,
+    "cuDNN_benchmark": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_version": 91002,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "device_properties": [
+      {
+        "major": 7,
+        "minor": 5,
+        "multi_processor_count": 40,
+        "name": "Tesla T4",
+        "total_memory": 15636037632,
+        "uuid": "34af2d32-ab64-85ba-f040-9e12069b1053"
+      }
+    ],
+    "devices": [
+      "Tesla T4"
+    ],
+    "matmul_TF32": false,
+    "nvidia_smi": {
+      "output": "Tesla T4, GPU-34af2d32-ab64-85ba-f040-9e12069b1053, 580.178.04, 15360 MiB, 0 %\nTesla T4, GPU-01d34e30-f83d-2694-6454-8f7c2bfbb15c, 580.178.04, 15360 MiB, 0 %",
+      "returncode": 0,
+      "stderr": ""
+    },
+    "physical_GPU_count_observed": 2,
+    "platform": "Linux-6.18.48+-x86_64-with-glibc2.35",
+    "runtime_metadata": {
+      "Kaggle_environment": {
+        "KAGGLE_DOCKER_IMAGE": "gcr.io/kaggle-gpu-images/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+        "KAGGLE_KERNEL_RUN_TYPE": "Interactive",
+        "KAGGLE_URL_BASE": "https://www.kaggle.com"
+      },
+      "executable": "/usr/bin/python3",
+      "kaggle_input_exists": true,
+      "kaggle_working_exists": true,
+      "machine": "x86_64",
+      "release": "6.18.48+",
+      "system": "Linux"
+    },
+    "scikit_learn": "1.6.1",
+    "scikit_learn_used": false,
+    "torch_CUDA_runtime": "12.8"
+  },
+  "bundle_SHA256SUMS_sha256": "61544ab57409112695582fbfe170a9d832a550ae35f11336eabde9da6a5cc1f1",
+  "evidence_sha256": {
+    "cuda_smoke_results.json": "e790a1e1cc61e217b593c471f96930d04748582dee1656ef43dbf511379cc53b",
+    "hash_verification.json": "733e8a455676a3e39a1b68f9d43d98e8d1dc1d798b8cdeef41f156c34abdf591",
+    "reproducibility_results.json": "816f7901f657ccd70e03ed5593412632782907778caa28e9958a7464d3fc9f54",
+    "resource_results.json": "4a46327fe4237b4169995c2cf316f4575796dd33b73c7996b5ea046cea843ff4"
+  },
+  "expected_hashes": {
+    "graph_manifest": "9f8c971b72ac260b9f48b7f3ab45561d62535c22002d38b53cf4712536f6e81d",
+    "graph_schema": "5b678571d4ed112e5756e1364ff7966567a1338d87143ca120b3aede24d768fd",
+    "graph_scientific": "baa7deb4f20698d3ed681d0676a14208ae1e9f9a88c0542a1024d5b14d416237",
+    "protocol": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+    "split": "e95118b4149aa9d7e203f45679fb771a1123b97662dbe3548b9435ca8588b479"
+  },
+  "full_training_authorized_this_milestone": false,
+  "future_validation": "Run validate_environment.py on the actual Kaggle runtime before enabling full training; never infer Kaggle package versions from local versions.",
+  "local_observed": {
+    "AMP": false,
+    "CPU_threads": 1,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "CUDA_available": false,
+    "CUDA_validation": "not exercised on local CPU fixtures; deterministic-operation errors must stop future execution",
+    "DataLoader_workers": 0,
+    "NumPy": "1.26.4",
+    "PyTorch": "2.14.0+cpu",
+    "Python": "3.12.10",
+    "cuDNN_TF32": false,
+    "cuDNN_benchmark": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_version": null,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "devices": [],
+    "matmul_TF32": false,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "scikit_learn": "1.9.0",
+    "scikit_learn_used": false,
+    "torch_CUDA_runtime": null
+  },
+  "required_runtime": {
+    "AMP": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "TF32": false,
+    "cuDNN_benchmark": false,
+    "cuDNN_deterministic": true,
+    "deterministic_algorithms": true,
+    "distributed": false,
+    "single_GPU": "T4"
+  },
+  "status": "ARTIFACT_RUNTIME_AND_CUDA_FIXTURES_VALIDATED",
+  "trainer_identity": {
+    "bundle_sha256": "9012174611be989f5305f5cbc40f05527831c9f704e49d8823c52fed88ccea3b",
+    "source_sha256": {
+      "graph_training.py": "b8d1d81b6615962a530b0082af72420a56f51e292f94fddbb8531a45b905557d",
+      "graph_training_data.py": "253c8740ab2c463eff92bc73bfcc2cc4362fb2dd5630dcd3c9c999aa415dc392",
+      "graph_training_metrics.py": "6191ecac3973da00425ee9bb16e80cfc0bb5a2bab328281ff20e599159b80eee",
+      "graph_training_models.py": "96592f17b388e1bc566183e09277b8fcb2cc7738ecde2b7d3bcc30bdc2bf6857"
+    },
+    "version": "carla_graph_trainers_v1"
+  },
+  "validated_execution_environment": {
+    "AMP": false,
+    "CPU_threads": 1,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "CUDA_available": true,
+    "CUDA_validation": "external frozen-source engineering harness; see sealed CUDA evidence",
+    "DataLoader_workers": 0,
+    "GPU_exposure_policy": "user authorized GPU 0 isolation from Kaggle T4 x2 allocation; one visible GPU; no distributed execution",
+    "NumPy": "2.0.2",
+    "PyTorch": "2.10.0+cu128",
+    "Python": "3.12.13",
+    "autocast_CPU_enabled": false,
+    "autocast_CUDA_enabled": false,
+    "cuDNN_TF32": false,
+    "cuDNN_benchmark": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_version": 91002,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "device_properties": [
+      {
+        "major": 7,
+        "minor": 5,
+        "multi_processor_count": 40,
+        "name": "Tesla T4",
+        "total_memory": 15636037632,
+        "uuid": "34af2d32-ab64-85ba-f040-9e12069b1053"
+      }
+    ],
+    "devices": [
+      "Tesla T4"
+    ],
+    "matmul_TF32": false,
+    "nvidia_smi": {
+      "output": "Tesla T4, GPU-34af2d32-ab64-85ba-f040-9e12069b1053, 580.178.04, 15360 MiB, 0 %\nTesla T4, GPU-01d34e30-f83d-2694-6454-8f7c2bfbb15c, 580.178.04, 15360 MiB, 0 %",
+      "returncode": 0,
+      "stderr": ""
+    },
+    "physical_GPU_count_observed": 2,
+    "platform": "Linux-6.18.48+-x86_64-with-glibc2.35",
+    "runtime_metadata": {
+      "Kaggle_environment": {
+        "KAGGLE_DOCKER_IMAGE": "gcr.io/kaggle-gpu-images/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+        "KAGGLE_KERNEL_RUN_TYPE": "Interactive",
+        "KAGGLE_URL_BASE": "https://www.kaggle.com"
+      },
+      "executable": "/usr/bin/python3",
+      "kaggle_input_exists": true,
+      "kaggle_working_exists": true,
+      "machine": "x86_64",
+      "release": "6.18.48+",
+      "system": "Linux"
+    },
+    "scikit_learn": "1.6.1",
+    "scikit_learn_used": false,
+    "torch_CUDA_runtime": "12.8"
+  }
+}

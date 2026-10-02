@@ -1,0 +1,1160 @@
+{
+  "frozen_dataset_manifest_sha256": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+  "cache_content_sha256": "c2df480a712e819d85437a9bb141bca91b47b68e90ae84fcf78d9151b93b5539",
+  "study_role": "N=20 is the final planned pre-GAT TRAIN-development expansion; invalid calibration leads to a methodology decision, not automatic acquisition beyond N=20",
+  "agents": {
+    "Camera": {
+      "FIT_scenarios": 15,
+      "FIT_rows": 44985,
+      "CAL_scenarios": 5,
+      "CAL_normal_rows": 14995,
+      "CAL_pseudo_rows": 4285,
+      "member_score_distributions": {
+        "normal": {
+          "min": 0.009552917173642967,
+          "p10": 0.3294141571163687,
+          "median": 0.5553850536870293,
+          "p90": 0.7780373218479895,
+          "max": 0.8503214961382448
+        },
+        "pseudo": {
+          "min": 5.474149412870098e-12,
+          "p10": 2.3439361161857267e-07,
+          "median": 0.5662665483363848,
+          "p90": 0.7617689795090379,
+          "max": 0.841963094570955
+        }
+      },
+      "ensemble_mean_distributions": {
+        "normal": {
+          "min": 0.010776910509120396,
+          "p10": 0.3310116893111311,
+          "median": 0.5547993610524384,
+          "p90": 0.7778257303736466,
+          "max": 0.8495465980801556
+        },
+        "pseudo": {
+          "min": 8.462407543104016e-12,
+          "p10": 2.3623479169216058e-07,
+          "median": 0.5653763209568178,
+          "p90": 0.7620681149266447,
+          "max": 0.8408899068349583
+        }
+      },
+      "raw_score_disagreement": {
+        "normal": {
+          "min": 0.00014676494076228027,
+          "p10": 0.0007284539872562034,
+          "median": 0.0024788663480351486,
+          "p90": 0.003522754912031296,
+          "max": 0.005940160284881213
+        },
+        "pseudo": {
+          "min": 1.8854188112643384e-12,
+          "p10": 4.320921246071238e-08,
+          "median": 0.0008757657423882875,
+          "p90": 0.002085586467511271,
+          "max": 0.003985992541202138
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 4.1436899737991394e-05,
+          "p10": 0.0002296447003200019,
+          "median": 0.0011414191484157674,
+          "p90": 0.001922065926043466,
+          "max": 0.003941102706717268
+        },
+        "pseudo": {
+          "min": 1.3869265852701292e-12,
+          "p10": 3.178536279910234e-08,
+          "median": 0.000308598118107453,
+          "p90": 0.0008305623957207251,
+          "max": 0.0021175658913370984
+        }
+      },
+      "audit": {
+        "nll_initial": 0.6836150687835032,
+        "nll_final": 0.4891540139945097,
+        "n_iter": 6,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 2.358648085510706e-17,
+        "minimum_curvature": 0.0718792867867041,
+        "slope_raw": 2.9612717881746042,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              0.010776910509120396,
+              0.8495465980801556
+            ],
+            "pseudo_range": [
+              8.462407543104016e-12,
+              0.8408899068349583
+            ],
+            "overlap_interval": [
+              0.010776910509120396,
+              0.8408899068349583
+            ],
+            "min_normal": 0.010776910509120396,
+            "max_pseudo": 0.8408899068349583,
+            "gap": -0.8301129963258379,
+            "best_threshold": 0.02664115634795022,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 2577,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              0.009552917173642967,
+              0.8503214961382448
+            ],
+            "pseudo_range": [
+              5.474149412870098e-12,
+              0.841963094570955
+            ],
+            "overlap_interval": [
+              0.009552917173642967,
+              0.841963094570955
+            ],
+            "min_normal": 0.009552917173642967,
+            "max_pseudo": 0.841963094570955,
+            "gap": -0.832410177397312,
+            "best_threshold": 0.026676061547217654,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 12887,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7516775614350881,
+            "nll": 0.5068822660024254
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.2765942240009247,
+            "nll": 0.4933441265568392
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -1.041521487531869,
+            "nll": 0.5060557217730712
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -3.118519839108221,
+            "nll": 0.643201032757894
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -7.069270576930525,
+            "nll": 1.0531152125047176
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -18.027569154456742,
+            "nll": 2.438932924398364
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -21.1176451392008,
+            "nll": 3.562048006756808
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -14.812666194123095,
+            "nll": 3.6801128940384356
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -21.85412190497527,
+            "nll": 3.686971027088257
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -44.38887410189771,
+            "nll": 3.689222739435212
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -89.33354007022933,
+            "nll": 3.6914704483635234
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -133.44189237119372,
+            "nll": 3.6932550054622135
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 2.9612717881746042,
+            "intercept_raw": -0.1597389792182473,
+            "nll": 0.4891540139945096
+          },
+          {
+            "slope_raw": 5.9225435763492085,
+            "intercept_raw": -1.4297366310815494,
+            "nll": 0.5232179081455187
+          },
+          {
+            "slope_raw": 11.845087152698417,
+            "intercept_raw": -3.870498697036767,
+            "nll": 0.7114385006581013
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "jensen_descriptive": {
+        "max": 1.2943433925771686e-05,
+        "median": 1.4981312422834847e-06,
+        "p90": 4.5665845788911415e-06
+      },
+      "calibration_valid": true,
+      "mapping_parameters_raw": {
+        "slope": 2.9612717881746042,
+        "intercept": -0.15973900077000658,
+        "scientific_valid": true
+      },
+      "scientific_probability_and_uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.46808709042767294,
+            "p10": 0.6943361309360362,
+            "median": 0.8150472337578343,
+            "p90": 0.8950700619013516,
+            "max": 0.9134098377339969
+          },
+          "total": {
+            "min": 0.2945768969336824,
+            "p10": 0.33578205479855444,
+            "median": 0.47882109191111527,
+            "p90": 0.6155871779121882,
+            "max": 0.6931451298974823
+          },
+          "aleatoric": {
+            "min": 0.29457680978193523,
+            "p10": 0.33578142886470014,
+            "median": 0.4788146026257108,
+            "p90": 0.6155836708833563,
+            "max": 0.6931356294709098
+          },
+          "epistemic": {
+            "min": 9.004678169777236e-09,
+            "p10": 2.45169843959836e-07,
+            "median": 4.33855138620709e-06,
+            "p90": 1.0001549796623265e-05,
+            "max": 3.466040583222085e-05
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.46014995010976767,
+            "p10": 0.46015012388149107,
+            "median": 0.8197254406121642,
+            "p90": 0.8906045253879993,
+            "max": 0.911360601087931
+          },
+          "total": {
+            "min": 0.29937853537705306,
+            "p10": 0.3452495612626832,
+            "median": 0.4718095589877924,
+            "p90": 0.6899728412723438,
+            "max": 0.6931471783596768
+          },
+          "aleatoric": {
+            "min": 0.2993783046340209,
+            "p10": 0.345246960274225,
+            "median": 0.47180828480341086,
+            "p90": 0.6899728412379286,
+            "max": 0.6931427272815835
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 1.9984014443252818e-15,
+            "median": 4.1044286686053866e-07,
+            "p90": 2.60217854129996e-06,
+            "max": 1.2497154924351328e-05
+          }
+        }
+      },
+      "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration"
+    },
+    "Seg": {
+      "FIT_scenarios": 15,
+      "FIT_rows": 44985,
+      "CAL_scenarios": 5,
+      "CAL_normal_rows": 14995,
+      "CAL_pseudo_rows": 2145,
+      "member_score_distributions": {
+        "normal": {
+          "min": 7.03633815136143e-07,
+          "p10": 0.3995805650550833,
+          "median": 0.7505475070806037,
+          "p90": 0.8790031494720125,
+          "max": 0.9509193069300758
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 1.3807738108777303e-93,
+          "median": 1.3484181209347415e-05,
+          "p90": 0.4208289008111398,
+          "max": 0.8997115558878714
+        }
+      },
+      "ensemble_mean_distributions": {
+        "normal": {
+          "min": 4.100000417896497e-06,
+          "p10": 0.40047850013185415,
+          "median": 0.750638050247375,
+          "p90": 0.8790073924826067,
+          "max": 0.9505318719269733
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 1.323457211652924e-88,
+          "median": 1.3506133646015855e-05,
+          "p90": 0.4222950611647137,
+          "max": 0.899092943255719
+        }
+      },
+      "raw_score_disagreement": {
+        "normal": {
+          "min": 2.133422043129575e-06,
+          "p10": 0.0006934631148159837,
+          "median": 0.002056500965982904,
+          "p90": 0.005038448320622788,
+          "max": 0.06026638588852626
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 1.689147650018329e-88,
+          "median": 3.6554052547308712e-06,
+          "p90": 0.0026786338200325143,
+          "max": 0.04027010067914608
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 3.172770962603419e-06,
+          "p10": 2.2506764147390253e-05,
+          "median": 0.0001472142302729792,
+          "p90": 0.003063745170797981,
+          "max": 0.0914723230600627
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 5.43687612227578e-06,
+          "p90": 0.0035344094463765456,
+          "max": 0.017954999617396415
+        }
+      },
+      "audit": {
+        "nll_initial": 1.800194955807599,
+        "nll_final": 0.18158567334680248,
+        "n_iter": 8,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 1.3699069389433096e-16,
+        "minimum_curvature": 0.01453152732599787,
+        "slope_raw": 7.16395928020747,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              4.100000417896497e-06,
+              0.9505318719269733
+            ],
+            "pseudo_range": [
+              0.0,
+              0.899092943255719
+            ],
+            "overlap_interval": [
+              4.100000417896497e-06,
+              0.899092943255719
+            ],
+            "min_normal": 4.100000417896497e-06,
+            "max_pseudo": 0.899092943255719,
+            "gap": -0.899088843255301,
+            "best_threshold": 0.010240397509888916,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 910,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              7.03633815136143e-07,
+              0.9509193069300758
+            ],
+            "pseudo_range": [
+              0.0,
+              0.8997115558878714
+            ],
+            "overlap_interval": [
+              7.03633815136143e-07,
+              0.8997115558878714
+            ],
+            "min_normal": 7.03633815136143e-07,
+            "max_pseudo": 0.8997115558878714,
+            "gap": -0.8997108522540563,
+            "best_threshold": 0.00952387169025454,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 4603,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 1.358442412274116,
+            "nll": 0.31812939056999107
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.840133095214177,
+            "nll": 0.2701709806545221
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.3301998472754122,
+            "nll": 0.19282426509238165
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.3308936980047066,
+            "nll": 0.19224749980379063
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.178377985809218,
+            "nll": 0.28359343104823
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -3.1969736476308275,
+            "nll": 0.5846031581123557
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -3.889158929636525,
+            "nll": 0.8148877993745476
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -5.203180791708342,
+            "nll": 1.0200503113324395
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -7.580733139269588,
+            "nll": 1.2173868576826732
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -9.765806308734083,
+            "nll": 1.2993452663809457
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -13.340063731932826,
+            "nll": 1.3480789841295455
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -38.906886449228644,
+            "nll": 1.4114417749424206
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 7.16395928020747,
+            "intercept_raw": -0.875746812850568,
+            "nll": 0.18158567334680242
+          },
+          {
+            "slope_raw": 14.32791856041494,
+            "intercept_raw": -1.7603038828605844,
+            "nll": 0.22738182054318376
+          },
+          {
+            "slope_raw": 28.65583712082988,
+            "intercept_raw": -2.723992261436391,
+            "nll": 0.37750232767067804
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "jensen_descriptive": {
+        "max": 0.008760151482615997,
+        "median": 9.263743996901219e-07,
+        "p90": 1.9495571985583828e-05
+      },
+      "calibration_valid": true,
+      "mapping_parameters_raw": {
+        "slope": 7.16395928020747,
+        "intercept": -0.8757468258663557,
+        "scientific_valid": true
+      },
+      "scientific_probability_and_uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.2940660131158799,
+            "p10": 0.8800100963468953,
+            "median": 0.9890317883978093,
+            "p90": 0.9955984866367541,
+            "max": 0.9973586586149092
+          },
+          "total": {
+            "min": 0.018318089608549845,
+            "p10": 0.028273573711914104,
+            "median": 0.06040468090525233,
+            "p90": 0.3669048740318356,
+            "max": 0.6931471723270026
+          },
+          "aleatoric": {
+            "min": 0.01831808631357075,
+            "p10": 0.028273438016815044,
+            "median": 0.06040392013200955,
+            "p90": 0.3668030486946581,
+            "max": 0.6930294747980826
+          },
+          "epistemic": {
+            "min": 2.424593859018387e-11,
+            "p10": 5.35261697194589e-08,
+            "median": 1.0520072661335256e-06,
+            "p90": 3.962603261997157e-05,
+            "max": 0.018422194712924167
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.2940599157252533,
+            "p10": 0.2940599157252533,
+            "median": 0.2940800019028829,
+            "p90": 0.8956149358601034,
+            "max": 0.9961862042012589
+          },
+          "total": {
+            "min": 0.025046039807537147,
+            "p10": 0.3346121753967872,
+            "median": 0.6057469494195786,
+            "p90": 0.6761051820806452,
+            "max": 0.6931469819780858
+          },
+          "aleatoric": {
+            "min": 0.02504600462805621,
+            "p10": 0.33459666388460957,
+            "median": 0.6057469494195786,
+            "p90": 0.6760518590638183,
+            "max": 0.6931318015105858
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 7.118816647277981e-11,
+            "p90": 3.08673455662323e-05,
+            "max": 0.0015189882605280425
+          }
+        }
+      },
+      "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration"
+    },
+    "GNSS": {
+      "FIT_scenarios": 15,
+      "FIT_rows": 44985,
+      "CAL_scenarios": 5,
+      "CAL_normal_rows": 14995,
+      "CAL_pseudo_rows": 4285,
+      "member_score_distributions": {
+        "normal": {
+          "min": 0.0,
+          "p10": 0.41980782009490675,
+          "median": 0.8761305985224815,
+          "p90": 0.9400677533533996,
+          "max": 0.9544828059510059
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "max": 0.0
+        }
+      },
+      "ensemble_mean_distributions": {
+        "normal": {
+          "min": 3.674647119550551e-16,
+          "p10": 0.42052476417740625,
+          "median": 0.8757931417869038,
+          "p90": 0.9395539476130365,
+          "max": 0.9542634474727032
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "max": 0.0
+        }
+      },
+      "raw_score_disagreement": {
+        "normal": {
+          "min": 7.349294239101102e-16,
+          "p10": 0.0003265401277446894,
+          "median": 0.001559303137863908,
+          "p90": 0.007353401584629087,
+          "max": 0.2532545788244104
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "max": 0.0
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "audit": {
+        "nll_initial": 0.4701528264111788,
+        "nll_final": 0.08657462254069184,
+        "n_iter": 5,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": false,
+        "suspected_separation": true,
+        "gradient_norm": 0.10696926130865077,
+        "minimum_curvature": -0.0002841017834971857,
+        "slope_raw": 12.450427899372611,
+        "boundary_trend": "decreasing",
+        "lower_profile_direction": true,
+        "status": "suspected_separation",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              3.674647119550551e-16,
+              0.9542634474727032
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": null,
+            "min_normal": 3.674647119550551e-16,
+            "max_pseudo": 0.0,
+            "gap": 3.674647119550551e-16,
+            "best_threshold": 1.8373235597752754e-16,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 0,
+            "classification": "completely_separated"
+          },
+          "pooled_members": {
+            "normal_range": [
+              0.0,
+              0.9544828059510059
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": [
+              0.0,
+              0.0
+            ],
+            "min_normal": 0.0,
+            "max_pseudo": 0.0,
+            "gap": 0.0,
+            "best_threshold": 3.1846591924036234e-129,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 1,
+            "classification": "quasi_separated"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7151780785396582,
+            "nll": 0.4142138902149963
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.25240638277891936,
+            "nll": 0.32385571517715095
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.7545756418114963,
+            "nll": 0.1726530462978079
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.577628720094658,
+            "nll": 0.09901789206661246
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.1511502807622467,
+            "nll": 0.06453669079981643
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -2.86980597041449,
+            "nll": 0.03763496864079322
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -3.348206858883311,
+            "nll": 0.026521284201559518
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -3.7356969449094897,
+            "nll": 0.019591165718266357
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -4.179170200020257,
+            "nll": 0.013104352184645071
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -4.577500224033439,
+            "nll": 0.009019756017373622
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -5.199059241628722,
+            "nll": 0.006248594186581959
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -5.579966084435762,
+            "nll": 0.0056187830905237565
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 12.450427899372611,
+            "intercept_raw": -1.7787929873888872,
+            "nll": 0.08578190827788225
+          },
+          {
+            "slope_raw": 24.900855798745223,
+            "intercept_raw": -2.321170482563865,
+            "nll": 0.0565878572639452
+          },
+          {
+            "slope_raw": 49.801711597490446,
+            "intercept_raw": -2.8668064431865528,
+            "nll": 0.037717301297699714
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "jensen_descriptive": {
+        "max": 0.10726595386515714,
+        "median": 3.352781385856929e-10,
+        "p90": 1.9878048069432988e-05
+      },
+      "calibration_valid": false,
+      "mapping_parameters_raw": {
+        "slope": 12.450427899372611,
+        "intercept": -1.5864140186587425,
+        "scientific_valid": false
+      },
+      "scientific_probability_and_uq": null,
+      "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration",
+      "pre_exponential_diagnostics": {
+        "model": "unchanged bootstrap MahalanobisNormality",
+        "score_transform": "exp(-0.5*d2/d2_scale)",
+        "distance_scale_per_member": [
+          6.978519796427494,
+          7.0043285765546015,
+          6.9991580698250395,
+          7.0143806084123925,
+          7.00105840109806
+        ],
+        "float64_smallest_positive_subnormal": 5e-324,
+        "float64_smallest_positive_normal": 2.2250738585072014e-308,
+        "log_smallest_positive_subnormal": -744.4400719213812,
+        "scientific_score_transform_changed": false,
+        "exact_production_score_reproduction": true,
+        "classes": {
+          "normal": {
+            "n_observations": 14995,
+            "member_entries": 74975,
+            "squared_mahalanobis": {
+              "min": 0.6522977077000074,
+              "p10": 0.8661117954012049,
+              "median": 1.8509733451893,
+              "p90": 12.145234424353742,
+              "max": 21333.397696353513
+            },
+            "normalized_squared_distance": {
+              "min": 0.09317129929921734,
+              "p10": 0.12360665656069723,
+              "median": 0.264480228172989,
+              "p90": 1.7359164883132445,
+              "max": 3057.008981657499
+            },
+            "exponential_argument": {
+              "min": -1528.5044908287496,
+              "p10": -0.8679582441566218,
+              "median": -0.1322401140864945,
+              "p90": -0.06180332828034861,
+              "max": -0.04658564964960867
+            },
+            "score": {
+              "min": 0.0,
+              "p10": 0.41980782009490675,
+              "median": 0.8761305985224815,
+              "p90": 0.9400677533533996,
+              "max": 0.9544828059510059
+            },
+            "exact_zero_entries": 1,
+            "exact_zero_fraction": 1.3337779259753252e-05,
+            "all_members_zero_observations": 0,
+            "smallest_positive_observed_score": 6.369318384807247e-129,
+            "arguments_below_log_smallest_subnormal": 1,
+            "all_zero_scores_explained_by_exp_underflow": true
+          },
+          "pseudo": {
+            "n_observations": 4285,
+            "member_entries": 21425,
+            "squared_mahalanobis": {
+              "min": 140961949.44473404,
+              "p10": 142226382.1944405,
+              "median": 161160755.5490716,
+              "p90": 653573626.5105104,
+              "max": 654621062.8728093
+            },
+            "normalized_squared_distance": {
+              "min": 20096136.396658808,
+              "p10": 20276399.31940213,
+              "median": 23010004.012652107,
+              "p90": 93335836.17588185,
+              "max": 93459502.32317835
+            },
+            "exponential_argument": {
+              "min": -46729751.161589175,
+              "p10": -46667918.087940924,
+              "median": -11505002.006326053,
+              "p90": -10138199.659701057,
+              "max": -10048068.198329404
+            },
+            "score": {
+              "min": 0.0,
+              "p10": 0.0,
+              "median": 0.0,
+              "p90": 0.0,
+              "max": 0.0
+            },
+            "exact_zero_entries": 21425,
+            "exact_zero_fraction": 1.0,
+            "all_members_zero_observations": 4285,
+            "smallest_positive_observed_score": null,
+            "arguments_below_log_smallest_subnormal": 21425,
+            "all_zero_scores_explained_by_exp_underflow": true
+          }
+        },
+        "diagnosis": "Large Mahalanobis distances create large negative exponential arguments; float64 exp underflows to exactly zero where recorded. No explicit score clamp/threshold is used."
+      }
+    },
+    "IMU": {
+      "FIT_scenarios": 15,
+      "FIT_rows": 44985,
+      "CAL_scenarios": 5,
+      "CAL_normal_rows": 14995,
+      "CAL_pseudo_rows": 4280,
+      "member_score_distributions": {
+        "normal": {
+          "min": 2.733761530489996e-28,
+          "p10": 0.30404961012275883,
+          "median": 0.96511999701836,
+          "p90": 0.9658022412749854,
+          "max": 0.9804747514960377
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.1571949839912783,
+          "max": 0.7888787636582771
+        }
+      },
+      "ensemble_mean_distributions": {
+        "normal": {
+          "min": 2.7892002529219866e-23,
+          "p10": 0.3038554995547444,
+          "median": 0.9653991541053202,
+          "p90": 0.9655423142364784,
+          "max": 0.9801147654230583
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.16018931538174286,
+          "max": 0.7871166914511428
+        }
+      },
+      "raw_score_disagreement": {
+        "normal": {
+          "min": 4.136956980000905e-23,
+          "p10": 0.000250010590511621,
+          "median": 0.00025246132973080336,
+          "p90": 0.0032345612448226725,
+          "max": 0.012496988349003908
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0021474839675934467,
+          "max": 0.004562611438942637
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 0.0,
+          "p10": 2.0491135097192483e-08,
+          "median": 2.0654836960439918e-08,
+          "p90": 0.001221063075509984,
+          "max": 0.030509994910515835
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0074795345568169185,
+          "max": 0.012689662180976507
+        }
+      },
+      "audit": {
+        "nll_initial": 0.4778337746008448,
+        "nll_final": 0.13089761743557832,
+        "n_iter": 13,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 1.0412598170581171e-16,
+        "minimum_curvature": 0.0013998760893466217,
+        "slope_raw": 14.663495066407458,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              2.7892002529219866e-23,
+              0.9801147654230583
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7871166914511428
+            ],
+            "overlap_interval": [
+              2.7892002529219866e-23,
+              0.7871166914511428
+            ],
+            "min_normal": 2.7892002529219866e-23,
+            "max_pseudo": 0.7871166914511428,
+            "gap": -0.7871166914511428,
+            "best_threshold": 1.0200340518143278e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 760,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              2.733761530489996e-28,
+              0.9804747514960377
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7888787636582771
+            ],
+            "overlap_interval": [
+              2.733761530489996e-28,
+              0.7888787636582771
+            ],
+            "min_normal": 2.733761530489996e-28,
+            "max_pseudo": 0.7888787636582771,
+            "gap": -0.7888787636582771,
+            "best_threshold": 1.0305866292560866e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 3800,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.6716897176751012,
+            "nll": 0.41033060610030503
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.17460505970313225,
+            "nll": 0.32019055780940825
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.862269947228622,
+            "nll": 0.1851663363924216
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.6351055000204011,
+            "nll": 0.13726723862889156
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.480648910875948,
+            "nll": 0.13584570994303413
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -4.6156614796671995,
+            "nll": 0.23559443439629127
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -8.165056622232912,
+            "nll": 0.4379640227986997
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -13.309028667594525,
+            "nll": 0.7897940416724175
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -3.4144165580996204,
+            "nll": 0.908301815802816
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -3.608486006656086,
+            "nll": 0.9312255704490306
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -3.9790241714376484,
+            "nll": 0.9511295924401787
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -4.375461058375668,
+            "nll": 0.985439782655986
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 14.663495066407458,
+            "intercept_raw": -2.060996483259189,
+            "nll": 0.13089761743557837
+          },
+          {
+            "slope_raw": 29.326990132814917,
+            "intercept_raw": -3.162317316840491,
+            "nll": 0.15902616996208152
+          },
+          {
+            "slope_raw": 58.65398026562983,
+            "intercept_raw": -5.232222944996214,
+            "nll": 0.2707876530736626
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "jensen_descriptive": {
+        "max": 0.0005800973036362844,
+        "median": 3.8233527455133753e-11,
+        "p90": 1.758652256700355e-05
+      },
+      "calibration_valid": true,
+      "mapping_parameters_raw": {
+        "slope": 14.663495066407458,
+        "intercept": -2.0609964603027118,
+        "scientific_valid": true
+      },
+      "scientific_probability_and_uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.11294595703241381,
+            "p10": 0.9162721288476275,
+            "median": 0.999994413334908,
+            "p90": 0.9999944250503464,
+            "max": 0.9999954976483167
+          },
+          "total": {
+            "min": 5.9930391066577305e-05,
+            "p10": 7.301636709820082e-05,
+            "median": 7.31580790540464e-05,
+            "p90": 0.2877791381471209,
+            "max": 0.6931468078944338
+          },
+          "aleatoric": {
+            "min": 5.9930366914440126e-05,
+            "p10": 7.301632916978574e-05,
+            "median": 7.315804092400294e-05,
+            "p90": 0.2876116361120983,
+            "max": 0.6930945753165126
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 3.7720687492037895e-11,
+            "median": 3.823044586795648e-11,
+            "p90": 2.2883756147767956e-05,
+            "max": 0.002028812864481422
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.11294595703241381,
+            "p10": 0.11294595703241381,
+            "median": 0.11294595703241381,
+            "p90": 0.5714738495771097,
+            "max": 0.9999236997460343
+          },
+          "total": {
+            "min": 0.0007996874072494194,
+            "p10": 0.35263058836775724,
+            "median": 0.35263058836775724,
+            "p90": 0.6507515705247535,
+            "max": 0.6930970726275139
+          },
+          "aleatoric": {
+            "min": 0.0007996777064184374,
+            "p10": 0.35263058836775724,
+            "median": 0.35263058836775724,
+            "p90": 0.6506234342873538,
+            "max": 0.6929818803653258
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.00012051156908436944,
+            "max": 0.0003320424503837627
+          }
+        }
+      },
+      "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration"
+    }
+  },
+  "elapsed_s": 109.42
+}

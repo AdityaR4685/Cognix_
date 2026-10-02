@@ -1,0 +1,38 @@
+{
+  "checkpoint_content_sha256": "bacc8130a026f13c43be68a962c6683fc4927630a87f2a092bc57cb92cad0a66",
+  "observer_completion": {
+    "GPU_peak_allocated_bytes": 0,
+    "GPU_peak_reserved_bytes": 0,
+    "elapsed_seconds": 6.247502088546753,
+    "environment": {
+      "AMP": false,
+      "CPU_threads": 1,
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "CUDA_available": false,
+      "CUDA_validation": "not exercised on local CPU fixtures; deterministic-operation errors must stop future execution",
+      "DataLoader_workers": 0,
+      "NumPy": "1.26.4",
+      "PyTorch": "2.14.0+cpu",
+      "Python": "3.12.10",
+      "cuDNN_TF32": false,
+      "cuDNN_benchmark": false,
+      "cuDNN_deterministic": true,
+      "cuDNN_version": null,
+      "deterministic_algorithms": true,
+      "deterministic_warn_only": false,
+      "devices": [],
+      "matmul_TF32": false,
+      "platform": "Windows-11-10.0.26200-SP0",
+      "scikit_learn": "1.9.0",
+      "scikit_learn_used": false,
+      "torch_CUDA_runtime": null
+    },
+    "first_forward_checked": true,
+    "method": "standard_gat",
+    "passed": true,
+    "seed": 101
+  },
+  "passed": true,
+  "prediction_content_sha256": "a02724ce39d8dc9d67a10489a60ce6439c6524f50b1e61139545eaad2a9a05ce",
+  "scope": "128-row CPU engineering fixture, not scientific full graph evidence"
+}

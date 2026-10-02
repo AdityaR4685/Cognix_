@@ -1,0 +1,52 @@
+{
+  "content_sha256": "e8dc6d712faca3ef0d0de7a073d98dffe3ef37cfce0ab0aa2c6119ed76655ad2",
+  "file_sha256": "2f1692e47be32790380f84f65618e70c773397419e87a5ba45cb6404eafde4e5",
+  "cache_schema_version": 2,
+  "npz_bytes": 25292406,
+  "manifest_bytes": 2928,
+  "preprocessing_wall_s": 4075.25,
+  "production_builds": 1,
+  "clean_rows": 29990,
+  "FIT_rows": 23992,
+  "CAL_rows": 5998,
+  "CAL_pseudo_rows": 5998,
+  "frozen_dataset_manifest_sha256": "c1e1e9fb31b63e15ebb4422214a01579be943bd9d7730bbe9a1954b4ccb0ff89",
+  "acquisition_config_sha256": "e038ff835bd468a0894d37f23a922bacde39936a05a0bbc14147d7af9a25ca4a",
+  "consistency_checks_passed": true,
+  "pseudo_audit": {
+    "attempts_by_recipe": {
+      "camera_brightness_shift": 856,
+      "camera_occlusion": 858,
+      "gnss_bias": 858,
+      "gnss_drift": 856,
+      "imu_bias_scale": 856,
+      "imu_spike": 856,
+      "seg_region_corruption": 858
+    },
+    "gated_to_split": "train",
+    "n_rows": 5998,
+    "observation_scope": "causal window rows [max(0, t - L + 1), t] \u2014 the cached observation itself; strictly causal, per-scenario",
+    "present": true,
+    "recipes": [
+      "camera_brightness_shift",
+      "camera_occlusion",
+      "seg_region_corruption",
+      "gnss_bias",
+      "gnss_drift",
+      "imu_spike",
+      "imu_bias_scale"
+    ],
+    "severity_source": "fixed a priori (never tuned on test data)",
+    "skipped_by_recipe": {
+      "camera_brightness_shift": {},
+      "camera_occlusion": {},
+      "gnss_bias": {},
+      "gnss_drift": {},
+      "imu_bias_scale": {},
+      "imu_spike": {},
+      "seg_region_corruption": {}
+    },
+    "skipped_no_effect_rows": 0
+  },
+  "cache_path": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand10\\cache_train10_v1"
+}

@@ -1,0 +1,47 @@
+{
+  "bootstrap_scenario_order": [
+    "Town01/scenario-12",
+    "Town01/scenario-14",
+    "Town02/scenario-2"
+  ],
+  "exact_sign_flip": {
+    "enumerated_sign_assignments": 32,
+    "minimum_attainable_two_sided_p": 0.0625,
+    "p": 0.875,
+    "p_below_0_05_claim_permitted": false,
+    "two_sided": true
+  },
+  "primary": {
+    "complete": true,
+    "conditional_seed_CI": [
+      -5.4543476426879355e-05,
+      0.00010744540516811291
+    ],
+    "exact_two_sided_sign_flip_p": 0.875,
+    "max": 0.00014292860318787515,
+    "mean": 2.6450964370616782e-05,
+    "median": -1.4824696298321172e-06,
+    "min": -8.61685472353102e-06,
+    "paired_dz": 0.4054995608469083,
+    "per_seed": {
+      "101": -1.4824696298321172e-06,
+      "202": 0.00014292860318787515,
+      "303": -8.61685472353102e-06,
+      "404": -2.8537540373019255e-06,
+      "505": 2.279297055873819e-06
+    },
+    "sample_SD": 6.523056231028334e-05,
+    "undefined_reasons": {}
+  },
+  "scope": "fixed-representation development validation; only three scenarios; no independent generalization guarantee",
+  "whole_scenario_bootstrap": {
+    "draws": 10000,
+    "interpretation": "descriptive fragility only",
+    "percentile_interval": [
+      -5.9873242175512155e-05,
+      0.00018899264076133182
+    ],
+    "seed": 606,
+    "unit": "whole_validation_scenario"
+  }
+}

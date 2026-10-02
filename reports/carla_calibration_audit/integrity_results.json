@@ -1,0 +1,59 @@
+{
+  "modified_preexisting_files": [
+    "cognix/adapters/carla/cache_builder.py",
+    "cognix/adapters/carla/normality.py",
+    "cognix/adapters/carla/pseudo_anomalies.py",
+    "cognix/adapters/carla/real_agents.py",
+    "tests/unit/test_carla_cache_builder.py",
+    "tests/unit/test_carla_causal_window_scope.py",
+    "tests/unit/test_carla_ensemble_predictive_calibration.py",
+    "tests/unit/test_carla_pseudo_anomalies.py",
+    "tests/unit/test_carla_real_agents.py"
+  ],
+  "new_source_or_test_files": [
+    "tests/unit/test_carla_calibration_validity.py"
+  ],
+  "report_files": [
+    "broad_tests.txt",
+    "camera_member_scores.npz",
+    "focused_tests.txt",
+    "gnss_member_scores.npz",
+    "imu_member_scores.npz",
+    "initial_state.json",
+    "proposed_protocol.json",
+    "report.md",
+    "reproduce.py",
+    "seg_member_scores.npz",
+    "separation_results.json",
+    "verify_integrity.py"
+  ],
+  "generic_and_frozen_initial_hashes_unchanged": true,
+  "tracked_diff_empty": true,
+  "bare_import_no_adapters": true,
+  "probe_artifacts_unchanged_size_and_mtime": 12054,
+  "all_four_cache_content_hashes_match_preserved_manifests": {
+    "cache_a": {
+      "content_sha256": "a87e0e908613a9e17ac48944f5f60775f70cfb7481b88df4eee4ce3778c2b58d",
+      "file_sha256": "8fdf453e5c5d23d627e036163eb29f2aeb4f3b5f045a3f2fc40d45a681b49cdc",
+      "bytes": 5792518
+    },
+    "cache_b": {
+      "content_sha256": "a87e0e908613a9e17ac48944f5f60775f70cfb7481b88df4eee4ce3778c2b58d",
+      "file_sha256": "8fdf453e5c5d23d627e036163eb29f2aeb4f3b5f045a3f2fc40d45a681b49cdc",
+      "bytes": 5792518
+    },
+    "cache_v2_a": {
+      "content_sha256": "219f23a2fd442b9a9fd1f66e4c5282af40cfcfb4370ead627ffe21b4e5e71e0f",
+      "file_sha256": "953c423e99a95506657e8fea7fd671490a7f5efdbaf4ccbd38dafb432e848ea5",
+      "bytes": 6422686
+    },
+    "cache_v2_b": {
+      "content_sha256": "219f23a2fd442b9a9fd1f66e4c5282af40cfcfb4370ead627ffe21b4e5e71e0f",
+      "file_sha256": "953c423e99a95506657e8fea7fd671490a7f5efdbaf4ccbd38dafb432e848ea5",
+      "bytes": 6422686
+    }
+  },
+  "no_download_or_official_test_access": true,
+  "no_GAT_conformal_severity_threshold_regularization_slope_cap_changes": true,
+  "no_commit_push_branch_stash_reset_clean": true
+}

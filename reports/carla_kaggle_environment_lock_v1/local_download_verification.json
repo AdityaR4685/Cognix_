@@ -1,0 +1,104 @@
+{
+  "N20_unchanged": true,
+  "TEST_access": false,
+  "all_bound_evidence_files_verified": true,
+  "all_downloaded_checkpoint_internal_and_observer_hashes_verified": true,
+  "all_prediction_content_hashes_verified": true,
+  "changed_preexisting_files": [],
+  "commit_push": false,
+  "conformal_fit": false,
+  "downloaded_archive_sha256": "d65837d1be6e2b8bb2566836ebd46b8e79d25fc7b0fe527e7d8fb7f40cd64d73",
+  "environment_lock_sha256": "0e92846f45cb6d75e787c5d25b06f13bf1941b85104f8d6adf68e6973cd5de4d",
+  "full_graph_training": false,
+  "graph_artifact_unchanged": true,
+  "independent_repeat_comparisons": {
+    "epistemic_gat": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    },
+    "nograph": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    },
+    "standard_gat": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    }
+  },
+  "local_CPU_GPU_equality_demanded": false,
+  "passed": true,
+  "preserved_preexisting_files": 276,
+  "protocol_unchanged": true,
+  "scientific_aggregation": false,
+  "scientific_tuning": false,
+  "trainer_bundle_unchanged": true
+}

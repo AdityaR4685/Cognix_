@@ -1,0 +1,34 @@
+{
+  "GPU_peak_allocated_bytes": 67505664,
+  "GPU_peak_reserved_bytes": 69206016,
+  "elapsed_seconds": 130.51023817062378,
+  "environment": {
+    "AMP": false,
+    "CPU_threads": 1,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "CUDA_available": true,
+    "CUDA_validation": "not exercised on local CPU fixtures; deterministic-operation errors must stop future execution",
+    "DataLoader_workers": 0,
+    "NumPy": "2.0.2",
+    "PyTorch": "2.10.0+cu128",
+    "Python": "3.12.13",
+    "cuDNN_TF32": false,
+    "cuDNN_benchmark": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_version": 91002,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "devices": [
+      "Tesla T4"
+    ],
+    "matmul_TF32": false,
+    "platform": "Linux-6.18.48+-x86_64-with-glibc2.35",
+    "scikit_learn": "1.6.1",
+    "scikit_learn_used": false,
+    "torch_CUDA_runtime": "12.8"
+  },
+  "first_forward_checked": true,
+  "method": "epistemic_gat",
+  "passed": true,
+  "seed": 101
+}

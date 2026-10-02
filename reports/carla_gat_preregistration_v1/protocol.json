@@ -1,0 +1,269 @@
+{
+  "FIT_graph_pseudo_policy": {
+    "CAL_pseudo_reuse_for_graphs": false,
+    "balance": "one clean graph plus one accepted pseudo graph per eligible parent, exact 1:1; maximum 35,988 clean+35,988 pseudo train, 8,997 clean+8,997 pseudo validation",
+    "excluded_recipes": [
+      "gnss_bias",
+      "gnss_drift"
+    ],
+    "exclusion_reason": "a GNSS-only corruption leaves all three primary nodes unchanged and would create an invisible graph target; eligibility follows modality policy, not downstream performance",
+    "execute_this_milestone": false,
+    "future_adapter_contract": "Read immutable N20 clean arrays and FIT whitelist; never call _scenario_rows or rebuild the N20 cache. Call unchanged _pseudo_for_scenario(raw, cached_parent_features, scenario_id, frozen_five_recipe_tuple, 0, 1, None) after enforcing FIT/TRAIN gates and window 12. Score corrupted features with loaded fitted_oneclass_parameters and fixed accepted calibrators, without any .fit call. Reuse cached clean p/E/A and exact untouched modality blocks. Export separate FIT-only arrays/provenance/skip ledger, never overwrite N20.",
+    "generator_base_seed": 0,
+    "generator_call_seed": "base_seed+t = t, exactly the existing _pseudo_for_scenario/_generate scheme; registry uses explicit PCG64 seed",
+    "max_pseudo_per_parent": 1,
+    "no_effect": "unchanged compact-modality np.allclose(rtol=1e-12,atol=1e-12) guard; remove both graph pair members if no effect, no resampling or fallback recipe; original cache is untouched",
+    "node_output_collisions": "retain accepted compact-feature corruptions even if p/E/A coincides after a noninjective/saturated score mapping; log collisions, never filter using model outcomes",
+    "other_errors": "missing inputs, nonfinite features or invalid required p/UQ fail closed; record issue without replacing a scenario or recipe",
+    "parents": "frozen FIT_NORMAL only; no CAL",
+    "recipe_order": [
+      "camera_brightness_shift",
+      "camera_occlusion",
+      "seg_region_corruption",
+      "imu_spike",
+      "imu_bias_scale"
+    ],
+    "sampling_frequencies": "fixed modulo rotation: Camera 2/5, Seg 1/5, IMU 2/5 up to endpoint counts and fixed no-effect skips; report realized counts",
+    "selection": "recipe_order[t % 5]; same production rotation rule with eligibility subset fixed by primary modality validity",
+    "severity": {
+      "camera_brightness_shift": 0.35,
+      "camera_occlusion": 0.25,
+      "imu_bias_scale": 0.5,
+      "imu_spike": 15.0,
+      "seg_region_corruption": 0.2
+    },
+    "source_registry_unchanged": true,
+    "source_split": "official train",
+    "ticks": "every cached parent tick 1..2999, once",
+    "untouched_features": "copy exact clean parent blocks; no repeated clean feature extraction",
+    "window": "temporal IMU corrupts [max(0,t-11),t] only; Camera/Seg corrupt instantaneous tick t; parent window metadata always records causal bounds",
+    "window_length": 12
+  },
+  "GAT_architecture": {
+    "attention_logit": "LeakyReLU(a^T[W h_i || W h_j], negative_slope=0.2)",
+    "dropout": 0.1,
+    "dropout_location": "post-softmax normalized attention, exactly existing layer",
+    "final_activation": "linear node logits; sigmoid only for node probability",
+    "heads_per_layer": 1,
+    "hidden_dim": 8,
+    "initialization": "Xavier uniform for every W and attention vector; identical cloned tensors per Standard/Epistemic seed",
+    "input_dim": 3,
+    "intermediate_activation": "ELU",
+    "layers": 2,
+    "linear_bias": false,
+    "output_dim": 1,
+    "parameter_count_each": 50,
+    "pooling": "q_normal=mean_i sigmoid(z_i); no extra fusion, belief or decision layer"
+  },
+  "GNSS_primary_policy": {
+    "UQ": null,
+    "basis": "frozen scientific calibration-validity rule, not downstream graph performance",
+    "calibrated_probability": null,
+    "excluded": true,
+    "no_recalibration_or_regularization": true
+  },
+  "GNSS_secondary": {
+    "GNSS_epistemic_prior": null,
+    "GNSS_inputs": [
+      "mean of 5 raw GNSS normality scores",
+      "population std of those 5 raw scores (ddof=0)"
+    ],
+    "GNSS_node": false,
+    "GNSS_probability_UQ": null,
+    "head_initialization": "w0=1,w1=w2=0,b=0",
+    "interpretation": "GNSS is uncalibrated context only, unchanged within clean/pseudo pairs; this does not evaluate GNSS-only corruption detection and cannot replace the primary three-agent experiment",
+    "label": "exploratory raw-GNSS auxiliary-input ablation",
+    "methods": [
+      "NoGraph",
+      "StandardGAT",
+      "EpistemicGAT"
+    ],
+    "no_new_GNSS_score_transform_or_calibration": true,
+    "number_of_conditions": 1,
+    "readout": "sigmoid(b + w0*logit(clip(q_primary,1e-7,1-1e-7)) + w1*raw_GNSS_mean + w2*raw_GNSS_population_std)",
+    "run_after_primary_outputs_frozen": true,
+    "same_samples_splits_seeds": true,
+    "train_jointly_with_backbone_under_same_training_spec": true,
+    "trainable_parameters_added": 4
+  },
+  "NoGraph": {
+    "architecture": "bias-free shared Linear(3,12) -> ELU -> Dropout(0.1) -> bias-free Linear(12,1); mean(sigmoid(node_logit))",
+    "implementation": "future report/adapter-side classifier; frozen core identity NoGraph remains unchanged",
+    "initialization": "Xavier uniform; matching run seed",
+    "inputs": "same p/E/A; same fixed 3 nodes",
+    "message_passing": false,
+    "name": "NoGraph shared-node MLP, distinct from frozen identity NoGraph plugin",
+    "parameters": 48,
+    "reason": "trainable nonlinear baseline with 48 parameters against 50 in each GAT; no deliberate information/capacity deficit"
+  },
+  "authorization_boundary": {
+    "TEST_access": false,
+    "any_training": false,
+    "calibration_feature_recipe_changes": false,
+    "commit_push": false,
+    "conformal_fit": false,
+    "current": "preregistration and deterministic metadata only",
+    "generic_or_synthetic_changes": false,
+    "graph_generation": false,
+    "new_data_acquisition": false
+  },
+  "base_node_features": {
+    "fitted_scaler": null,
+    "model_dtype": "float32",
+    "order": [
+      "prob_normal",
+      "epistemic",
+      "aleatoric"
+    ],
+    "raw_compact_features_in_primary_node_vector": false,
+    "shape": [
+      3,
+      3
+    ],
+    "source_computation_dtype": "float64",
+    "total_omitted_reason": "total=aleatoric+epistemic is redundant",
+    "units": [
+      "probability",
+      "natural-log entropy nats",
+      "natural-log entropy nats"
+    ]
+  },
+  "bindings": {
+    "N20_acquisition_config_sha256": "e55a6a18261832c5b6329e0e84f07866cd2f856a9d0f8e0a5b69341d4d445600",
+    "N20_cache_content_sha256": "c2df480a712e819d85437a9bb141bca91b47b68e90ae84fcf78d9151b93b5539",
+    "N20_cache_file_sha256": "7c5bc869aadf220e9ed22ac74a04ec748115b705fecbcbf663f23e3b956022bc",
+    "N20_cache_schema_version": 2,
+    "N20_dataset_manifest_sha256": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+    "N20_handoff_manifest_sha256": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4",
+    "agent_calibration_results_sha256": "076ad560239276d9501a5498e32ea64001049548e8e53e8c232f7621cc8b9cf9",
+    "all_cache_handoff_file_sha256": {
+      "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\cache_train20_v1\\carla_train_cache.json": "3a24cdb762857be09a2e73dbbec437638463aa9eb7406459606aa56cfa0727dd",
+      "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\cache_train20_v1\\carla_train_cache.npz": "7c5bc869aadf220e9ed22ac74a04ec748115b705fecbcbf663f23e3b956022bc",
+      "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\cache_train20_v1\\dataset_binding.json": "b7b13076536efd35a1e5316fb9dbbe7dba64059986406d7a8fbb48904cce3a16",
+      "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\kaggle_compact_train20_v1\\compact_training_checkpoint.npz": "f82acd321219beeee5e033a93997c05d1bdd653b370faa6b01c35c5463028b69",
+      "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\kaggle_compact_train20_v1\\fitted_oneclass_parameters.npz": "71fa21e3db874110d6e8c10c89031b6a129364596afd314913b384ca14ee0af1",
+      "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\kaggle_compact_train20_v1\\manifest.json": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4"
+    },
+    "fitted_oneclass_parameters_sha256": "71fa21e3db874110d6e8c10c89031b6a129364596afd314913b384ca14ee0af1",
+    "generic_graph_source_sha256": {
+      "cognix/graph/epistemic_gat.py": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+      "cognix/graph/no_graph.py": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+      "cognix/graph/standard_gat.py": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853"
+    },
+    "git_head": "f3f876119b0d21655b3ba5c7db7bd996e628b2a2",
+    "preregistration_dependencies_sha256": {
+      "graph_schema.json": "f1a0f509416cc2dee8265463c43c1596c4b981c1b7f6113645b53f3eda4b2fd3",
+      "kaggle_execution_plan.md": "24df0999ce81c697a95c085723ce4d40b430e5ad6cd6933ef126fbbe6d91a336",
+      "metrics_spec.json": "b6fe616c4c1049222307f1e3d914a221b4553fbb18429a739ca448413bed0fdd",
+      "split_manifest.json": "e95118b4149aa9d7e203f45679fb771a1123b97662dbe3548b9435ca8588b479"
+    },
+    "source_code_sha256": {
+      "cognix/adapters/carla/cache_builder.py": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+      "cognix/adapters/carla/carlanomaly_loader.py": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+      "cognix/adapters/carla/normality.py": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+      "cognix/adapters/carla/pseudo_anomalies.py": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+      "cognix/adapters/carla/real_agents.py": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+      "cognix/adapters/carla/real_features.py": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+      "cognix/adapters/carla/train_acquisition.py": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4"
+    }
+  },
+  "conformal_placement": {
+    "CAL_scenarios_reserved_from_graph_development": [
+      "Town01/scenario-1",
+      "Town01/scenario-4",
+      "Town01/scenario-8",
+      "Town01/scenario-9",
+      "Town02/scenario-3"
+    ],
+    "candidate_nonconformity": "1-p_graph[true constructed class], subject to later scenario/exchangeability preregistration",
+    "fit_now": false,
+    "limitation": "All 5 current CAL scenarios already fitted upstream probability mappings. Reusing them naively for split conformal does not establish independent calibration or a coverage guarantee. A separate future protocol must resolve calibration independence and temporal/scenario exchangeability; no new acquisition or upstream refitting is authorized here.",
+    "stage": "after graph methodology/model selection and output pipeline are frozen; before later separately authorized held-out evaluation"
+  },
+  "epistemic_attention": {
+    "division_by_zero": "1+E>=1; require finite nonnegative E",
+    "equations": [
+      "w_j=1/(1+E_j)",
+      "e_ij^epi=e_ij+log(w_j)=e_ij-log(1+E_j)",
+      "alpha_ij=exp(e_ij)*w_j/sum_{k in incoming_neighbors(i)} exp(e_ik)*w_k"
+    ],
+    "floating_point": "reuse existing float32 prior/log implementation; tiny E can round to a neutral prior; accept weak/null effects without post-result amplification",
+    "monotonic": "for fixed learned logits and other senders, increasing E_j decreases its normalized attention to each eligible receiver before dropout",
+    "neutral": "use_epistemic_prior=False gives w=1; if every E=0 both attention operators coincide",
+    "normalization_or_FIT_scale": null,
+    "scope": "same original canonical E_j at both layers; sender prior only, no receiver factor",
+    "source": "unchanged cognix.graph.epistemic_gat.EpistemicGATLayerPT and compute_epistemic_weights",
+    "strength": "fixed 1, no search",
+    "units": "E is canonical entropy-gap in nats, not variance or its square root"
+  },
+  "frozen_at_utc": "2026-10-02T08:49:38.628994+00:00",
+  "information_matching": "Both GATs and NoGraph receive the identical p/E/A vector. EpistemicGAT reuses the same E through a fixed attention prior; this tests the prior contribution beyond E as an ordinary predictive covariate.",
+  "interpretation_limits": [
+    "constructed pseudo distribution and artificial 1:1 prevalence",
+    "graph validation is reused for early stopping and threshold selection",
+    "upstream representation saw graph-validation FIT scenarios",
+    "three validation scenarios and five seeds provide limited inference",
+    "small canonical E may yield tiny/rounded-neutral float32 attention effects",
+    "no official TEST or physical-safety inference"
+  ],
+  "node_order": [
+    "Camera",
+    "IMU",
+    "Seg"
+  ],
+  "primary_methods": [
+    "NoGraph",
+    "StandardGAT",
+    "EpistemicGAT"
+  ],
+  "primary_modalities": [
+    "Camera",
+    "Seg",
+    "IMU"
+  ],
+  "primary_research_question": "Does explicitly incorporating valid epistemic uncertainty into graph attention improve collective normal-vs-corruption prediction relative to graph attention without the epistemic prior, under matched data, architecture capacity and paired random seeds?",
+  "protocol_version": "carla_gat_preregistration_v1",
+  "readiness": {
+    "Kaggle_training_ready_now": false,
+    "graph_generation_performed": false,
+    "next_step": "authorize only the frozen FIT graph-data adapter/export and validation first; do not start training or TEST",
+    "protocol_ready_for_future_FIT_graph_generation": true,
+    "remaining_gates": [
+      "separate authorization for FIT-only pseudo implementation/export",
+      "tested adapter/report-side batched trainer and NoGraph classifier",
+      "generated compact FIT graph artifact with frozen splits/hashes/provenance",
+      "future execution environment lock and deterministic fixture checks"
+    ]
+  },
+  "status": "FROZEN_DESIGN_ONLY",
+  "training_specification": {
+    "batch_size_graphs": 256,
+    "device": "single T4; no distributed training",
+    "early_stopping": {
+      "checkpoint": "independently save actual lowest validation BCE among executed epochs, earliest epoch on exact tie",
+      "min_delta": 1e-05,
+      "minimum_epochs": 1,
+      "monitor_tracker": "reset only if loss < tracked_best-min_delta; update tracked_best only on such improvement",
+      "patience": 10
+    },
+    "execute_this_milestone": false,
+    "gradient_clipping": null,
+    "learning_rate": 0.001,
+    "loss": "mean BCE(q_normal,target_normal) over graph-training samples; no node-label auxiliary loss",
+    "maximum_epochs": 100,
+    "optimizer": "Adam",
+    "precision": "float32; no AMP or TF32",
+    "scheduler": null,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "shuffle": "PCG64(seed+zero_based_epoch_index); same row keys and permutation across all methods",
+    "upstream_agents_frozen": true,
+    "validation_loss": "equal-scenario mean BCE over 3 graph-validation scenarios",
+    "weight_decay": 0.0001
+  }
+}

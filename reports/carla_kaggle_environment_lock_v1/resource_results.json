@@ -1,0 +1,44 @@
+{
+  "methods": {
+    "epistemic_gat": {
+      "allocated_bytes": 67134976,
+      "batch_256_comfortably_fits": true,
+      "batch_size": 256,
+      "one_batch_seconds": 0.02942306999966604,
+      "peak_allocated_bytes": 67499520,
+      "peak_reserved_bytes": 69206016,
+      "peak_reserved_fraction": 0.004426058418941518,
+      "reserved_bytes": 69206016,
+      "synthetic_only": true,
+      "total_device_bytes": 15636037632
+    },
+    "nograph": {
+      "allocated_bytes": 67130368,
+      "batch_256_comfortably_fits": true,
+      "batch_size": 256,
+      "one_batch_seconds": 0.23255345100005798,
+      "peak_allocated_bytes": 67251200,
+      "peak_reserved_bytes": 69206016,
+      "peak_reserved_fraction": 0.004426058418941518,
+      "reserved_bytes": 69206016,
+      "synthetic_only": true,
+      "total_device_bytes": 15636037632
+    },
+    "standard_gat": {
+      "allocated_bytes": 67134976,
+      "batch_256_comfortably_fits": true,
+      "batch_size": 256,
+      "one_batch_seconds": 0.1178676220001762,
+      "peak_allocated_bytes": 67499520,
+      "peak_reserved_bytes": 69206016,
+      "peak_reserved_fraction": 0.004426058418941518,
+      "reserved_bytes": 69206016,
+      "synthetic_only": true,
+      "total_device_bytes": 15636037632
+    }
+  },
+  "passed": true,
+  "real_epochs_benchmarked": false,
+  "scientific_batch_size_changed": false,
+  "scope": "one synthetic 256-row forward/backward/Adam batch per method"
+}

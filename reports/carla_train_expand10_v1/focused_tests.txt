@@ -1,0 +1,23 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\Aditya\OneDrive\Documents\Cognix2
+configfile: pyproject.toml
+plugins: anyio-4.15.1, dash-4.4.1, platformdirs-4.12.1, typeguard-4.6.0
+collected 336 items
+
+tests\unit\test_carla_calibration_validity.py .................          [  5%]
+tests\unit\test_carla_ensemble_predictive_calibration.py ............... [  9%]
+..................                                                       [ 14%]
+tests\unit\test_carla_real_agents.py ................................... [ 25%]
+...........................                                              [ 33%]
+tests\unit\test_carla_cache_builder.py ...........................       [ 41%]
+tests\unit\test_carla_causal_window_scope.py ......................      [ 47%]
+tests\unit\test_carla_pseudo_anomalies.py .............................. [ 56%]
+...........................................                              [ 69%]
+tests\unit\test_carla_real_features.py ................................. [ 79%]
+                                                                         [ 79%]
+tests\unit\test_carlanomaly_loader.py .................................. [ 89%]
+............                                                             [ 93%]
+tests\unit\test_carla_train_acquisition.py .......................       [100%]
+
+======================= 336 passed in 79.33s (0:01:19) ========================

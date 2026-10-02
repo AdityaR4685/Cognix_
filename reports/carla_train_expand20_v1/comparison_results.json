@@ -1,0 +1,2793 @@
+{
+  "Camera": {
+    "2": {
+      "n_normal": 2999,
+      "n_pseudo": 857,
+      "audit": {
+        "nll_initial": 2.2578315425128266,
+        "nll_final": 0.32661207365892714,
+        "n_iter": 4,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": false,
+        "suspected_separation": true,
+        "gradient_norm": 0.20218339525345105,
+        "minimum_curvature": -0.010039808893967592,
+        "slope_raw": 54.12073314883197,
+        "boundary_trend": "decreasing",
+        "lower_profile_direction": true,
+        "status": "suspected_separation",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              1.6372311826662998e-11,
+              0.6208302140505458
+            ],
+            "pseudo_range": [
+              6.18703462837299e-36,
+              3.596742573905331e-06
+            ],
+            "overlap_interval": [
+              1.6372311826662998e-11,
+              3.596742573905331e-06
+            ],
+            "min_normal": 1.6372311826662998e-11,
+            "max_pseudo": 3.596742573905331e-06,
+            "gap": -3.596726201593504e-06,
+            "best_threshold": 8.070620996464966e-07,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 22,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              1.4355406715228879e-12,
+              0.6361487857954379
+            ],
+            "pseudo_range": [
+              2.2065520143781914e-37,
+              5.500467452516476e-06
+            ],
+            "overlap_interval": [
+              1.4355406715228879e-12,
+              5.500467452516476e-06
+            ],
+            "min_normal": 1.4355406715228879e-12,
+            "max_pseudo": 5.500467452516476e-06,
+            "gap": -5.5004660169758045e-06,
+            "best_threshold": 1.2625661394246063e-06,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 113,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 1.178654951599245,
+            "nll": 0.5136328929583553
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 1.1131612694497064,
+            "nll": 0.49983351248788377
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": 0.9589190952121878,
+            "nll": 0.4685650870849533
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": 0.7894479038633531,
+            "nll": 0.4353372058387802
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": 0.5807470399348195,
+            "nll": 0.39518492451470916
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": 0.2204815790462253,
+            "nll": 0.329076772135991
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -0.12202497126726382,
+            "nll": 0.27064853640209174
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -0.5499317480283528,
+            "nll": 0.20633166678841797
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -1.2626218104772564,
+            "nll": 0.1257455826987378
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -1.8762840696722844,
+            "nll": 0.0810856373215689
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -2.4690991409065908,
+            "nll": 0.05485904362952069
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -2.9894453178894427,
+            "nll": 0.041498622587181885
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 54.12073314883197,
+            "intercept_raw": 0.1843566088575373,
+            "nll": 0.3227109570679348
+          },
+          {
+            "slope_raw": 108.24146629766393,
+            "intercept_raw": -0.16568509603896092,
+            "nll": 0.2635694409503797
+          },
+          {
+            "slope_raw": 216.48293259532787,
+            "intercept_raw": -0.6057284847477759,
+            "nll": 0.19883457791651155
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": false,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 1.4047907751720122e-11,
+          "p10": 0.0009573483544946629,
+          "median": 0.005500031311508269,
+          "p90": 0.014415897164892718,
+          "max": 0.025917297697243068
+        },
+        "pseudo": {
+          "min": 5.998455327617688e-36,
+          "p10": 3.935240928952479e-19,
+          "median": 1.7859588196401333e-11,
+          "p90": 2.4908680913770416e-09,
+          "max": 1.6753455157116283e-06
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 1.6372311826662998e-11,
+            "p10": 0.004969449998143764,
+            "median": 0.046620734118226106,
+            "p90": 0.2723707650488913,
+            "max": 0.6208302140505458
+          },
+          "pooled_members": {
+            "min": 1.4355406715228879e-12,
+            "p10": 0.0047143020033510365,
+            "median": 0.04248347239162168,
+            "p90": 0.2764486014592219,
+            "max": 0.6361487857954379
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 6.18703462837299e-36,
+            "p10": 7.006292834645696e-19,
+            "median": 3.283135326801041e-11,
+            "p90": 4.632678070596713e-09,
+            "max": 3.596742573905331e-06
+          },
+          "pooled_members": {
+            "min": 2.2065520143781914e-37,
+            "p10": 2.787946535554529e-19,
+            "median": 2.407061520249573e-11,
+            "p90": 5.319058004230606e-09,
+            "max": 5.500467452516476e-06
+          }
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "uq": null,
+      "uq_available_statistics": null
+    },
+    "10": {
+      "n_normal": 5998,
+      "n_pseudo": 1714,
+      "audit": {
+        "nll_initial": 0.827406068080296,
+        "nll_final": 0.5297422986836898,
+        "n_iter": 300,
+        "converged": false,
+        "optimizer_converged": false,
+        "finite_optimum": false,
+        "suspected_separation": false,
+        "gradient_norm": 3.5099420848908432e-09,
+        "minimum_curvature": 3.5099500886684932e-09,
+        "slope_raw": 8.5930790290661e-07,
+        "boundary_trend": "decreasing",
+        "lower_profile_direction": false,
+        "status": "unvalidated_optimizer_result",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              9.312965013737327e-08,
+              0.741593026467745
+            ],
+            "pseudo_range": [
+              1.2329590968693544e-23,
+              0.9028737458554825
+            ],
+            "overlap_interval": [
+              9.312965013737327e-08,
+              0.741593026467745
+            ],
+            "min_normal": 9.312965013737327e-08,
+            "max_pseudo": 0.9028737458554825,
+            "gap": -0.9028736527258324,
+            "best_threshold": 8.55347056006984e-08,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 859,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              7.476072866881713e-08,
+              0.7455872948829769
+            ],
+            "pseudo_range": [
+              8.585045468737836e-24,
+              0.9034963579667702
+            ],
+            "overlap_interval": [
+              7.476072866881713e-08,
+              0.7455872948829769
+            ],
+            "min_normal": 7.476072866881713e-08,
+            "max_pseudo": 0.9034963579667702,
+            "gap": -0.9034962832060415,
+            "best_threshold": 7.468858781619492e-08,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 4297,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.994026536144315,
+            "nll": 0.5391463635479127
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.7697808501726489,
+            "nll": 0.5585968263822662
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": 0.28042040776124,
+            "nll": 0.6640082812899751
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -0.1494387173025577,
+            "nll": 0.9213921211878081
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -0.5570047252223275,
+            "nll": 1.5172479702040598
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": 0.002203459973354211,
+            "nll": 3.0153391478845144
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": 0.1420899894378107,
+            "nll": 3.1924636563927633
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": 0.04171958276766479,
+            "nll": 3.2202352043879525
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -0.1486447841729574,
+            "nll": 3.206178373250045
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -0.2906940562834399,
+            "nll": 3.194881885269555
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -0.4652373040639609,
+            "nll": 3.1814288065459313
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -0.7978075866028018,
+            "nll": 3.1599350359434304
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 8.5930790290661e-07,
+            "intercept_raw": 1.2525960342852966,
+            "nll": 0.5297422986836897
+          },
+          {
+            "slope_raw": 1.71861580581322e-06,
+            "intercept_raw": 1.2525957971426895,
+            "nll": 0.5297423021936358
+          },
+          {
+            "slope_raw": 3.43723161162644e-06,
+            "intercept_raw": 1.252595304263032,
+            "nll": 0.529742309213552
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": false,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 1.4752327311092539e-08,
+          "p10": 3.3743429675064814e-05,
+          "median": 0.001118422873282083,
+          "p90": 0.0022136518605698945,
+          "max": 0.003443684339639787
+        },
+        "pseudo": {
+          "min": 3.008872704580559e-24,
+          "p10": 1.2307677030142605e-16,
+          "median": 7.886274623889314e-08,
+          "p90": 0.00239605385515117,
+          "max": 0.003797227613480845
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 9.312965013737327e-08,
+            "p10": 0.0005170297024253826,
+            "median": 0.23278360647806612,
+            "p90": 0.5675865300466656,
+            "max": 0.741593026467745
+          },
+          "pooled_members": {
+            "min": 7.476072866881713e-08,
+            "p10": 0.0005358381321844677,
+            "median": 0.2324804636551809,
+            "p90": 0.5678543205106912,
+            "max": 0.7455872948829769
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 1.2329590968693544e-23,
+            "p10": 8.747822508655093e-16,
+            "median": 8.771899464464958e-07,
+            "p90": 0.679541560445396,
+            "max": 0.9028737458554825
+          },
+          "pooled_members": {
+            "min": 8.585045468737836e-24,
+            "p10": 8.15227036655506e-16,
+            "median": 8.587733229103792e-07,
+            "p90": 0.6798403504571295,
+            "max": 0.9034963579667702
+          }
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "uq": null,
+      "uq_available_statistics": null
+    },
+    "20": {
+      "n_normal": 14995,
+      "n_pseudo": 4285,
+      "audit": {
+        "nll_initial": 0.6836150687835032,
+        "nll_final": 0.4891540139945097,
+        "n_iter": 6,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 2.358648085510706e-17,
+        "minimum_curvature": 0.0718792867867041,
+        "slope_raw": 2.9612717881746042,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              0.010776910509120396,
+              0.8495465980801556
+            ],
+            "pseudo_range": [
+              8.462407543104016e-12,
+              0.8408899068349583
+            ],
+            "overlap_interval": [
+              0.010776910509120396,
+              0.8408899068349583
+            ],
+            "min_normal": 0.010776910509120396,
+            "max_pseudo": 0.8408899068349583,
+            "gap": -0.8301129963258379,
+            "best_threshold": 0.02664115634795022,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 2577,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              0.009552917173642967,
+              0.8503214961382448
+            ],
+            "pseudo_range": [
+              5.474149412870098e-12,
+              0.841963094570955
+            ],
+            "overlap_interval": [
+              0.009552917173642967,
+              0.841963094570955
+            ],
+            "min_normal": 0.009552917173642967,
+            "max_pseudo": 0.841963094570955,
+            "gap": -0.832410177397312,
+            "best_threshold": 0.026676061547217654,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 12887,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7516775614350881,
+            "nll": 0.5068822660024254
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.2765942240009247,
+            "nll": 0.4933441265568392
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -1.041521487531869,
+            "nll": 0.5060557217730712
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -3.118519839108221,
+            "nll": 0.643201032757894
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -7.069270576930525,
+            "nll": 1.0531152125047176
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -18.027569154456742,
+            "nll": 2.438932924398364
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -21.1176451392008,
+            "nll": 3.562048006756808
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -14.812666194123095,
+            "nll": 3.6801128940384356
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -21.85412190497527,
+            "nll": 3.686971027088257
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -44.38887410189771,
+            "nll": 3.689222739435212
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -89.33354007022933,
+            "nll": 3.6914704483635234
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -133.44189237119372,
+            "nll": 3.6932550054622135
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 2.9612717881746042,
+            "intercept_raw": -0.1597389792182473,
+            "nll": 0.4891540139945096
+          },
+          {
+            "slope_raw": 5.9225435763492085,
+            "intercept_raw": -1.4297366310815494,
+            "nll": 0.5232179081455187
+          },
+          {
+            "slope_raw": 11.845087152698417,
+            "intercept_raw": -3.870498697036767,
+            "nll": 0.7114385006581013
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.46808709042767294,
+            "p10": 0.6943361309360362,
+            "median": 0.8150472337578343,
+            "p90": 0.8950700619013516,
+            "max": 0.9134098377339969
+          },
+          "total": {
+            "min": 0.2945768969336824,
+            "p10": 0.33578205479855444,
+            "median": 0.47882109191111527,
+            "p90": 0.6155871779121882,
+            "max": 0.6931451298974823
+          },
+          "aleatoric": {
+            "min": 0.29457680978193523,
+            "p10": 0.33578142886470014,
+            "median": 0.4788146026257108,
+            "p90": 0.6155836708833563,
+            "max": 0.6931356294709098
+          },
+          "epistemic": {
+            "min": 9.004678169777236e-09,
+            "p10": 2.45169843959836e-07,
+            "median": 4.33855138620709e-06,
+            "p90": 1.0001549796623265e-05,
+            "max": 3.466040583222085e-05
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.46014995010976767,
+            "p10": 0.46015012388149107,
+            "median": 0.8197254406121642,
+            "p90": 0.8906045253879993,
+            "max": 0.911360601087931
+          },
+          "total": {
+            "min": 0.29937853537705306,
+            "p10": 0.3452495612626832,
+            "median": 0.4718095589877924,
+            "p90": 0.6899728412723438,
+            "max": 0.6931471783596768
+          },
+          "aleatoric": {
+            "min": 0.2993783046340209,
+            "p10": 0.345246960274225,
+            "median": 0.47180828480341086,
+            "p90": 0.6899728412379286,
+            "max": 0.6931427272815835
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 1.9984014443252818e-15,
+            "median": 4.1044286686053866e-07,
+            "p90": 2.60217854129996e-06,
+            "max": 1.2497154924351328e-05
+          }
+        }
+      },
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 0.00014676494076228027,
+          "p10": 0.0007284539872562034,
+          "median": 0.0024788663480351486,
+          "p90": 0.003522754912031296,
+          "max": 0.005940160284881213
+        },
+        "pseudo": {
+          "min": 1.8854188112643384e-12,
+          "p10": 4.320921246071238e-08,
+          "median": 0.0008757657423882875,
+          "p90": 0.002085586467511271,
+          "max": 0.003985992541202138
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 4.1436899737991394e-05,
+          "p10": 0.0002296447003200019,
+          "median": 0.0011414191484157674,
+          "p90": 0.001922065926043466,
+          "max": 0.003941102706717268
+        },
+        "pseudo": {
+          "min": 1.3869265852701292e-12,
+          "p10": 3.178536279910234e-08,
+          "median": 0.000308598118107453,
+          "p90": 0.0008305623957207251,
+          "max": 0.0021175658913370984
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 0.010776910509120396,
+            "p10": 0.3310116893111311,
+            "median": 0.5547993610524384,
+            "p90": 0.7778257303736466,
+            "max": 0.8495465980801556
+          },
+          "pooled_members": {
+            "min": 0.009552917173642967,
+            "p10": 0.3294141571163687,
+            "median": 0.5553850536870293,
+            "p90": 0.7780373218479895,
+            "max": 0.8503214961382448
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 8.462407543104016e-12,
+            "p10": 2.3623479169216058e-07,
+            "median": 0.5653763209568178,
+            "p90": 0.7620681149266447,
+            "max": 0.8408899068349583
+          },
+          "pooled_members": {
+            "min": 5.474149412870098e-12,
+            "p10": 2.3439361161857267e-07,
+            "median": 0.5662665483363848,
+            "p90": 0.7617689795090379,
+            "max": 0.841963094570955
+          }
+        }
+      }
+    }
+  },
+  "Seg": {
+    "2": {
+      "n_normal": 2999,
+      "n_pseudo": 429,
+      "audit": {
+        "nll_initial": 1.9443545573243393,
+        "nll_final": 0.15948463807305052,
+        "n_iter": 9,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 2.2041628469379158e-16,
+        "minimum_curvature": 0.005798866709020835,
+        "slope_raw": 10.277537416102726,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              4.786326306988187e-25,
+              0.935894068554188
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7228372398187799
+            ],
+            "overlap_interval": [
+              4.786326306988187e-25,
+              0.7228372398187799
+            ],
+            "min_normal": 4.786326306988187e-25,
+            "max_pseudo": 0.7228372398187799,
+            "gap": -0.7228372398187799,
+            "best_threshold": 0.03268947421827516,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 159,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              1.7668545978528424e-30,
+              0.942742554647854
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7365624909288931
+            ],
+            "overlap_interval": [
+              1.7668545978528424e-30,
+              0.7365624909288931
+            ],
+            "min_normal": 1.7668545978528424e-30,
+            "max_pseudo": 0.7365624909288931,
+            "gap": -0.7365624909288931,
+            "best_threshold": 0.027578309251572224,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 810,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 1.4445923866616992,
+            "nll": 0.3220350462639575
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 1.0034042499386344,
+            "nll": 0.27618090027649905
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": 0.01203883452258163,
+            "nll": 0.19211633178023532
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -0.8464161031076897,
+            "nll": 0.15953333786860352
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -1.5312878715804823,
+            "nll": 0.18747882487215503
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -2.4673354704919612,
+            "nll": 0.3366864949908263
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -2.826790821429003,
+            "nll": 0.4609466663989916
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -3.6545210431403428,
+            "nll": 0.560331159910571
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -5.285557190685754,
+            "nll": 0.7061803351202354
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -7.175549250555899,
+            "nll": 0.8433117747409782
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -7.30162308499541,
+            "nll": 0.9888074963729887
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -127.10642066762225,
+            "nll": 1.1179310887290344
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 10.277537416102726,
+            "intercept_raw": -0.8763462898622499,
+            "nll": 0.1594846380730505
+          },
+          {
+            "slope_raw": 20.555074832205452,
+            "intercept_raw": -1.557769768607085,
+            "nll": 0.18987256075898692
+          },
+          {
+            "slope_raw": 41.110149664410905,
+            "intercept_raw": -2.3157934385969905,
+            "nll": 0.294928719426201
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 7.647440859433831e-25,
+          "p10": 0.004464384223495394,
+          "median": 0.011304002763415418,
+          "p90": 0.02274731263867973,
+          "max": 0.08277887604036457
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 2.3559068383557817e-07,
+          "p90": 0.008327352741022385,
+          "max": 0.036104230758826746
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 4.786326306988187e-25,
+            "p10": 0.25543383708652895,
+            "median": 0.660774499918122,
+            "p90": 0.7846001171014806,
+            "max": 0.935894068554188
+          },
+          "pooled_members": {
+            "min": 1.7668545978528424e-30,
+            "p10": 0.25354844018646594,
+            "median": 0.6598533990913992,
+            "p90": 0.7878099210108815,
+            "max": 0.942742554647854
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.6059850607862486e-07,
+            "p90": 0.18205313457876468,
+            "max": 0.7228372398187799
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 8.344181482397395e-09,
+            "p90": 0.1863994676433922,
+            "max": 0.7365624909288931
+          }
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "median": 0.9972792818436869
+          },
+          "epistemic": {
+            "median": 1.1683437269524588e-05
+          },
+          "aleatoric": {
+            "median": 0.018739440355107412
+          },
+          "total": {
+            "median": 0.018787913272741465
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "median": 0.293935827101867
+          },
+          "epistemic": {
+            "median": 6.082911951921233e-13
+          },
+          "aleatoric": {
+            "median": 0.6056379418640894
+          },
+          "total": {
+            "median": 0.6056379418640893
+          }
+        }
+      },
+      "uq_available_statistics": "accepted historical medians only; full probability-member matrices/intercept were not saved; no historical refit"
+    },
+    "10": {
+      "n_normal": 5998,
+      "n_pseudo": 858,
+      "audit": {
+        "nll_initial": 1.3836517184529182,
+        "nll_final": 0.13190539119363098,
+        "n_iter": 8,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 8.357727609223079e-17,
+        "minimum_curvature": 0.010290440138222313,
+        "slope_raw": 9.691307001353472,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              1.1544464555402134e-06,
+              0.9344748652017085
+            ],
+            "pseudo_range": [
+              0.0,
+              0.8517659376533411
+            ],
+            "overlap_interval": [
+              1.1544464555402134e-06,
+              0.8517659376533411
+            ],
+            "min_normal": 1.1544464555402134e-06,
+            "max_pseudo": 0.8517659376533411,
+            "gap": -0.8517647832068855,
+            "best_threshold": 0.05711713238959039,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 298,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              5.341837683440663e-07,
+              0.9365120867924002
+            ],
+            "pseudo_range": [
+              0.0,
+              0.8525437311522461
+            ],
+            "overlap_interval": [
+              5.341837683440663e-07,
+              0.8525437311522461
+            ],
+            "min_normal": 5.341837683440663e-07,
+            "max_pseudo": 0.8525437311522461,
+            "gap": -0.8525431969684778,
+            "best_threshold": 0.05171947670370086,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 1515,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 1.3713617379289615,
+            "nll": 0.3171035082495315
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.8527996303404738,
+            "nll": 0.26603094762568513
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.4053471385666303,
+            "nll": 0.1689429029788206
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.828464118446073,
+            "nll": 0.13199991956505347
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -3.555892675398309,
+            "nll": 0.18172766020885467
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -7.50788669308728,
+            "nll": 0.4066140606946754
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -9.611139766645465,
+            "nll": 0.6043576490860912
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -13.986202924968076,
+            "nll": 0.784359302440853
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -20.93416324056745,
+            "nll": 0.9828998359397361
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -73.28350927117206,
+            "nll": 1.0756945934729165
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -146.97138082385024,
+            "nll": 1.1149402102372625
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -363.58267287692206,
+            "nll": 1.1333407142627643
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 9.691307001353472,
+            "intercept_raw": -1.7578040567652675,
+            "nll": 0.131905391193631
+          },
+          {
+            "slope_raw": 19.382614002706944,
+            "intercept_raw": -3.463546925964089,
+            "nll": 0.1775073337316164
+          },
+          {
+            "slope_raw": 38.76522800541389,
+            "intercept_raw": -6.422037184431437,
+            "nll": 0.3242462294649396
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 6.562592022246488e-07,
+          "p10": 0.0009920026602578441,
+          "median": 0.003316780229751919,
+          "p90": 0.007213676323012322,
+          "max": 0.02452909917052402
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 4.181279655717684e-07,
+          "p90": 0.003239047015887904,
+          "max": 0.011799830896394284
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 1.1544464555402134e-06,
+            "p10": 0.4759196467367977,
+            "median": 0.6911682162169674,
+            "p90": 0.8516009537277602,
+            "max": 0.9344748652017085
+          },
+          "pooled_members": {
+            "min": 5.341837683440663e-07,
+            "p10": 0.4751274625773913,
+            "median": 0.691436759280482,
+            "p90": 0.851692063729344,
+            "max": 0.9365120867924002
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.3354240528512558e-06,
+            "p90": 0.35084523921230387,
+            "max": 0.8517659376533411
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.3539536655556359e-06,
+            "p90": 0.35139081109832304,
+            "max": 0.8525437311522461
+          }
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 7.97790302767829e-07,
+          "p10": 1.8507308872575395e-05,
+          "median": 0.00020177917905021342,
+          "p90": 0.0025222673385785852,
+          "max": 0.03895038281159605
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 5.083025332131078e-07,
+          "p90": 0.005027916632760204,
+          "max": 0.01980396140422277
+        }
+      },
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.14706698657593695,
+            "p10": 0.9454668529143436,
+            "median": 0.9928961078718503,
+            "p90": 0.9984916184059411,
+            "max": 0.9993238539817664
+          },
+          "total": {
+            "min": 0.005611175797199368,
+            "p10": 0.011306772997716465,
+            "median": 0.04222235275745885,
+            "p90": 0.2116524238087085,
+            "max": 0.6931403934401037
+          },
+          "aleatoric": {
+            "min": 0.0056111396420767835,
+            "p10": 0.011306601074273732,
+            "median": 0.04221852773641274,
+            "p90": 0.21160293984125983,
+            "max": 0.6929334186953031
+          },
+          "epistemic": {
+            "min": 2.5370261447221765e-12,
+            "p10": 9.295210566546283e-08,
+            "median": 3.124762158912553e-06,
+            "p90": 7.441493081946638e-05,
+            "max": 0.003180251457495231
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.14706558316420243,
+            "p10": 0.14706558316420243,
+            "median": 0.1470672065825765,
+            "p90": 0.8377884698405286,
+            "max": 0.9984941770617919
+          },
+          "total": {
+            "min": 0.011290152081714888,
+            "p10": 0.4175850942121996,
+            "median": 0.41758509421956636,
+            "p90": 0.6091570065948446,
+            "max": 0.6931165388832793
+          },
+          "aleatoric": {
+            "min": 0.01129013338201586,
+            "p10": 0.4175850942121996,
+            "median": 0.41758509421956636,
+            "p90": 0.6090845799901157,
+            "max": 0.6930387852080152
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.029926144369142e-12,
+            "p90": 6.65905302937087e-05,
+            "max": 0.0011273424551089262
+          }
+        }
+      },
+      "uq_available_statistics": "full accepted distributions; probability disagreement reconstructed from saved valid parameters and member matrices"
+    },
+    "20": {
+      "n_normal": 14995,
+      "n_pseudo": 2145,
+      "audit": {
+        "nll_initial": 1.800194955807599,
+        "nll_final": 0.18158567334680248,
+        "n_iter": 8,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 1.3699069389433096e-16,
+        "minimum_curvature": 0.01453152732599787,
+        "slope_raw": 7.16395928020747,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              4.100000417896497e-06,
+              0.9505318719269733
+            ],
+            "pseudo_range": [
+              0.0,
+              0.899092943255719
+            ],
+            "overlap_interval": [
+              4.100000417896497e-06,
+              0.899092943255719
+            ],
+            "min_normal": 4.100000417896497e-06,
+            "max_pseudo": 0.899092943255719,
+            "gap": -0.899088843255301,
+            "best_threshold": 0.010240397509888916,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 910,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              7.03633815136143e-07,
+              0.9509193069300758
+            ],
+            "pseudo_range": [
+              0.0,
+              0.8997115558878714
+            ],
+            "overlap_interval": [
+              7.03633815136143e-07,
+              0.8997115558878714
+            ],
+            "min_normal": 7.03633815136143e-07,
+            "max_pseudo": 0.8997115558878714,
+            "gap": -0.8997108522540563,
+            "best_threshold": 0.00952387169025454,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 4603,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 1.358442412274116,
+            "nll": 0.31812939056999107
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.840133095214177,
+            "nll": 0.2701709806545221
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.3301998472754122,
+            "nll": 0.19282426509238165
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.3308936980047066,
+            "nll": 0.19224749980379063
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.178377985809218,
+            "nll": 0.28359343104823
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -3.1969736476308275,
+            "nll": 0.5846031581123557
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -3.889158929636525,
+            "nll": 0.8148877993745476
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -5.203180791708342,
+            "nll": 1.0200503113324395
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -7.580733139269588,
+            "nll": 1.2173868576826732
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -9.765806308734083,
+            "nll": 1.2993452663809457
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -13.340063731932826,
+            "nll": 1.3480789841295455
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -38.906886449228644,
+            "nll": 1.4114417749424206
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 7.16395928020747,
+            "intercept_raw": -0.875746812850568,
+            "nll": 0.18158567334680242
+          },
+          {
+            "slope_raw": 14.32791856041494,
+            "intercept_raw": -1.7603038828605844,
+            "nll": 0.22738182054318376
+          },
+          {
+            "slope_raw": 28.65583712082988,
+            "intercept_raw": -2.723992261436391,
+            "nll": 0.37750232767067804
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.2940660131158799,
+            "p10": 0.8800100963468953,
+            "median": 0.9890317883978093,
+            "p90": 0.9955984866367541,
+            "max": 0.9973586586149092
+          },
+          "total": {
+            "min": 0.018318089608549845,
+            "p10": 0.028273573711914104,
+            "median": 0.06040468090525233,
+            "p90": 0.3669048740318356,
+            "max": 0.6931471723270026
+          },
+          "aleatoric": {
+            "min": 0.01831808631357075,
+            "p10": 0.028273438016815044,
+            "median": 0.06040392013200955,
+            "p90": 0.3668030486946581,
+            "max": 0.6930294747980826
+          },
+          "epistemic": {
+            "min": 2.424593859018387e-11,
+            "p10": 5.35261697194589e-08,
+            "median": 1.0520072661335256e-06,
+            "p90": 3.962603261997157e-05,
+            "max": 0.018422194712924167
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.2940599157252533,
+            "p10": 0.2940599157252533,
+            "median": 0.2940800019028829,
+            "p90": 0.8956149358601034,
+            "max": 0.9961862042012589
+          },
+          "total": {
+            "min": 0.025046039807537147,
+            "p10": 0.3346121753967872,
+            "median": 0.6057469494195786,
+            "p90": 0.6761051820806452,
+            "max": 0.6931469819780858
+          },
+          "aleatoric": {
+            "min": 0.02504600462805621,
+            "p10": 0.33459666388460957,
+            "median": 0.6057469494195786,
+            "p90": 0.6760518590638183,
+            "max": 0.6931318015105858
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 7.118816647277981e-11,
+            "p90": 3.08673455662323e-05,
+            "max": 0.0015189882605280425
+          }
+        }
+      },
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 2.133422043129575e-06,
+          "p10": 0.0006934631148159837,
+          "median": 0.002056500965982904,
+          "p90": 0.005038448320622788,
+          "max": 0.06026638588852626
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 1.689147650018329e-88,
+          "median": 3.6554052547308712e-06,
+          "p90": 0.0026786338200325143,
+          "max": 0.04027010067914608
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 3.172770962603419e-06,
+          "p10": 2.2506764147390253e-05,
+          "median": 0.0001472142302729792,
+          "p90": 0.003063745170797981,
+          "max": 0.0914723230600627
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 5.43687612227578e-06,
+          "p90": 0.0035344094463765456,
+          "max": 0.017954999617396415
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 4.100000417896497e-06,
+            "p10": 0.40047850013185415,
+            "median": 0.750638050247375,
+            "p90": 0.8790073924826067,
+            "max": 0.9505318719269733
+          },
+          "pooled_members": {
+            "min": 7.03633815136143e-07,
+            "p10": 0.3995805650550833,
+            "median": 0.7505475070806037,
+            "p90": 0.8790031494720125,
+            "max": 0.9509193069300758
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 1.323457211652924e-88,
+            "median": 1.3506133646015855e-05,
+            "p90": 0.4222950611647137,
+            "max": 0.899092943255719
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 1.3807738108777303e-93,
+            "median": 1.3484181209347415e-05,
+            "p90": 0.4208289008111398,
+            "max": 0.8997115558878714
+          }
+        }
+      }
+    }
+  },
+  "GNSS": {
+    "2": {
+      "n_normal": 2999,
+      "n_pseudo": 857,
+      "audit": {
+        "nll_initial": 0.4890116691552272,
+        "nll_final": 0.058681245084038464,
+        "n_iter": 11,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": false,
+        "suspected_separation": true,
+        "gradient_norm": 0.1271664330202535,
+        "minimum_curvature": -0.00013952143084362476,
+        "slope_raw": 46.93463501183282,
+        "boundary_trend": "decreasing",
+        "lower_profile_direction": true,
+        "status": "suspected_separation",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              3.607199970347401e-05,
+              0.9441176268826444
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": null,
+            "min_normal": 3.607199970347401e-05,
+            "max_pseudo": 0.0,
+            "gap": 3.607199970347401e-05,
+            "best_threshold": 1.8035999851737004e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 0,
+            "classification": "completely_separated"
+          },
+          "pooled_members": {
+            "normal_range": [
+              2.6199944570405233e-06,
+              0.9463912054798806
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": null,
+            "min_normal": 2.6199944570405233e-06,
+            "max_pseudo": 0.0,
+            "gap": 2.6199944570405233e-06,
+            "best_threshold": 1.3099972285202617e-06,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 0,
+            "classification": "completely_separated"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7422035796660503,
+            "nll": 0.4201359780794367
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.30861756177619865,
+            "nll": 0.33540082715049463
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.5993898925899468,
+            "nll": 0.19486320053240622
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.315121635100895,
+            "nll": 0.12276877201544954
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -1.8336153877024195,
+            "nll": 0.0856267814917228
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -2.4338950758589424,
+            "nll": 0.05691311725386432
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -2.7803963695585043,
+            "nll": 0.045144531016103974
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -3.046351398768477,
+            "nll": 0.03744632527211534
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -3.33235569381935,
+            "nll": 0.0299327256078306
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -3.549362035857457,
+            "nll": 0.02478574459251288
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -3.8184644650122004,
+            "nll": 0.020025903134902247
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -4.201673924382008,
+            "nll": 0.014027394914734804
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 46.93463501183282,
+            "intercept_raw": -2.3969565836614897,
+            "nll": 0.058322806431339164
+          },
+          {
+            "slope_raw": 93.86927002366563,
+            "intercept_raw": -2.7526744848615854,
+            "nll": 0.04600285294277831
+          },
+          {
+            "slope_raw": 187.73854004733127,
+            "intercept_raw": -3.024470324722411,
+            "nll": 0.03804959932809002
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": false,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 4.968728575144549e-05,
+          "p10": 0.0013151195857246372,
+          "median": 0.0046404055934702,
+          "p90": 0.01675250365177143,
+          "max": 0.029018584760771737
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "max": 0.0
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 3.607199970347401e-05,
+            "p10": 0.2926054599580483,
+            "median": 0.8585657796273155,
+            "p90": 0.9381134503775522,
+            "max": 0.9441176268826444
+          },
+          "pooled_members": {
+            "min": 2.6199944570405233e-06,
+            "p10": 0.29331046539109823,
+            "median": 0.8586723043102554,
+            "p90": 0.9385795800464499,
+            "max": 0.9463912054798806
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          }
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "uq": null,
+      "uq_available_statistics": null
+    },
+    "10": {
+      "n_normal": 5998,
+      "n_pseudo": 1714,
+      "audit": {
+        "nll_initial": 0.40528035616151503,
+        "nll_final": 0.0068709594430098305,
+        "n_iter": 300,
+        "converged": false,
+        "optimizer_converged": false,
+        "finite_optimum": false,
+        "suspected_separation": true,
+        "gradient_norm": 0.03125868840560445,
+        "minimum_curvature": -1.916157700698447e-06,
+        "slope_raw": 181.08156276713618,
+        "boundary_trend": "decreasing",
+        "lower_profile_direction": true,
+        "status": "suspected_separation",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              0.005313832500264895,
+              0.9504522877200342
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": null,
+            "min_normal": 0.005313832500264895,
+            "max_pseudo": 0.0,
+            "gap": 0.005313832500264895,
+            "best_threshold": 0.0026569162501324474,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 0,
+            "classification": "completely_separated"
+          },
+          "pooled_members": {
+            "normal_range": [
+              2.5597390996795066e-06,
+              0.9517128998285044
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": null,
+            "min_normal": 2.5597390996795066e-06,
+            "max_pseudo": 0.0,
+            "gap": 2.5597390996795066e-06,
+            "best_threshold": 1.2798695498397533e-06,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 0,
+            "classification": "completely_separated"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7208749945800715,
+            "nll": 0.4152767412923242
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.2594821941285519,
+            "nll": 0.32469073933321724
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.7707057094124767,
+            "nll": 0.16870319975796452
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.6746328896626828,
+            "nll": 0.08935958821336024
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.351747266914233,
+            "nll": 0.052289377932614026
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -3.3415952726370683,
+            "nll": 0.023079664573013355
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -4.278025612302659,
+            "nll": 0.011597619833631029
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -5.230661787000842,
+            "nll": 0.006335825934941936
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -6.256537230014216,
+            "nll": 0.003310698080523416
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -7.236021127366216,
+            "nll": 0.0021203350538815005
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -7.98570394703995,
+            "nll": 0.0015719148971610481
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -7.873728364154693,
+            "nll": 0.0011718032622519514
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 181.08156276713618,
+            "intercept_raw": -5.100999963948544,
+            "nll": 0.006852728532206639
+          },
+          {
+            "slope_raw": 362.16312553427235,
+            "intercept_raw": -5.921248698875551,
+            "nll": 0.004137943534343803
+          },
+          {
+            "slope_raw": 724.3262510685447,
+            "intercept_raw": -6.769828330480877,
+            "nll": 0.002563307646147806
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": false,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 0.00048549157567824667,
+          "p10": 0.0011521641576937199,
+          "median": 0.003464544151973295,
+          "p90": 0.015612168229332667,
+          "max": 0.0709541121963664
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "max": 0.0
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 0.005313832500264895,
+            "p10": 0.43449427833947746,
+            "median": 0.8067928615542819,
+            "p90": 0.9349053662711218,
+            "max": 0.9504522877200342
+          },
+          "pooled_members": {
+            "min": 2.5597390996795066e-06,
+            "p10": 0.43337402497847416,
+            "median": 0.8081461838986455,
+            "p90": 0.9357036129943365,
+            "max": 0.9517128998285044
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          }
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "uq": null,
+      "uq_available_statistics": null
+    },
+    "20": {
+      "n_normal": 14995,
+      "n_pseudo": 4285,
+      "audit": {
+        "nll_initial": 0.4701528264111788,
+        "nll_final": 0.08657462254069184,
+        "n_iter": 5,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": false,
+        "suspected_separation": true,
+        "gradient_norm": 0.10696926130865077,
+        "minimum_curvature": -0.0002841017834971857,
+        "slope_raw": 12.450427899372611,
+        "boundary_trend": "decreasing",
+        "lower_profile_direction": true,
+        "status": "suspected_separation",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              3.674647119550551e-16,
+              0.9542634474727032
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": null,
+            "min_normal": 3.674647119550551e-16,
+            "max_pseudo": 0.0,
+            "gap": 3.674647119550551e-16,
+            "best_threshold": 1.8373235597752754e-16,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 0,
+            "classification": "completely_separated"
+          },
+          "pooled_members": {
+            "normal_range": [
+              0.0,
+              0.9544828059510059
+            ],
+            "pseudo_range": [
+              0.0,
+              0.0
+            ],
+            "overlap_interval": [
+              0.0,
+              0.0
+            ],
+            "min_normal": 0.0,
+            "max_pseudo": 0.0,
+            "gap": 0.0,
+            "best_threshold": 3.1846591924036234e-129,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 1,
+            "classification": "quasi_separated"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7151780785396582,
+            "nll": 0.4142138902149963
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.25240638277891936,
+            "nll": 0.32385571517715095
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.7545756418114963,
+            "nll": 0.1726530462978079
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.577628720094658,
+            "nll": 0.09901789206661246
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.1511502807622467,
+            "nll": 0.06453669079981643
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -2.86980597041449,
+            "nll": 0.03763496864079322
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -3.348206858883311,
+            "nll": 0.026521284201559518
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -3.7356969449094897,
+            "nll": 0.019591165718266357
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -4.179170200020257,
+            "nll": 0.013104352184645071
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -4.577500224033439,
+            "nll": 0.009019756017373622
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -5.199059241628722,
+            "nll": 0.006248594186581959
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -5.579966084435762,
+            "nll": 0.0056187830905237565
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 12.450427899372611,
+            "intercept_raw": -1.7787929873888872,
+            "nll": 0.08578190827788225
+          },
+          {
+            "slope_raw": 24.900855798745223,
+            "intercept_raw": -2.321170482563865,
+            "nll": 0.0565878572639452
+          },
+          {
+            "slope_raw": 49.801711597490446,
+            "intercept_raw": -2.8668064431865528,
+            "nll": 0.037717301297699714
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": false,
+      "uq": null,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 7.349294239101102e-16,
+          "p10": 0.0003265401277446894,
+          "median": 0.001559303137863908,
+          "p90": 0.007353401584629087,
+          "max": 0.2532545788244104
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0,
+          "max": 0.0
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 3.674647119550551e-16,
+            "p10": 0.42052476417740625,
+            "median": 0.8757931417869038,
+            "p90": 0.9395539476130365,
+            "max": 0.9542634474727032
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.41980782009490675,
+            "median": 0.8761305985224815,
+            "p90": 0.9400677533533996,
+            "max": 0.9544828059510059
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          }
+        }
+      }
+    }
+  },
+  "IMU": {
+    "2": {
+      "n_normal": 2999,
+      "n_pseudo": 856,
+      "audit": {
+        "nll_initial": 0.5006274540544066,
+        "nll_final": 0.1188120084108575,
+        "n_iter": 16,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 7.35356252039988e-12,
+        "minimum_curvature": 0.0002571128418041996,
+        "slope_raw": 30.90150507732244,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              7.653479238329691e-05,
+              0.9868142041019728
+            ],
+            "pseudo_range": [
+              0.0,
+              0.6710715521380495
+            ],
+            "overlap_interval": [
+              7.653479238329691e-05,
+              0.6710715521380495
+            ],
+            "min_normal": 7.653479238329691e-05,
+            "max_pseudo": 0.6710715521380495,
+            "gap": -0.6709950173456661,
+            "best_threshold": 5.9462209131593005e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 139,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              6.943693312739631e-06,
+              0.9871087831306152
+            ],
+            "pseudo_range": [
+              0.0,
+              0.68472171080379
+            ],
+            "overlap_interval": [
+              6.943693312739631e-06,
+              0.68472171080379
+            ],
+            "min_normal": 6.943693312739631e-06,
+            "max_pseudo": 0.68472171080379,
+            "gap": -0.6847147671104772,
+            "best_threshold": 6.034818052581365e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 705,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.7116619709837875,
+            "nll": 0.41628701833824
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.26072968196076884,
+            "nll": 0.33225151632187877
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.6167427323026898,
+            "nll": 0.2066084191776497
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.2231658852666427,
+            "nll": 0.15143951006045395
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -1.7704488017855575,
+            "nll": 0.12469445477326348
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -2.9678189862317215,
+            "nll": 0.1286362476443403
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -5.145168438395392,
+            "nll": 0.19040962753680962
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -10.307970508059116,
+            "nll": 0.3321065257854996
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -23.50985911682959,
+            "nll": 0.6724015260844807
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -66.11160889795251,
+            "nll": 0.8123278016652005
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -4.5674685339044965,
+            "nll": 0.8641845177396378
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -6.264911539699099,
+            "nll": 0.8861007823675422
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 30.90150507732244,
+            "intercept_raw": -2.228283846548848,
+            "nll": 0.11881200840798127
+          },
+          {
+            "slope_raw": 61.80301015464488,
+            "intercept_raw": -3.435768277902295,
+            "nll": 0.13991671462940672
+          },
+          {
+            "slope_raw": 123.60602030928976,
+            "intercept_raw": -6.371821527068551,
+            "nll": 0.2255961379062479
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 4.767709573109065e-05,
+          "p10": 0.0005218822184991499,
+          "median": 0.0005261552122588799,
+          "p90": 0.01665578106867549,
+          "max": 0.02729904152265324
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.006228666551108459,
+          "max": 0.019347317871918582
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 7.653479238329691e-05,
+            "p10": 0.1710604012604809,
+            "median": 0.9786728496181866,
+            "p90": 0.9788572674124002,
+            "max": 0.9868142041019728
+          },
+          "pooled_members": {
+            "min": 6.943693312739631e-06,
+            "p10": 0.17650703580835272,
+            "median": 0.9777729998556667,
+            "p90": 0.9791802278625169,
+            "max": 0.9871087831306152
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.07120665973738324,
+            "max": 0.6710715521380495
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.06451971088820298,
+            "max": 0.68472171080379
+          }
+        }
+      },
+      "calibrated_probability_disagreement": null,
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "median": 0.9999999999993181
+          },
+          "epistemic": {
+            "median": 0.0
+          },
+          "aleatoric": {
+            "median": 2.8630409869967563e-11
+          },
+          "total": {
+            "median": 2.8630409869967563e-11
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "median": 0.09723917811604149
+          },
+          "epistemic": {
+            "median": 0.0
+          },
+          "aleatoric": {
+            "median": 0.31897413116360324
+          },
+          "total": {
+            "median": 0.31897413116360324
+          }
+        }
+      },
+      "uq_available_statistics": "accepted historical medians only; full probability-member matrices/intercept were not saved; no historical refit"
+    },
+    "10": {
+      "n_normal": 5998,
+      "n_pseudo": 1712,
+      "audit": {
+        "nll_initial": 0.47908493745219644,
+        "nll_final": 0.12760342354069465,
+        "n_iter": 14,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 5.651562140680824e-16,
+        "minimum_curvature": 0.0011842377236987445,
+        "slope_raw": 15.848717233792184,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              3.610076321030717e-07,
+              0.9817050325281953
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7709489729192607
+            ],
+            "overlap_interval": [
+              3.610076321030717e-07,
+              0.7709489729192607
+            ],
+            "min_normal": 3.610076321030717e-07,
+            "max_pseudo": 0.7709489729192607,
+            "gap": -0.7709486119116286,
+            "best_threshold": 7.298607781899414e-07,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 294,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              7.969170121463959e-08,
+              0.9819359400380289
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7771780861257367
+            ],
+            "overlap_interval": [
+              7.969170121463959e-08,
+              0.7771780861257367
+            ],
+            "min_normal": 7.969170121463959e-08,
+            "max_pseudo": 0.7771780861257367,
+            "gap": -0.7771780064340355,
+            "best_threshold": 7.817968026396332e-07,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 1475,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.6729876107837134,
+            "nll": 0.41033779739561704
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.1780513071281072,
+            "nll": 0.3203501817066611
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.8480716132901468,
+            "nll": 0.18559456602615004
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.60622419670307,
+            "nll": 0.13630978761939325
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.455787862859883,
+            "nll": 0.13030417218994042
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -4.874084320313343,
+            "nll": 0.21831519824512166
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -9.518846620503348,
+            "nll": 0.4091549708233526
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -16.469993369992093,
+            "nll": 0.745645790321523
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -3.094765266189996,
+            "nll": 0.9070972017250705
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -3.3091369829054837,
+            "nll": 0.9253161577354638
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -3.5773003742747607,
+            "nll": 0.9439196705940425
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -3.8374521592874475,
+            "nll": 0.9775234735063194
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 15.848717233792184,
+            "intercept_raw": -2.1262057824965304,
+            "nll": 0.12760342354069512
+          },
+          {
+            "slope_raw": 31.69743446758437,
+            "intercept_raw": -3.3608976679470826,
+            "nll": 0.1560274323685829
+          },
+          {
+            "slope_raw": 63.39486893516874,
+            "intercept_raw": -6.101908403657984,
+            "nll": 0.2692812602309768
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 4.3620729712478717e-07,
+          "p10": 0.00037803591848138143,
+          "median": 0.0004035380781246786,
+          "p90": 0.007310599547930553,
+          "max": 0.0178650318718596
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.003020125046565258,
+          "max": 0.014660409643924422
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 3.610076321030717e-07,
+            "p10": 0.2822505785392058,
+            "median": 0.9681623366430397,
+            "p90": 0.9685911495806944,
+            "max": 0.9817050325281953
+          },
+          "pooled_members": {
+            "min": 7.969170121463959e-08,
+            "p10": 0.282110914451572,
+            "median": 0.967670633309066,
+            "p90": 0.9689102303152582,
+            "max": 0.9819359400380289
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.14688196721035854,
+            "max": 0.7709489729192607
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.14423477956562702,
+            "max": 0.7771780861257367
+          }
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 1.9163991042249886e-09,
+          "p10": 1.1231934456549233e-08,
+          "median": 1.1623684395278341e-08,
+          "p90": 0.0027640745262156228,
+          "max": 0.0450079339928644
+        },
+        "pseudo": {
+          "min": 1.3877787807814457e-17,
+          "p10": 1.3877787807814457e-17,
+          "median": 1.3877787807814457e-17,
+          "p90": 0.011802178650218995,
+          "max": 0.030887970027422114
+        }
+      },
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.10657626712275177,
+            "p10": 0.9125294933229897,
+            "median": 0.9999981822418548,
+            "p90": 0.999998194554841,
+            "max": 0.9999985333934068
+          },
+          "total": {
+            "min": 2.116688549999813e-05,
+            "p10": 2.568192020941162e-05,
+            "median": 2.5844713886277656e-05,
+            "p90": 0.2966448982374649,
+            "max": 0.6931462160140337
+          },
+          "aleatoric": {
+            "min": 2.1166882822397997e-05,
+            "p10": 2.568188442692829e-05,
+            "median": 2.5844676690826348e-05,
+            "p90": 0.2964342662375622,
+            "max": 0.6920193953575626
+          },
+          "epistemic": {
+            "min": 1.2214181963478114e-12,
+            "p10": 3.4859442815790475e-11,
+            "median": 3.719545130882393e-11,
+            "p90": 9.532677997562417e-05,
+            "max": 0.004923998592396783
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.10657572233298682,
+            "p10": 0.10657572233298682,
+            "median": 0.10657572233298682,
+            "p90": 0.5502196954416503,
+            "max": 0.9999585187864504
+          },
+          "total": {
+            "min": 0.00046003699446619655,
+            "p10": 0.3392956194815698,
+            "median": 0.3392956194815698,
+            "p90": 0.6284198937373798,
+            "max": 0.6931362872473297
+          },
+          "aleatoric": {
+            "min": 0.00045994943676080506,
+            "p10": 0.33929561948156983,
+            "median": 0.33929561948156983,
+            "p90": 0.6278818190827503,
+            "max": 0.692856365635286
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.00028208226149506466,
+            "max": 0.0027660970911278504
+          }
+        }
+      },
+      "uq_available_statistics": "full accepted distributions; probability disagreement reconstructed from saved valid parameters and member matrices"
+    },
+    "20": {
+      "n_normal": 14995,
+      "n_pseudo": 4280,
+      "audit": {
+        "nll_initial": 0.4778337746008448,
+        "nll_final": 0.13089761743557832,
+        "n_iter": 13,
+        "converged": true,
+        "optimizer_converged": true,
+        "finite_optimum": true,
+        "suspected_separation": false,
+        "gradient_norm": 1.0412598170581171e-16,
+        "minimum_curvature": 0.0013998760893466217,
+        "slope_raw": 14.663495066407458,
+        "boundary_trend": "not_decreasing",
+        "lower_profile_direction": false,
+        "status": "finite_stationary_candidate",
+        "separation": {
+          "ensemble_mean": {
+            "normal_range": [
+              2.7892002529219866e-23,
+              0.9801147654230583
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7871166914511428
+            ],
+            "overlap_interval": [
+              2.7892002529219866e-23,
+              0.7871166914511428
+            ],
+            "min_normal": 2.7892002529219866e-23,
+            "max_pseudo": 0.7871166914511428,
+            "gap": -0.7871166914511428,
+            "best_threshold": 1.0200340518143278e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 760,
+            "classification": "overlapping"
+          },
+          "pooled_members": {
+            "normal_range": [
+              2.733761530489996e-28,
+              0.9804747514960377
+            ],
+            "pseudo_range": [
+              0.0,
+              0.7888787636582771
+            ],
+            "overlap_interval": [
+              2.733761530489996e-28,
+              0.7888787636582771
+            ],
+            "min_normal": 2.733761530489996e-28,
+            "max_pseudo": 0.7888787636582771,
+            "gap": -0.7888787636582771,
+            "best_threshold": 1.0305866292560866e-05,
+            "threshold_rule": "normal iff score > threshold",
+            "violations": 3800,
+            "classification": "overlapping"
+          }
+        },
+        "slope_profile": [
+          {
+            "slope_raw": 1.0,
+            "intercept_raw": 0.6716897176751012,
+            "nll": 0.41033060610030503
+          },
+          {
+            "slope_raw": 2.0,
+            "intercept_raw": 0.17460505970313225,
+            "nll": 0.32019055780940825
+          },
+          {
+            "slope_raw": 5.0,
+            "intercept_raw": -0.862269947228622,
+            "nll": 0.1851663363924216
+          },
+          {
+            "slope_raw": 10.0,
+            "intercept_raw": -1.6351055000204011,
+            "nll": 0.13726723862889156
+          },
+          {
+            "slope_raw": 20.0,
+            "intercept_raw": -2.480648910875948,
+            "nll": 0.13584570994303413
+          },
+          {
+            "slope_raw": 50.0,
+            "intercept_raw": -4.6156614796671995,
+            "nll": 0.23559443439629127
+          },
+          {
+            "slope_raw": 100.0,
+            "intercept_raw": -8.165056622232912,
+            "nll": 0.4379640227986997
+          },
+          {
+            "slope_raw": 200.0,
+            "intercept_raw": -13.309028667594525,
+            "nll": 0.7897940416724175
+          },
+          {
+            "slope_raw": 500.0,
+            "intercept_raw": -3.4144165580996204,
+            "nll": 0.908301815802816
+          },
+          {
+            "slope_raw": 1000.0,
+            "intercept_raw": -3.608486006656086,
+            "nll": 0.9312255704490306
+          },
+          {
+            "slope_raw": 2000.0,
+            "intercept_raw": -3.9790241714376484,
+            "nll": 0.9511295924401787
+          },
+          {
+            "slope_raw": 5000.0,
+            "intercept_raw": -4.375461058375668,
+            "nll": 0.985439782655986
+          }
+        ],
+        "relative_slope_profile": [
+          {
+            "slope_raw": 14.663495066407458,
+            "intercept_raw": -2.060996483259189,
+            "nll": 0.13089761743557837
+          },
+          {
+            "slope_raw": 29.326990132814917,
+            "intercept_raw": -3.162317316840491,
+            "nll": 0.15902616996208152
+          },
+          {
+            "slope_raw": 58.65398026562983,
+            "intercept_raw": -5.232222944996214,
+            "nll": 0.2707876530736626
+          }
+        ],
+        "validity_scope": "numerical evidence, not a global existence proof"
+      },
+      "valid": true,
+      "uq": {
+        "normal": {
+          "prob_normal": {
+            "min": 0.11294595703241381,
+            "p10": 0.9162721288476275,
+            "median": 0.999994413334908,
+            "p90": 0.9999944250503464,
+            "max": 0.9999954976483167
+          },
+          "total": {
+            "min": 5.9930391066577305e-05,
+            "p10": 7.301636709820082e-05,
+            "median": 7.31580790540464e-05,
+            "p90": 0.2877791381471209,
+            "max": 0.6931468078944338
+          },
+          "aleatoric": {
+            "min": 5.9930366914440126e-05,
+            "p10": 7.301632916978574e-05,
+            "median": 7.315804092400294e-05,
+            "p90": 0.2876116361120983,
+            "max": 0.6930945753165126
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 3.7720687492037895e-11,
+            "median": 3.823044586795648e-11,
+            "p90": 2.2883756147767956e-05,
+            "max": 0.002028812864481422
+          }
+        },
+        "pseudo": {
+          "prob_normal": {
+            "min": 0.11294595703241381,
+            "p10": 0.11294595703241381,
+            "median": 0.11294595703241381,
+            "p90": 0.5714738495771097,
+            "max": 0.9999236997460343
+          },
+          "total": {
+            "min": 0.0007996874072494194,
+            "p10": 0.35263058836775724,
+            "median": 0.35263058836775724,
+            "p90": 0.6507515705247535,
+            "max": 0.6930970726275139
+          },
+          "aleatoric": {
+            "min": 0.0007996777064184374,
+            "p10": 0.35263058836775724,
+            "median": 0.35263058836775724,
+            "p90": 0.6506234342873538,
+            "max": 0.6929818803653258
+          },
+          "epistemic": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.00012051156908436944,
+            "max": 0.0003320424503837627
+          }
+        }
+      },
+      "raw_member_score_disagreement": {
+        "normal": {
+          "min": 4.136956980000905e-23,
+          "p10": 0.000250010590511621,
+          "median": 0.00025246132973080336,
+          "p90": 0.0032345612448226725,
+          "max": 0.012496988349003908
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0021474839675934467,
+          "max": 0.004562611438942637
+        }
+      },
+      "calibrated_probability_disagreement": {
+        "normal": {
+          "min": 0.0,
+          "p10": 2.0491135097192483e-08,
+          "median": 2.0654836960439918e-08,
+          "p90": 0.001221063075509984,
+          "max": 0.030509994910515835
+        },
+        "pseudo": {
+          "min": 0.0,
+          "p10": 0.0,
+          "median": 0.0,
+          "p90": 0.0074795345568169185,
+          "max": 0.012689662180976507
+        }
+      },
+      "score_distributions": {
+        "normal": {
+          "ensemble_mean": {
+            "min": 2.7892002529219866e-23,
+            "p10": 0.3038554995547444,
+            "median": 0.9653991541053202,
+            "p90": 0.9655423142364784,
+            "max": 0.9801147654230583
+          },
+          "pooled_members": {
+            "min": 2.733761530489996e-28,
+            "p10": 0.30404961012275883,
+            "median": 0.96511999701836,
+            "p90": 0.9658022412749854,
+            "max": 0.9804747514960377
+          }
+        },
+        "pseudo": {
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.16018931538174286,
+            "max": 0.7871166914511428
+          },
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.1571949839912783,
+            "max": 0.7888787636582771
+          }
+        }
+      }
+    }
+  }
+}

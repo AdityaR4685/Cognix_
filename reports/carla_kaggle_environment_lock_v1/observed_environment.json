@@ -1,0 +1,58 @@
+{
+  "AMP": false,
+  "CPU_threads": 1,
+  "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+  "CUDA_VISIBLE_DEVICES": "0",
+  "CUDA_available": true,
+  "CUDA_validation": "external frozen-source engineering harness; see sealed CUDA evidence",
+  "DataLoader_workers": 0,
+  "GPU_exposure_policy": "user authorized GPU 0 isolation from Kaggle T4 x2 allocation; one visible GPU; no distributed execution",
+  "NumPy": "2.0.2",
+  "PyTorch": "2.10.0+cu128",
+  "Python": "3.12.13",
+  "autocast_CPU_enabled": false,
+  "autocast_CUDA_enabled": false,
+  "cuDNN_TF32": false,
+  "cuDNN_benchmark": false,
+  "cuDNN_deterministic": true,
+  "cuDNN_version": 91002,
+  "deterministic_algorithms": true,
+  "deterministic_warn_only": false,
+  "device_properties": [
+    {
+      "major": 7,
+      "minor": 5,
+      "multi_processor_count": 40,
+      "name": "Tesla T4",
+      "total_memory": 15636037632,
+      "uuid": "34af2d32-ab64-85ba-f040-9e12069b1053"
+    }
+  ],
+  "devices": [
+    "Tesla T4"
+  ],
+  "matmul_TF32": false,
+  "nvidia_smi": {
+    "output": "Tesla T4, GPU-34af2d32-ab64-85ba-f040-9e12069b1053, 580.178.04, 15360 MiB, 0 %\nTesla T4, GPU-01d34e30-f83d-2694-6454-8f7c2bfbb15c, 580.178.04, 15360 MiB, 0 %",
+    "returncode": 0,
+    "stderr": ""
+  },
+  "physical_GPU_count_observed": 2,
+  "platform": "Linux-6.18.48+-x86_64-with-glibc2.35",
+  "runtime_metadata": {
+    "Kaggle_environment": {
+      "KAGGLE_DOCKER_IMAGE": "gcr.io/kaggle-gpu-images/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+      "KAGGLE_KERNEL_RUN_TYPE": "Interactive",
+      "KAGGLE_URL_BASE": "https://www.kaggle.com"
+    },
+    "executable": "/usr/bin/python3",
+    "kaggle_input_exists": true,
+    "kaggle_working_exists": true,
+    "machine": "x86_64",
+    "release": "6.18.48+",
+    "system": "Linux"
+  },
+  "scikit_learn": "1.6.1",
+  "scikit_learn_used": false,
+  "torch_CUDA_runtime": "12.8"
+}

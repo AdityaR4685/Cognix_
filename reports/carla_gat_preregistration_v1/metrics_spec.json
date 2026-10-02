@@ -1,0 +1,82 @@
+{
+  "BCE": "mean(-y*log(clip(q,1e-7,1-1e-7))-(1-y)*log(clip(1-q,1e-7,1-1e-7)))",
+  "Brier": "mean((q_normal-target_normal)^2)",
+  "ECE": {
+    "bins": 15,
+    "edges": "k/15 for k=0..15",
+    "empty_bins": "zero contribution",
+    "formula": "sum_b (n_b/n)*abs(mean(q_normal_b)-mean(target_normal_b))",
+    "kind": "binary probability reliability, not max-class-confidence ECE",
+    "membership": "[lower,upper), last bin includes 1"
+  },
+  "checkpoint_selection": "validation scenario-macro BCE only; no AUROC, F1 or CAL outcomes used to select checkpoints",
+  "class_balance": "exact 1:1 clean/pseudo among eligible paired parents; report realized rows, recipe counts and all skips; this is an artificial prevalence",
+  "evaluation_role": "internal graph-development validation, not independent test performance",
+  "paired_statistics": {
+    "conditional_seed_CI": "mean(delta) +/- 2.776445105*SD(delta)/sqrt(5); t interval describes seed variability conditional on this fixed validation set, not population generalization",
+    "effect_size": "paired dz=mean(delta)/SD(delta); null if SD=0",
+    "exact_sign_flip": {
+      "all_zero_differences_p": 1,
+      "claim": "five pairs cannot reach p<0.05 with this exact two-sided test; no superiority claim from one seed or this fixed development set",
+      "enumeration": 32,
+      "minimum_attainable_two_sided_p": 0.0625,
+      "p": "fraction of all 32 sign assignments with abs(mean(s*delta)) >= observed statistic - 1e-12",
+      "statistic": "abs(mean(delta))",
+      "tail": "two-sided"
+    },
+    "failures": "retain failed runs and reason; no seed replacement or best-seed selection; confirmatory-style aggregate marked incomplete if any planned pair fails",
+    "per_seed": "same samples/splits; record primary contrast and all oriented secondary differences",
+    "retain_all_seeds": true,
+    "scenario_bootstrap": {
+      "calculation": "sample 3 scenario IDs with replacement; compute equal-scenario mean contrast, then mean across the five paired seeds; percentile interval [2.5,97.5]",
+      "draws": 10000,
+      "scope": "descriptive fragility check with only 3 validation scenarios; not independent test CI; never bootstrap individual ticks",
+      "seed": 606,
+      "unit": "whole validation scenario, keeping all ticks, clean/pseudo pairs and methods together"
+    },
+    "secondary_inference": "exploratory only; no uncorrected multi-metric superiority claims; NoGraph contrasts descriptive",
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "summaries": [
+      "mean paired difference",
+      "median paired difference",
+      "sample SD of paired differences",
+      "min/max",
+      "all five individual differences"
+    ]
+  },
+  "positive_class": "corruption: y_corruption=1-target_normal",
+  "primary_endpoint": {
+    "formula": "arithmetic mean of AUROC over the 3 frozen graph-validation scenarios; ties contribute 0.5",
+    "name": "scenario_macro_AUROC",
+    "primary_contrast": "EpistemicGAT minus StandardGAT"
+  },
+  "schema_version": 1,
+  "score": "p_corruption=1-q_normal",
+  "secondary": [
+    "scenario-macro average precision (AUPRC as stepwise average precision, not trapezoidal PR integration)",
+    "scenario-macro corruption F1",
+    "scenario-macro accuracy",
+    "scenario-macro balanced accuracy",
+    "scenario-macro Brier score",
+    "scenario-macro binary probability ECE",
+    "scenario-macro BCE",
+    "pooled versions of all metrics",
+    "per-scenario and per-recipe descriptive results"
+  ],
+  "threshold": {
+    "candidate_set": "sorted unique validation p_corruption values union {0,1}",
+    "classify": "corruption iff p_corruption>=tau",
+    "objective": "maximize arithmetic mean of per-validation-scenario corruption F1",
+    "optimism": "threshold selection and reported validation F1 use the same validation data; report as development statistics, not confirmatory evaluation",
+    "select_using": "graph validation only, separately for each method and seed at its selected checkpoint",
+    "tie_break": "largest tau",
+    "zero_denominator_F1": 0
+  },
+  "undefined": "null plus explicit reason; no silent imputation, replacement scenario, or dropping failed seed"
+}

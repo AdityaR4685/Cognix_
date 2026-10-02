@@ -1,0 +1,68 @@
+{
+  "status": "ALL_15_COMPLETE_SEALED_AND_LOCALLY_VERIFIED",
+  "completed_runs": 15,
+  "failed_training_runs": 0,
+  "run_ledger_sha256": "cfc49769c3fb25c294afc11669ed3e50afa5c0655d156b0a2a98db61c2cc1568",
+  "results_seal_sha256": "886250f8c157bf6aec46ca70f3e7fe88ec2fcc16653dd4e3933eefbdc18fc6dd",
+  "archive": "/kaggle/working/carla_gat_paired_results_v1.zip",
+  "archive_sha256": "c1464701a727dc1e517e850b72cc7dab7f8fb4b18d2e290d58e50ab26a40e1f2",
+  "archive_bytes": 156528461,
+  "validation_prediction_exports": 15,
+  "attention_exports": 10,
+  "completed_analysis_returncode": 0,
+  "primary_metric": "GRAPH_VALIDATION scenario_macro_AUROC on p_corrupt=1-q_normal",
+  "primary_contrast": "EpistemicGAT minus StandardGAT",
+  "primary_summary": {
+    "per_seed": {
+      "101": -1.4824696298321172e-06,
+      "202": 0.00014292860318787515,
+      "303": -8.61685472353102e-06,
+      "404": -2.8537540373019255e-06,
+      "505": 2.279297055873819e-06
+    },
+    "mean": 2.6450964370616782e-05,
+    "median": -1.4824696298321172e-06,
+    "sample_SD": 6.523056231028334e-05,
+    "min": -8.61685472353102e-06,
+    "max": 0.00014292860318787515,
+    "conditional_seed_CI": [
+      -5.4543476426879355e-05,
+      0.00010744540516811291
+    ],
+    "paired_dz": 0.4054995608469083,
+    "exact_two_sided_sign_flip_p": 0.875
+  },
+  "whole_scenario_bootstrap": {
+    "percentile_interval": [
+      -5.9873242175512155e-05,
+      0.00018899264076133182
+    ],
+    "draws": 10000,
+    "seed": 606,
+    "unit": "whole_validation_scenario",
+    "interpretation": "descriptive fragility only; only three validation scenarios"
+  },
+  "preserved_optional_audit_failure": true,
+  "attention_recovery": {
+    "validation_rebatch_max_absolute_difference": 1.1920928955078125e-07,
+    "original_full_dataset_batches_bit_exact": true,
+    "recovered_source_sha256": "0d65219c778fd5c8680c782e92a529c48627e40f8e4e930e3d9df21d5e02397e",
+    "new_tolerance": null,
+    "additional_training": false,
+    "frozen_source_or_input_changes": false,
+    "raw_outputs_or_ledger_overwritten": false
+  },
+  "download_verification": {
+    "passed": true,
+    "archive": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_execution_v1\\kaggle_paired_results_download.zip",
+    "source_archive": "C:\\Users\\Aditya\\OneDrive\\Desktop\\carla_gat_paired_results_v1.zip",
+    "archive_sha256": "c1464701a727dc1e517e850b72cc7dab7f8fb4b18d2e290d58e50ab26a40e1f2",
+    "sealed_files_verified": 669,
+    "checkpoint_internal_hashes_verified": 426,
+    "protected_files_unchanged": 1691,
+    "verification_report": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_execution_v1\\local_import_verification.json",
+    "local_results_root": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_runs_v1",
+    "local_raw_root": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1",
+    "delivery_report": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_execution_v1\\delivery_report.md"
+  }
+}

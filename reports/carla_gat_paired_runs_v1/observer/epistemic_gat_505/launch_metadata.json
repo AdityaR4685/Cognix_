@@ -1,0 +1,52 @@
+{
+  "CUDA_VISIBLE_DEVICES": "0",
+  "argv": [
+    "/kaggle/working/cognix_validation/reports/carla_graph_trainers_v1/train.py",
+    "train",
+    "--method",
+    "epistemic_gat",
+    "--seed",
+    "505",
+    "--execute-full",
+    "--device",
+    "cuda",
+    "--artifact",
+    "/kaggle/working/cognix_validation/graph_artifact",
+    "--preregistration",
+    "/kaggle/working/cognix_validation/reports/carla_gat_preregistration_v1",
+    "--environment-lock",
+    "/kaggle/working/carla_kaggle_environment_lock_v1/environment_lock.json",
+    "--output",
+    "/kaggle/working/cognix_full_paired_graph_v1_individual/epistemic_gat_505"
+  ],
+  "environment": {
+    "AMP": false,
+    "CPU_threads": 1,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "CUDA_available": true,
+    "CUDA_validation": "not exercised on local CPU fixtures; deterministic-operation errors must stop future execution",
+    "DataLoader_workers": 0,
+    "NumPy": "2.0.2",
+    "PyTorch": "2.10.0+cu128",
+    "Python": "3.12.13",
+    "cuDNN_TF32": false,
+    "cuDNN_benchmark": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_version": 91002,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "devices": [
+      "Tesla T4"
+    ],
+    "matmul_TF32": false,
+    "platform": "Linux-6.18.48+-x86_64-with-glibc2.35",
+    "scikit_learn": "1.6.1",
+    "scikit_learn_used": false,
+    "torch_CUDA_runtime": "12.8"
+  },
+  "method": "epistemic_gat",
+  "observer_source_sha256": "795398c5d1ca6daccee5c9232472430cb6b34746a1138251b0747b596238b75c",
+  "seed": 505,
+  "started_unix": 1790943733.0490754,
+  "verified_before_torch_import": true
+}

@@ -1,0 +1,114 @@
+{
+  "CPU_GPU_policy": "measure errors only; no new cross-device acceptance tolerance",
+  "CPU_GPU_tolerance": null,
+  "E_zero_equivalence_training_false_true": {
+    "False": {
+      "bitwise_exact": true,
+      "max_abs_error": 0.0
+    },
+    "True": {
+      "bitwise_exact": true,
+      "max_abs_error": 0.0
+    }
+  },
+  "attention_atol": 1e-06,
+  "attention_rtol": 1e-05,
+  "fixed_logit_sender_suppression": [
+    {
+      "high_E": [
+        [
+          0.25,
+          0.25
+        ]
+      ],
+      "low_E": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "high_E": [
+        [
+          0.25,
+          0.25
+        ]
+      ],
+      "low_E": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ],
+  "generic_equivalence_atol": 1e-07,
+  "generic_equivalence_rtol": 1e-06,
+  "methods": {
+    "epistemic_gat": {
+      "BCE": 0.6742807626724243,
+      "CPU_GPU_bitwise_equal": false,
+      "CPU_GPU_max_abs_error": 5.960464477539063e-08,
+      "attention": [
+        {
+          "finite": true,
+          "max_incoming_sum_error": 0.0,
+          "self_edges_zero": true
+        },
+        {
+          "finite": true,
+          "max_incoming_sum_error": 0.0,
+          "self_edges_zero": true
+        }
+      ],
+      "finite_BCE": true,
+      "finite_forward": true,
+      "generic_forward_max_abs_error": 0.0,
+      "shape": [
+        5
+      ]
+    },
+    "nograph": {
+      "BCE": 0.720101535320282,
+      "CPU_GPU_bitwise_equal": false,
+      "CPU_GPU_max_abs_error": 5.960464477539063e-08,
+      "attention": [],
+      "finite_BCE": true,
+      "finite_forward": true,
+      "shape": [
+        5
+      ]
+    },
+    "standard_gat": {
+      "BCE": 0.6740651726722717,
+      "CPU_GPU_bitwise_equal": false,
+      "CPU_GPU_max_abs_error": 5.960464477539063e-08,
+      "attention": [
+        {
+          "finite": true,
+          "max_incoming_sum_error": 0.0,
+          "self_edges_zero": true
+        },
+        {
+          "finite": true,
+          "max_incoming_sum_error": 0.0,
+          "self_edges_zero": true
+        }
+      ],
+      "finite_BCE": true,
+      "finite_forward": true,
+      "generic_forward_max_abs_error": 0.0,
+      "shape": [
+        5
+      ]
+    }
+  },
+  "paired_parameters": {
+    "byte_exact": true,
+    "explicit_clone": "frozen paired_models uses copy.deepcopy + load_state_dict",
+    "independent_storage": true
+  },
+  "passed": true,
+  "tolerance_source": "tests/unit/test_carla_graph_trainers.py existing generic/batch equivalence"
+}

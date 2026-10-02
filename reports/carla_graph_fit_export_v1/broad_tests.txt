@@ -1,0 +1,70 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\Aditya\OneDrive\Documents\Cognix2
+configfile: pyproject.toml
+plugins: anyio-4.15.1, dash-4.4.1, platformdirs-4.12.1, typeguard-4.6.0
+collected 548 items
+
+tests\unit\test_adapters.py ...............                              [  2%]
+tests\unit\test_agents.py .....                                          [  3%]
+tests\unit\test_belief.py ......                                         [  4%]
+tests\unit\test_calibration.py ......                                    [  5%]
+tests\unit\test_carla_agent_semantics.py ............................... [ 11%]
+...                                                                      [ 12%]
+tests\unit\test_carla_cache_builder.py ...........................       [ 16%]
+tests\unit\test_carla_calibration_validity.py .................          [ 20%]
+tests\unit\test_carla_causal_window_scope.py ......................      [ 24%]
+tests\unit\test_carla_ensemble_predictive_calibration.py ............... [ 26%]
+..................                                                       [ 30%]
+tests\unit\test_carla_graph_fit_export.py .............................. [ 35%]
+.............                                                            [ 37%]
+tests\unit\test_carla_pseudo_anomalies.py .............................. [ 43%]
+...........................................                              [ 51%]
+tests\unit\test_carla_real_agents.py ................................... [ 57%]
+...........................                                              [ 62%]
+tests\unit\test_carla_real_features.py ................................. [ 68%]
+                                                                         [ 68%]
+tests\unit\test_carla_train_acquisition.py .......................       [ 72%]
+tests\unit\test_carlanomaly_loader.py .................................. [ 79%]
+............                                                             [ 81%]
+tests\unit\test_dashboard.py .....                                       [ 82%]
+tests\unit\test_decision.py ......                                       [ 83%]
+tests\unit\test_registry.py .................                            [ 86%]
+tests\unit\test_synthetic_pipeline_and_artifacts.py ...............      [ 89%]
+tests\unit\test_uncertainty.py ........                                  [ 90%]
+tests\regression\test_noise_sweep_regression.py ..                       [ 90%]
+tests\regression\test_regression.py ...                                  [ 91%]
+tests\integration\test_full_pipeline_integration.py ..........           [ 93%]
+tests\integration\test_pipeline.py .....                                 [ 94%]
+tests\test_interfaces.py .                                               [ 94%]
+tests\test_mathematics.py ...............................                [100%]
+
+============================== warnings summary ===============================
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
+  C:\Users\Aditya\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
+  C:\Users\Aditya\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
+  C:\Users\Aditya\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_mathtext.py:45
+  C:\Users\Aditya\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================ 548 passed, 14 warnings in 278.71s (0:04:38) =================

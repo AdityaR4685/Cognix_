@@ -1,0 +1,638 @@
+{
+  "Camera": {
+    "two_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          1.6372311826662998e-11,
+          0.6208302140505458
+        ],
+        "pseudo_range": [
+          6.18703462837299e-36,
+          3.596742573905331e-06
+        ],
+        "overlap_interval": [
+          1.6372311826662998e-11,
+          3.596742573905331e-06
+        ],
+        "min_normal": 1.6372311826662998e-11,
+        "max_pseudo": 3.596742573905331e-06,
+        "gap": -3.596726201593504e-06,
+        "best_threshold": 8.070620996464966e-07,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 22,
+        "classification": "overlapping"
+      },
+      "member_geometry": {
+        "normal_range": [
+          1.4355406715228879e-12,
+          0.6361487857954379
+        ],
+        "pseudo_range": [
+          2.2065520143781914e-37,
+          5.500467452516476e-06
+        ],
+        "overlap_interval": [
+          1.4355406715228879e-12,
+          5.500467452516476e-06
+        ],
+        "min_normal": 1.4355406715228879e-12,
+        "max_pseudo": 5.500467452516476e-06,
+        "gap": -5.5004660169758045e-06,
+        "best_threshold": 1.2625661394246063e-06,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 113,
+        "classification": "overlapping"
+      },
+      "valid": false,
+      "violations_fraction": 0.005705394190871369,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 1.4355406715228879e-12,
+            "p10": 0.0047143020033510365,
+            "median": 0.04248347239162168,
+            "p90": 0.2764486014592219,
+            "max": 0.6361487857954379
+          },
+          "ensemble_mean": {
+            "min": 1.6372311826662998e-11,
+            "p10": 0.004969449998143764,
+            "median": 0.046620734118226106,
+            "p90": 0.2723707650488913,
+            "max": 0.6208302140505458
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 2.2065520143781914e-37,
+            "p10": 2.787946535554529e-19,
+            "median": 2.407061520249573e-11,
+            "p90": 5.319058004230606e-09,
+            "max": 5.500467452516476e-06
+          },
+          "ensemble_mean": {
+            "min": 6.18703462837299e-36,
+            "p10": 7.006292834645696e-19,
+            "median": 3.283135326801041e-11,
+            "p90": 4.632678070596713e-09,
+            "max": 3.596742573905331e-06
+          }
+        }
+      }
+    },
+    "ten_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          9.312965013737327e-08,
+          0.741593026467745
+        ],
+        "pseudo_range": [
+          1.2329590968693544e-23,
+          0.9028737458554825
+        ],
+        "overlap_interval": [
+          9.312965013737327e-08,
+          0.741593026467745
+        ],
+        "min_normal": 9.312965013737327e-08,
+        "max_pseudo": 0.9028737458554825,
+        "gap": -0.9028736527258324,
+        "best_threshold": 8.55347056006984e-08,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 859,
+        "classification": "overlapping"
+      },
+      "member_geometry": {
+        "normal_range": [
+          7.476072866881713e-08,
+          0.7455872948829769
+        ],
+        "pseudo_range": [
+          8.585045468737836e-24,
+          0.9034963579667702
+        ],
+        "overlap_interval": [
+          7.476072866881713e-08,
+          0.7455872948829769
+        ],
+        "min_normal": 7.476072866881713e-08,
+        "max_pseudo": 0.9034963579667702,
+        "gap": -0.9034962832060415,
+        "best_threshold": 7.468858781619492e-08,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 4297,
+        "classification": "overlapping"
+      },
+      "valid": false,
+      "violations_fraction": 0.11138485477178424,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 7.476072866881713e-08,
+            "p10": 0.0005358381321844677,
+            "median": 0.2324804636551809,
+            "p90": 0.5678543205106912,
+            "max": 0.7455872948829769
+          },
+          "ensemble_mean": {
+            "min": 9.312965013737327e-08,
+            "p10": 0.0005170297024253826,
+            "median": 0.23278360647806612,
+            "p90": 0.5675865300466656,
+            "max": 0.741593026467745
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 8.585045468737836e-24,
+            "p10": 8.15227036655506e-16,
+            "median": 8.587733229103792e-07,
+            "p90": 0.6798403504571295,
+            "max": 0.9034963579667702
+          },
+          "ensemble_mean": {
+            "min": 1.2329590968693544e-23,
+            "p10": 8.747822508655093e-16,
+            "median": 8.771899464464958e-07,
+            "p90": 0.679541560445396,
+            "max": 0.9028737458554825
+          }
+        }
+      }
+    }
+  },
+  "Seg": {
+    "two_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          4.786326306988187e-25,
+          0.935894068554188
+        ],
+        "pseudo_range": [
+          0.0,
+          0.7228372398187799
+        ],
+        "overlap_interval": [
+          4.786326306988187e-25,
+          0.7228372398187799
+        ],
+        "min_normal": 4.786326306988187e-25,
+        "max_pseudo": 0.7228372398187799,
+        "gap": -0.7228372398187799,
+        "best_threshold": 0.03268947421827516,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 159,
+        "classification": "overlapping"
+      },
+      "member_geometry": {
+        "normal_range": [
+          1.7668545978528424e-30,
+          0.942742554647854
+        ],
+        "pseudo_range": [
+          0.0,
+          0.7365624909288931
+        ],
+        "overlap_interval": [
+          1.7668545978528424e-30,
+          0.7365624909288931
+        ],
+        "min_normal": 1.7668545978528424e-30,
+        "max_pseudo": 0.7365624909288931,
+        "gap": -0.7365624909288931,
+        "best_threshold": 0.027578309251572224,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 810,
+        "classification": "overlapping"
+      },
+      "valid": true,
+      "violations_fraction": 0.04638273045507585,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 1.7668545978528424e-30,
+            "p10": 0.25354844018646594,
+            "median": 0.6598533990913992,
+            "p90": 0.7878099210108815,
+            "max": 0.942742554647854
+          },
+          "ensemble_mean": {
+            "min": 4.786326306988187e-25,
+            "p10": 0.25543383708652895,
+            "median": 0.660774499918122,
+            "p90": 0.7846001171014806,
+            "max": 0.935894068554188
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 8.344181482397395e-09,
+            "p90": 0.1863994676433922,
+            "max": 0.7365624909288931
+          },
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.6059850607862486e-07,
+            "p90": 0.18205313457876468,
+            "max": 0.7228372398187799
+          }
+        }
+      }
+    },
+    "ten_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          1.1544464555402134e-06,
+          0.9344748652017085
+        ],
+        "pseudo_range": [
+          0.0,
+          0.8517659376533411
+        ],
+        "overlap_interval": [
+          1.1544464555402134e-06,
+          0.8517659376533411
+        ],
+        "min_normal": 1.1544464555402134e-06,
+        "max_pseudo": 0.8517659376533411,
+        "gap": -0.8517647832068855,
+        "best_threshold": 0.05711713238959039,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 298,
+        "classification": "overlapping"
+      },
+      "member_geometry": {
+        "normal_range": [
+          5.341837683440663e-07,
+          0.9365120867924002
+        ],
+        "pseudo_range": [
+          0.0,
+          0.8525437311522461
+        ],
+        "overlap_interval": [
+          5.341837683440663e-07,
+          0.8525437311522461
+        ],
+        "min_normal": 5.341837683440663e-07,
+        "max_pseudo": 0.8525437311522461,
+        "gap": -0.8525431969684778,
+        "best_threshold": 0.05171947670370086,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 1515,
+        "classification": "overlapping"
+      },
+      "valid": true,
+      "violations_fraction": 0.04346557759626604,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 5.341837683440663e-07,
+            "p10": 0.4751274625773913,
+            "median": 0.691436759280482,
+            "p90": 0.851692063729344,
+            "max": 0.9365120867924002
+          },
+          "ensemble_mean": {
+            "min": 1.1544464555402134e-06,
+            "p10": 0.4759196467367977,
+            "median": 0.6911682162169674,
+            "p90": 0.8516009537277602,
+            "max": 0.9344748652017085
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.3539536655556359e-06,
+            "p90": 0.35139081109832304,
+            "max": 0.8525437311522461
+          },
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.3354240528512558e-06,
+            "p90": 0.35084523921230387,
+            "max": 0.8517659376533411
+          }
+        }
+      }
+    }
+  },
+  "GNSS": {
+    "two_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          3.607199970347401e-05,
+          0.9441176268826444
+        ],
+        "pseudo_range": [
+          0.0,
+          0.0
+        ],
+        "overlap_interval": null,
+        "min_normal": 3.607199970347401e-05,
+        "max_pseudo": 0.0,
+        "gap": 3.607199970347401e-05,
+        "best_threshold": 1.8035999851737004e-05,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 0,
+        "classification": "completely_separated"
+      },
+      "member_geometry": {
+        "normal_range": [
+          2.6199944570405233e-06,
+          0.9463912054798806
+        ],
+        "pseudo_range": [
+          0.0,
+          0.0
+        ],
+        "overlap_interval": null,
+        "min_normal": 2.6199944570405233e-06,
+        "max_pseudo": 0.0,
+        "gap": 2.6199944570405233e-06,
+        "best_threshold": 1.3099972285202617e-06,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 0,
+        "classification": "completely_separated"
+      },
+      "valid": false,
+      "violations_fraction": 0.0,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 2.6199944570405233e-06,
+            "p10": 0.29331046539109823,
+            "median": 0.8586723043102554,
+            "p90": 0.9385795800464499,
+            "max": 0.9463912054798806
+          },
+          "ensemble_mean": {
+            "min": 3.607199970347401e-05,
+            "p10": 0.2926054599580483,
+            "median": 0.8585657796273155,
+            "p90": 0.9381134503775522,
+            "max": 0.9441176268826444
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          },
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          }
+        }
+      }
+    },
+    "ten_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          0.005313832500264895,
+          0.9504522877200342
+        ],
+        "pseudo_range": [
+          0.0,
+          0.0
+        ],
+        "overlap_interval": null,
+        "min_normal": 0.005313832500264895,
+        "max_pseudo": 0.0,
+        "gap": 0.005313832500264895,
+        "best_threshold": 0.0026569162501324474,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 0,
+        "classification": "completely_separated"
+      },
+      "member_geometry": {
+        "normal_range": [
+          2.5597390996795066e-06,
+          0.9517128998285044
+        ],
+        "pseudo_range": [
+          0.0,
+          0.0
+        ],
+        "overlap_interval": null,
+        "min_normal": 2.5597390996795066e-06,
+        "max_pseudo": 0.0,
+        "gap": 2.5597390996795066e-06,
+        "best_threshold": 1.2798695498397533e-06,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 0,
+        "classification": "completely_separated"
+      },
+      "valid": false,
+      "violations_fraction": 0.0,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 2.5597390996795066e-06,
+            "p10": 0.43337402497847416,
+            "median": 0.8081461838986455,
+            "p90": 0.9357036129943365,
+            "max": 0.9517128998285044
+          },
+          "ensemble_mean": {
+            "min": 0.005313832500264895,
+            "p10": 0.43449427833947746,
+            "median": 0.8067928615542819,
+            "p90": 0.9349053662711218,
+            "max": 0.9504522877200342
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          },
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.0,
+            "max": 0.0
+          }
+        }
+      }
+    }
+  },
+  "IMU": {
+    "two_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          7.653479238329691e-05,
+          0.9868142041019728
+        ],
+        "pseudo_range": [
+          0.0,
+          0.6710715521380495
+        ],
+        "overlap_interval": [
+          7.653479238329691e-05,
+          0.6710715521380495
+        ],
+        "min_normal": 7.653479238329691e-05,
+        "max_pseudo": 0.6710715521380495,
+        "gap": -0.6709950173456661,
+        "best_threshold": 5.9462209131593005e-05,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 139,
+        "classification": "overlapping"
+      },
+      "member_geometry": {
+        "normal_range": [
+          6.943693312739631e-06,
+          0.9871087831306152
+        ],
+        "pseudo_range": [
+          0.0,
+          0.68472171080379
+        ],
+        "overlap_interval": [
+          6.943693312739631e-06,
+          0.68472171080379
+        ],
+        "min_normal": 6.943693312739631e-06,
+        "max_pseudo": 0.68472171080379,
+        "gap": -0.6847147671104772,
+        "best_threshold": 6.034818052581365e-05,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 705,
+        "classification": "overlapping"
+      },
+      "valid": true,
+      "violations_fraction": 0.03605706874189364,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 6.943693312739631e-06,
+            "p10": 0.17650703580835272,
+            "median": 0.9777729998556667,
+            "p90": 0.9791802278625169,
+            "max": 0.9871087831306152
+          },
+          "ensemble_mean": {
+            "min": 7.653479238329691e-05,
+            "p10": 0.1710604012604809,
+            "median": 0.9786728496181866,
+            "p90": 0.9788572674124002,
+            "max": 0.9868142041019728
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.06451971088820298,
+            "max": 0.68472171080379
+          },
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.07120665973738324,
+            "max": 0.6710715521380495
+          }
+        }
+      }
+    },
+    "ten_scenario": {
+      "mean_geometry": {
+        "normal_range": [
+          3.610076321030717e-07,
+          0.9817050325281953
+        ],
+        "pseudo_range": [
+          0.0,
+          0.7709489729192607
+        ],
+        "overlap_interval": [
+          3.610076321030717e-07,
+          0.7709489729192607
+        ],
+        "min_normal": 3.610076321030717e-07,
+        "max_pseudo": 0.7709489729192607,
+        "gap": -0.7709486119116286,
+        "best_threshold": 7.298607781899414e-07,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 294,
+        "classification": "overlapping"
+      },
+      "member_geometry": {
+        "normal_range": [
+          7.969170121463959e-08,
+          0.9819359400380289
+        ],
+        "pseudo_range": [
+          0.0,
+          0.7771780861257367
+        ],
+        "overlap_interval": [
+          7.969170121463959e-08,
+          0.7771780861257367
+        ],
+        "min_normal": 7.969170121463959e-08,
+        "max_pseudo": 0.7771780861257367,
+        "gap": -0.7771780064340355,
+        "best_threshold": 7.817968026396332e-07,
+        "threshold_rule": "normal iff score > threshold",
+        "violations": 1475,
+        "classification": "overlapping"
+      },
+      "valid": true,
+      "violations_fraction": 0.03813229571984436,
+      "raw_score_distributions": {
+        "normal": {
+          "pooled_members": {
+            "min": 7.969170121463959e-08,
+            "p10": 0.282110914451572,
+            "median": 0.967670633309066,
+            "p90": 0.9689102303152582,
+            "max": 0.9819359400380289
+          },
+          "ensemble_mean": {
+            "min": 3.610076321030717e-07,
+            "p10": 0.2822505785392058,
+            "median": 0.9681623366430397,
+            "p90": 0.9685911495806944,
+            "max": 0.9817050325281953
+          }
+        },
+        "pseudo": {
+          "pooled_members": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.14423477956562702,
+            "max": 0.7771780861257367
+          },
+          "ensemble_mean": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 0.14688196721035854,
+            "max": 0.7709489729192607
+          }
+        }
+      }
+    }
+  }
+}

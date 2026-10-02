@@ -1,0 +1,156 @@
+{
+  "attention_side_channel": {
+    "epistemic": "same canonical per-node E as feature column 1; use unchanged generic sender prior",
+    "epistemic_prior": "1/(1+E_j)",
+    "normalization": null,
+    "sender_only": true,
+    "standard_prior": "all ones",
+    "strength": 1,
+    "target_uncertainty_modifier": null
+  },
+  "canonical_row_order": "sort by (scenario_id,parent_tick,is_pseudo), clean before pseudo; identical data order and row keys for all methods/seeds",
+  "data_generation_performed": false,
+  "epistemic_side_channel_storage": "float64 canonical E supplied identically to both GATs; existing generic compute_epistemic_weights computes Python-float prior then stores float32, while model node features are cast to float32",
+  "graph_content_hash": "SHA256 of UTF8 sorted compact JSON provenance excluding graph_content_sha256, followed by C-contiguous little-endian float32 node_features bytes, little-endian float64 canonical epistemic side-channel bytes, and C-contiguous uint8 adjacency bytes; shapes/orders fixed here",
+  "handoff_agent_indices": [
+    0,
+    3,
+    1
+  ],
+  "node_count": 3,
+  "node_features": {
+    "fitted_scaler": null,
+    "model_dtype": "float32",
+    "order": [
+      "prob_normal",
+      "epistemic",
+      "aleatoric"
+    ],
+    "raw_compact_features_in_primary_node_vector": false,
+    "shape": [
+      3,
+      3
+    ],
+    "source_computation_dtype": "float64",
+    "total_omitted_reason": "total=aleatoric+epistemic is redundant",
+    "units": [
+      "probability",
+      "natural-log entropy nats",
+      "natural-log entropy nats"
+    ]
+  },
+  "node_order": [
+    "Camera",
+    "IMU",
+    "Seg"
+  ],
+  "per_node_target": "1 for every clean/untouched node; 0 only for the single corrupted valid node; provenance only, no auxiliary node loss",
+  "pseudo_sampling_reference": "protocol.json::FIT_graph_pseudo_policy",
+  "required_provenance": [
+    "row_key",
+    "pair_key",
+    "scenario_id",
+    "town",
+    "parent_tick",
+    "source_split",
+    "N20_partition",
+    "graph_split",
+    "is_pseudo",
+    "target_normal",
+    "target_normal_per_node",
+    "corrupted_agent",
+    "recipe_id",
+    "severity",
+    "generator_seed",
+    "generator_base_seed",
+    "window_start_tick",
+    "window_end_tick",
+    "source_hash_bundle_sha256",
+    "cache_content_sha256",
+    "calibration_parameters_sha256",
+    "feature_extractor_sha256",
+    "pseudo_registry_sha256",
+    "protocol_sha256",
+    "node_order",
+    "graph_content_sha256"
+  ],
+  "row_key_encoding": {
+    "clean_null_fields": [
+      "recipe_id",
+      "severity",
+      "generator_seed",
+      "corrupted_agent"
+    ],
+    "missing_is_null_not_zero": true,
+    "pair_key": "SHA256(UTF8 canonical sorted compact JSON {scenario_id,parent_tick,protocol_sha256}))",
+    "row_key": "SHA256(UTF8 canonical sorted compact JSON {pair_key,is_pseudo,recipe_id,severity,generator_seed}))"
+  },
+  "schema_version": 1,
+  "secondary_auxiliary": {
+    "GNSS_UQ": null,
+    "GNSS_node_present": false,
+    "GNSS_prob_normal": null,
+    "inputs": [
+      "mean of 5 raw GNSS normality scores",
+      "population std of those 5 raw scores (ddof=0)"
+    ],
+    "source": "same parent clean GNSS member scores for both members of every pair; no GNSS-only pseudo"
+  },
+  "target_normal": {
+    "clean": 1,
+    "meaning": "constructed normal-vs-controlled-corruption discrimination; neither official anomaly probability nor driving safety",
+    "single_valid_modality_pseudo": 0
+  },
+  "topology": {
+    "automatic_self_loop_insertion": false,
+    "directed_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "edge_pair_semantics": "[sender,receiver]",
+    "entry_semantics": "A[i,j]=1 means sender j communicates to receiver i",
+    "matrix": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0
+      ]
+    ],
+    "self_edges": false,
+    "spatial_edges": false
+  },
+  "unit": "one scenario/tick/constructed observation; not a temporal graph",
+  "untouched_nodes": "copy exact parent compact features AND canonical p/E/A; never zero-fill, re-corrupt, or re-extract clean features"
+}

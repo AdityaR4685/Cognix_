@@ -1,0 +1,89 @@
+{
+  "fresh_process_per_repeat": true,
+  "interpretation": "engineering only; no multi-seed method comparison",
+  "methods": {
+    "epistemic_gat": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    },
+    "nograph": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    },
+    "standard_gat": {
+      "accepted_repeat_tolerance": 0.0,
+      "checks": {
+        "batch_boundaries": true,
+        "best_checkpoint_content": true,
+        "checkpoint_payload_hashes": true,
+        "epoch_row_permutations": true,
+        "final_optimizer_sha256": true,
+        "final_state_sha256": true,
+        "full_loss_validation_history": true,
+        "initial_dropout_rng_sha256": true,
+        "initial_state_sha256": true,
+        "metrics": true,
+        "optimizer_configuration": true,
+        "prediction_arrays_exact": true,
+        "row_keyed_predictions": true,
+        "selected_epoch": true
+      },
+      "classification": "1_bitwise_exact",
+      "measured_max_abs_errors": {
+        "q_normal": 0.0,
+        "train_BCE": 0.0,
+        "validation_scenario_macro_BCE": 0.0
+      },
+      "passed": true,
+      "policy": "existing exact-repeat gate; no tolerance relaxation or deterministic fallback"
+    }
+  },
+  "passed": true,
+  "seed": 101
+}

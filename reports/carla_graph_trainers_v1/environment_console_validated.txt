@@ -1,0 +1,56 @@
+{
+  "status": "PROPOSED_LOCAL_VALIDATED_KAGGLE_UNVERIFIED",
+  "local_observed": {
+    "Python": "3.12.10",
+    "PyTorch": "2.14.0+cpu",
+    "NumPy": "1.26.4",
+    "scikit_learn": "1.9.0",
+    "scikit_learn_used": false,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "CUDA_available": false,
+    "torch_CUDA_runtime": null,
+    "cuDNN_version": null,
+    "devices": [],
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_benchmark": false,
+    "matmul_TF32": false,
+    "cuDNN_TF32": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "AMP": false,
+    "DataLoader_workers": 0,
+    "CPU_threads": 1,
+    "CUDA_validation": "not exercised on local CPU fixtures; deterministic-operation errors must stop future execution"
+  },
+  "expected_hashes": {
+    "graph_scientific": "baa7deb4f20698d3ed681d0676a14208ae1e9f9a88c0542a1024d5b14d416237",
+    "graph_schema": "5b678571d4ed112e5756e1364ff7966567a1338d87143ca120b3aede24d768fd",
+    "graph_manifest": "9f8c971b72ac260b9f48b7f3ab45561d62535c22002d38b53cf4712536f6e81d",
+    "protocol": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+    "split": "e95118b4149aa9d7e203f45679fb771a1123b97662dbe3548b9435ca8588b479"
+  },
+  "trainer_identity": {
+    "version": "carla_graph_trainers_v1",
+    "source_sha256": {
+      "graph_training.py": "b8d1d81b6615962a530b0082af72420a56f51e292f94fddbb8531a45b905557d",
+      "graph_training_data.py": "253c8740ab2c463eff92bc73bfcc2cc4362fb2dd5630dcd3c9c999aa415dc392",
+      "graph_training_models.py": "96592f17b388e1bc566183e09277b8fcb2cc7738ecde2b7d3bcc30bdc2bf6857",
+      "graph_training_metrics.py": "6191ecac3973da00425ee9bb16e80cfc0bb5a2bab328281ff20e599159b80eee"
+    },
+    "bundle_sha256": "9012174611be989f5305f5cbc40f05527831c9f704e49d8823c52fed88ccea3b"
+  },
+  "full_training_authorized_this_milestone": false,
+  "Kaggle_observed_versions": null,
+  "required_runtime": {
+    "single_GPU": "T4",
+    "distributed": false,
+    "deterministic_algorithms": true,
+    "TF32": false,
+    "cuDNN_deterministic": true,
+    "cuDNN_benchmark": false,
+    "AMP": false,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "future_validation": "Run validate_environment.py on the actual Kaggle runtime before enabling full training; never infer Kaggle package versions from local versions."
+}

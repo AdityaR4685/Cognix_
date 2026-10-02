@@ -1,0 +1,367 @@
+{
+  "NoGraph_role": "secondary/exploratory",
+  "per_seed": {
+    "101": {
+      "epistemic_gat": 0.8011996922541296,
+      "epistemic_minus_nograph": 0.0517973035582272,
+      "epistemic_minus_standard": -1.4824696298321172e-06,
+      "nograph": 0.7494023886959024,
+      "standard_gat": 0.8012011747237594,
+      "standard_minus_nograph": 0.051798786027857036
+    },
+    "202": {
+      "epistemic_gat": 0.8009957044330623,
+      "epistemic_minus_nograph": 0.05379813722502369,
+      "epistemic_minus_standard": 0.00014292860318787515,
+      "nograph": 0.7471975672080386,
+      "standard_gat": 0.8008527758298745,
+      "standard_minus_nograph": 0.053655208621835815
+    },
+    "303": {
+      "epistemic_gat": 0.8004853086703756,
+      "epistemic_minus_nograph": 0.054495305630200996,
+      "epistemic_minus_standard": -8.61685472353102e-06,
+      "nograph": 0.7459900030401746,
+      "standard_gat": 0.8004939255250991,
+      "standard_minus_nograph": 0.05450392248492453
+    },
+    "404": {
+      "epistemic_gat": 0.8024198944755881,
+      "epistemic_minus_nograph": 0.05410467488273585,
+      "epistemic_minus_standard": -2.8537540373019255e-06,
+      "nograph": 0.7483152195928523,
+      "standard_gat": 0.8024227482296254,
+      "standard_minus_nograph": 0.05410752863677315
+    },
+    "505": {
+      "epistemic_gat": 0.8036786038456819,
+      "epistemic_minus_nograph": 0.055805753190376506,
+      "epistemic_minus_standard": 2.279297055873819e-06,
+      "nograph": 0.7478728506553054,
+      "standard_gat": 0.803676324548626,
+      "standard_minus_nograph": 0.05580347389332063
+    }
+  },
+  "primary_contrast": "epistemic_gat minus standard_gat",
+  "primary_endpoint": "GRAPH_VALIDATION scenario_macro_AUROC on p_corrupt=1-q_normal",
+  "primary_summary": {
+    "complete": true,
+    "conditional_seed_CI": [
+      -5.4543476426879355e-05,
+      0.00010744540516811291
+    ],
+    "exact_two_sided_sign_flip_p": 0.875,
+    "max": 0.00014292860318787515,
+    "mean": 2.6450964370616782e-05,
+    "median": -1.4824696298321172e-06,
+    "min": -8.61685472353102e-06,
+    "paired_dz": 0.4054995608469083,
+    "per_seed": {
+      "101": -1.4824696298321172e-06,
+      "202": 0.00014292860318787515,
+      "303": -8.61685472353102e-06,
+      "404": -2.8537540373019255e-06,
+      "505": 2.279297055873819e-06
+    },
+    "sample_SD": 6.523056231028334e-05,
+    "undefined_reasons": {}
+  },
+  "secondary_descriptive_contrasts": {
+    "AUPRC": {
+      "101": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04723329708179402,
+        "epistemic_minus_standard": -7.488249775366995e-06,
+        "standard_minus_nograph": 0.04724078533156939,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.051040469265419275,
+        "epistemic_minus_standard": -0.0013515952925585717,
+        "standard_minus_nograph": 0.05239206455797785,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.05158497586637267,
+        "epistemic_minus_standard": -5.926197093375496e-05,
+        "standard_minus_nograph": 0.05164423783730643,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.0633333950695627,
+        "epistemic_minus_standard": -1.898534967426091e-05,
+        "standard_minus_nograph": 0.06335238041923696,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.0753254812468217,
+        "epistemic_minus_standard": 4.60366384658073e-06,
+        "standard_minus_nograph": 0.07532087758297512,
+        "undefined_reason": null
+      }
+    },
+    "AUROC": {
+      "101": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.0517973035582272,
+        "epistemic_minus_standard": -1.4824696298321172e-06,
+        "standard_minus_nograph": 0.051798786027857036,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.05379813722502369,
+        "epistemic_minus_standard": 0.00014292860318787515,
+        "standard_minus_nograph": 0.053655208621835815,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.054495305630200996,
+        "epistemic_minus_standard": -8.61685472353102e-06,
+        "standard_minus_nograph": 0.05450392248492453,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.05410467488273585,
+        "epistemic_minus_standard": -2.8537540373019255e-06,
+        "standard_minus_nograph": 0.05410752863677315,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.055805753190376506,
+        "epistemic_minus_standard": 2.279297055873819e-06,
+        "standard_minus_nograph": 0.05580347389332063,
+        "undefined_reason": null
+      }
+    },
+    "BCE": {
+      "101": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.10898609582291507,
+        "epistemic_minus_standard": -2.6624746476966443e-06,
+        "standard_minus_nograph": -0.10898343334826738,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.1097951442919381,
+        "epistemic_minus_standard": -1.368418939406979e-05,
+        "standard_minus_nograph": -0.10978146010254403,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.11176445634921828,
+        "epistemic_minus_standard": -5.440092684660947e-07,
+        "standard_minus_nograph": -0.11176391233994981,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.11048726408889326,
+        "epistemic_minus_standard": 3.992533162744394e-06,
+        "standard_minus_nograph": -0.110491256622056,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.11109694357582817,
+        "epistemic_minus_standard": -3.2616828423703836e-06,
+        "standard_minus_nograph": -0.1110936818929858,
+        "undefined_reason": null
+      }
+    },
+    "Brier": {
+      "101": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.047575333505970485,
+        "epistemic_minus_standard": -1.3564070114879812e-06,
+        "standard_minus_nograph": -0.047573977098959,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.04777453252899391,
+        "epistemic_minus_standard": -3.526398977057865e-05,
+        "standard_minus_nograph": -0.047739268539223334,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.048714194939899064,
+        "epistemic_minus_standard": -5.122186589601174e-07,
+        "standard_minus_nograph": -0.048713682721240104,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.047888849742599965,
+        "epistemic_minus_standard": 1.6021393542675622e-06,
+        "standard_minus_nograph": -0.04789045188195423,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.04829341592258532,
+        "epistemic_minus_standard": -1.0337706529695012e-06,
+        "standard_minus_nograph": -0.04829238215193235,
+        "undefined_reason": null
+      }
+    },
+    "ECE": {
+      "101": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.06958926465309313,
+        "epistemic_minus_standard": -7.186166555706031e-07,
+        "standard_minus_nograph": -0.06958854603643756,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.06444323710009095,
+        "epistemic_minus_standard": -0.0005863854798016238,
+        "standard_minus_nograph": -0.06385685162028933,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.052413905000197575,
+        "epistemic_minus_standard": -2.957082190918614e-07,
+        "standard_minus_nograph": -0.05241360929197848,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.0743667036335308,
+        "epistemic_minus_standard": 1.0154015112673331e-05,
+        "standard_minus_nograph": -0.07437685764864348,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": -1,
+        "epistemic_minus_nograph": -0.06929059676425191,
+        "epistemic_minus_standard": -2.6687785918522167e-05,
+        "standard_minus_nograph": -0.06926390897833339,
+        "undefined_reason": null
+      }
+    },
+    "F1": {
+      "101": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.018341664986163186,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.018341664986163186,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.019964005847918576,
+        "epistemic_minus_standard": -0.00036057131578282053,
+        "standard_minus_nograph": 0.020324577163701396,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.02044359553466424,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.02044359553466424,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.019908017089559804,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.019908017089559804,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.02242262129564665,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.02242262129564665,
+        "undefined_reason": null
+      }
+    },
+    "accuracy": {
+      "101": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04134711570523508,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.04134711570523508,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04568189396465461,
+        "epistemic_minus_standard": -0.0007224630432369761,
+        "standard_minus_nograph": 0.04640435700789158,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04696009781038135,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.04696009781038135,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.039846615538512764,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.039846615538512764,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.045181727242414205,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.045181727242414205,
+        "undefined_reason": null
+      }
+    },
+    "balanced_accuracy": {
+      "101": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04134711570523508,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.04134711570523508,
+        "undefined_reason": null
+      },
+      "202": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04568189396465483,
+        "epistemic_minus_standard": -0.000722463043236754,
+        "standard_minus_nograph": 0.04640435700789158,
+        "undefined_reason": null
+      },
+      "303": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.04696009781038146,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.04696009781038146,
+        "undefined_reason": null
+      },
+      "404": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.039846615538512875,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.039846615538512875,
+        "undefined_reason": null
+      },
+      "505": {
+        "better_direction": 1,
+        "epistemic_minus_nograph": 0.045181727242414205,
+        "epistemic_minus_standard": 0.0,
+        "standard_minus_nograph": 0.045181727242414205,
+        "undefined_reason": null
+      }
+    }
+  }
+}
