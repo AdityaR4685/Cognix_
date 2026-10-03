@@ -1,0 +1,74 @@
+{
+  "M4_M2_relationship": "M4 message passing plus its fixed mean(node_sigmoid) readout implements M2 collective fusion in this experiment",
+  "NoGraph": {
+    "architecture": "bias-free shared Linear(3,12) -> ELU -> Dropout(0.1) -> bias-free Linear(12,1); mean(sigmoid(node_logit))",
+    "implementation": "future report/adapter-side classifier; frozen core identity NoGraph remains unchanged",
+    "initialization": "Xavier uniform; matching run seed",
+    "inputs": "same p/E/A; same fixed 3 nodes",
+    "message_passing": false,
+    "name": "NoGraph shared-node MLP, distinct from frozen identity NoGraph plugin",
+    "parameters": 48,
+    "reason": "trainable nonlinear baseline with 48 parameters against 50 in each GAT; no deliberate information/capacity deficit"
+  },
+  "TEST_payload_access_authorized": false,
+  "architecture": {
+    "attention_logit": "LeakyReLU(a^T[W h_i || W h_j], negative_slope=0.2)",
+    "dropout": 0.1,
+    "dropout_location": "post-softmax normalized attention, exactly existing layer",
+    "final_activation": "linear node logits; sigmoid only for node probability",
+    "heads_per_layer": 1,
+    "hidden_dim": 8,
+    "initialization": "Xavier uniform for every W and attention vector; identical cloned tensors per Standard/Epistemic seed",
+    "input_dim": 3,
+    "intermediate_activation": "ELU",
+    "layers": 2,
+    "linear_bias": false,
+    "output_dim": 1,
+    "parameter_count_each": 50,
+    "pooling": "q_normal=mean_i sigmoid(z_i); no extra fusion, belief or decision layer"
+  },
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "collective_UQ": "Input canonical E/A is retained per agent. H_B(q) is predictive entropy, not a justified decomposition into collective E/A. Seed disagreement is descriptive, not canonical epistemic UQ.",
+  "equations": [
+    "x_m,t = frozen feature extractor(raw observation and trailing window [max(0,t-11),t])",
+    "u_m,k,t = sigmoid(a_m*s_m,k(x_m,t)+b_m), k=1..5, frozen one-class members and upstream calibrator",
+    "p_m,t = mean_k u_m,k,t; A_m,t = mean_k H_B(u_m,k,t); E_m,t = max(0,H_B(p_m,t)-A_m,t)",
+    "H_B(p) = -p log p -(1-p) log(1-p), production clipping unchanged",
+    "h_m,t^(0) = [p_m,t,E_m,t,A_m,t], computed float64 then model input float32; raw E retained float64",
+    "l_ij^(r) = LeakyReLU(a_r^T[W_r h_i^(r-1)||W_r h_j^(r-1)])",
+    "w_j=1 for StandardGAT; w_j=1/(1+raw E_j) for EpistemicGAT, at both layers",
+    "alpha_ij^(r) = exp(l_ij^(r))*w_j / sum_{k != i} exp(l_ik^(r))*w_k, j != i; alpha_ii=0",
+    "h_i^(1)=ELU(sum_{j != i}alpha_ij^(1) W_1 h_j^(0)); z_i=sum_{j != i}alpha_ij^(2) W_2 h_j^(1)",
+    "q_method,seed,t = (1/3) sum_i sigmoid(z_i,t); anomaly evidence score r=1-q",
+    "NoGraph: z_i=Linear_12to1(ELU(Linear_3to12(h_i^(0)))); same mean of node sigmoids",
+    "P_t(candidate y)=[q_t,1-q_t] in final protocol class order [normal=0,anomaly=1]",
+    "M3: frozen candidate score 1-P_t(y), scenario-block cutoff; M5 consumes q,r,p/E/A,sets and attention diagnostics"
+  ],
+  "executed": false,
+  "extra_probability_fusion": null,
+  "generic_engine_difference": "Generic pipeline refines node predictions then calls an independent belief fuser, and uses [1-fused,fused] at alpha=.05. Its generic semantics/order are not the adapter's final [normal,anomaly] contract. Do not route an already pooled q through that node-level path or change generic code.",
+  "graph_readout_is_collective_fusion": true,
+  "implementation_status": "M1 and graph/readout exist; final official-target adapter, scenario M3 adapter and M5/dashboard wiring are future work; not an implemented end-to-end final evaluator",
+  "inference": "eval mode; dropout disabled; frozen float32 execution and prior rounding, no AMP/TF32; no new scaling",
+  "input_order": [
+    "p_normal",
+    "E",
+    "A"
+  ],
+  "node_order": [
+    "Camera",
+    "IMU",
+    "Seg"
+  ],
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "separate_fusion_justified_when": "Only when a graph implementation returns distinct unfused node beliefs; the fixed mean readout is that fusion here. No epistemic weighted re-fusion, logit averaging, post-graph probability calibration, or extra learned head is permitted.",
+  "source_files": {
+    "M1": "cognix/adapters/carla/real_agents.py",
+    "M3": "cognix/calibration/conformal.py",
+    "M4_M2": "cognix/adapters/carla/graph_training_models.py",
+    "UQ": "cognix/adapters/carla/normality.py::ensemble_to_uncertainty",
+    "generic_orchestrator": "cognix/engine/pipeline.py"
+  },
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES"
+}
