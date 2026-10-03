@@ -1,0 +1,79 @@
+{
+  "HTTP_EOF_validated": false,
+  "RNG_instantiated": false,
+  "advertised_checksum_and_size": {
+    "bytes": 91538225599,
+    "sha256": "267e48f2249deb0269ad950aa81bca57dc02e3bbdf2d73acc172af267b18254a"
+  },
+  "archive_cache_or_extracted_members_created": false,
+  "attestation_scope": "Executed extractor access; not an OS-wide access trace.",
+  "authorization_reference": "access_preflight.json",
+  "budget_usage": {
+    "caps": {
+      "compressed_bytes_max": 91538225599,
+      "member_body_bytes_max": 68719476736,
+      "policy": "Hard caps include discarded bodies, padding and all compressed requests/retries. No automatic retries/restarts, expanded budgets or fallback. Exceeding any bound marks inventory incomplete and stops; revised bounds/source records need a separately sealed access amendment before another attempt.",
+      "tar_header_records_max": 10000000,
+      "uncompressed_bytes_max": 1099511627776,
+      "unique_scenarios_max": 627,
+      "volatile_chunk_bytes_max": 1048576,
+      "wall_clock_seconds_max": 86400
+    },
+    "compressed_bytes": 65536,
+    "decompressed_bytes": 512,
+    "headers": 1,
+    "unique_scenarios": 0
+  },
+  "canonicalization_counts": {},
+  "complete": false,
+  "compressed_bytes_consumed": 250,
+  "compressed_bytes_received": 65536,
+  "compressed_stream_digest": "34318265910e4bffaf7f5ab273d91f8c019aa81d64aac754205013aaef03028e",
+  "compressed_stream_digest_validated": false,
+  "decompressed_bytes_consumed": 512,
+  "digest_scope": "Received compressed prefix only; not release integrity proof",
+  "elapsed_seconds": 0.375,
+  "failure_reason_or_success": "UNSUPPORTED_TAR_HEADER_FORMAT",
+  "failure_type": "Stop",
+  "gzip_trailer_validated": false,
+  "header_bytes_consumed": 512,
+  "headers_visited": 1,
+  "inference_conformal_training_tuning": false,
+  "member_body_bytes_discarded": 0,
+  "no_eligible_inventory_seal_on_failure": true,
+  "no_retry_restart_or_fallback": true,
+  "padding_bytes_discarded": 0,
+  "partition_executed": false,
+  "preflight_manifest_sha256": "93cf8e723a47193d8f90f803a1d36db4f3419d5cee603fdd4337399514c4140b",
+  "protocol_sha256": "6eb3efd9daca378aebfcbbcbbf8f2ae160aa44d4ab5bfbde5d334bcefad2ea6a",
+  "publisher_release": "Official CarlAnomaly v1, Base TEST; Last-Modified Sun, 14 Jun 2026 09:32:31 GMT",
+  "requests": [
+    {
+      "HTTP_status": 200,
+      "bytes_received": 65536,
+      "method": "GET",
+      "range": null,
+      "requested_UTC": "2026-10-03T05:16:18.090653+00:00",
+      "response_headers": {
+        "Accept-Ranges": "bytes",
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "Connection": "close",
+        "Content-Length": "91538225599",
+        "Content-Type": "application/octet-stream",
+        "Date": "Sat, 03 Oct 2026 05:16:16 GMT",
+        "Etag": "\"6a2e752f-15501a79bf\"",
+        "Last-Modified": "Sun, 14 Jun 2026 09:32:31 GMT",
+        "Server": "nginx/1.31.6"
+      }
+    }
+  ],
+  "sensor_or_label_interpretation": false,
+  "source_URL": "https://data.carlanomaly.de/v1/carlanomaly-base-test.tar.gz",
+  "start_UTC": "2026-10-03T05:16:18.074491+00:00",
+  "stop_UTC": "2026-10-03T05:16:19.184365+00:00",
+  "tar_end_padding_bytes_discarded": 0,
+  "tar_full_termination_validated": false,
+  "tar_termination_bytes_consumed": 0,
+  "tool_source_sha256": "a024783196f26903741798e46333cd170a76bc79873c290d2b726cf3879d7c9d",
+  "unique_scenario_count": 0
+}

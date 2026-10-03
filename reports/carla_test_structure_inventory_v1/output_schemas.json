@@ -1,0 +1,151 @@
+{
+  "access_ledger": {
+    "description": "Counters/source/protocol bindings only. No child paths, sensor bodies or annotation identifiers.",
+    "required": [
+      "authorization_reference",
+      "tool_source_sha256",
+      "protocol_sha256",
+      "source_URL",
+      "publisher_release",
+      "advertised_checksum_and_size",
+      "start_UTC",
+      "stop_UTC",
+      "requests",
+      "compressed_bytes_received",
+      "compressed_bytes_consumed",
+      "decompressed_bytes_consumed",
+      "header_bytes_consumed",
+      "member_body_bytes_discarded",
+      "padding_bytes_discarded",
+      "gzip_trailer_validated",
+      "HTTP_EOF_validated",
+      "tar_full_termination_validated",
+      "compressed_stream_digest_validated",
+      "headers_visited",
+      "unique_scenario_count",
+      "canonicalization_counts",
+      "budget_usage",
+      "complete",
+      "failure_reason_or_success"
+    ],
+    "type": "object"
+  },
+  "failure_policy": "Failure emits access ledger and header events but no source/eligible inventory or inventory seal.",
+  "header_access_ledger_jsonl": {
+    "additionalProperties": false,
+    "properties": {
+      "canonicalization_rule": {
+        "type": "string"
+      },
+      "compressed_bytes_received_counter": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "compressed_input_counter": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "declared_body_size": {
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "decompressed_header_offset": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "header_type": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "member_body_bytes_discarded": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "padding_bytes_discarded": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "parse_or_failure_code": {
+        "type": "string"
+      },
+      "scenario_ID_or_structural_root": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "sequence_number": {
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    "required": [
+      "sequence_number",
+      "decompressed_header_offset",
+      "compressed_input_counter",
+      "compressed_bytes_received_counter",
+      "header_type",
+      "declared_body_size",
+      "member_body_bytes_discarded",
+      "padding_bytes_discarded",
+      "scenario_ID_or_structural_root",
+      "parse_or_failure_code"
+    ],
+    "type": "object"
+  },
+  "historical_exclusion_decisions": {
+    "required": [
+      "exact_exclusions",
+      "excluded_from_both_final_roles",
+      "historical_file_level_ledger_complete",
+      "additional_authenticated_exposures_established_this_milestone",
+      "no_guessed_IDs_or_families",
+      "source_record_sha256"
+    ],
+    "type": "object"
+  },
+  "scenario_inventory": {
+    "items": {
+      "additionalProperties": false,
+      "properties": {
+        "anomaly_type": {
+          "type": "string"
+        },
+        "directory_condition": {
+          "enum": [
+            "normal",
+            "anomaly"
+          ]
+        },
+        "scenario_id": {
+          "type": "string"
+        },
+        "town": {
+          "enum": [
+            "Town01",
+            "Town02",
+            "Town03",
+            "Town04",
+            "Town05",
+            "Town10HD"
+          ]
+        }
+      },
+      "required": [
+        "scenario_id",
+        "town",
+        "directory_condition",
+        "anomaly_type"
+      ],
+      "type": "object"
+    },
+    "type": "array",
+    "uniqueItems": true
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,36 @@
+{
+  "Amendment_003_modified": false,
+  "HTTP_method": "GET",
+  "HTTP_range": "bytes=0-65535",
+  "advertised_archive_bytes": 91538225599,
+  "archive_attempts_allowed": 1,
+  "authorization": "Explicit user request, preserved in user_request.txt",
+  "historical_advertised_archive_sha256": "267e48f2249deb0269ad950aa81bca57dc02e3bbdf2d73acc172af267b18254a",
+  "historical_header_source": "User-provided historical official TEST probe evidence; no fresh parser-development exposure",
+  "inventory_RNG_partition_payload_science_commit_push_authorized": false,
+  "known_headers": [
+    {
+      "magic_hex": "757374617220",
+      "path": "test/anomaly/Town01/change-weather/scenario-1/rgb-front/",
+      "size": 0,
+      "typeflag_hex": "35"
+    },
+    {
+      "magic_hex": "757374617220",
+      "path": "test/anomaly/Town01/change-weather/scenario-1/rgb-front/000000.jpg",
+      "size": 238500,
+      "typeflag_hex": "30"
+    }
+  ],
+  "max_decompressed_bytes": 1024,
+  "max_headers": 2,
+  "maximum_compressed_response_bytes": 65536,
+  "milestone": "HEADER-ACCESS AMENDMENT + BOUNDED VALIDATION ONLY",
+  "redirects_retries_fallbacks_larger_ranges_allowed": false,
+  "scientific_partition_conformal_metric_model_randomization_rules_changed": false,
+  "seed_modified": false,
+  "source_ETag": "\"6a2e752f-15501a79bf\"",
+  "source_URL": "https://data.carlanomaly.de/v1/carlanomaly-base-test.tar.gz",
+  "source_metadata_basis": "Existing sealed prior attempt only; no new HEAD/checksum request",
+  "stop_on_recognition_of_both_historical_headers": true
+}

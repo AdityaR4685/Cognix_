@@ -1,0 +1,31 @@
+{
+  "HEAD_equality_check": "RECONCILED_AUTHORIZED_HEAD",
+  "allowed_changed_prefix": "reports/carla_final_evaluation_preregistration_v1/",
+  "ancestor_verification": {
+    "command": "git merge-base --is-ancestor 8ab81bc51ad8254cad9068671c92bf4ba7c1d4fa cdf9d74c09257b1a5dde35c2134f08496e31bee1",
+    "exit_code": 0,
+    "passed": true
+  },
+  "archive_access_before_record": false,
+  "authorized_execution_HEAD": "cdf9d74c09257b1a5dde35c2134f08496e31bee1",
+  "changed_tracked_file_count": 207,
+  "changed_tracked_files_outside_allowed_prefix": 0,
+  "classification": "ADMINISTRATIVE_PROVENANCE_ONLY",
+  "current_commit_message": "Freeze final CARLA evaluation protocol and provenance audits",
+  "current_commit_parents": [
+    "8ab81bc51ad8254cad9068671c92bf4ba7c1d4fa"
+  ],
+  "current_tracked_worktree_status": {
+    "clean": true,
+    "porcelain_entries": []
+  },
+  "direct_descendant_verified": true,
+  "explanation": "The later commit records the already-sealed Amendments 002/003 protocol, history, verifier, randomization receipt and seal artifacts. The historical Amendment 003 HEAD and all existing seals remain unchanged. This execution HEAD is authorized by the user for the structure-only inventory milestone.",
+  "myfork_main_HEAD": "cdf9d74c09257b1a5dde35c2134f08496e31bee1",
+  "pre_existing_untracked_entry_count": 471,
+  "pre_existing_untracked_status_sha256": "27a387a49b92c3bd7c75dd0e7f57ec3ed4d369e4df3e158d9251cf7826ff3467",
+  "protocol_or_scientific_amendment": false,
+  "recorded_at_utc": "2026-10-03T05:07:46.954237+00:00",
+  "schema_version": 1,
+  "sealed_historical_HEAD": "8ab81bc51ad8254cad9068671c92bf4ba7c1d4fa"
+}

@@ -1,0 +1,24 @@
+{
+  "RNG_instantiated": false,
+  "official_TEST_accessed": false,
+  "parser_sha256": "46607a9913d0650e29a919ea0efe3c3839ac81d0a83eeb4fb2777cdcc13932aa",
+  "passed": true,
+  "synthetic_only": true,
+  "test_group_count": 12,
+  "test_groups": [
+    "AST: only authorized header acceptance/reason changed; sealed guards and stream reader reused",
+    "directory type 5, size zero, space-terminated ustar",
+    "ASCII 0 and NUL regular files with positive octal size, space-terminated ustar",
+    "existing POSIX ustar/version/prefix and zero-magic representation preserved",
+    "checksum corruption rejected",
+    "malformed/empty/non-octal/binary sizes and truncated header rejected",
+    "all 253 unauthorized typeflag bytes rejected, including links/devices/FIFO/GNU/PAX",
+    "unexpected magic rejected",
+    "existing path restrictions, link-name and ambiguous NUL-field guards preserved",
+    "exact body discard and 512-byte alignment/padding advancement for six boundary sizes",
+    "validation stops at two known synthetic headers; JPEG-shaped body/third header never decompressed; exact counters",
+    "failure records exact raw structural metadata and stops before any body"
+  ],
+  "test_sha256": "4f513a68d9962ace13d586410e29d8212397820e819d95818ee34391bf03a5a7",
+  "validator_sha256": "e2f1bcb136e2ae7de50b9df700a0c3b58f8a950472dae836f30c8714fe21cf82"
+}

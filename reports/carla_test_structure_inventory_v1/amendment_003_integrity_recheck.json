@@ -1,0 +1,34 @@
+{
+  "HEAD_equality_check": "RECONCILED_AUTHORIZED_HEAD",
+  "RNG_instantiated": false,
+  "all_other_assertions_unmodified": true,
+  "archive_accessed": false,
+  "current_manifest_sha256": "e0f20f0b012eff901acd0e46884635cc904a5be88c72bbfcffe5bb0d0a1c2593",
+  "only_in_memory_change": {
+    "original": "assert git(\"rev-parse\", \"HEAD\").strip() == base[\"git_head\"]",
+    "replacement": "assert git(\"rev-parse\", \"HEAD\").strip() == \"cdf9d74c09257b1a5dde35c2134f08496e31bee1\" and base[\"git_head\"] == \"8ab81bc51ad8254cad9068671c92bf4ba7c1d4fa\""
+  },
+  "partition_executed": false,
+  "passed": true,
+  "recorded_at_utc": "2026-10-03T05:07:45.748141+00:00",
+  "sealed_files": 250,
+  "sealed_files_modified": false,
+  "sealed_verifier_sha256": "fe3fb276ca6160fe2e146f8818defcd26cd03da45ab404ca8672ec1ec7dffa7a",
+  "validation": {
+    "TEST_partition_ready": false,
+    "all_Amendment_002_science_metrics_exclusions_subgroups_unchanged": true,
+    "amendment_id": "003_partition_randomization_clarification_only",
+    "archive_files_verified": 122,
+    "conformal_fitting_ready": false,
+    "finite_catalogue_and_population_interpretations_separated": true,
+    "inventory_access_design_unchanged_except_randomization_timing": true,
+    "metadata_audit_entries_verified": 26,
+    "partition_seed_decimal": "334227055836169582741732795999208677637",
+    "passed": true,
+    "provenance_audit_entries_verified": 188,
+    "ratio_unit_score_conformal_alpha_model_seeds_unchanged": true,
+    "receipt_sha256": "2a6cc338637a6a2b6ce661f6711ac4ea3e45ff6337346d27ff1b4753e3377368",
+    "single_OS_draw_recorded_and_receipt_unchanged": true,
+    "verification_scope": "Protocol/audit/source/config metadata and static source checks only; receipt inspected without any redraw; no NumPy import, PCG64 creation, permutation, inventory, sensor/label/prediction/checkpoint reads or scientific fitting."
+  }
+}

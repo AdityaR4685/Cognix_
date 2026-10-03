@@ -1,0 +1,128 @@
+Continue COGNIX after the stopped structure-only TEST inventory attempt.
+Current stopped-attempt report:
+reports/carla_test_structure_inventory_v1/report.md
+The single attempt stopped on the first tar header with:
+UNSUPPORTED_TAR_HEADER_FORMAT
+No scenario inventory was produced.
+Historical official TEST probe evidence already exists and establishes the exact first two decompressed tar headers:
+Header 1:
+- path:
+  test/anomaly/Town01/change-weather/scenario-1/rgb-front/
+- size: 0
+- typeflag: '5'
+- magic bytes: b'ustar '
+Header 2:
+- path:
+  test/anomaly/Town01/change-weather/scenario-1/rgb-front/000000.jpg
+- size: 238500
+- typeflag: '0'
+- magic bytes: b'ustar '
+These were historically observed before the current final-evaluation protocol and are already covered by the sealed historical exposure record. Do not access TEST merely to rediscover them.
+This milestone is:
+HEADER-ACCESS AMENDMENT + BOUNDED VALIDATION ONLY
+It is administrative/archive-structure handling only. It must not change any scientific, partition, conformal, metric, model or randomization rule.
+Phase A — create amendment without TEST access
+Before any archive access, create and seal:
+reports/carla_test_structure_inventory_v1/header_access_amendment_001/
+Record that the previously sealed parser was too restrictive for the already-observed official tar header representation.
+Amend only tar-header acceptance.
+The parser must accept:
+1. regular-file typeflag:
+   - ASCII '0'
+   - NUL typeflag where standard tar semantics mean regular file
+2. directory typeflag:
+   - ASCII '5'
+3. the already-observed archive magic representation:
+   b'ustar '
+while preserving any already-supported valid POSIX ustar representation.
+Directory entries:
+- may have zero body size;
+- are structural metadata;
+- must never cause payload decoding;
+- may contribute path evidence.
+Regular files:
+- parse header metadata only;
+- their body bytes may transit/decompress only so the stream can advance;
+- never decode or inspect their contents.
+Preserve existing:
+- checksum validation;
+- octal size validation;
+- block alignment/padding logic;
+- fail-closed behavior;
+- path parsing restrictions;
+- access counters;
+- payload noninterpretation rules.
+Do not silently accept arbitrary unknown typeflags.
+If any typeflag other than explicitly authorized regular-file or directory forms is encountered in a later run:
+STOP_UNSUPPORTED_TAR_TYPEFLAG
+and record its raw typeflag/header metadata without reading its body semantically.
+Likewise, unexpected header magic must fail closed.
+Do not broaden to symlink, hardlink, character/block device, FIFO, GNU long-name, PAX extended header, or other formats in this amendment unless already supported by the sealed parser. If one is later encountered, stop and request separate authorization.
+Offline tests
+Before TEST access, add deterministic synthetic byte-level tests for:
+- typeflag='5', size 0, magic=b'ustar ';
+- typeflag='0', ordinary positive size, magic=b'ustar ';
+- regular NUL typeflag if supported;
+- checksum rejection;
+- malformed size rejection;
+- unsupported typeflag rejection;
+- unsupported magic rejection;
+- correct 512-byte body/padding advancement.
+Tests must use synthetic headers only.
+Do not use TEST bytes for parser development.
+Seal the amendment and parser/test hashes before any validation access.
+Phase B — one bounded official validation attempt
+Only after the amendment seal verifies, authorize exactly one new TEST access:
+- official carlanomaly-base-test.tar.gz
+- HTTP range from byte 0
+- maximum response: 65,536 compressed bytes
+- no retry;
+- no fallback;
+- no automatic larger range.
+Purpose:
+verify that the amended parser recognizes the already-historically-exposed initial structural headers.
+The validation may parse tar headers only.
+Stop as soon as both of these already-known historical members have been recognized:
+test/anomaly/Town01/change-weather/scenario-1/rgb-front/
+and
+test/anomaly/Town01/change-weather/scenario-1/rgb-front/000000.jpg
+Do not intentionally continue to discover additional member paths once this validation condition is met.
+Do not decode JPEG data.
+Do not persist member bodies.
+Record exact:
+- compressed bytes requested;
+- compressed bytes received;
+- compressed bytes consumed;
+- decompressed bytes produced;
+- headers parsed;
+- typeflags;
+- magic/version fields;
+- header checksum verdict;
+- body bytes discarded/transited;
+- stop reason.
+Expected successful terminal state:
+HEADER_ACCESS_VALIDATED
+This is not an inventory and must not create:
+- scenario inventory;
+- eligible inventory;
+- partition membership;
+- RNG state.
+Hard invariants
+Do NOT:
+- modify Amendment 003;
+- alter the sealed partition seed;
+- instantiate PCG64;
+- permute scenario IDs;
+- assign CAL/EVAL;
+- inspect TEST labels;
+- parse Feather;
+- decode JPEG/PNG;
+- run feature extraction;
+- run model inference;
+- fit conformal;
+- compute performance;
+- train or tune;
+- commit or push.
+If the bounded validation still fails, stop with the exact raw structural reason.
+If it succeeds, seal the validation evidence and stop.
+Do not proceed automatically to the full 91.5 GB sequential inventory traversal.

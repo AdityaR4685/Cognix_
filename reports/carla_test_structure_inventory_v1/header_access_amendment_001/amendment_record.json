@@ -1,0 +1,39 @@
+{
+  "client_date": "2026-10-03",
+  "client_timezone": "Asia/Calcutta",
+  "created_UTC": "2026-10-03T05:30:59.387890+00:00",
+  "directory_semantics": "Structural metadata, zero body permitted; preserve NONZERO_DIRECTORY_BODY guard; no payload decoding",
+  "directory_typeflags_hex": [
+    "35"
+  ],
+  "full_inventory_traversal_authorized": false,
+  "id": "header_access_amendment_001",
+  "other_types_or_formats_authorized": false,
+  "phase_A_TEST_accessed": false,
+  "preserved_guards": [
+    "checksum",
+    "octal size",
+    "block alignment/padding",
+    "fail closed",
+    "path parsing",
+    "access counters",
+    "payload noninterpretation",
+    "POSIX version/prefix",
+    "no link name"
+  ],
+  "prior_parser_sha256": "a024783196f26903741798e46333cd170a76bc79873c290d2b726cf3879d7c9d",
+  "prior_stop_reason": "UNSUPPORTED_TAR_HEADER_FORMAT",
+  "reason": "Previously sealed parser was too restrictive for the already-observed official b'ustar ' tar-header representation.",
+  "regular_semantics": "Header metadata only; opaque body transit only if needed to advance. This two-header validation stops before its first regular body.",
+  "regular_typeflags_hex": [
+    "30",
+    "00"
+  ],
+  "seal_requirement": "Parser/tests/driver/authorization and their synthetic results sealed and verified before any new TEST access",
+  "space_ustar_field_interpretation": "Name field only, no POSIX prefix. Preserve POSIX-only 00 version gate; other versions on the newly authorized magic are recorded, not used to enable extensions.",
+  "tar_header_changes_only": [
+    "Accept b'ustar ' alongside prior b'ustar\\0' and zero-magic forms",
+    "Reject every non-0/non-NUL/non-5 flag as STOP_UNSUPPORTED_TAR_TYPEFLAG"
+  ],
+  "unmodified_records": "All prior attempt files and all Amendment 003 files remain byte-identical. No scientific or protocol reseal."
+}
