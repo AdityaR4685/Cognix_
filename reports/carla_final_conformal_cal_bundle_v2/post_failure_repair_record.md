@@ -1,0 +1,7 @@
+# Post-failure implementation compatibility repair
+
+A separately authorized Attempt 002 is permissible as an implementation compatibility repair of an existing frozen contract. No method/data/model tuning; no partial results, no finalized thresholds or EVAL scientific decoding from Attempt 001. Prior physical TEST transport remains acknowledged; Attempt 002 is not relabelled as first access.
+
+Bound to v1 commit 1688bd7, manifest bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe. Exact supplied Attempt 001 evidence and its independent failure seal are bound in the JSON record. The only inference-path changes are modality validation and the isolated output path. Frozen scientific files and membership/score/quantile semantics are compared byte-for-byte. Amendment 003 and all prior records remain unchanged. This record authorizes preparation only; human authorization of Attempt 002 must be separate. No scientific execution has occurred during preparation.
+
+Historical provenance correction: the actual Attempt 001 terminal traceback and exception-audit traceback are user-supplied historical evidence, now AVAILABLE. Actual failing image mode/shape/dtype remain unknown. The standalone original failure snapshot stays immutable; a sealed traceback addendum and corrected bundled snapshot are linked in the JSON record. Offline synthetic reproduction remains separately labelled corroboration. No implementation or scientific binding changed.

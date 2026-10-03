@@ -1,0 +1,38 @@
+{
+  "TEST_network_requests": 0,
+  "groups": [
+    {
+      "group": "historical_v1_actual_processor_rejects_2D_uint8_PNG",
+      "status": "PASSED"
+    },
+    {
+      "group": "v2_2D_uint8_PNG_exact_frozen_TRAIN_array_and_feature_semantics",
+      "status": "PASSED"
+    },
+    {
+      "group": "3D_segmentation_preserves_channel_zero_ignores_other_channels",
+      "status": "PASSED"
+    },
+    {
+      "group": "camera_strict_RGB_and_segmentation_separate_fail_loud_schema_errors",
+      "status": "PASSED"
+    },
+    {
+      "group": "frozen_segmentation_class_range_refusal_preserved",
+      "status": "PASSED"
+    },
+    {
+      "group": "EVAL_and_exclusion_image_Feather_feature_decoder_spies_unreachable",
+      "status": "PASSED"
+    },
+    {
+      "group": "2D_PNG_synthetic_archive_fifteen_frozen_scorers_end_to_end",
+      "status": "PASSED"
+    }
+  ],
+  "real_TEST_bytes_used": 0,
+  "regression_groups_failed": 0,
+  "regression_groups_passed": 7,
+  "synthetic_v1_reproduction_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\regression_verification.py\", line 29, in expect_error\n    fn()\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\regression_verification.py\", line 54, in <lambda>\n    synthetic_traceback = expect_error(lambda: historical(c, \"segmentation-front/000001.png\", png), \"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\")\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\evidence\\v1_runner.py.txt\", line 82, in __call__\n    raise ValueError(\"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\")\nValueError: FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\n",
+  "traceback_provenance": "Offline synthetic corroboration only; actual Attempt 001 traceback is separately available as user-supplied historical evidence"
+}

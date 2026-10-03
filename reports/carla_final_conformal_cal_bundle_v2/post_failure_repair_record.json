@@ -1,0 +1,57 @@
+{
+  "Amendment_003_modified": false,
+  "actual_failed_image_properties": "NOT_RECORDED; mode/shape/dtype remain unknown",
+  "attempt001_evidence": {
+    "access_ledger.json": {
+      "automatic_retry": false,
+      "cal_only_science": true,
+      "cal_scenarios_completed": 0,
+      "compressed_bytes_received": 840761354,
+      "compressed_sha256_partial_or_complete": "2cd357e97c8a19ac57c28b94afe9082e780c5fce43dfbeed65c50ea5313d4f0f",
+      "eval_scenarios_decoded": 0,
+      "http_requests": 1,
+      "opaque_body_bytes_discarded_by_role": {
+        "CAL": 131589081,
+        "EVAL_OPAQUE_DISCARD": 526258000,
+        "EXCLUDED_OPAQUE_DISCARD": 240747299
+      },
+      "range_requests": 0,
+      "raw_archive_retained": false,
+      "scenario_roots_seen": 7,
+      "transport_is_not_scientific_decoding": true
+    },
+    "failure_exception_audit.json": {
+      "cal_completed": 0,
+      "exception": "ValueError",
+      "message": "FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB",
+      "status": "INCOMPLETE_NO_RETRY",
+      "traceback": "Traceback (most recent call last):\n  File \"/kaggle/working/cognix_cal_bundle/runner.py\", line 195, in execute\n    receipt = scan(response, cal, evaluation, exclusions, processor, ledger, EXPECTED_SIZE)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/cognix_cal_bundle/streaming.py\", line 118, in scan\n    on_cal(sid, relative, read_exact(size))\n  File \"/kaggle/working/cognix_cal_bundle/runner.py\", line 82, in __call__\n    raise ValueError(\"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\")\nValueError: FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\n"
+    },
+    "result_manifest.json": {
+      "must_not_use_partial_scores_as_final_thresholds": true,
+      "status": "INCOMPLETE"
+    }
+  },
+  "attempt001_evidence_sha256": {
+    "access_ledger.json": "3de4cd017f4f9e3c96e03c00b745f377d06847bfcbc43dab77179b3cea97d99c",
+    "failure_exception_audit.json": "963f8bf33d31e162e2104c7ede6533df059381430c92de16d91289d2587f5f1b",
+    "result_manifest.json": "363993c06b271d7cda0f6ab91167975fa8497dd6dab83bbbd7e99c7799d54b84"
+  },
+  "attempt001_failure_manifest_scope": "Corrected current bundled evidence snapshot; original standalone failure seal preserved separately",
+  "attempt001_failure_manifest_sha256": "2aaae66a12bac5a17dd431ebad5751c1a23f2350a494fc88e54587b7cd6d7635",
+  "attempt001_original_failure_manifest_sha256": "9a07fd2d41796725bb628a2cf257311c24b06da37ca187fc86b92180ed8d215d",
+  "attempt001_traceback_addendum_manifest_sha256": "147d3cb7bee253f480ecc09ce9663e11794056e66820c38f01d914102c2badcf",
+  "attempt002_authorized_by_this_preparation": false,
+  "attempt002_executed": false,
+  "historical_traceback_status": "AVAILABLE_USER_SUPPLIED_FROM_ACTUAL_ATTEMPT001",
+  "new_protocol_revision": false,
+  "output": "/kaggle/working/cognix_final_conformal_cal_attempt002_v1",
+  "prior_history_modified": false,
+  "record_type": "POST_FAILURE_IMPLEMENTATION_COMPATIBILITY_REPAIR",
+  "repair": "Separate camera/segmentation validation; accept uint8 2D map or 3D with channel zero available; preserve direct np.asarray semantics and frozen extractor; isolated Attempt 002 output",
+  "scientific_permissibility": "A separately authorized Attempt 002 is permissible as an implementation compatibility repair of an existing frozen contract. No method/data/model tuning; no partial results, no finalized thresholds or EVAL scientific decoding from Attempt 001. Prior physical TEST transport remains acknowledged; Attempt 002 is not relabelled as first access.",
+  "selection_basis": "Frozen source/TRAIN-compatible synthetic fixtures; no TEST payload/CAL outcomes/CAL labels/anomaly performance/EVAL outcomes",
+  "separate_attempt002_authorization_required": true,
+  "v1_commit": "1688bd79375e09d6a1fc78c4615b7b2745af489a",
+  "v1_manifest_sha256": "bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe"
+}

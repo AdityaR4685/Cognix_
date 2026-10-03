@@ -1,0 +1,30 @@
+{
+  "CAL_scenarios_completed": 0,
+  "EVAL_scenarios_decoded": 0,
+  "attempt": 1,
+  "automatic_retry": false,
+  "compressed_bytes_received": 840761354,
+  "failed_image_properties": null,
+  "failed_scenario_ID": null,
+  "http_GET_count": 1,
+  "ledger_limitation": "streaming.py increments body_bytes[role] for every non-directory body before decode/discard and before full body consumption. CAL=131589081 is accounted member-body size, not evidence of entirely opaque/discarded CAL bytes. EVAL/exclusion roles are opaque-discard only; on a failure counters need not prove complete consumption of the final counted body. Preserve historical ledger unchanged.",
+  "observed_exception": {
+    "cal_completed": 0,
+    "exception": "ValueError",
+    "message": "FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB",
+    "status": "INCOMPLETE_NO_RETRY"
+  },
+  "partial_results_forbidden": true,
+  "pre_access_gate_evidence": "User attestation plus sealed v1 pre_access_validation.json; execution-time gate transcript not supplied",
+  "pre_access_gates_passed_before_attempt": true,
+  "repair_selection_basis": "Frozen source and TRAIN-compatible synthetic fixtures only; no CAL labels/outcomes, EVAL outcomes, anomaly performance or TEST payload",
+  "root_cause": "Shared runner RGB gate is inconsistent with already-frozen segmentation contract. A legitimate 2D uint8 segmentation PNG is rejected before the unchanged histogram extractor. The actual failed image shape/mode/modality was not recorded in supplied evidence.",
+  "scenario_roots_seen": 7,
+  "scientific_failure": "No completed CAL scenario, no finalized thresholds. Compressed partial-or-complete digest is not a verified full archive receipt.",
+  "source": "User-supplied evidence; no original output directory or traceback supplied",
+  "status": "INCOMPLETE_NO_RETRY",
+  "thresholds_finalized": 0,
+  "v1_commit": "1688bd79375e09d6a1fc78c4615b7b2745af489a",
+  "v1_immutable": true,
+  "v1_manifest_sha256": "bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe"
+}

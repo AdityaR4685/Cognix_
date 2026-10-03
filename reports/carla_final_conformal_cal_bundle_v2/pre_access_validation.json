@@ -1,0 +1,110 @@
+{
+  "CAL_count": 125,
+  "EVAL_count": 500,
+  "Kaggle_notebook_executed": false,
+  "NO_TEST_PAYLOAD_ACCESSED": true,
+  "TEST_network_requests": 0,
+  "TEST_payload_bytes_accessed": 0,
+  "actual_failed_image_properties": "NOT_RECORDED; mode/shape/dtype remain unknown",
+  "all_frozen_states_strictly_loadable": true,
+  "archive_HTTP_GET_HEAD_range_requests": 0,
+  "attempt002_authorized": false,
+  "attempt002_executed": false,
+  "commit": false,
+  "frozen_scorer_states": 15,
+  "groups": [
+    {
+      "group": "opaque_EVAL_and_historical_exclusion_before_decode",
+      "status": "PASSED"
+    },
+    {
+      "group": "unknown_ID_before_body_callback",
+      "status": "PASSED"
+    },
+    {
+      "group": "unsafe_paths_and_links",
+      "status": "PASSED"
+    },
+    {
+      "group": "gzip_corruption_and_truncation",
+      "status": "PASSED"
+    },
+    {
+      "group": "noncontiguous_scenario_rejected",
+      "status": "PASSED"
+    },
+    {
+      "group": "incremental_full_archive_hash_and_size_bound",
+      "status": "PASSED"
+    },
+    {
+      "group": "official_tick_labels_strict_alignment_and_class_order",
+      "status": "PASSED"
+    },
+    {
+      "group": "block_maximum_augmented_rank_ties_and_infinity",
+      "status": "PASSED"
+    },
+    {
+      "group": "all_fifteen_states_strict_load_and_training_disabled",
+      "status": "PASSED"
+    },
+    {
+      "group": "frozen_entropy_decomposition_and_causal_window",
+      "status": "PASSED"
+    },
+    {
+      "group": "frozen_scorers_synthetic_forward_attention",
+      "status": "PASSED"
+    },
+    {
+      "group": "synthetic_archive_labels_features_fifteen_scorers_block_scores",
+      "status": "PASSED"
+    },
+    {
+      "group": "incomplete_archive_scenario_set_refusal",
+      "status": "PASSED"
+    }
+  ],
+  "historical_failure_directory_sealed": true,
+  "historical_traceback_status": "AVAILABLE_USER_SUPPLIED_FROM_ACTUAL_ATTEMPT001",
+  "local_offline_runtime": {
+    "NumPy": "1.26.4",
+    "Pillow": "12.3.0",
+    "PyArrow": "25.0.1",
+    "PyTorch": "2.14.0+cpu",
+    "Python": "3.12.10",
+    "pandas": "2.3.3"
+  },
+  "network_guard": "Process-local Python audit hook in each offline verifier/test subprocess; no OS-wide trace claim",
+  "no_fitting_training_tuning": true,
+  "outside_new_directories_git_status_unchanged": true,
+  "overlap": 0,
+  "provenance_correction_verification": {
+    "TEST_payload_bytes_accessed": 0,
+    "TEST_requests": 0,
+    "original_protection_groups_passed": 13,
+    "regression_assertions_unchanged": true,
+    "regression_groups_passed": 7,
+    "runtime_rules_unchanged": true,
+    "scientific_bindings_unchanged": true
+  },
+  "push": false,
+  "readiness": "READY_FOR_SEPARATELY_AUTHORIZED_FINAL_CONFORMAL_CAL_ATTEMPT_002",
+  "real_TEST_bytes_used": 0,
+  "regression_groups_failed": 0,
+  "regression_groups_passed": 7,
+  "runtime_limitation": "Offline CPU tests do not certify locked Kaggle GPU numerics. Unchanged runtime_check must pass before separately authorized Attempt 002. No runtime pin changed.",
+  "runtime_lock_unchanged": true,
+  "scientific_bindings_unchanged_except_execution_schema_repair": true,
+  "scientific_execution_success": false,
+  "synthetic_verification_groups_failed": 0,
+  "synthetic_verification_groups_passed": 13,
+  "tracked_worktree_clean": true,
+  "union": 625,
+  "v1_all_bytes_unchanged": true,
+  "v1_commit": "1688bd79375e09d6a1fc78c4615b7b2745af489a",
+  "v1_existing_synthetic_groups_passed": 13,
+  "v1_integrity_verified": true,
+  "v1_manifest_sha256": "bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe"
+}

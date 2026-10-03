@@ -1,0 +1,243 @@
+{
+  "audit_provenance_correction": {
+    "TEST_payload_bytes_accessed": 0,
+    "TEST_requests": 0,
+    "historical_traceback_status": "AVAILABLE_USER_SUPPLIED",
+    "regression_logic_unchanged": true,
+    "scientific_changes": false
+  },
+  "v1_existing_synthetic": {
+    "command": [
+      "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\offline_checks.py",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v1\\synthetic_verification.py"
+    ],
+    "exit_code": 0,
+    "network_guard": {
+      "TEST_network_requests": 0,
+      "TEST_payload_bytes_accessed": 0,
+      "network_attempts": 0,
+      "offline_network_guard": "PASSED"
+    },
+    "result": {
+      "groups": [
+        {
+          "group": "opaque_EVAL_and_historical_exclusion_before_decode",
+          "status": "PASSED"
+        },
+        {
+          "group": "unknown_ID_before_body_callback",
+          "status": "PASSED"
+        },
+        {
+          "group": "unsafe_paths_and_links",
+          "status": "PASSED"
+        },
+        {
+          "group": "gzip_corruption_and_truncation",
+          "status": "PASSED"
+        },
+        {
+          "group": "noncontiguous_scenario_rejected",
+          "status": "PASSED"
+        },
+        {
+          "group": "incremental_full_archive_hash_and_size_bound",
+          "status": "PASSED"
+        },
+        {
+          "group": "official_tick_labels_strict_alignment_and_class_order",
+          "status": "PASSED"
+        },
+        {
+          "group": "block_maximum_augmented_rank_ties_and_infinity",
+          "status": "PASSED"
+        },
+        {
+          "group": "all_fifteen_states_strict_load_and_training_disabled",
+          "status": "PASSED"
+        },
+        {
+          "group": "frozen_entropy_decomposition_and_causal_window",
+          "status": "PASSED"
+        },
+        {
+          "group": "frozen_scorers_synthetic_forward_attention",
+          "status": "PASSED"
+        },
+        {
+          "group": "synthetic_archive_labels_features_fifteen_scorers_block_scores",
+          "status": "PASSED"
+        },
+        {
+          "group": "incomplete_archive_scenario_set_refusal",
+          "status": "PASSED"
+        }
+      ],
+      "real_TEST_bytes_used": 0,
+      "synthetic_verification_groups_failed": 0,
+      "synthetic_verification_groups_passed": 13
+    },
+    "stderr": "",
+    "stdout": "{\"cal_completed\": 1, \"elapsed_ticks\": 3}\n{\"groups\": [{\"group\": \"opaque_EVAL_and_historical_exclusion_before_decode\", \"status\": \"PASSED\"}, {\"group\": \"unknown_ID_before_body_callback\", \"status\": \"PASSED\"}, {\"group\": \"unsafe_paths_and_links\", \"status\": \"PASSED\"}, {\"group\": \"gzip_corruption_and_truncation\", \"status\": \"PASSED\"}, {\"group\": \"noncontiguous_scenario_rejected\", \"status\": \"PASSED\"}, {\"group\": \"incremental_full_archive_hash_and_size_bound\", \"status\": \"PASSED\"}, {\"group\": \"official_tick_labels_strict_alignment_and_class_order\", \"status\": \"PASSED\"}, {\"group\": \"block_maximum_augmented_rank_ties_and_infinity\", \"status\": \"PASSED\"}, {\"group\": \"all_fifteen_states_strict_load_and_training_disabled\", \"status\": \"PASSED\"}, {\"group\": \"frozen_entropy_decomposition_and_causal_window\", \"status\": \"PASSED\"}, {\"group\": \"frozen_scorers_synthetic_forward_attention\", \"status\": \"PASSED\"}, {\"group\": \"synthetic_archive_labels_features_fifteen_scorers_block_scores\", \"status\": \"PASSED\"}, {\"group\": \"incomplete_archive_scenario_set_refusal\", \"status\": \"PASSED\"}], \"real_TEST_bytes_used\": 0, \"synthetic_verification_groups_failed\": 0, \"synthetic_verification_groups_passed\": 13}\n{\"offline_network_guard\": \"PASSED\", \"network_attempts\": 0, \"TEST_network_requests\": 0, \"TEST_payload_bytes_accessed\": 0}\n"
+  },
+  "v1_integrity": {
+    "command": [
+      "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\offline_checks.py",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v1\\verify_bundle.py"
+    ],
+    "exit_code": 0,
+    "network_guard": {
+      "TEST_network_requests": 0,
+      "TEST_payload_bytes_accessed": 0,
+      "network_attempts": 0,
+      "offline_network_guard": "PASSED"
+    },
+    "result": {
+      "TEST_access_performed": false,
+      "cal": 125,
+      "eval": 500,
+      "manifest_sha256": "bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe",
+      "readiness": "READY_FOR_FINAL_CONFORMAL_CAL_EXECUTION",
+      "scorers": 15,
+      "sealed_files": 77,
+      "status": "PASSED"
+    },
+    "stderr": "",
+    "stdout": "{\"TEST_access_performed\": false, \"cal\": 125, \"eval\": 500, \"manifest_sha256\": \"bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe\", \"readiness\": \"READY_FOR_FINAL_CONFORMAL_CAL_EXECUTION\", \"scorers\": 15, \"sealed_files\": 77, \"status\": \"PASSED\"}\n{\"offline_network_guard\": \"PASSED\", \"network_attempts\": 0, \"TEST_network_requests\": 0, \"TEST_payload_bytes_accessed\": 0}\n"
+  },
+  "v2_existing_synthetic": {
+    "command": [
+      "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\offline_checks.py",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\synthetic_verification.py"
+    ],
+    "exit_code": 0,
+    "network_guard": {
+      "TEST_network_requests": 0,
+      "TEST_payload_bytes_accessed": 0,
+      "network_attempts": 0,
+      "offline_network_guard": "PASSED"
+    },
+    "result": {
+      "groups": [
+        {
+          "group": "opaque_EVAL_and_historical_exclusion_before_decode",
+          "status": "PASSED"
+        },
+        {
+          "group": "unknown_ID_before_body_callback",
+          "status": "PASSED"
+        },
+        {
+          "group": "unsafe_paths_and_links",
+          "status": "PASSED"
+        },
+        {
+          "group": "gzip_corruption_and_truncation",
+          "status": "PASSED"
+        },
+        {
+          "group": "noncontiguous_scenario_rejected",
+          "status": "PASSED"
+        },
+        {
+          "group": "incremental_full_archive_hash_and_size_bound",
+          "status": "PASSED"
+        },
+        {
+          "group": "official_tick_labels_strict_alignment_and_class_order",
+          "status": "PASSED"
+        },
+        {
+          "group": "block_maximum_augmented_rank_ties_and_infinity",
+          "status": "PASSED"
+        },
+        {
+          "group": "all_fifteen_states_strict_load_and_training_disabled",
+          "status": "PASSED"
+        },
+        {
+          "group": "frozen_entropy_decomposition_and_causal_window",
+          "status": "PASSED"
+        },
+        {
+          "group": "frozen_scorers_synthetic_forward_attention",
+          "status": "PASSED"
+        },
+        {
+          "group": "synthetic_archive_labels_features_fifteen_scorers_block_scores",
+          "status": "PASSED"
+        },
+        {
+          "group": "incomplete_archive_scenario_set_refusal",
+          "status": "PASSED"
+        }
+      ],
+      "real_TEST_bytes_used": 0,
+      "synthetic_verification_groups_failed": 0,
+      "synthetic_verification_groups_passed": 13
+    },
+    "stderr": "",
+    "stdout": "{\"cal_completed\": 1, \"elapsed_ticks\": 3}\n{\"groups\": [{\"group\": \"opaque_EVAL_and_historical_exclusion_before_decode\", \"status\": \"PASSED\"}, {\"group\": \"unknown_ID_before_body_callback\", \"status\": \"PASSED\"}, {\"group\": \"unsafe_paths_and_links\", \"status\": \"PASSED\"}, {\"group\": \"gzip_corruption_and_truncation\", \"status\": \"PASSED\"}, {\"group\": \"noncontiguous_scenario_rejected\", \"status\": \"PASSED\"}, {\"group\": \"incremental_full_archive_hash_and_size_bound\", \"status\": \"PASSED\"}, {\"group\": \"official_tick_labels_strict_alignment_and_class_order\", \"status\": \"PASSED\"}, {\"group\": \"block_maximum_augmented_rank_ties_and_infinity\", \"status\": \"PASSED\"}, {\"group\": \"all_fifteen_states_strict_load_and_training_disabled\", \"status\": \"PASSED\"}, {\"group\": \"frozen_entropy_decomposition_and_causal_window\", \"status\": \"PASSED\"}, {\"group\": \"frozen_scorers_synthetic_forward_attention\", \"status\": \"PASSED\"}, {\"group\": \"synthetic_archive_labels_features_fifteen_scorers_block_scores\", \"status\": \"PASSED\"}, {\"group\": \"incomplete_archive_scenario_set_refusal\", \"status\": \"PASSED\"}], \"real_TEST_bytes_used\": 0, \"synthetic_verification_groups_failed\": 0, \"synthetic_verification_groups_passed\": 13}\n{\"offline_network_guard\": \"PASSED\", \"network_attempts\": 0, \"TEST_network_requests\": 0, \"TEST_payload_bytes_accessed\": 0}\n"
+  },
+  "v2_regression": {
+    "command": [
+      "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\offline_checks.py",
+      "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\regression_verification.py"
+    ],
+    "exit_code": 0,
+    "network_guard": {
+      "TEST_network_requests": 0,
+      "TEST_payload_bytes_accessed": 0,
+      "network_attempts": 0,
+      "offline_network_guard": "PASSED"
+    },
+    "result": {
+      "TEST_network_requests": 0,
+      "groups": [
+        {
+          "group": "historical_v1_actual_processor_rejects_2D_uint8_PNG",
+          "status": "PASSED"
+        },
+        {
+          "group": "v2_2D_uint8_PNG_exact_frozen_TRAIN_array_and_feature_semantics",
+          "status": "PASSED"
+        },
+        {
+          "group": "3D_segmentation_preserves_channel_zero_ignores_other_channels",
+          "status": "PASSED"
+        },
+        {
+          "group": "camera_strict_RGB_and_segmentation_separate_fail_loud_schema_errors",
+          "status": "PASSED"
+        },
+        {
+          "group": "frozen_segmentation_class_range_refusal_preserved",
+          "status": "PASSED"
+        },
+        {
+          "group": "EVAL_and_exclusion_image_Feather_feature_decoder_spies_unreachable",
+          "status": "PASSED"
+        },
+        {
+          "group": "2D_PNG_synthetic_archive_fifteen_frozen_scorers_end_to_end",
+          "status": "PASSED"
+        }
+      ],
+      "real_TEST_bytes_used": 0,
+      "regression_groups_failed": 0,
+      "regression_groups_passed": 7,
+      "synthetic_v1_reproduction_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\regression_verification.py\", line 29, in expect_error\n    fn()\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\regression_verification.py\", line 54, in <lambda>\n    synthetic_traceback = expect_error(lambda: historical(c, \"segmentation-front/000001.png\", png), \"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\")\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_bundle_v2\\evidence\\v1_runner.py.txt\", line 82, in __call__\n    raise ValueError(\"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\")\nValueError: FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\n",
+      "traceback_provenance": "Offline synthetic corroboration only; actual Attempt 001 traceback is separately available as user-supplied historical evidence"
+    },
+    "stderr": "",
+    "stdout": "{\"cal_completed\": 1, \"elapsed_ticks\": 3}\n{\"TEST_network_requests\": 0, \"groups\": [{\"group\": \"historical_v1_actual_processor_rejects_2D_uint8_PNG\", \"status\": \"PASSED\"}, {\"group\": \"v2_2D_uint8_PNG_exact_frozen_TRAIN_array_and_feature_semantics\", \"status\": \"PASSED\"}, {\"group\": \"3D_segmentation_preserves_channel_zero_ignores_other_channels\", \"status\": \"PASSED\"}, {\"group\": \"camera_strict_RGB_and_segmentation_separate_fail_loud_schema_errors\", \"status\": \"PASSED\"}, {\"group\": \"frozen_segmentation_class_range_refusal_preserved\", \"status\": \"PASSED\"}, {\"group\": \"EVAL_and_exclusion_image_Feather_feature_decoder_spies_unreachable\", \"status\": \"PASSED\"}, {\"group\": \"2D_PNG_synthetic_archive_fifteen_frozen_scorers_end_to_end\", \"status\": \"PASSED\"}], \"real_TEST_bytes_used\": 0, \"regression_groups_failed\": 0, \"regression_groups_passed\": 7, \"synthetic_v1_reproduction_traceback\": \"Traceback (most recent call last):\\n  File \\\"C:\\\\Users\\\\Aditya\\\\OneDrive\\\\Documents\\\\Cognix2\\\\reports\\\\carla_final_conformal_cal_bundle_v2\\\\regression_verification.py\\\", line 29, in expect_error\\n    fn()\\n  File \\\"C:\\\\Users\\\\Aditya\\\\OneDrive\\\\Documents\\\\Cognix2\\\\reports\\\\carla_final_conformal_cal_bundle_v2\\\\regression_verification.py\\\", line 54, in <lambda>\\n    synthetic_traceback = expect_error(lambda: historical(c, \\\"segmentation-front/000001.png\\\", png), \\\"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\\\")\\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"C:\\\\Users\\\\Aditya\\\\OneDrive\\\\Documents\\\\Cognix2\\\\reports\\\\carla_final_conformal_cal_bundle_v2\\\\evidence\\\\v1_runner.py.txt\\\", line 82, in __call__\\n    raise ValueError(\\\"FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\\\")\\nValueError: FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB\\n\", \"traceback_provenance\": \"Offline synthetic corroboration only; actual Attempt 001 traceback is separately available as user-supplied historical evidence\"}\n{\"offline_network_guard\": \"PASSED\", \"network_attempts\": 0, \"TEST_network_requests\": 0, \"TEST_payload_bytes_accessed\": 0}\n"
+  }
+}

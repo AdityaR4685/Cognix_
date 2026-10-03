@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/kaggle/working/cognix_cal_bundle/runner.py", line 246, in <module>
+    execute()
+  File "/kaggle/working/cognix_cal_bundle/runner.py", line 195, in execute
+    receipt = scan(response, cal, evaluation, exclusions, processor, ledger, EXPECTED_SIZE)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/cognix_cal_bundle/streaming.py", line 118, in scan
+    on_cal(sid, relative, read_exact(size))
+  File "/kaggle/working/cognix_cal_bundle/runner.py", line 82, in __call__
+    raise ValueError("FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB")
+ValueError: FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB

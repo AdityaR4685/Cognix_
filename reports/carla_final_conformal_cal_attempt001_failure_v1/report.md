@@ -1,0 +1,11 @@
+# Historical Attempt 001 failure record
+
+Attempt 001 occurred after the pre-access gates passed (user attestation; sealed v1 validation corroborates preparation, but no execution-time gate transcript was supplied). Exactly one HTTP GET received 840761354 compressed bytes; seven scenario roots were seen. Zero CAL scenarios completed and zero EVAL scenarios were decoded. No thresholds were finalized. Partial scores/results are forbidden as final thresholds. No automatic retry occurred or is permitted by this record.
+
+The exception was ValueError: FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB. The supplied audit contains no traceback, failed scenario ID, image mode, shape, dtype or failed modality. These facts are unavailable and are not inferred from synthetic fixtures. The separately labelled synthetic traceback in v2 is a reproduction, not the historical traceback.
+
+Frozen runner source used a shared RGB-only gate for camera and segmentation. Frozen segmentation_histogram_features accepts a 2-D class map and selects channel zero for 3-D arrays. Frozen TRAIN/cache source passes np.asarray(PIL.Image.open(path)) directly to this extractor. The old synthetic segmentation PNG was (16,16,3), so it did not expose the incompatibility. The contract mismatch is confirmed offline; the specific failed image representation remains unrecorded.
+
+Ledger nuance: opaque_body_bytes_discarded_by_role.CAL=131589081 must not be described as entirely opaque/discarded. streaming.py accounts all non-directory body sizes before decode/discard; these sizes can precede completed reads. EVAL=526258000 and exclusions=240747299 are restricted to opaque discard, with zero EVAL decoder entry. Preserve all supplied ledger values unchanged. The recorded compressed digest is partial-or-complete and does not establish full archive integrity.
+
+v1 commit 1688bd7 (1688bd79375e09d6a1fc78c4615b7b2745af489a), manifest bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe, and all historical seals remain unchanged. This new directory is a sealed historical record; do not edit or overwrite it. Separate future records are required for additional evidence. No protocol history, including Amendment 003, is rewritten. This preparation performed zero TEST requests and accessed zero TEST payload bytes.
