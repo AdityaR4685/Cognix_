@@ -1,0 +1,128 @@
+{
+  "activity_attestation": {
+    "TEST_access": false,
+    "TEST_scenario_enumeration": false,
+    "commit": false,
+    "conformal_fitting": false,
+    "inference": false,
+    "inventory_execution": false,
+    "partition_execution": false,
+    "push": false,
+    "sensor_or_label_access": false,
+    "training": false,
+    "tuning": false
+  },
+  "amendment_id": "003_partition_randomization_clarification_only",
+  "change_hashes": {
+    "conformal_protocol.json": {
+      "new": "7f0db617f8c6d5ee257ec33058870b4a5f601991637697a1842d9a1611b2d187",
+      "old": "1c1fa7438680606e876c90ccb32c3b3535d421629fe033f4588d10dec4bea204"
+    },
+    "inventory_access_protocol.json": {
+      "new": "6eb3efd9daca378aebfcbbcbbf8f2ae160aa44d4ab5bfbde5d334bcefad2ea6a",
+      "old": "3c6c2d13dec96a14cae644950bc7b64e73073ec8b845ec761e58e2002d91e78f"
+    },
+    "inventory_access_protocol.md": {
+      "new": "93759bcc35b101307c48be1206f211c68963a5cf111966bcdda23f975defab20",
+      "old": "ff99ea24548fff9920ac4e73bd359e8c69a62862ec8e67c3cc95df360dee8d8a"
+    },
+    "readiness.json": {
+      "new": "163eb40e38229599212e2aaa953dc0faf05d8ff959180d6cc50499ddf03797c5",
+      "old": "8b466a1fc82c73d584bd08f0227e8d25b1f94a1ab3852d09902e87d84a776e7e"
+    },
+    "report.md": {
+      "new": "e1598740fea99ac82129006d07701286ac137dae1f8bb57e7f1f307d2d3e8667",
+      "old": "29aeb02ed222f46c74aca1fb7396174786463dc3a1200daf49e73e1210421bf2"
+    },
+    "test_partition_protocol.json": {
+      "new": "1f09a6761d9fecf40b391bb7493552fd04157fdb104587043a0d5f364dde72fb",
+      "old": "d82b0a8635d6cbeddd3f02e2206b555cf4de2f24e66880c714574596ef429b44"
+    },
+    "verify_protocol.py": {
+      "new": "0c3da488d3f8cf58a9777fd0d0da02f8155e0956d3263c10412cc79ad06cb0b4",
+      "old": "78b41be66e36b91a5bed719eea0e85d068fa3ef392f93962226b7c520723ffad"
+    }
+  },
+  "changed_JSON_fields": {
+    "conformal_protocol.json": [
+      "amendment_id",
+      "population_interpretation",
+      "primary_guarantee",
+      "proof/4",
+      "randomization_assumption",
+      "randomization_receipt",
+      "status"
+    ],
+    "inventory_access_protocol.json": [
+      "amendment_id",
+      "gates_before_randomization/5",
+      "procedure_only/6"
+    ],
+    "readiness.json": [
+      "amendment_id",
+      "blockers/1",
+      "next_step",
+      "partition_seed_receipt"
+    ],
+    "test_partition_protocol.json": [
+      "algorithm_only/3",
+      "algorithm_only/5",
+      "algorithm_only/7",
+      "allocation/seed",
+      "amendment_id",
+      "randomization_interpretation",
+      "seed",
+      "seed_collision_policy",
+      "seed_distinct_from",
+      "seed_draw_timing",
+      "seed_receipt",
+      "status"
+    ]
+  },
+  "changed_prior_files_excluding_seals": [
+    "conformal_protocol.json",
+    "inventory_access_protocol.json",
+    "inventory_access_protocol.md",
+    "protocol_validation.json",
+    "readiness.json",
+    "report.md",
+    "test_partition_protocol.json",
+    "verify_protocol.py"
+  ],
+  "git_head_before_and_after": "8ab81bc51ad8254cad9068671c92bf4ba7c1d4fa",
+  "git_state_outside_protocol_preserved": true,
+  "limitations": "Executed-tool attestation and scoped hashes; no OS-wide access trace, raw-data/checkpoint/prediction rehash or full untracked-content checksum. Prior scientific integrity evidence preserved unchanged.",
+  "new_files_excluding_history": [
+    "amend_protocol_003.py",
+    "amendment_003_changelog.md",
+    "amendment_003_initial_state.json",
+    "amendment_003_integrity.json",
+    "amendment_003_record.json",
+    "partition_randomization_receipt.json",
+    "partition_randomization_receipt.sha256",
+    "verify_protocol_003.py"
+  ],
+  "new_manifest_reference": "SHA256SUMS.sha256",
+  "old_manifest_sha256": "c6516d507a7b0189c4fc11d0ad429a7dc080ebb49ea127623a87e1c4ed39482b",
+  "partition_permutations_executed": 0,
+  "partition_seed_decimal": "334227055836169582741732795999208677637",
+  "passed": true,
+  "previous_archive": "amendment_history/pre_amendment_003/",
+  "previous_files_preserved_byte_identically": 122,
+  "protected_source_config_files_verified": 150,
+  "receipt_sha256": "2a6cc338637a6a2b6ce661f6711ac4ea3e45ff6337346d27ff1b4753e3377368",
+  "seed_draws": 1,
+  "seed_generation_executed": true,
+  "unchanged_components": [
+    "20/80 allocation ratio",
+    "complete scenario calibration unit",
+    "candidate score and block maximum",
+    "pooled conformal and alpha=.05",
+    "15 method/model-seed scorers",
+    "all metrics",
+    "historical exclusions",
+    "subgroup reporting",
+    "scientific pipeline",
+    "inventory bounds/parser/access-ledger/output protocol"
+  ]
+}

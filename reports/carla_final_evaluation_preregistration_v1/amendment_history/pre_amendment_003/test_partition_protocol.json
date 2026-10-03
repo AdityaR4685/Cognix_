@@ -1,0 +1,77 @@
+{
+  "TEST_payload_access_authorized": false,
+  "algorithm_only": [
+    "Later authorized structure-only inventory must finish all gates in inventory_access_protocol.json. STOP on any failed reconciliation. No archive access is authorized by this amendment.",
+    "Derive complete UTF-8 POSIX full scenario IDs from paths only; retain town, directory condition and anomaly type (NORMAL for normal). Reject malformed IDs, duplicate full inventory IDs, non-TEST entries, incomplete traversal and uncertain completion.",
+    "Before randomization remove both exact historical exclusions in full and any future independently authenticated historical exposure documented and sealed before partition execution. Resolve all exclusion decisions; do not infer families from scenario-N.",
+    "Seal complete source inventory, its hash, all exclusion decisions and the eligible inventory hash before creating an RNG. Pin and record the NumPy version and the UTF-8 bytewise lexicographic ID ordering.",
+    "Use the single lexicographically sorted complete eligible ID list as input. Let N_eligible be its length and n_cal=ceil(N_eligible/5)=(N_eligible+4)//5.",
+    "Create exactly one NumPy Generator(PCG64(2028)); call permutation exactly once on the complete eligible list (or its ordered integer indices). No other RNG draws, stratum loops, quota assignments, redraws or balancing.",
+    "First n_cal permuted IDs become FINAL_CONFORMAL_CAL; remainder become FINAL_EVALUATION. Preserve ordered permutation and assignment positions; sorted role views are display-only.",
+    "Seal role manifest, ordered permutation, source/eligible hashes, exclusions, RNG/version/protocol hashes and realized descriptive composition before loading any payloads for scoring. Same complete-scenario membership for all 15 scorers; all ticks/windows inherit the scenario role.",
+    "Evaluation payloads/predictions/labels remain inaccessible during calibration fitting. Failed later label/alignment/feature checks make the evaluation incomplete; never replace assigned scenarios or redraw."
+  ],
+  "allocation": {
+    "input": "lexicographically sorted complete eligible full scenario IDs",
+    "n_cal": "ceil(N_eligible/5)",
+    "permutation_calls": 1,
+    "redraws_or_balancing": false,
+    "rng": "PCG64",
+    "seed": 2028,
+    "stratify_assignment": false
+  },
+  "amendment_id": "002_pre_prediction_uniform_catalogue_pooled_scenario_conformal",
+  "candidate_fraction": {
+    "FINAL_CONFORMAL_CAL": 0.2,
+    "FINAL_EVALUATION": 0.8
+  },
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "complete_eligible_inventory_known": false,
+  "composition": "Uniform whole-scenario allocation; town, directory condition and anomaly type are descriptive metadata only. No composition quotas or balancing.",
+  "conditional_count_arithmetic_only": {
+    "after_only_two_known_exclusions": 625,
+    "anomaly": 520,
+    "before_exclusions": 627,
+    "n_cal_if_625_eligible": 125,
+    "n_evaluation_if_625_eligible": 500,
+    "normal": 107,
+    "qualification": "Publisher totals and two known IDs only; no enumerated inventory, partition or certified eligible count. Additional authenticated historical exclusions would change these arithmetic counts."
+  },
+  "counts_known": false,
+  "exact_excluded_scenario_ids": [
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10"
+  ],
+  "excluded_from_both_final_roles": true,
+  "exclusion_amendment_id": "001_pre_TEST_historical_exposure_correction",
+  "exclusion_classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+  "executed": false,
+  "exposure_record_sha256": "78f6c282b2476f0f53f5c8214d7ef4f1a82d1e4738e2ef5d52a6abc6f0ded203",
+  "family_provenance": "Sealed public audit found no recoverable released-scenario to seed/route/base-drive/family mapping; scenario-N has no supported family semantics. Exact family allocation unavailable. Family/route dependence limits external generalization, not finite-catalogue random assignment.",
+  "historical_exclusion_supplement": "Any future independently authenticated exposure must be documented and its whole-scenario exclusion sealed before partition execution; no outcome-based exclusions.",
+  "historical_file_level_ledger_complete": false,
+  "inventory_gates_reference": "inventory_access_protocol.json",
+  "metadata_allowed_later": "Structure-only complete archive traversal under separate authorization: member header paths and path-derived town/condition/type only; inventory_access_protocol.json defines bounds and byte-transit disclosure.",
+  "partition_performed": false,
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "published_aggregate_counts_known": true,
+  "randomization_interpretation": "Registered assignment mechanism is uniform over whole-scenario permutations; PCG64(2028) fixes reproducible implementation. Probability statements are over the registered randomization and a uniformly selected held-out scenario, not conditional on the realized seed/partition/calibration scores; a fixed seed alone proves no population exchangeability.",
+  "readiness": false,
+  "scenario_identity": "test/normal/<town>/<scenario> or test/anomaly/<town>/<anomaly-type>/<scenario>; never use town/scenario alone",
+  "seed": 2028,
+  "seed_distinct_from": [
+    0,
+    42,
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    2026,
+    2027
+  ],
+  "status": "SEALED_AMENDMENT_002_DESIGN_ONLY",
+  "unit": "whole complete scenario; all ticks/windows inherit its role"
+}

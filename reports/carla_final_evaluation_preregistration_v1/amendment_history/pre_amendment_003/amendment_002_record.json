@@ -1,0 +1,57 @@
+{
+  "activity_attestation": {
+    "TEST_access": false,
+    "TEST_scenario_enumeration": false,
+    "commit": false,
+    "conformal_fitting": false,
+    "inference": false,
+    "inventory_execution": false,
+    "partition_execution": false,
+    "push": false,
+    "sensor_or_label_access": false,
+    "training": false,
+    "tuning": false
+  },
+  "amendment_id": "002_pre_prediction_uniform_catalogue_pooled_scenario_conformal",
+  "authorization": "Explicit user request for this protocol amendment only",
+  "changes": [
+    "Uniform whole-scenario split with one PCG64(2028) permutation and n_cal=ceil(N_eligible/5)",
+    "Pooled one-score-per-scenario global cutoff per scorer",
+    "Finite-catalogue marginal guarantee and explicit nonclaims",
+    "Bounded future structure-only inventory design and gates",
+    "Descriptive subgroup preservation and removal/rewording of conformal stratification fields only"
+  ],
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "current_integrity_reference": "amendment_002_integrity.json",
+  "established_reasons": [
+    "Original stratification: town x directory condition x anomaly type, n_CAL,h=ceil(N_h/5), Q=max_h Q_h.",
+    "At alpha=.05 finite Q_h requires at least 19 calibration scenarios; under old ceil(N_h/5) allocation this requires N_h>=91.",
+    "Publisher totals establish 107 normal TEST scenarios across six towns. At most one normal-town stratum can have N_h>=91; at least five fail finite rank. Hence at least one Q_h=+inf, Q=+inf and all conformal sets are {normal, anomaly}. This follows from metadata/count mathematics alone, not model outcomes.",
+    "Public audit found no recoverable released-scenario to seed/route/base-drive/family mapping. scenario-N has no supported family semantics; exact family partitioning unavailable from public information."
+  ],
+  "historical_records": "Earlier integrity/validation facts describe their recorded milestones. Prior audit baseline hashes continue to refer to pre-Amendment-002 bytes now archived; do not regenerate historical audits. Current protocol validation and Amendment 002 integrity supersede current-readiness statements.",
+  "metadata_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "new_manifest_reference": "SHA256SUMS and SHA256SUMS.sha256 (detached digest avoids self-reference)",
+  "outcome_independent": "No replacement choice uses performance, TEST labels, predictions or fitted conformal set sizes.",
+  "previous_protocol_archive": "amendment_history/pre_amendment_002/",
+  "previous_protocol_manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+  "prior_amendment_record": "amendment_record.json (Amendment 001; preserved unchanged)",
+  "prior_files_archived": 57,
+  "public_provenance_audit_manifest_sha256": "88242128bd2d4b3564e9c58ef12445b7c44c146f0a7f79b30e14371ed9700c50",
+  "unchanged": [
+    "upstream M1",
+    "graph architecture",
+    "checkpoints",
+    "graph readout/fusion",
+    "graph seeds",
+    "probability calibration",
+    "node features",
+    "pseudo recipes",
+    "threshold selection",
+    "target semantics",
+    "GNSS exclusion",
+    "final performance metrics except conformal stratification-specific fields necessarily removed/reworded",
+    "generic COGNIX"
+  ]
+}

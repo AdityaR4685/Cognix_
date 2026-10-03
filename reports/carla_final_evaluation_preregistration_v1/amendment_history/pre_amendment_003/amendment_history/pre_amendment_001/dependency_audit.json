@@ -1,0 +1,60 @@
+{
+  "TEST_payload_access_authorized": false,
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "conditioning": "Condition on all completed development data, upstream fits, selected checkpoints, fixed scoring functions, this protocol, and independent partition randomization. Reusing development for fitting does not invalidate future independent official-task CP; reusing it as CP calibration does.",
+  "executed": false,
+  "existing_sets": [
+    {
+      "dependence": "Upstream one-class representations fitted on all 15 FIT scenarios; graph supervised models fitted on 12 GRAPH_TRAIN scenarios",
+      "reuse_for_final_CP": "Violates ordinary split-conformal score symmetry with new scenarios because these observations fitted the scorer. Freezing it now does not remove that dependence.",
+      "scenarios": [
+        "Town01/scenario-10",
+        "Town01/scenario-11",
+        "Town01/scenario-12",
+        "Town01/scenario-13",
+        "Town01/scenario-14",
+        "Town01/scenario-15",
+        "Town01/scenario-2",
+        "Town01/scenario-3",
+        "Town01/scenario-5",
+        "Town01/scenario-6",
+        "Town01/scenario-7",
+        "Town02/scenario-1",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4"
+      ],
+      "set": "FIT_NORMAL"
+    },
+    {
+      "dependence": "All five scenarios fitted upstream ensemble-predictive probability calibrators using clean and modality-matched pseudo targets",
+      "reuse_for_final_CP": "Probability mapping is part of the scorer: this is training dependence even though graph optimization did not use CAL. No ordinary split-conformal guarantee on reuse.",
+      "scenarios": [
+        "Town01/scenario-1",
+        "Town01/scenario-4",
+        "Town01/scenario-8",
+        "Town01/scenario-9",
+        "Town02/scenario-3"
+      ],
+      "set": "AGENT_CAL_ONLY"
+    },
+    {
+      "dependence": "Upstream representations saw these FIT scenarios; graph early stopping/checkpoint selection and per-method/seed F1 thresholds used them",
+      "reuse_for_final_CP": "Model selection dependence invalidates the naive independent split rank argument. Threshold reuse alone would not alter a CP score if the threshold did not enter it; here checkpoint selection already does.",
+      "scenarios": [
+        "Town01/scenario-12",
+        "Town01/scenario-14",
+        "Town02/scenario-2"
+      ],
+      "set": "GRAPH_VALIDATION"
+    }
+  ],
+  "guarantee_status": "Conditional mathematical proposition, not an established guarantee for CarlAnomaly or live CARLA",
+  "historical_schema_effect": "Prior TEST schema observations conditioned feature/loader design. New disjoint scenarios can still be evaluated conditional on that design if representative and exchangeable, but touched scenarios are not untouched and selection bias remains a limitation.",
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "scenario": "Whole scenarios/scores must be exchangeable within design strata, conditional on frozen development. Town alone is not a dependence block. Shared routes, simulator seeds, repeated drives or paired variant scenarios require a provenance audit; if scenarios are linked, halt and preregister larger independent groups before partition. No independence is inferred from different directory names.",
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES",
+  "temporal": "Arbitrary dependence inside a scenario is allowed by the selected block maximum score. Tick count is never n_cal.",
+  "training_independence_vs_calibration_quality": "Poor transfer/probability calibration can widen sets but does not by itself invalidate conformal with independent, exchangeable official-task calibration/evaluation scores. Pseudo-target calibration cannot establish exchangeability with official labels."
+}

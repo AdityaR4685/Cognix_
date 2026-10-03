@@ -1,0 +1,110 @@
+{
+  "activity_attestation": {
+    "TEST_access": false,
+    "TEST_scenario_enumeration": false,
+    "commit": false,
+    "conformal_fitting": false,
+    "inference": false,
+    "inventory_execution": false,
+    "partition_execution": false,
+    "push": false,
+    "sensor_or_label_access": false,
+    "training": false,
+    "tuning": false
+  },
+  "all_prior_files_outside_authorized_change_list_unchanged": true,
+  "amendment_id": "002_pre_prediction_uniform_catalogue_pooled_scenario_conformal",
+  "archive_new_file_count": 57,
+  "binding_files_preserved_without_checkpoint_reads": true,
+  "change_details": {
+    "conformal_protocol.json": {
+      "new_sha256": "1c1fa7438680606e876c90ccb32c3b3535d421629fe033f4588d10dec4bea204",
+      "old_sha256": "0cab644c1e9d9cd4bdd79d03386769cce29e7e40c53c704413aa125a0f765fdd"
+    },
+    "dependency_audit.json": {
+      "new_sha256": "61521a0dc83aa750876f5181bc66c6eb2d66fe15eef2a67896a8f08b5ad49c26",
+      "old_sha256": "67d49a2979b5d3c351db59722fecdb7b65432919a214f03f19f884755cae1160"
+    },
+    "final_metrics_spec.json": {
+      "new_sha256": "b9656858e4c864cf2dcd0bbf7a3ed240d6d1f19ac9a4e6cd6af75eefa175d719",
+      "old_sha256": "4866b7d8f5e85be5741d4ee7f9d2d0ae7a8b4fd5ae867027e999ff10824e615b"
+    },
+    "live_demo_plan.md": {
+      "new_sha256": "08cf33fc9d85bd8186e1123113f93857c68893b02719af61d86763bba9c2f7d3",
+      "old_sha256": "1b78921daab3acc06ea17531d9d4ff10b8da51d4174c7ab53ebb3700142f538d"
+    },
+    "milestone_scope.json": {
+      "new_sha256": "1bd3731daa9739763c9bc546b4e394fb30f745775f768407040cf488798c4f25",
+      "old_sha256": "f4fc21556d0c70197de27903986466066f998a4c1ce6d143f4b037afe2735a25"
+    },
+    "readiness.json": {
+      "new_sha256": "8b466a1fc82c73d584bd08f0227e8d25b1f94a1ab3852d09902e87d84a776e7e",
+      "old_sha256": "d06d45c551e633d772ee9b0909dad6ff0aaa26e4944c4a73a74c8af457b041de"
+    },
+    "report.md": {
+      "new_sha256": "29aeb02ed222f46c74aca1fb7396174786463dc3a1200daf49e73e1210421bf2",
+      "old_sha256": "e41a79349f3064deb0f4cb690314edb4ba14a69b5d2ee64ff39690ebe13b42c3"
+    },
+    "test_partition_protocol.json": {
+      "new_sha256": "d82b0a8635d6cbeddd3f02e2206b555cf4de2f24e66880c714574596ef429b44",
+      "old_sha256": "e9eb3f0afd922068eda6f6941c399d6ef9cff2eb4b4f43184c74f859359514ed"
+    },
+    "verify_protocol.py": {
+      "new_sha256": "78b41be66e36b91a5bed719eea0e85d068fa3ef392f93962226b7c520723ffad",
+      "old_sha256": "5d996da6ec237f99f892a63030cfa45abccff6be7d49a7916902390dab1a6af5"
+    }
+  },
+  "changed_prior_artifacts_excluding_seals": [
+    "conformal_protocol.json",
+    "dependency_audit.json",
+    "final_metrics_spec.json",
+    "live_demo_plan.md",
+    "milestone_scope.json",
+    "protocol_validation.json",
+    "readiness.json",
+    "report.md",
+    "test_partition_protocol.json",
+    "verify_protocol.py"
+  ],
+  "git_HEAD_and_tracked_diff_and_status_outside_protocol_preserved": true,
+  "git_head_before_and_after": "8ab81bc51ad8254cad9068671c92bf4ba7c1d4fa",
+  "metadata_audit_manifest_sha256": "888a63a0f0bb190eb899cfe900674bea6804b354017993b45c235b41b1c26839",
+  "new_artifacts_excluding_history": [
+    "amend_protocol_002.py",
+    "amendment_002_changelog.md",
+    "amendment_002_initial_state.json",
+    "amendment_002_integrity.json",
+    "amendment_002_record.json",
+    "inventory_access_protocol.json",
+    "inventory_access_protocol.md",
+    "subgroup_reporting_protocol.json"
+  ],
+  "new_manifest_reference": "SHA256SUMS.sha256",
+  "old_protocol_manifest_sha256": "e03da4019c35d53420e42e02d4c0ebe2dd539a24ff5b645fdf5427078122ade1",
+  "passed": true,
+  "prior_files_archived_byte_identically": 57,
+  "prior_protocol_archive": "amendment_history/pre_amendment_002/",
+  "protected_source_config_files_verified": 150,
+  "public_provenance_audit_manifest_sha256": "88242128bd2d4b3564e9c58ef12445b7c44c146f0a7f79b30e14371ed9700c50",
+  "scope_limits": "No payload/model-output rehash or full untracked-content checksum. Beyond hashed metadata/source/config bytes, preservation rests on confined writes and unchanged Git state. Executed-action attestation, not OS-wide access trace. Historical scientific integrity evidence unchanged.",
+  "seal_changes": [
+    "SHA256SUMS",
+    "SHA256SUMS.sha256"
+  ],
+  "unchanged_scientific_components": [
+    "upstream M1",
+    "graph architecture",
+    "checkpoints",
+    "graph readout/fusion",
+    "graph seeds",
+    "probability calibration",
+    "node features",
+    "pseudo recipes",
+    "threshold selection",
+    "target semantics",
+    "GNSS exclusion",
+    "final performance metrics except conformal stratification-specific fields necessarily removed/reworded",
+    "generic COGNIX"
+  ],
+  "validation_hash_location": "SHA256SUMS seals finalized protocol_validation.json and this record"
+}

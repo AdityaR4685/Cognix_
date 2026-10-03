@@ -1,0 +1,130 @@
+{
+  "TEST_payload_access_authorized": false,
+  "additional_official_TEST_scenario_ids_established": [],
+  "amendment_id": "001_pre_TEST_historical_exposure_correction",
+  "archive_reference": "carlanomaly-base-test.tar.gz (historical text only, not accessed)",
+  "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "earlier_probes": [
+    {
+      "inspected": "beginning of test/anomaly/Town01/change-weather/scenario-1",
+      "reported_size": "64 KB"
+    },
+    {
+      "inspected": "beginning of test/anomaly/Town01/change-weather/scenario-1",
+      "reported_size": "8 MB"
+    }
+  ],
+  "exact_exclusions": {
+    "FINAL_CONFORMAL_CAL": [
+      "test/anomaly/Town01/change-weather/scenario-1",
+      "test/anomaly/Town01/change-weather/scenario-10"
+    ],
+    "FINAL_EVALUATION": [
+      "test/anomaly/Town01/change-weather/scenario-1",
+      "test/anomaly/Town01/change-weather/scenario-10"
+    ]
+  },
+  "exact_file_paths_or_ticks_recovered": [],
+  "exact_fully_qualified_official_scenario_ids_recovered": [
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10"
+  ],
+  "exclusion_policy": "Exclude the ENTIRE scenario for both complete and partial historical exposure. Both exact known scenarios are SCHEMA_EXPOSED_DIAGNOSTIC_ONLY and excluded from BOTH FINAL_CONFORMAL_CAL and FINAL_EVALUATION; no cross-town quarantine remains and no exposed metrics merge into untouched evaluation.",
+  "executed": false,
+  "historical_file_level_ledger_complete": false,
+  "historical_scenario_list_claimed_exhaustive": false,
+  "historically_documented_files_or_modalities": [
+    "gnss.feather",
+    "imu.feather",
+    "anomaly-observation.feather",
+    "segmentation-front (specific ticks not documented)"
+  ],
+  "main_probe": {
+    "HTTP_status": 206,
+    "byte_range_inclusive": [
+      0,
+      125829119
+    ],
+    "captured_bytes": 125829120,
+    "parsing": "sequential gzip/tar",
+    "scenario_10_partial_RGB_frames": 93,
+    "scenario_1_complete": true
+  },
+  "next_requirement": "Retain these two exact exclusions and reconcile the incomplete historical file-level ledger from archival evidence without reopening TEST. Official metadata/provenance/count auditing remains unexecuted and separately authorized; no partition is executed.",
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "recovered_evidence": {
+    "path": "recovered_historical_evidence.json",
+    "provenance": "User-supplied preserved historical evidence in the amendment request; accepted as the authoritative historical correction. No original TEST probe or payload reopened.",
+    "sha256": "d015371554569b3408834910991cfb0b9264f34b19b2edb7e1a2e0d1097e3d07"
+  },
+  "scenario_exposures": [
+    {
+      "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+      "earlier_probes_inspected_beginning": true,
+      "excluded_from": [
+        "FINAL_CONFORMAL_CAL",
+        "FINAL_EVALUATION"
+      ],
+      "exposure_extent": "complete",
+      "historically_exposed": true,
+      "main_probe_captured_scenario_completely": true,
+      "official_TEST": true,
+      "scenario_id": "test/anomaly/Town01/change-weather/scenario-1"
+    },
+    {
+      "classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+      "excluded_from": [
+        "FINAL_CONFORMAL_CAL",
+        "FINAL_EVALUATION"
+      ],
+      "exposure_extent": "partial",
+      "historically_exposed": true,
+      "main_probe_captured_RGB_frame_count": 93,
+      "official_TEST": true,
+      "scenario_id": "test/anomaly/Town01/change-weather/scenario-10"
+    }
+  ],
+  "search_scope": [
+    "Current workspace reports/protocol JSON/Markdown/source, excluding payload arrays",
+    "Prior COGNIX source/docs project; no historical exposure report found",
+    "Top-level existing TRAIN probe analysis/protocol records and recorded inventories; no TEST exposure ledger found",
+    "Two earlier local COGNIX session records containing the probe references; only the same source documentation was found"
+  ],
+  "source_line_caution": "Exact verified source line positions and short excerpts are in exposure_source_lines.json; synthetic fixture identities are not official exposure evidence",
+  "sources": [
+    {
+      "lines": [
+        26,
+        35,
+        49
+      ],
+      "path": "cognix/adapters/carla/carlanomaly_loader.py",
+      "record": "Base TEST probe verifies segmentation-front and GNSS/IMU/anomaly-observation schemas; labels documented all-False for change-weather/scenario-1; no town or complete member access ledger recorded",
+      "sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab"
+    },
+    {
+      "lines": [
+        10
+      ],
+      "path": "cognix/adapters/carla/real_features.py",
+      "record": "Base TEST byte-range schema probe for gnss.feather and imu.feather; no scenario IDs",
+      "sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b"
+    },
+    {
+      "lines": [
+        175,
+        192,
+        580
+      ],
+      "path": "tests/unit/test_carlanomaly_loader.py",
+      "record": "Synthetic temporary fixtures include Town01/change-weather/scenario-1 and other TEST-shaped IDs. These are not official payload-access logs and cannot prove the historical town or additional exposure.",
+      "sha256": "70841b6a6a071bbd03ebac30e97ababac50628b506ccd3920f1debdb7e34e90b"
+    }
+  ],
+  "status": "KNOWN_EXACT_EXPOSURES_CORRECTED_FILE_LEVEL_LEDGER_INCOMPLETE",
+  "temporary_probe_files_deleted_afterward": true,
+  "town": "Town01",
+  "unknown_exposures": "No evidence presently establishes any additional official TEST scenario IDs. The historical file-level ledger remains incomplete; no additional IDs, member paths, frame numbers or cross-town exclusions are inferred."
+}

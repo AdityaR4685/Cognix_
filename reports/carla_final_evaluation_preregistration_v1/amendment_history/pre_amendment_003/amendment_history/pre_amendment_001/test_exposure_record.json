@@ -1,0 +1,61 @@
+{
+  "TEST_payload_access_authorized": false,
+  "archive_reference": "carlanomaly-base-test.tar.gz (historical text only, not accessed)",
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "empty_list_means": "No fully qualified official IDs could be authenticated from available records; it does NOT mean no TEST exposure",
+  "exact_file_paths_or_ticks_recovered": [],
+  "exact_fully_qualified_official_scenario_ids_recovered": [],
+  "exact_partial_official_reference": "change-weather/scenario-1",
+  "exclusion_policy": "Every authenticated historically touched complete scenario is excluded from BOTH FINAL_CONFORMAL_CAL and FINAL_EVALUATION; preserve in SCHEMA_EXPOSED_DIAGNOSTIC_ONLY. No merging its metrics with untouched evaluation. Any linked scenario families must also be resolved.",
+  "executed": false,
+  "historically_documented_files_or_modalities": [
+    "gnss.feather",
+    "imu.feather",
+    "anomaly-observation.feather",
+    "segmentation-front (specific ticks not documented)"
+  ],
+  "next_requirement": "Recover prior schema probe reports/member extraction lists from archival COGNIX work without reopening TEST, authenticate split/town/type/scenario/member identities, seal a complete exclusion supplement. Do not infer official IDs from unit fixtures.",
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "provisional_quarantine_predicate": "Any official anomaly scenario with anomaly_type=change-weather and basename=scenario-1, irrespective of town. This is a conservative predicate, not guessed official IDs.",
+  "search_scope": [
+    "Current workspace reports/protocol JSON/Markdown/source, excluding payload arrays",
+    "Prior COGNIX source/docs project; no historical exposure report found",
+    "Top-level existing TRAIN probe analysis/protocol records and recorded inventories; no TEST exposure ledger found",
+    "Two earlier local COGNIX session records containing the probe references; only the same source documentation was found"
+  ],
+  "source_line_caution": "Exact verified source line positions and short excerpts are in exposure_source_lines.json; synthetic fixture identities are not official exposure evidence",
+  "sources": [
+    {
+      "lines": [
+        26,
+        35,
+        49
+      ],
+      "path": "cognix/adapters/carla/carlanomaly_loader.py",
+      "record": "Base TEST probe verifies segmentation-front and GNSS/IMU/anomaly-observation schemas; labels documented all-False for change-weather/scenario-1; no town or complete member access ledger recorded",
+      "sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab"
+    },
+    {
+      "lines": [
+        10
+      ],
+      "path": "cognix/adapters/carla/real_features.py",
+      "record": "Base TEST byte-range schema probe for gnss.feather and imu.feather; no scenario IDs",
+      "sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b"
+    },
+    {
+      "lines": [
+        175,
+        192,
+        580
+      ],
+      "path": "tests/unit/test_carlanomaly_loader.py",
+      "record": "Synthetic temporary fixtures include Town01/change-weather/scenario-1 and other TEST-shaped IDs. These are not official payload-access logs and cannot prove the historical town or additional exposure.",
+      "sha256": "70841b6a6a071bbd03ebac30e97ababac50628b506ccd3920f1debdb7e34e90b"
+    }
+  ],
+  "status": "INCOMPLETE_HISTORICAL_RECORD_PARTITION_BLOCKED",
+  "town": null,
+  "unknown_exposures": "Other scenarios/files may have been touched; schema-only summaries cannot certify completeness. All prospective untouched membership stays unresolved until the historical probe/member access ledger is recovered."
+}

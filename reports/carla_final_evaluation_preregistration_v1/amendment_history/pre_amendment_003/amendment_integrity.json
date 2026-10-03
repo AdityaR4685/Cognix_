@@ -1,0 +1,54 @@
+{
+  "activity_attestation": {
+    "commit_or_push": false,
+    "conformal_fitting": false,
+    "generic_COGNIX_modification": false,
+    "official_TEST_payload_access": false,
+    "official_metadata_inventory": false,
+    "partition_execution": false,
+    "prediction": false,
+    "secondary_GNSS": false,
+    "training_or_refitting": false,
+    "tuning": false
+  },
+  "amended_original_artifacts": [
+    "build_protocol.py",
+    "exposure_evidence.md",
+    "protocol_validation.json",
+    "readiness.json",
+    "report.md",
+    "test_exposure_record.json",
+    "test_partition_protocol.json",
+    "verify_protocol.py"
+  ],
+  "frozen_external_artifacts_unchanged": true,
+  "git_HEAD_and_tracked_diff_preserved": true,
+  "git_status_outside_protocol_directory_preserved": true,
+  "history_archive": "amendment_history/pre_amendment_001/ (26 original files)",
+  "new_artifacts": [
+    "amend_protocol.py",
+    "amendment_initial_state.json",
+    "amendment_integrity.json",
+    "amendment_record.json",
+    "recovered_historical_evidence.json"
+  ],
+  "old_manifest_sha256": "2e7c20eb2d1a40367c6568027ddaea9e6650b80bee7d57770d94a644772fd6ab",
+  "original_archive_files_verified": 26,
+  "partition_scientific_rule_unchanged": "Only exposure-reconciliation/exclusion prose and exact exclusion/hash fields changed; original seed, ratio, stratum, quotas, RNG, count gates and remaining algorithm steps preserved",
+  "passed": true,
+  "scientific_artifacts_byte_identical": [
+    "pipeline_map.json",
+    "dependency_audit.json",
+    "conformal_protocol.json",
+    "final_metrics_spec.json",
+    "seed_aggregation_spec.json",
+    "decision_semantics.json",
+    "frozen_method_bindings.json",
+    "live_demo_plan.md"
+  ],
+  "seal_files_regenerated": [
+    "SHA256SUMS",
+    "SHA256SUMS.sha256"
+  ],
+  "workspace_files_unchanged_outside_protocol_directory": 3764
+}

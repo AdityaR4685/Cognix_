@@ -1,9 +1,9 @@
 {
+  "amendment_id": "003_partition_randomization_clarification_only",
   "blockers": [
-    "Two exact known TEST scenario exclusions are established; historical file-level ledger remains incomplete and must be reconciled without inferring additional IDs",
-    "Official metadata-only stratum and independent-family counts/provenance are not audited",
-    "20% calibration ratio adequacy is unverified per registered stratum",
-    "Final official label/inference/scenario conformal adapter remains unimplemented and unverified"
+    "Complete exact authenticated scenario inventory unavailable; later structure-only access requires separate authorization",
+    "Inventory reconciliation, historical exclusion decisions and eligible-inventory hash must all be sealed before partition Generator creation; the OS-random seed is already sealed",
+    "Final official label/inference/scenario conformal adapter remains unimplemented and unverified; no fitting authorized"
   ],
   "conformal_fitting_ready": false,
   "design_sealed": true,
@@ -12,8 +12,14 @@
     "test/anomaly/Town01/change-weather/scenario-1",
     "test/anomaly/Town01/change-weather/scenario-10"
   ],
-  "next_step": "Retain the two sealed exact exclusions; reconcile the incomplete historical file-level ledger from archival evidence without TEST access. Metadata/provenance/count auditing remains separately authorized and unexecuted. Current amendment stops after resealing.",
+  "limitation": "Family/route mapping unavailable per sealed audit; exact family allocation impossible from public information. Finite-catalogue scope only; incomplete historical file-level exposure ledger disclosed.",
+  "next_step": "Stop after sealing Amendment 003. The one OS-random partition seed is sealed now; never redraw it. Later separately authorized inventory acquisition must retain all Amendment 002 gates, independently seal eligible inventory before Generator creation/permutation, and stop on failed reconciliation. No inventory, partition or scores now.",
   "no_TEST_access": true,
+  "no_inventory_execution": true,
   "no_partition_or_conformal_fit": true,
-  "official_TEST_partition_ready": false
+  "official_TEST_partition_ready": false,
+  "partition_seed_receipt": {
+    "path": "partition_randomization_receipt.json",
+    "sha256": "2a6cc338637a6a2b6ce661f6711ac4ea3e45ff6337346d27ff1b4753e3377368"
+  }
 }

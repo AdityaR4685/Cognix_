@@ -1,0 +1,66 @@
+{
+  "TEST_payload_access_authorized": false,
+  "algorithm_only": [
+    "Require historical file-level exposure reconciliation, verified official metadata inventory, and scenario-family exchangeability audit; the two known exact exclusions are fixed by Amendment 001. Otherwise STOP without allocating.",
+    "Canonicalize UTF-8 POSIX IDs; reject duplicates, malformed IDs, non-TEST records and uncertain completion; never silently replace missing scenarios",
+    "Exclude ENTIRE test/anomaly/Town01/change-weather/scenario-1 (complete historical exposure) and test/anomaly/Town01/change-weather/scenario-10 (partial historical exposure, 93 RGB frames) from BOTH candidate roles as SCHEMA_EXPOSED_DIAGNOSTIC_ONLY. No cross-town quarantine or additional IDs are inferred; reconcile unresolved/linked exposure evidence before allocation.",
+    "If linked scenario families are present, STOP for a separately sealed group-level amendment; do not treat variants as separate independent scenarios",
+    "Form sorted strata and lexicographically sorted complete IDs inside each stratum",
+    "For each stratum h use n_cal,h = ceil(N_h/5), n_eval,h=N_h-n_cal,h; if N_h=1 it goes to CAL and stratum evaluation count is zero, explicitly report it",
+    "Create ONE NumPy Generator(PCG64(2028)), with NumPy version recorded/pinned before execution; iterate strata lexicographically and permute their sorted IDs once in sequence",
+    "First n_cal,h positions become FINAL_CONFORMAL_CAL; remaining positions FINAL_EVALUATION; sort output lists; no redraws, score-based stratification or rebalancing",
+    "Publish/hash metadata inventory, exclusion supplement, ordered permutations, realized composition/counts, role manifest, RNG/version and protocol hashes before loading any final payloads or running inference",
+    "The same role manifest applies to every method and seed; ticks/windows never cross sets; evaluation remains inaccessible during final conformal fitting"
+  ],
+  "candidate_fraction": {
+    "FINAL_CONFORMAL_CAL": 0.2,
+    "FINAL_EVALUATION": 0.8
+  },
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "composition": "Approximately 20% of each nonempty official metadata stratum; preserve type and town composition to whole-scenario rounding. Directory condition is not a tick label.",
+  "count_gate": {
+    "alpha": 0.05,
+    "evaluation_precision": "Counts also need enough independent evaluation scenarios; coverage resolution is 1/J. Neither .8N nor .2N proves useful power without metadata counts; no numeric scenario counts guessed.",
+    "explanation": "19 is algebraic nontriviality, not coverage precision/power. At n=19 the 95% cutoff is the maximum. n=39 allows rank 38/40 and resolution .025; this is a transparent design preference, not a sufficiency theorem.",
+    "failure": "n_h<19 implies +infinity cutoff; selected global envelope becomes +infinity if any required stratum is sparse. Retain this outcome; do not pool strata or raise alpha to obtain smaller sets.",
+    "minimum_calibration_scenarios_per_required_stratum_for_finite_cutoff": 19,
+    "minimum_eligible_total_per_stratum_under_ceil_20pct": 91,
+    "preferred_calibration_scenarios_per_stratum": 39,
+    "preferred_total_per_stratum_under_ceil_20pct": 191
+  },
+  "counts_known": false,
+  "exact_excluded_scenario_ids": [
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10"
+  ],
+  "excluded_from_both_final_roles": true,
+  "exclusion_amendment_id": "001_pre_TEST_historical_exposure_correction",
+  "exclusion_classification": "SCHEMA_EXPOSED_DIAGNOSTIC_ONLY",
+  "executed": false,
+  "exposure_record_sha256": "78f6c282b2476f0f53f5c8214d7ef4f1a82d1e4738e2ef5d52a6abc6f0ded203",
+  "historical_file_level_ledger_complete": false,
+  "metadata_allowed_later": "Separately authorized official metadata-only inventory: split, town, scenario ID, directory normal/anomaly condition, anomaly type, complete-scenario inventory and any known family/run/route identity. No feather tables, images, masks, model predictions or metric inspection to allocate.",
+  "partition_performed": false,
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "ratio_status": "20% is the frozen starting algorithm, conditional on count/provenance audit; no actual counts/IDs available. If inadequacy requires a changed ratio, seal a metadata-only amendment before any predictions or sensor payload access; never adjust after fitting.",
+  "readiness": false,
+  "scenario_identity": "test/normal/<town>/<scenario> or test/anomaly/<town>/<anomaly-type>/<scenario>; never use town/scenario alone",
+  "seed": 2028,
+  "seed_distinct_from": [
+    0,
+    42,
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    2026,
+    2027
+  ],
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES",
+  "stratification_and_validity": "Stratified fixed quotas generally do not make pooled calibration/test scores exchangeable. Selected construction uses within-stratum rank calibration plus a conservative global envelope, not naive pooled CP.",
+  "stratum": "(town, official directory condition normal/anomaly, anomaly-type or NORMAL)",
+  "unit": "whole complete scenario; all ticks/windows inherit its role"
+}

@@ -1,0 +1,11 @@
+# Historical TEST exposure evidence and unresolved identities
+
+No TEST payload, archive, directory, image, feather table, mask or new sensor sample was opened in this milestone. All references below come from already existing implementation/protocol text.
+
+`cognix/adapters/carla/carlanomaly_loader.py` documents a Base TEST schema probe, segmentation-front presence, `gnss.feather`, `imu.feather`, and `anomaly-observation.feather`. It records all-False timestep labels for `change-weather/scenario-1`, without the town. This is an authenticated partial identity, not a fully qualified official scenario ID. `cognix/adapters/carla/real_features.py` independently documents the same TEST byte-range GNSS/IMU schema probe without scenario identity.
+
+`tests/unit/test_carlanomaly_loader.py` explicitly describes its root fixture as a tiny synthetic tree. Its `test/anomaly/Town01/change-weather/scenario-1` path reproduces the verified real label pattern; it does not document that Town01 was the original inspected town. Other normal/debris/vanish TEST-shaped paths there are synthetic fixtures, not historical official access evidence. They cannot be added to an exact official exposure list.
+
+Search covered current reports/protocols, source documentation, prior COGNIX source/docs, existing top-level TRAIN probe protocol/analysis records and their inventories, and two earlier local session records containing the TEST probe references. Those sessions reproduce the same source docs rather than the original schema member ledger. No complete official TEST member/scenario access ledger was found. Do not state that the recovered list is exhaustive or that zero fully qualified IDs means zero exposure.
+
+Pending recovery, quarantine the predicate `anomaly_type=change-weather AND scenario basename=scenario-1` across towns. This does not resolve unnamed GNSS/IMU/segmentation exposures. Consequently ALL untouched final membership remains unverified; actual partition must stop. Recover prior schema probe reports/member extraction lists from archival work, then seal a metadata-only supplement identifying exact split/town/type/scenario/member paths and exposure completeness. Every exposed scenario is excluded from both final calibration and final evaluation and may only be marked SCHEMA_EXPOSED_DIAGNOSTIC_ONLY. Never reopen TEST to reconstruct history.

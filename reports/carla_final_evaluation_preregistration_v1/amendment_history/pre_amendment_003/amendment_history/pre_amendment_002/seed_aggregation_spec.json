@@ -1,0 +1,38 @@
+{
+  "TEST_payload_access_authorized": false,
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "conditional_seed_interval": "mean(delta) +/- 2.776445105*SD(delta)/sqrt(5); initialization variability conditional on fixed final evaluation data, not scenario population uncertainty",
+  "conformal": "15 independent frozen scoring functions calibrated separately on the SAME role manifest; 5-member upstream bootstrap agent is unchanged and distinct from graph training seeds",
+  "coverage_reporting": "Per method/seed CP metrics, then descriptive arithmetic mean over seeds. Shared calibration/evaluation creates dependence. No .95 joint coverage across seeds, no coverage claim for averaging/union/intersection/consensus of their sets.",
+  "descriptive_scenario_bootstrap": {
+    "algorithm": "Use common resampled IDs for every method/seed. For defined equal-scenario endpoints compute mean over resampled scenarios, then paired-seed average; percentile2.5/97.5. Resample inside frozen metadata strata retaining original stratum evaluation counts, weight scenario means by realized evaluation stratum counts/J. For secondary eligible AUROC use its explicitly reported two-class subset and fixed counts. Undefined endpoints stay null.",
+    "draws": 10000,
+    "interpretation": "descriptive scenario fragility only; no tick bootstrap, no reselecting thresholds, no calibrator refits, no replacement seeds",
+    "rng": "PCG64",
+    "seed": 606,
+    "unit": "whole evaluation scenario"
+  },
+  "ensemble_used": false,
+  "exact_sign_flip": "All 32 sign patterns, two-sided fraction abs(mean(sign*delta))>=abs(mean(delta))-1e-12; symmetry assumption explicit, minimum p=.0625; no .05 superiority inference possible with five pairs",
+  "executed": false,
+  "methods": [
+    "nograph",
+    "standard_gat",
+    "epistemic_gat"
+  ],
+  "no_best_seed": true,
+  "prediction_ensemble_rule": null,
+  "primary": "Five paired method/seed results separately; arithmetic mean of the five EpistemicGAT-StandardGAT primary endpoint differences",
+  "primary_summary": "all individual differences, mean, median, sample SD ddof1, min/max; null/incomplete if any planned pair or endpoint undefined",
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "reason": "Match completed paired-seed design, retain initialization variability and avoid introducing a new scoring distribution requiring separate ensemble calibration",
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES"
+}

@@ -1,0 +1,21 @@
+{
+  "amendment_id": "002_pre_prediction_uniform_catalogue_pooled_scenario_conformal",
+  "blockers": [
+    "Complete exact authenticated scenario inventory unavailable; later structure-only access requires separate authorization",
+    "Inventory reconciliation, historical exclusion decisions and eligible-inventory hash must all be sealed before RNG creation",
+    "Final official label/inference/scenario conformal adapter remains unimplemented and unverified; no fitting authorized"
+  ],
+  "conformal_fitting_ready": false,
+  "design_sealed": true,
+  "exclusion_amendment_id": "001_pre_TEST_historical_exposure_correction",
+  "known_exact_exclusions": [
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10"
+  ],
+  "limitation": "Family/route mapping unavailable per sealed audit; exact family allocation impossible from public information. Finite-catalogue scope only; incomplete historical file-level exposure ledger disclosed.",
+  "next_step": "Stop after sealing Amendment 002. Future authorized inventory acquisition must follow inventory_access_protocol.json and stop on failed reconciliation; no inventory, RNG or scores now.",
+  "no_TEST_access": true,
+  "no_inventory_execution": true,
+  "no_partition_or_conformal_fit": true,
+  "official_TEST_partition_ready": false
+}

@@ -1,0 +1,321 @@
+{
+  "TRAIN_files_sha256_verified_against_frozen_manifest": 120100,
+  "TRAIN_post_audit_stat_changes": [],
+  "TRAIN_scenarios": 20,
+  "activity_attestation": {
+    "TEST_partition_execution": false,
+    "TEST_payload_access": false,
+    "commit_or_push": false,
+    "conformal_fitting": false,
+    "new_graph_training": false,
+    "secondary_GNSS": false,
+    "threshold_tuning": false
+  },
+  "added_outside_protocol_directory": [],
+  "attestation_limit": "Activity follows this milestone's executed commands, not an OS-wide file-access trace. Hashes alone do not prove absence of reads or historical pushes.",
+  "changed_preexisting_files": [],
+  "external": {
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\counts.json": {
+      "actual": "44e98889b3de49f4840a35a3be9201977a0954ce0763a3a6cae91ec32fdf78fc",
+      "expected": "44e98889b3de49f4840a35a3be9201977a0954ce0763a3a6cae91ec32fdf78fc",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\graphs.npz": {
+      "actual": "5ba30ad81f6cd23b78d2e51ac094e05c7201d30b47cf2e76fe2a64940ffba20e",
+      "expected": "5ba30ad81f6cd23b78d2e51ac094e05c7201d30b47cf2e76fe2a64940ffba20e",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\manifest.json": {
+      "actual": "9f8c971b72ac260b9f48b7f3ab45561d62535c22002d38b53cf4712536f6e81d",
+      "expected": "9f8c971b72ac260b9f48b7f3ab45561d62535c22002d38b53cf4712536f6e81d",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\node_output_collisions.json": {
+      "actual": "1d6ca434b59e1f6548d96f96826e88e9bd984f6379b961cf8f23327a1c2c07a7",
+      "expected": "1d6ca434b59e1f6548d96f96826e88e9bd984f6379b961cf8f23327a1c2c07a7",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\schema.json": {
+      "actual": "5b678571d4ed112e5756e1364ff7966567a1338d87143ca120b3aede24d768fd",
+      "expected": "5b678571d4ed112e5756e1364ff7966567a1338d87143ca120b3aede24d768fd",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\skip_ledger.json": {
+      "actual": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "expected": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_graph_fit_export_v1\\upstream_dependencies.json": {
+      "actual": "4505874649696afec84b71b9ab8d74fda0ce53cd6e0d308554ccc32cb6a4ab11",
+      "expected": "4505874649696afec84b71b9ab8d74fda0ce53cd6e0d308554ccc32cb6a4ab11",
+      "group": "artifact"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\cache_train20_v1\\carla_train_cache.json": {
+      "actual": "3a24cdb762857be09a2e73dbbec437638463aa9eb7406459606aa56cfa0727dd",
+      "expected": "3a24cdb762857be09a2e73dbbec437638463aa9eb7406459606aa56cfa0727dd",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\cache_train20_v1\\carla_train_cache.npz": {
+      "actual": "7c5bc869aadf220e9ed22ac74a04ec748115b705fecbcbf663f23e3b956022bc",
+      "expected": "7c5bc869aadf220e9ed22ac74a04ec748115b705fecbcbf663f23e3b956022bc",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\cache_train20_v1\\dataset_binding.json": {
+      "actual": "b7b13076536efd35a1e5316fb9dbbe7dba64059986406d7a8fbb48904cce3a16",
+      "expected": "b7b13076536efd35a1e5316fb9dbbe7dba64059986406d7a8fbb48904cce3a16",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\kaggle_compact_train20_v1\\compact_training_checkpoint.npz": {
+      "actual": "f82acd321219beeee5e033a93997c05d1bdd653b370faa6b01c35c5463028b69",
+      "expected": "f82acd321219beeee5e033a93997c05d1bdd653b370faa6b01c35c5463028b69",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\kaggle_compact_train20_v1\\fitted_oneclass_parameters.npz": {
+      "actual": "71fa21e3db874110d6e8c10c89031b6a129364596afd314913b384ca14ee0af1",
+      "expected": "71fa21e3db874110d6e8c10c89031b6a129364596afd314913b384ca14ee0af1",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\kaggle_compact_train20_v1\\manifest.json": {
+      "actual": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4",
+      "expected": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\cache_builder.py": {
+      "actual": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+      "expected": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\carlanomaly_loader.py": {
+      "actual": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+      "expected": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\normality.py": {
+      "actual": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+      "expected": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\pseudo_anomalies.py": {
+      "actual": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+      "expected": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\real_agents.py": {
+      "actual": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+      "expected": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\real_features.py": {
+      "actual": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+      "expected": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\adapters\\carla\\train_acquisition.py": {
+      "actual": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+      "expected": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\graph\\epistemic_gat.py": {
+      "actual": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+      "expected": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\graph\\no_graph.py": {
+      "actual": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+      "expected": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\cognix\\graph\\standard_gat.py": {
+      "actual": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+      "expected": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\build_preregistration.py": {
+      "actual": "6fe30f2525b463153a393357886b5c1f4450ed3c9ccddf67cf0780fe6cd8e146",
+      "expected": "6fe30f2525b463153a393357886b5c1f4450ed3c9ccddf67cf0780fe6cd8e146",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\graph_schema.json": {
+      "actual": "f1a0f509416cc2dee8265463c43c1596c4b981c1b7f6113645b53f3eda4b2fd3",
+      "expected": "f1a0f509416cc2dee8265463c43c1596c4b981c1b7f6113645b53f3eda4b2fd3",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\initial_state.json": {
+      "actual": "9cfd73a371f2a335f91e9fde35b8813376ec3f6bf428393e6d47649c6eb8e284",
+      "expected": "9cfd73a371f2a335f91e9fde35b8813376ec3f6bf428393e6d47649c6eb8e284",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\integrity_results.json": {
+      "actual": "4c0c259f6a58f95768a023779f4d7ab5457e0dc4bdbb0ea6ef72d62efd79f801",
+      "expected": "4c0c259f6a58f95768a023779f4d7ab5457e0dc4bdbb0ea6ef72d62efd79f801",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\kaggle_execution_plan.md": {
+      "actual": "24df0999ce81c697a95c085723ce4d40b430e5ad6cd6933ef126fbbe6d91a336",
+      "expected": "24df0999ce81c697a95c085723ce4d40b430e5ad6cd6933ef126fbbe6d91a336",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\metrics_spec.json": {
+      "actual": "b6fe616c4c1049222307f1e3d914a221b4553fbb18429a739ca448413bed0fdd",
+      "expected": "b6fe616c4c1049222307f1e3d914a221b4553fbb18429a739ca448413bed0fdd",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\nontraining_tests.txt": {
+      "actual": "b60aa4b3012efb92017d5b5ae3102595cb7eb194a9bac423ca8931e37a993780",
+      "expected": "b60aa4b3012efb92017d5b5ae3102595cb7eb194a9bac423ca8931e37a993780",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\protocol.json": {
+      "actual": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+      "expected": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\report.md": {
+      "actual": "82d0f74fde0bd75f349eeb13b2d71200dea75056705ce75aef369a598470366d",
+      "expected": "82d0f74fde0bd75f349eeb13b2d71200dea75056705ce75aef369a598470366d",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\split_manifest.json": {
+      "actual": "e95118b4149aa9d7e203f45679fb771a1123b97662dbe3548b9435ca8588b479",
+      "expected": "e95118b4149aa9d7e203f45679fb771a1123b97662dbe3548b9435ca8588b479",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_train_expand20_v1\\calibration_results.json": {
+      "actual": "076ad560239276d9501a5498e32ea64001049548e8e53e8c232f7621cc8b9cf9",
+      "expected": "076ad560239276d9501a5498e32ea64001049548e8e53e8c232f7621cc8b9cf9",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_train_expand20_v1\\frozen_acquisition_config.json": {
+      "actual": "e55a6a18261832c5b6329e0e84f07866cd2f856a9d0f8e0a5b69341d4d445600",
+      "expected": "e55a6a18261832c5b6329e0e84f07866cd2f856a9d0f8e0a5b69341d4d445600",
+      "group": "upstream"
+    },
+    "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_train_expand20_v1\\frozen_dataset_manifest.json": {
+      "actual": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+      "expected": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+      "group": "upstream"
+    }
+  },
+  "git_HEAD": "36fe79f310973321947d8d96dd78d14128cf719d",
+  "git_HEAD_and_tracked_diff_preserved": true,
+  "git_status_changes_outside_protocol_directory": [],
+  "passed": true,
+  "prior_seals": [
+    {
+      "files": 153,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_runs_v1\\SHA256SUMS",
+      "sha256": "886250f8c157bf6aec46ca70f3e7fe88ec2fcc16653dd4e3933eefbdc18fc6dd"
+    },
+    {
+      "files": 7,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_execution_v1\\local_delivery_SHA256SUMS",
+      "sha256": "c103a6c3ea814d1b3742dc21f98f180433c4e015e8ff0d2585ff8d83b95ebb0f"
+    },
+    {
+      "files": 10,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_preregistration_v1\\SHA256SUMS",
+      "sha256": "07faf35caa538ce9ab74e21d2c46755ce1805fd6d6330a741f5a4393f16bbc7d"
+    },
+    {
+      "files": 12,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_kaggle_environment_lock_v1\\SHA256SUMS",
+      "sha256": "7074ff80cd8d5e828a37e64adf68070646cc000ddaa4a6362454a631ef8b9f0c"
+    },
+    {
+      "files": 46,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_101\\SHA256SUMS",
+      "sha256": "849853c987858a446fe44412dd30626c55325b59bb5a30765f0576a6c86fff1d"
+    },
+    {
+      "files": 47,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_202\\SHA256SUMS",
+      "sha256": "bf14bf23b9c5b07aec9f11a7d379b443c5c12ba6f9f0c800d8125c0633e83e54"
+    },
+    {
+      "files": 40,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_303\\SHA256SUMS",
+      "sha256": "634b0d445b5dd5a8261e158ae298f46a5f7d15f1d62001f1978350460fefec44"
+    },
+    {
+      "files": 50,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_404\\SHA256SUMS",
+      "sha256": "c9f456ea9596a84c7c62b770607b5e06f655ad780894233f152cd67911f2fe68"
+    },
+    {
+      "files": 50,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\epistemic_gat_505\\SHA256SUMS",
+      "sha256": "a40b660fe517e6929c0936ad6c00e4e441495dbb48724cf95996e8ba3c7e1288"
+    },
+    {
+      "files": 10,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_101\\SHA256SUMS",
+      "sha256": "f562c493b40016d3c54f962e627b0a32dc4dc9ff6170034f64fc5bff0351ed1f"
+    },
+    {
+      "files": 10,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_202\\SHA256SUMS",
+      "sha256": "4844e69096f20b0c33eac2c6e520c70872577ff751184c4753e272b39415d43b"
+    },
+    {
+      "files": 11,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_303\\SHA256SUMS",
+      "sha256": "1b95aa1e624ec6236ae6f43f7e44408356a64a919b0303b3d600979a6998ea45"
+    },
+    {
+      "files": 10,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_404\\SHA256SUMS",
+      "sha256": "4259da862df04080794f17da8e17634baaa2752c86aa23cc26fb1936fc82b093"
+    },
+    {
+      "files": 10,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\nograph_505\\SHA256SUMS",
+      "sha256": "afa196db18ad0b330a581dd868494d5781ff624513bd507beff255b534bcf6e3"
+    },
+    {
+      "files": 46,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_101\\SHA256SUMS",
+      "sha256": "6f9010a344ec3b3774770e5be520056297d0c64022b703007f932c3439acb18b"
+    },
+    {
+      "files": 47,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_202\\SHA256SUMS",
+      "sha256": "a4116b20bd431d41da4e5a5c56fbdf11165c021524d54c5f5793291c4e84517d"
+    },
+    {
+      "files": 40,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_303\\SHA256SUMS",
+      "sha256": "9e92c9ffd550c0c006f0375006a88f076912c55c4dd6b69480869e7f941bd80a"
+    },
+    {
+      "files": 49,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_404\\SHA256SUMS",
+      "sha256": "9f3acc6982af0f331885e7ade27202ec015189e9956f88014a39356e784d48af"
+    },
+    {
+      "files": 50,
+      "passed": true,
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_gat_paired_raw_runs_v1\\standard_gat_505\\SHA256SUMS",
+      "sha256": "9fce28b1c5e44643a7886bccf0889ca7827e5d92462e1513d8e3e93e65791d2e"
+    }
+  ],
+  "scope": "byte hashes of source/artifacts/reports/results; 20 TRAIN sources SHA256 against sealed manifest followed by unchanged size/mtime; no scientific imports or payload analysis",
+  "workspace_files_verified": 3764
+}

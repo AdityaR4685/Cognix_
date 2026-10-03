@@ -1,0 +1,92 @@
+{
+  "access_ledger": {
+    "exact_fields": [
+      "authorization_reference",
+      "tool_source_sha256",
+      "protocol_sha256",
+      "source_URL",
+      "publisher_release",
+      "advertised_checksum_and_size",
+      "request_ranges_HTTP_status_bytes_received",
+      "start_stop_UTC",
+      "compressed_bytes_consumed",
+      "decompressed_bytes_consumed",
+      "header_bytes_consumed",
+      "member_body_bytes_discarded",
+      "padding_bytes_discarded",
+      "gzip_trailer_and_EOF_status",
+      "compressed_stream_digest",
+      "headers_visited",
+      "unique_scenario_count",
+      "canonicalization_rule",
+      "budget_usage",
+      "failure_reason_or_success"
+    ],
+    "header_event_fields": [
+      "sequence_number",
+      "decompressed_header_offset",
+      "compressed_input_counter",
+      "header_type",
+      "declared_body_size",
+      "discarded_body_and_padding_counts",
+      "scenario_ID_or_structural_root",
+      "parse_or_failure_code"
+    ],
+    "limits": "Do not persist complete child paths or timestep identifiers. Exact byte counters and parser decisions suffice for access accounting; ledger is structure/access metadata separate from the scenario-only output. Uninterpreted buffers never logged. No OS-wide access-trace claim."
+  },
+  "amendment_id": "002_pre_prediction_uniform_catalogue_pooled_scenario_conformal",
+  "authorization": "Later separate authorization required before any TEST archive request, acquisition or traversal. This design authorizes none.",
+  "byte_transit": "Reaching later tar headers may require sequential gzip decompression. Payload bytes may transit the decompressor in bounded volatile buffers but are discarded without interpretation or persistence. This is archive byte access, not zero payload-byte reads; semantic sensor/label inspection remains forbidden.",
+  "executed": false,
+  "gates_before_randomization": [
+    "Complete unique scenario list from authenticated full traversal; every scenario ID path-parseable into town, directory condition and anomaly type; structural EOF/integrity/budget checks passed.",
+    "Reconcile published total: exactly 627 full scenario IDs, 107 normal and 520 anomaly before historical exclusions. If publisher records change, STOP for a sealed amendment rather than silently adopt new totals.",
+    "No duplicate full inventory scenario IDs; distinguish multiple member headers under one scenario from duplicate inventory rows or duplicate archive entries.",
+    "Both known historical IDs found exactly in the pre-exclusion catalogue and removed in full from both final roles.",
+    "All independently authenticated historical exposure decisions documented and sealed before execution; incomplete historical file-level ledger remains disclosed; no guessed additional IDs or families.",
+    "Seal source inventory hash, exact exclusion supplement and eligible inventory hash before creating PCG64(2028). Reconciliation failure or unresolved exclusion decision means STOP, no partition."
+  ],
+  "implemented": false,
+  "input": "Official Base TEST gzip-compressed tar, with publisher release, exact URL, advertised checksum/size and access limits sealed before opening. No supplementary sensor archives, sample archives or local TEST directory enumeration.",
+  "mechanical_bounds": {
+    "compressed_bytes_max": "Exact advertised archive byte size from authenticated public release record; absent size is a STOP gate before access",
+    "member_body_bytes_max": 68719476736,
+    "policy": "Hard caps include discarded bodies, padding and all compressed requests/retries. No automatic retries/restarts, expanded budgets or fallback. Exceeding any bound marks inventory incomplete and stops; revised bounds/source records need a separately sealed access amendment before another attempt.",
+    "tar_header_records_max": 10000000,
+    "uncompressed_bytes_max": 1099511627776,
+    "unique_scenarios_max": 627,
+    "volatile_chunk_bytes_max": 1048576,
+    "wall_clock_seconds_max": 86400
+  },
+  "path_parser": {
+    "accepted": "512-byte ordinary POSIX/USTAR headers with checksum/size validation; name and prefix fields only for member path. Optional single documented carlanomaly/ wrapper or ./ prefix canonicalized, recording the transformation.",
+    "anomaly_grammar": "test/anomaly/<town>/<anomaly-type>/scenario-<positive decimal ID>",
+    "header_only": true,
+    "metadata": "Full scenario prefix, town, directory condition normal/anomaly and anomaly type derived only from header path components; scenario suffix has no family semantics.",
+    "normal_grammar": "test/normal/<town>/scenario-<positive decimal ID>",
+    "normal_type": "NORMAL metadata sentinel; never an observation label",
+    "rejection": "Reject absolute/drive/UNC paths, backslashes, .. traversal, NUL ambiguity, invalid encoding, malformed TEST prefixes, unsupported town/type, conflicting canonical identities, links/devices/sparse entries. STOP on PAX/GNU long-name/link or other extensions requiring body inspection to resolve paths; do not decode extension bodies. Support changes require a later sealed header-access amendment.",
+    "scope": "After scenario prefix is derived, never interpret child filename/tick numbers or suffixes as annotation/timestep data; no tick enumeration emitted. Non-scenario structural root directories may be accepted; unclassifiable data-bearing members halt."
+  },
+  "procedure_only": [
+    "Preflight seal source/version/checksum/size, read budgets, explicit authorization, parser/tool source and output schemas; do not instantiate model, simulator, generic devkit index or dataset loaders.",
+    "Stream gzip to a bounded tar-header state machine. Validate each 512-byte header checksum/size/path; count compressed/decompressed offsets exactly. Never unpack archive members to disk or cache compressed/decompressed bodies.",
+    "Derive scenario ID and town/condition/type from header path only. Add a unique scenario-level record; repeated headers for files in one scenario deduplicate to one ID, while duplicate member paths, duplicate explicit scenario directory entries, duplicate inventory rows or conflicting canonical aliases halt.",
+    "Consume member bodies and tar padding in bounded volatile chunks only to advance to next header, discard immediately. Never decode JPEG/PNG, parse Feather, inspect timestep annotations, retain sensor bodies, compute sensor statistics or call model inference. Do not hash or log per-sensor content.",
+    "Reach valid full tar termination and consume/check gzip trailer/EOF under the caps; reject truncation, checksum errors, unexpected concatenated streams or later nonpadding tar content. Validate streamed compressed-byte digest against authenticated archive checksum; digest serves byte-integrity only, not sensor statistics. Stop immediately on failure, with incomplete ledger and no eligible inventory seal.",
+    "Emit sorted unique scenario IDs with path-derived town/condition/type only. Emit access ledger separately with source/access counters, tool/protocol hashes and completion/failure state. No sensor contents, tick annotations, predictions, scores or labels.",
+    "Apply all inventory gates below and seal source inventory, exclusion decisions and eligible inventory hash before RNG creation. Full archive traversal proves structure traversal only; modality/label/synchronization completeness is a later separately authorized feature/label check, never a claim from headers alone."
+  ],
+  "prohibited": [
+    "JPEG/PNG decoding",
+    "Feather parsing",
+    "timestep annotation inspection",
+    "sensor body persistence",
+    "sensor statistics",
+    "model inference",
+    "partition execution in inventory tool",
+    "family inference from scenario-N"
+  ],
+  "public_inventory": "Exact complete 627-scenario list unavailable publicly; no standalone public Base TEST manifest recovered in sealed audits.",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED_OR_EXECUTED"
+}

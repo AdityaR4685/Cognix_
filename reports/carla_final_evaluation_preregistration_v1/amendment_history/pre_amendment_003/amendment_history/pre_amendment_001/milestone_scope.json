@@ -1,0 +1,28 @@
+{
+  "milestone": "FINAL CALIBRATION / HELD-OUT EVALUATION PROTOCOL PREREGISTRATION ONLY",
+  "prohibited": [
+    "official TEST payload access",
+    "actual TEST partition",
+    "model inference on TEST",
+    "new graph training or refitting",
+    "epistemic prior tuning",
+    "feature/recipe/calibration/architecture/seed/metric tuning based on completed results",
+    "conformal fitting",
+    "threshold tuning",
+    "secondary GNSS experiment",
+    "generic COGNIX modification",
+    "frozen synthetic benchmark modification",
+    "commit",
+    "push"
+  ],
+  "authorized_actions_executed": [
+    "Read existing source/report/protocol evidence",
+    "Read earlier COGNIX session text for historical schema references",
+    "Hash exact frozen TRAIN paths for integrity only",
+    "Verify existing source/cache/graph/protocol/trainer/result/environment seals",
+    "Bind all 15 existing selected checkpoints and thresholds",
+    "Write only final preregistration directory artifacts",
+    "Perform static design consistency checks and protocol hash sealing"
+  ],
+  "limits": "Executed-action attestation; no OS-wide access trace or claim of complete historical TEST exposure"
+}

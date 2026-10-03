@@ -1,0 +1,18 @@
+{
+  "amendment_id": "002_pre_prediction_uniform_catalogue_pooled_scenario_conformal",
+  "inventory_and_evaluation_ledger_required_fields": [
+    "full_scenario_ID",
+    "town",
+    "directory_condition",
+    "anomaly_type"
+  ],
+  "metrics": "Use unchanged frozen metrics and strict undefined conventions. Strict all-scenario scenario-macro AUROC stays primary where defined; two-class-eligible macro separately secondary. Scenario simultaneous coverage stays primary CP diagnostic. No new metric selected by outcomes.",
+  "reports": [
+    "composition before exclusions, eligible, calibration and evaluation",
+    "metrics by town",
+    "metrics by anomaly type",
+    "metrics by directory condition where meaningful",
+    "empirical scenario-level conformal coverage and set size by each subgroup"
+  ],
+  "semantics": "Descriptive subgroup diagnostics only. Same per-scorer global Q in all subgroups; no subgroup-specific cutoff or conditional guarantee. Report counts, denominators and undefined reasons; sparse results remain null or explicitly qualified. No realized composition adjustments."
+}

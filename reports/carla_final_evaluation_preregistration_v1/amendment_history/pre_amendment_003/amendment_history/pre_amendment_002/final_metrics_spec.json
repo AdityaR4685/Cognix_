@@ -1,0 +1,40 @@
+{
+  "TEST_payload_access_authorized": false,
+  "aggregation": "Compute per-scenario metrics first, unweighted arithmetic macro; any undefined per-scenario value makes strict macro null; retain pooled metrics and all per-scenario evidence. Explicit eligible AUROC subset is the sole named alternative; no undeclared partial macros.",
+  "binary_metrics": {
+    "AUPRC": "Stepwise average precision by descending tied anomaly score groups, not PR trapezoids; null if no positive ticks",
+    "AUROC": "Pr(r_anomaly>r_normal)+.5 Pr(tie), within each scenario; requires both tick classes",
+    "BCE": "mean(-(1-Y)*log(clip(q,1e-7,1-1e-7))-Y*log(clip(1-q,1e-7,1-1e-7)))",
+    "Brier": "mean((q-(1-Y_anomaly))^2)",
+    "ECE": "15 equal probability bins with edges k/15: [lower,upper), final includes 1; sum_b n_b/n*abs(mean(q_b)-mean(1-Y_b)); empty bins contribute 0; binary reliability, not max-confidence ECE",
+    "F1": "2TP/(2TP+FP+FN); frozen convention 0 if denominator=0",
+    "accuracy": "(TP+TN)/n",
+    "balanced_accuracy": ".5*(TP/(TP+FN)+TN/(TN+FP)); null when either true class absent"
+  },
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "conformal_metrics": {
+    "abstention_rate": "per-scenario mean 1[|C|!=1] then equal-scenario mean; empty and two-label sets separately retained",
+    "empty_and_ambiguous_rate": "equal-scenario fractions of |C|=0 and |C|=2",
+    "missing_calibration": "null plus reason; do not substitute uncalibrated sets; infinite valid cutoff produces full sets and 100% coverage, size2, abstention1 and must be reported as trivial",
+    "per_stratum_coverage": "Same simultaneous coverage/size diagnostics with counts; descriptive, no new class-conditional claim",
+    "pooled_tick_coverage": "sum_j,t covered / sum_j n_j; descriptive, not independent tick coverage trials",
+    "prediction_set_size": "per-scenario mean |C| then equal-scenario mean; also pooled descriptive mean",
+    "scenario_macro_tick_coverage": "J^-1 sum_j (1/n_j) sum_t 1[Y_j,t in C_j,t]",
+    "scenario_simultaneous_coverage": "J^-1 sum_j 1[ALL eligible ticks in j have Y_j,t in C_j,t], primary CP diagnostic matching the guarantee",
+    "signed_coverage_gap": "empirical coverage minus .95, separately for simultaneous scenario, scenario-macro tick and pooled tick coverage",
+    "undercoverage_gap": "max(0,.95-empirical coverage), same units"
+  },
+  "executed": false,
+  "failure": "Retain all assigned scenarios and seeds in ledger. Missing modalities, nonfinite data/scores or unreadable labels mark protocol incomplete; no replacement or dropping to improve results; tick0 exclusion is the fixed feature contract, not failure-based filtering.",
+  "hard_labels": "Y_hat_anomaly=1 iff r>=the exact development GRAPH_VALIDATION threshold for that method/seed in frozen_method_bindings.json; no final threshold search; thresholds retain pseudo-trained semantics and transfer may be poor",
+  "preregistered_descriptive_alternative": "Secondary two-class-eligible scenario-macro AUROC over the explicit label-defined subset with both tick classes. Freeze this subset rule now, retain excluded IDs/reasons/counts, same subset across all methods/seeds; null if empty. Never promote it to primary after TEST.",
+  "primary_endpoint": "Strict scenario-macro AUROC over ALL FINAL_EVALUATION scenarios; primary contrast EpistemicGAT minus StandardGAT per seed then mean of all five pairs",
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "reporting": "15 method/seed results and paired contrasts retained; secondary NoGraph comparisons, official-type/town diagnostics predeclared; no superiority selection across metrics/strata",
+  "scenario_condition_target": "No new directory-condition classifier or scenario detection AUROC is primary. Directory strata only define partition/provenance and coverage diagnostics.",
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES",
+  "target_and_unit": "Official observation labels and one score per eligible tick; equal scenario weights for macro metrics; pooled metrics explicitly tick weighted",
+  "uncertainty": "Do not treat ticks or 5*J seed-scenario cells as independent. Seed t/sign-flip summaries are conditional initialization summaries. Optional descriptive whole-scenario bootstrap is frozen in seed_aggregation_spec.json; no independent-population confidence claim absent scenario sampling assumptions.",
+  "undefined_primary_policy": "Preserve the development strict-null convention: if any evaluation scenario's AUROC is undefined, strict macro and primary contrast are null with exact reasons/denominators. Official normal scenarios commonly make this unavoidable. Do not silently discard them or replace the primary endpoint."
+}

@@ -1,0 +1,54 @@
+{
+  "PCG64_instantiated": false,
+  "activity_attestation": {
+    "TEST_access": false,
+    "TEST_scenario_enumeration": false,
+    "commit": false,
+    "conformal_fitting": false,
+    "inference": false,
+    "inventory_execution": false,
+    "partition_execution": false,
+    "push": false,
+    "sensor_or_label_access": false,
+    "training": false,
+    "tuning": false
+  },
+  "amendment_id": "003_partition_randomization_clarification_only",
+  "attestation_scope": "Executed tools in this milestone, not an OS-wide access trace; archived metadata is not sensor/label access.",
+  "authorization": "Explicit user request; one local OS-random seed generation and protocol reseal only",
+  "changes": [
+    "Single local OS-cryptographic 128-bit seed draw and exclusive receipt",
+    "Partition seed and randomization timing/semantics only",
+    "Guarantee marginal over preregistered assignment and held-out eligible catalogue scenario; population exchangeability remains a separate unestablished assumption",
+    "Current verifier dispatch and amendment validation/integrity/seals"
+  ],
+  "client_date": "2026-10-03",
+  "client_timezone": "Asia/Calcutta",
+  "historical_records": "Amendment 002 records/scripts/changelog remain byte-identical as historical artifacts and refer to their own checkpoint. Current randomization references are Amendment 003 and the seed receipt. Do not regenerate earlier amendments.",
+  "new_manifest_reference": "SHA256SUMS.sha256; no self-referential hash",
+  "no_redraw_rule": "Accept this first draw unconditionally, including any coincidence with an earlier seed. Never regenerate, redraw, balance, search or change it based on inventory composition, labels, predictions, metrics or conformal results. Lost/corrupt receipt means STOP; no replacement draw.",
+  "old_manifest_sha256": "c6516d507a7b0189c4fc11d0ad429a7dc080ebb49ea127623a87e1c4ed39482b",
+  "previous_archive": "amendment_history/pre_amendment_003/",
+  "previous_files_archived": 122,
+  "reason": "Fixed predetermined PCG64(2028) was reproducible but was not itself a probabilistic randomization draw; retain finite-catalogue randomization interpretation by an irrevocable OS-random seed drawn and sealed before later TEST inventory access.",
+  "receipt": {
+    "path": "partition_randomization_receipt.json",
+    "seed": 334227055836169582741732795999208677637,
+    "sha256": "2a6cc338637a6a2b6ce661f6711ac4ea3e45ff6337346d27ff1b4753e3377368"
+  },
+  "seed_draw_count": 1,
+  "seed_generated": true,
+  "title": "Amendment 003 \u2014 partition randomization clarification only",
+  "unchanged": [
+    "20/80 allocation ratio",
+    "complete scenario calibration unit",
+    "candidate score and block maximum",
+    "pooled conformal and alpha=.05",
+    "15 method/model-seed scorers",
+    "all metrics",
+    "historical exclusions",
+    "subgroup reporting",
+    "scientific pipeline",
+    "inventory bounds/parser/access-ledger/output protocol"
+  ]
+}
