@@ -1,0 +1,27 @@
+{
+  "NumPy": "1.26.4",
+  "Python": "3.12.10",
+  "RNG": "PCG64",
+  "algorithm": [
+    "read exact original final_evaluation.txt, require 500 unique opaque strings",
+    "lexicographically sort IDs",
+    "generate exactly one secrets.randbits(128) seed, immediately persist exclusive receipt",
+    "instantiate numpy.random.Generator(numpy.random.PCG64(recorded_seed))",
+    "perform exactly one permutation of indices 0..499",
+    "first 100 permuted IDs -> FRESH_FINAL_CONFORMAL_CAL",
+    "remaining 400 -> FRESH_FINAL_EVALUATION"
+  ],
+  "fresh_CAL_count": 100,
+  "fresh_EVAL_count": 400,
+  "partition_success": true,
+  "preregistration_sha256": "4b89f183ac9e283e25f70731f726a733669d5d17997018cc995fac00eaff3d50",
+  "redraw_allowed": false,
+  "seed": 154270014242709722484939160336742556487,
+  "seed_bits": 128,
+  "seed_generated_once": true,
+  "seed_search_allowed": false,
+  "seed_spent": true,
+  "sorted_source_list_sha256": "437e24e244b1396fb96ab7920edba3847e5ccdeb2950eee77c8d5ac47612d3e8",
+  "source_count": 500,
+  "source_membership_sha256": "85bb93828421c53e54064bfc7de0eb355b5e016427749ada59ee4fffdec157da"
+}

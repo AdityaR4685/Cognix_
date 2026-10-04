@@ -1,0 +1,62 @@
+{
+  "Attempt002_will_never_be_retried": true,
+  "Attempt003_executed": false,
+  "HEAD": "1f8cb8cca741ad3f3b471b2d5da5129e0309c30b",
+  "actual_access_ledger": {
+    "automatic_retry": false,
+    "cal_only_science": true,
+    "cal_scenarios_completed": 92,
+    "compressed_bytes_received": 62739644426,
+    "compressed_sha256_partial_or_complete": "5c48384eee84003a00e672de9265e27c3f8a9634deed04250a0b852780c5ba91",
+    "eval_scenarios_decoded": 0,
+    "http_requests": 1,
+    "opaque_body_bytes_discarded_by_role": {
+      "CAL": 14032840421,
+      "EVAL_OPAQUE_DISCARD": 53633451131,
+      "EXCLUDED_OPAQUE_DISCARD": 240747299
+    },
+    "range_requests": 0,
+    "raw_archive_retained": false,
+    "scenario_roots_seen": 455,
+    "transport_is_not_scientific_decoding": true
+  },
+  "actual_failure_exception_audit": {
+    "cal_completed": 92,
+    "exception": "ValueError",
+    "message": "segmentation class ids out of range [0, 29): min=1, max=32",
+    "status": "INCOMPLETE_NO_RETRY",
+    "traceback": "Traceback (most recent call last):\n  File \"/kaggle/working/cognix_cal_bundle_v2/runner.py\", line 200, in execute\n    receipt = scan(response, cal, evaluation, exclusions, processor, ledger, EXPECTED_SIZE)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/cognix_cal_bundle_v2/streaming.py\", line 118, in scan\n    on_cal(sid, relative, read_exact(size))\n  File \"/kaggle/working/cognix_cal_bundle_v2/runner.py\", line 88, in __call__\n    feature = segmentation_histogram_features(array)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/cognix_cal_bundle_v2/frozen_sources/cognix/adapters/carla/real_features.py\", line 95, in segmentation_histogram_features\n    raise ValueError(\nValueError: segmentation class ids out of range [0, 29): min=1, max=32\n"
+  },
+  "actual_result_manifest": {
+    "must_not_use_partial_scores_as_final_thresholds": true,
+    "status": "INCOMPLETE"
+  },
+  "archive_search_scope": [
+    "workspace filenames",
+    "Downloads exact filename",
+    "Documents exact filename",
+    "Codex attachments exact filename"
+  ],
+  "attempt002_external_evidence_sha256": "a21a6f2ea64eabcdb2c636f79da1cc18709146e583910cd97a52e991331221ea",
+  "attempt002_partial_archive_sha256": "5c48384eee84003a00e672de9265e27c3f8a9634deed04250a0b852780c5ba91",
+  "body_accounting_caveat": "Historical opaque_body_bytes_discarded_by_role increments before CAL decode/discard decisions: CAL=14032840421 is body accounting, NOT entirely opaque/discarded. EVAL=53633451131 and EXCLUDED=240747299 are opaque transport/discard. Original ledger unchanged.",
+  "cal_total": 125,
+  "class32_semantic_identity": "UNKNOWN",
+  "evidence_status": "LOCALLY_VERIFIED_IMMUTABLE_HISTORICAL_EVIDENCE",
+  "failing_scenario": "UNKNOWN_NOT_RECORDED",
+  "failing_tick": "UNKNOWN_NOT_RECORDED",
+  "no_final_thresholds": true,
+  "no_retry_or_resume": true,
+  "observed_failure_max": 32,
+  "observed_failure_min": 1,
+  "partial_CAL_score_values_used_for_repair_or_tuning": false,
+  "partial_scores_forbidden_as_final_thresholds": true,
+  "processing_ledger_record_count_only": 92,
+  "raw_archive_not_retained": true,
+  "request_method": "GET",
+  "score_ledger_handling": "byte-for-byte preservation, hashing and record counting only",
+  "unrecorded_TEST_properties": "UNKNOWN; no frequency, pixel count, image mode or shape inferred",
+  "v1_v2_immutable": true,
+  "v2_ZIP_sha256": "2f1eeb7aff36a6608b643ef1afca5621df5b621b8da79f83ba1232d83418db79",
+  "v2_manifest_sha256": "dd5e559ebf16d73a67d7ecc720ec7f3200465c493e6f804479155e8b32007c66"
+}

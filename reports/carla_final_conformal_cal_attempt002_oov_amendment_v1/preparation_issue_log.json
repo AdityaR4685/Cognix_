@@ -1,0 +1,20 @@
+{
+  "scope": "Offline preparation only; no scientific TEST execution",
+  "issues": [
+    {
+      "stage": "synthetic runtime metadata regression",
+      "exception": "AttributeError: __delete__",
+      "cause": "unittest.mock teardown attempted to delete a PyTorch backend descriptor",
+      "resolution": "Save and restore backend descriptor values explicitly; final 16 OOV/protection regression groups pass"
+    },
+    {
+      "stage": "builder local runtime version reporting after all tests passed",
+      "exception": "RuntimeError: OFFLINE_PREPARATION_REFUSES_NETWORK_OR_UNGUARDED_SHELL: socket.gethostname",
+      "cause": "Overbroad guard refused a local machine-name lookup during platform.machine() used by PyTorch import",
+      "resolution": "Refuse actual network connection, resolution, send and HTTP events explicitly; permit local hostname lookup. No network request was attempted. Retain already successful test transcripts for unchanged test sources."
+    }
+  ],
+  "TEST_network_requests": 0,
+  "TEST_payload_bytes_accessed": 0,
+  "Attempt003_executed": false
+}

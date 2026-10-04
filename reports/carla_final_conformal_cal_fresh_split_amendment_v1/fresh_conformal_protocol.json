@@ -1,0 +1,26 @@
+{
+  "alpha": 0.05,
+  "calibration": "For each fixed method/seed, collect exactly ONE S_j=max_t(1-P_j,t(Y_j,t)) from each FRESH_FINAL_CONFORMAL_CAL scenario over all frozen eligible synchronized ticks. Pool all n_cal scenario scores globally; sort {S_1,...,S_n_cal,+infinity}; k=ceil((n_cal+1)*0.95); Q is the augmented kth order statistic. Inclusive <= retains ties. For n_cal=0 or k>n_cal use +infinity. No category-specific cutoffs or envelope.",
+  "eligible_ticks": "All synchronized ticks t>=1 through the final tick, each exactly once; trailing window [max(0,t-11),t]; tick0 has no prediction by existing feature policy. Never require 3000 ticks when actual length differs. No pseudo corruption, resampling, balancing or outcome-based skips.",
+  "fitted_in_preparation": false,
+  "n_cal": 100,
+  "numerics": "Exact integer rank k=(19*(n_cal+1)+19)//20; +infinity augmentation and inclusive comparison. Serialize +infinity as null with quantile_is_infinite=true; no nonstandard JSON Infinity.",
+  "prediction_set": "C_j,t = {y in {0,1}: 1-P_j,t(y)<=Q}; when Q=+infinity C={0,1} for every tick",
+  "primary_guarantee": "Conditional on scorer/OOV frozen before fresh random assignment, original 500-EVAL pool scientifically undecoded, one uniform scenario assignment and no outcome-dependent adaptations: finite-catalogue marginal randomization statement over the new assignment and a uniformly selected remaining evaluation scenario. For n_cal=100, augmented rank k=96 gives at least 96/101 >= .95 with conservative ties under the uniform-assignment premise. This is not a claim conditional on the realized seed, split or calibration sample. No iid whole-dataset or future-CARLA, subgroup, town/type, joint-all-scorers or all-EVAL-scenarios guarantee. Scenario is the randomization unit; timesteps need not be independent.",
+  "rank_1_based": 96,
+  "scenario_score": "S_method,seed,j = max_{t in frozen eligible ticks of j} s_method,seed,j,t(Y_j,t)",
+  "scope_limits": [
+    "No independent-family coverage, new-route population coverage or iid drive-generation claim.",
+    "No arbitrary future CARLA coverage, live-distribution coverage or physical-safety certification.",
+    "No conditional coverage by town, directory condition or anomaly type; those are descriptive diagnostics only.",
+    "No simultaneous coverage of every evaluation scenario and no joint coverage across all 15 scorers.",
+    "Family/route dependence remains an external-generalization limitation despite unavailable family IDs.",
+    "No guarantee conditional on each realized calibration sample, partition, feature value or singleton selection; a reproducibility seed is not a population-exchangeability proof.",
+    "Never use outcomes to change alpha, partition, exclusion rules, scorer, features, probabilities, thresholds, checkpoints or construction; retain inefficient/trivial sets.",
+    "Old 125 CAL are retired after post-access OOV amendment; recomputation does not restore freshness. Prior opaque EVAL transport occurred; scientific decoder access was zero according to preserved evidence/code gates. Seeded PCG64 implements the specified random assignment; the validity statement remains conditional on the intended uniform-assignment premise."
+  ],
+  "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+  "source": "fresh_split_amendment_v1; sealed v3 scorer; pre-seed preregistration",
+  "source_sha256": "4b89f183ac9e283e25f70731f726a733669d5d17997018cc995fac00eaff3d50",
+  "threshold_count": 15
+}

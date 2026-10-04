@@ -1,0 +1,41 @@
+{
+  "Attempt003_executed": false,
+  "attempt_evidence": {
+    "Attempt001": {
+      "EVAL_opaque_body_accounted_bytes": 526258000,
+      "SCIENTIFIC_PAYLOAD_DECODE": 0,
+      "http_requests": 1,
+      "path": "reports/carla_final_conformal_cal_attempt001_failure_v1/access_ledger.json",
+      "sha256": "3de4cd017f4f9e3c96e03c00b745f377d06847bfcbc43dab77179b3cea97d99c",
+      "transport_is_not_scientific_decoding": true
+    },
+    "Attempt002": {
+      "EVAL_opaque_body_accounted_bytes": 53633451131,
+      "SCIENTIFIC_PAYLOAD_DECODE": 0,
+      "http_requests": 1,
+      "path": "reports/carla_final_conformal_cal_attempt002_failure_v1/immutable_output/access_ledger.json",
+      "sha256": "0b1d88e41c203bcc151237a9f815795a6a5ee9dab2a2785e4a6d016026102bbc",
+      "transport_is_not_scientific_decoding": true
+    }
+  },
+  "earlier_structural_transport_evidence": {
+    "reports/carla_test_structure_inventory_v1/access_ledger.json": {
+      "scientific_decoding": false,
+      "scope": "historical structural transport ledger",
+      "sha256": "47767233f0094fe7432b0d2aaa44c9a3ccdfd43a367030739f248512bf3afd3b"
+    },
+    "reports/carla_test_structure_inventory_v1/full_traversal_v1/access_ledger.json": {
+      "scientific_decoding": false,
+      "scope": "historical structural transport ledger",
+      "sha256": "ad00e40736ab05c33f889dc6cabeda680c195286f96367ac1fc33cab53847b23"
+    }
+  },
+  "later_access_basis": "Current explicit human statement that Attempt003 has not occurred, immutable v3 preparation/review counters, absence of local Attempt003 output, and known local access ledgers. No global or remote-system non-access proof is asserted.",
+  "no_later_scientific_access_evidence_found": true,
+  "no_new_TEST_payload_access": true,
+  "original_EVAL_count": 500,
+  "original_EVAL_sha256": "85bb93828421c53e54064bfc7de0eb355b5e016427749ada59ee4fffdec157da",
+  "score_values_used": false,
+  "status": "SCIENTIFIC_PAYLOAD_DECODE_ZERO_ESTABLISHED_BY_PRESERVED_EVIDENCE_AND_CODE_GATES",
+  "transport_limitation": "Prior EVAL opaque bytes transited/decompressed. SCIENTIFIC_PAYLOAD_DECODE=0 is evidence/code-path scoped; not NO BYTES EVER TRANSITED."
+}

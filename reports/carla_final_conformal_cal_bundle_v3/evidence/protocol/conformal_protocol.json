@@ -1,0 +1,122 @@
+{
+  "TEST_payload_access_authorized": false,
+  "adapter_implemented": false,
+  "alpha": 0.05,
+  "alternatives": [
+    {
+      "decision": "Rejected: temporal dependence and variable scenario size do not justify n_cal=tick count",
+      "name": "tick pooling"
+    },
+    {
+      "decision": "Not selected: standard hierarchical group/within-group permutation assumptions are not established for ordered CARLA ticks; genuine implementation/assumption work would be required",
+      "name": "hierarchical conformal"
+    },
+    {
+      "decision": "Mathematically compatible with generic CP after one fixed score per scenario, but predicts a scenario target and loses observation label localization. Mean/max r is not automatically a calibrated scenario posterior; directory anomaly condition and any-positive-tick target differ.",
+      "name": "scenario scalar aggregation"
+    },
+    {
+      "decision": "Can give marginal coverage for a randomly sampled tick in a new scenario under suitable sampling assumptions, but not all ticks; unnecessary target change here",
+      "name": "random one-tick-per-scenario"
+    },
+    {
+      "decision": "Selected for transparent whole-scenario guarantee, arbitrary temporal dependence, matched tick target, and adapter-only implementation; not selected for narrow sets",
+      "name": "block maximum"
+    }
+  ],
+  "amendment_id": "003_partition_randomization_clarification_only",
+  "calibration": "For each fixed method/seed, collect exactly ONE S_j=max_t(1-P_j,t(Y_j,t)) from each FINAL_CONFORMAL_CAL scenario over all frozen eligible synchronized ticks. Pool all n_cal scenario scores globally; sort {S_1,...,S_n_cal,+infinity}; k=ceil((n_cal+1)*0.95); Q is the augmented kth order statistic. Inclusive <= retains ties. For n_cal=0 or k>n_cal use +infinity. No category-specific cutoffs or envelope.",
+  "class_order": [
+    "official normal observation (0)",
+    "official anomaly observation (1)"
+  ],
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "construction": "Pooled scenario-block maximum split conformal with one global cutoff per frozen method/seed",
+  "coverage_target": 0.95,
+  "eligible_ticks": "All synchronized ticks t>=1 through the final tick, each exactly once; trailing window [max(0,t-11),t]; tick0 has no prediction by existing feature policy. Never require 3000 ticks when actual length differs. No pseudo corruption, resampling, balancing or outcome-based skips.",
+  "executed": false,
+  "fitted": false,
+  "generic_module_audit": {
+    "TwoStageConformalPredictor": "Fits separate individual and collective predictors only; no joint or hierarchical validity, no error budget allocation",
+    "actual_guarantee": "Finite-sample marginal class coverage if the fitted scorer is independent of calibration and future scores are exchangeable; neither per-class nor temporal/scenario simultaneous coverage is implemented",
+    "cluster_handling": "No group IDs, block reduction, family provenance, hierarchical weights or cluster guarantee",
+    "exchangeability_unit": "one input row; under ordinary use this is one example/tick",
+    "extension_decision": "Future minimal CARLA/report-side block-score adapter groups each scenario once, pools global scenario scores and computes one exact augmented rank per method/seed. Do not use ordinary tick-level fit as scenario CP. Generic module remains unchanged.",
+    "fit": "1-cal_outputs[row,cal_labels[row]]; sorted row scores; no groups or input/group validation",
+    "generic_extension_needed_for": "A reusable domain-neutral clustered/hierarchical API would require new generic score/group fitting and serialization contracts; out of scope and not necessary for this adapter design.",
+    "module": "cognix/calibration/conformal.py::ConformalPredictor",
+    "predict": "ceil((n+1)*(1-alpha)) augmented +infinity order statistic; inclusive class score comparison",
+    "reuse_boundary": "Generic inclusive prediction rule may be reused with explicit grouped score state; separately seal scenario membership, pooled scores, n_cal, rank, alpha and global Q per scorer. Never manufacture pseudo probability rows to disguise block scores."
+  },
+  "global_cutoffs": 15,
+  "identical_calibration_membership": true,
+  "inference_cutoff": "One global Q_method,seed; fit separately for all 15 frozen scorers using identical FINAL_CONFORMAL_CAL membership. No prediction ensemble or category-dependent selector.",
+  "methods": [
+    "nograph",
+    "standard_gat",
+    "epistemic_gat"
+  ],
+  "numerics": "Exact integer rank k=(19*(n_cal+1)+19)//20; +infinity augmentation and inclusive comparison. Serialize +infinity as null with quantile_is_infinite=true; no nonstandard JSON Infinity.",
+  "population_interpretation": "Separately, population-style coverage requires an appropriate scenario-score exchangeability assumption conditional on frozen development/scorer. The random split does not establish that assumption. No population/new-route/independent-family coverage is established here.",
+  "prediction_ensemble": false,
+  "prediction_set": "C_j,t = {y in {0,1}: 1-P_j,t(y)<=Q}; when Q=+infinity C={0,1} for every tick",
+  "primary_guarantee": "The primary finite-catalogue interpretation is marginal over the preregistered randomized assignment (one OS-random seed drawn and sealed before any later TEST inventory access; later one PCG64 permutation) and a uniformly selected held-out eligible released catalogue scenario. The augmented-rank >=0.95 statement remains conditional on frozen scorer, complete eligible inventory, uniform scenario assignment and exclusion rules fixed before randomization. It is not conditional on the realized seed/partition/calibration sample and is not a population, new-route or independent-family guarantee. S_new<=Q implies simultaneous inclusion of all eligible true tick labels for that one scenario.",
+  "proof": [
+    "Condition on the frozen scorer, complete fixed eligible released catalogue and pre-randomization exclusions; each scenario's hypothetical true-label maximum score is fixed. No scores are computed in this milestone.",
+    "Uniformly assign n_cal scenarios without replacement, then select a held-out scenario uniformly from the remainder. Conditional on their union, calibration/new positions are symmetric; the n_cal+1 score positions are exchangeable under this assignment even if catalogue scenarios share routes or families.",
+    "The augmented rank k=ceil((n_cal+1)*.95) gives Pr_randomization(S_new<=Q)>=k/(n_cal+1)>=.95, with conservative ties; if k=n_cal+1, Q=+infinity and coverage is trivial.",
+    "Because S_new=max_t(1-P_new,t(Y_new,t)), S_new<=Q entails Y_new,t in C_new,t for ALL frozen eligible ticks of that one scenario; arbitrary temporal dependence is allowed.",
+    "This statement is marginal over the preregistered randomized assignment (including the single OS-random seed draw) and held-out eligible catalogue scenario selection; never conditional on the realized seed, partition, calibration sample, cutoff, town/type, features or singleton selection. Any separate population argument still needs appropriate scenario-score exchangeability; the random split does not establish it."
+  ],
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "randomization_assumption": "The rank argument retains its uniform-assignment condition. OS entropy makes the seed a probabilistic draw rather than a predetermined constant; seeded PCG64 is the registered pseudorandom implementation, not by itself a proof of exact uniformity over all catalogue permutations or of population exchangeability.",
+  "randomization_receipt": {
+    "path": "partition_randomization_receipt.json",
+    "sha256": "2a6cc338637a6a2b6ce661f6711ac4ea3e45ff6337346d27ff1b4753e3377368"
+  },
+  "ready_for_fitting": false,
+  "removed_construction": [
+    "per-town cutoffs",
+    "per-condition cutoffs",
+    "per-anomaly-type cutoffs",
+    "stratum-specific Q_h",
+    "Q=max_h Q_h"
+  ],
+  "scenario_score": "S_method,seed,j = max_{t in frozen eligible ticks of j} s_method,seed,j,t(Y_j,t)",
+  "scope_limits": [
+    "No independent-family coverage, new-route population coverage or iid drive-generation claim.",
+    "No arbitrary future CARLA coverage, live-distribution coverage or physical-safety certification.",
+    "No conditional coverage by town, directory condition or anomaly type; those are descriptive diagnostics only.",
+    "No simultaneous coverage of every evaluation scenario and no joint coverage across all 15 scorers.",
+    "Family/route dependence remains an external-generalization limitation despite unavailable family IDs.",
+    "No guarantee conditional on each realized calibration sample, partition, feature value or singleton selection; a reproducibility seed is not a population-exchangeability proof.",
+    "Never use outcomes to change alpha, partition, exclusion rules, scorer, features, probabilities, thresholds, checkpoints or construction; retain inefficient/trivial sets."
+  ],
+  "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2107.07511v6",
+      "use": "Existing sealed split-conformal augmented-rank reference; pooled scenario and finite-catalogue random-assignment proof is this protocol's direct derivation."
+    },
+    {
+      "url": "https://arxiv.org/abs/2306.06342v4",
+      "use": "Hierarchical conformal requires a separately defined symmetry/sampling target; not assumed for ordered scenario ticks"
+    }
+  ],
+  "sources_note": "Prior sealed references preserved; finite-catalogue random-assignment proof is the direct rank derivation above, not a claim that publisher drive generation is iid.",
+  "status": "SEALED_AMENDMENT_003_DESIGN_ONLY",
+  "target": {
+    "development": "clean vs controlled TRAIN-derived pseudo corruption at artificial paired prevalence",
+    "final": "official per-timestep anomaly-observation label, mapped normal=0/anomaly=1; directory normal/anomaly and anomaly type retained as metadata, not substituted for labels",
+    "labels": "Read/alignment audit only in separately authorized future stage. No blanket labels from anomaly directory; a historical change-weather scenario has all-False observation labels. Missing/misaligned labels halt evaluation; never fabricate or zero-fill.",
+    "semantics": "q stays a frozen pseudo-trained normality evidence score. Its complement is anomaly evidence; neither is an established official-task posterior. Conformal supports candidate official labels; it does not recalibrate q or validate a safe action."
+  }
+}

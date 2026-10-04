@@ -1,0 +1,25 @@
+{
+  "alpha": 0.05,
+  "calibration": "For each fixed method/seed, collect exactly ONE S_j=max_t(1-P_j,t(Y_j,t)) from each FINAL_CONFORMAL_CAL scenario over all frozen eligible synchronized ticks. Pool all n_cal scenario scores globally; sort {S_1,...,S_n_cal,+infinity}; k=ceil((n_cal+1)*0.95); Q is the augmented kth order statistic. Inclusive <= retains ties. For n_cal=0 or k>n_cal use +infinity. No category-specific cutoffs or envelope.",
+  "eligible_ticks": "All synchronized ticks t>=1 through the final tick, each exactly once; trailing window [max(0,t-11),t]; tick0 has no prediction by existing feature policy. Never require 3000 ticks when actual length differs. No pseudo corruption, resampling, balancing or outcome-based skips.",
+  "fitted_in_preparation": false,
+  "n_cal": 125,
+  "numerics": "Exact integer rank k=(19*(n_cal+1)+19)//20; +infinity augmentation and inclusive comparison. Serialize +infinity as null with quantile_is_infinite=true; no nonstandard JSON Infinity.",
+  "prediction_set": "C_j,t = {y in {0,1}: 1-P_j,t(y)<=Q}; when Q=+infinity C={0,1} for every tick",
+  "primary_guarantee": "The primary finite-catalogue interpretation is marginal over the preregistered randomized assignment (one OS-random seed drawn and sealed before any later TEST inventory access; later one PCG64 permutation) and a uniformly selected held-out eligible released catalogue scenario. The augmented-rank >=0.95 statement remains conditional on frozen scorer, complete eligible inventory, uniform scenario assignment and exclusion rules fixed before randomization. It is not conditional on the realized seed/partition/calibration sample and is not a population, new-route or independent-family guarantee. S_new<=Q implies simultaneous inclusion of all eligible true tick labels for that one scenario.",
+  "rank_1_based": 120,
+  "scenario_score": "S_method,seed,j = max_{t in frozen eligible ticks of j} s_method,seed,j,t(Y_j,t)",
+  "scope_limits": [
+    "No independent-family coverage, new-route population coverage or iid drive-generation claim.",
+    "No arbitrary future CARLA coverage, live-distribution coverage or physical-safety certification.",
+    "No conditional coverage by town, directory condition or anomaly type; those are descriptive diagnostics only.",
+    "No simultaneous coverage of every evaluation scenario and no joint coverage across all 15 scorers.",
+    "Family/route dependence remains an external-generalization limitation despite unavailable family IDs.",
+    "No guarantee conditional on each realized calibration sample, partition, feature value or singleton selection; a reproducibility seed is not a population-exchangeability proof.",
+    "Never use outcomes to change alpha, partition, exclusion rules, scorer, features, probabilities, thresholds, checkpoints or construction; retain inefficient/trivial sets."
+  ],
+  "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+  "source": "committed Amendment 003 conformal_protocol.json",
+  "source_sha256": "7f0db617f8c6d5ee257ec33058870b4a5f601991637697a1842d9a1611b2d187",
+  "threshold_count": 15
+}

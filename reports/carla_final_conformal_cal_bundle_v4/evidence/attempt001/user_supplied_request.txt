@@ -1,0 +1,186 @@
+We have a preregistered COGNIX FINAL_CONFORMAL_CAL execution bundle already
+sealed and committed at commit 1688bd7 ("Seal final CARLA conformal calibration bundle").
+
+The first authorized scientific TEST execution has occurred and FAILED.
+DO NOT access the CarlAnomaly TEST URL/archive in any way.
+DO NOT retry the execution.
+DO NOT modify or overwrite the existing
+reports/carla_final_conformal_cal_bundle_v1/
+bundle or its historical seals.
+DO NOT alter the frozen CAL/EVAL partition, models, checkpoints, features,
+normality agents, graph models, label semantics, conformal score, alpha,
+quantile rule, memberships, scientific hypotheses, or preregistered analysis.
+
+FAILED ATTEMPT 001 evidence supplied by the user:
+
+failure_exception_audit.json:
+{
+  "cal_completed": 0,
+  "exception": "ValueError",
+  "message": "FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB",
+  "status": "INCOMPLETE_NO_RETRY"
+}
+
+access_ledger.json:
+{
+  "automatic_retry": false,
+  "cal_only_science": true,
+  "cal_scenarios_completed": 0,
+  "compressed_bytes_received": 840761354,
+  "compressed_sha256_partial_or_complete":
+    "2cd357e97c8a19ac57c28b94afe9082e780c5fce43dfbeed65c50ea5313d4f0f",
+  "eval_scenarios_decoded": 0,
+  "http_requests": 1,
+  "opaque_body_bytes_discarded_by_role": {
+    "CAL": 131589081,
+    "EVAL_OPAQUE_DISCARD": 526258000,
+    "EXCLUDED_OPAQUE_DISCARD": 240747299
+  },
+  "range_requests": 0,
+  "raw_archive_retained": false,
+  "scenario_roots_seen": 7,
+  "transport_is_not_scientific_decoding": true
+}
+
+result_manifest.json:
+{
+  "must_not_use_partial_scores_as_final_thresholds": true,
+  "status": "INCOMPLETE"
+}
+
+Important audit nuance:
+streaming.py increments body_bytes[role] for all bodies before deciding whether
+a CAL body is decoded or discarded. Therefore the key
+"opaque_body_bytes_discarded_by_role" is truthful for EVAL/exclusions but its
+CAL value must NOT be described as entirely opaque/discarded. Preserve this
+historical ledger unchanged and explain this limitation in the failure record.
+
+ROOT CAUSE TO AUDIT:
+
+In v1 runner.py, both rgb-front and segmentation-front pass through:
+
+    array = np.asarray(image)
+    if array.dtype != np.uint8 or array.ndim != 3 or array.shape[2] != 3:
+        raise ValueError("FROZEN_IMAGE_SCHEMA_REQUIRES_UINT8_RGB")
+
+However the already-frozen
+cognix/adapters/carla/real_features.py
+segmentation_histogram_features() explicitly accepts a 2-D segmentation class
+map and also handles 3-D input by selecting channel 0.
+
+The existing TRAIN cache path also loads segmentation via
+np.asarray(PIL.Image.open(path)) and passes it directly to that same frozen
+segmentation feature extractor.
+
+The v1 synthetic verification did not exercise this because its synthetic
+segmentation PNG was generated as shape (16,16,3).
+
+TASK
+
+Prepare, OFFLINE ONLY, a rigorous failure record plus a corrected
+FINAL_CONFORMAL_CAL execution bundle v2.
+
+1. Create a new immutable historical failure report directory, e.g.
+   reports/carla_final_conformal_cal_attempt001_failure_v1/
+   documenting:
+   - attempt occurred after all pre-access gates passed;
+   - exactly one HTTP GET;
+   - 840761354 compressed bytes received;
+   - 7 scenario roots seen;
+   - zero CAL scenarios completed;
+   - zero EVAL scenarios decoded;
+   - no thresholds finalized;
+   - partial results forbidden;
+   - exception and traceback;
+   - root-cause analysis;
+   - no automatic retry;
+   - v1 remains immutable.
+   Include the supplied failed-attempt evidence values exactly.
+   Do not invent scenario IDs or image properties that were not recorded.
+
+2. Audit the root cause entirely from frozen source/TRAIN-compatible synthetic
+   fixtures. Do not access TEST.
+   Confirm whether the runner's shared RGB schema gate is inconsistent with
+   the frozen segmentation feature contract.
+
+3. Make the MINIMAL execution correction in a NEW bundle directory, e.g.
+   reports/carla_final_conformal_cal_bundle_v2/.
+
+   Preserve strict camera validation:
+       dtype uint8
+       ndim == 3
+       shape[2] == 3
+
+   For segmentation, align the runner with the already-frozen
+   segmentation_histogram_features contract rather than imposing camera RGB
+   shape semantics. Accept the legitimate 2-D uint8 segmentation representation
+   and the already-supported 3-D representation. Do not change the feature
+   extractor itself.
+
+   Give camera and segmentation separate fail-loud schema errors.
+
+4. Add a regression fixture using a real-format synthetic 2-D uint8
+   segmentation PNG and prove that:
+   - v1-style shared RGB validation would reject it;
+   - corrected v2 segmentation handling accepts it;
+   - segmentation_histogram_features receives the same array semantics as the
+     frozen TRAIN/cache path;
+   - EVAL decoder remains unreachable;
+   - all existing synthetic protection tests still pass.
+
+5. Do NOT use any CAL outcome, CAL label, anomaly performance, EVAL outcome, or
+   TEST payload to select/tune this fix. This is an implementation/schema repair
+   only.
+
+6. Preserve EXACTLY:
+   - the frozen 125 CAL members and 500 EVAL members;
+   - historical exclusions;
+   - 15 frozen scorer states and hashes;
+   - one-class fitted parameters;
+   - alpha=.05;
+   - scenario score S_j=max_t(1-P_t(Y_t));
+   - augmented conformal order statistic k=120;
+   - inclusive <= comparison;
+   - single-stream byte-0 archive transport;
+   - EVAL opaque-discard protection;
+   - one-attempt/no-auto-retry semantics.
+
+7. Create an explicit post-failure amendment/repair record stating why a
+   separately authorized Attempt 002 is scientifically permissible:
+   implementation compatibility repair, not method/data/model tuning.
+   Bind it to:
+   - v1 commit 1688bd7
+   - v1 manifest
+     bbcdad0829bc68a6a69007da82073e682373a548e0422d92000fd0f80592acbe
+   - Attempt 001 evidence above.
+   Do not rewrite Amendment 003 or any previous protocol history.
+
+8. Prepare a new Kaggle upload ZIP for v2 and fresh integrity hashes.
+   The v2 runner must write to a NEW output path such as:
+       /kaggle/working/cognix_final_conformal_cal_attempt002_v1
+   so Attempt 001 is never overwritten.
+
+9. Keep TEST access count at ZERO during this entire preparation.
+   No requests to data.carlanomaly.de, no HEAD, GET, range, probe, or payload.
+   Do not execute the scientific runner.
+
+10. Run all offline verification/synthetic tests and produce a pre-access
+    validation report. Final readiness wording should distinguish:
+       READY_FOR_SEPARATELY_AUTHORIZED_FINAL_CONFORMAL_CAL_ATTEMPT_002
+    from successful scientific execution.
+
+11. Do NOT commit or push anything.
+    At the end report:
+    - exact files created/changed;
+    - root cause finding;
+    - regression-test result;
+    - all scientific bindings shown unchanged;
+    - v2 manifest SHA256;
+    - v2 ZIP SHA256;
+    - TEST network requests = 0;
+    - TEST payload bytes accessed = 0;
+    - git status;
+    - exact next commands for human review/staging only.
+
+Do not use git add, commit, push, pull, merge, rebase, reset --hard, or force.
+Preserve all unrelated untracked files.

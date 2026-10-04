@@ -1,0 +1,42 @@
+{
+  "Attempt003_executed": false,
+  "CAL_count": 100,
+  "EVAL_count": 400,
+  "NumPy": "1.26.4",
+  "Python": "3.12.10",
+  "RNG": "PCG64",
+  "RNG_instantiation_count": 1,
+  "TEST_network_requests": 0,
+  "TEST_payload_bytes_accessed": 0,
+  "algorithm": [
+    "read exact original final_evaluation.txt, require 500 unique opaque strings",
+    "lexicographically sort IDs",
+    "generate exactly one secrets.randbits(128) seed, immediately persist exclusive receipt",
+    "instantiate numpy.random.Generator(numpy.random.PCG64(recorded_seed))",
+    "perform exactly one permutation of indices 0..499",
+    "first 100 permuted IDs -> FRESH_FINAL_CONFORMAL_CAL",
+    "remaining 400 -> FRESH_FINAL_EVALUATION"
+  ],
+  "no_RNG_replay_for_verification": true,
+  "output_sha256": {
+    "fresh_final_conformal_cal.txt": "bb75bd2244c4ab4b25b246e738db281cb5371d63e57a9632c72dd320fe638736",
+    "fresh_final_evaluation.txt": "9410f13cc563362bf5ef7ed52333807131bea4fe5a5d51a13c1924e4c855a60a",
+    "fresh_partition_membership.json": "d14a3e7332955d04dca97d0ce60d34a4f739ada062933332ba2cc4ebd12d6dab",
+    "fresh_partition_seed.json": "834f0990506ad484d0a0143d4191a26942323da5ea31f740aa8429c01d2b7c81",
+    "fresh_source_pool.txt": "85bb93828421c53e54064bfc7de0eb355b5e016427749ada59ee4fffdec157da",
+    "fresh_source_pool_sorted.txt": "437e24e244b1396fb96ab7920edba3847e5ccdeb2950eee77c8d5ac47612d3e8"
+  },
+  "permutation_count": 1,
+  "preregistration_sha256": "4b89f183ac9e283e25f70731f726a733669d5d17997018cc995fac00eaff3d50",
+  "redraw_allowed": false,
+  "scenario_IDs_treated_as_opaque": true,
+  "scores_or_payloads_accessed": false,
+  "seed": 154270014242709722484939160336742556487,
+  "seed_generated_once": true,
+  "seed_receipt_final_sha256": "834f0990506ad484d0a0143d4191a26942323da5ea31f740aa8429c01d2b7c81",
+  "seed_receipt_pre_spend_sha256": "ad8f0cc574c18d8b7b8252ed2c936193b09391e65e2af7c19abf8d7603edcfa4",
+  "seed_search_allowed": false,
+  "seed_spent": true,
+  "source_count": 500,
+  "status": "COMPLETE_SINGLE_DRAW_SEED_SPENT"
+}

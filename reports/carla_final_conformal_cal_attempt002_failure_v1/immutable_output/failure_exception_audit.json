@@ -1,0 +1,7 @@
+{
+  "cal_completed": 92,
+  "exception": "ValueError",
+  "message": "segmentation class ids out of range [0, 29): min=1, max=32",
+  "status": "INCOMPLETE_NO_RETRY",
+  "traceback": "Traceback (most recent call last):\n  File \"/kaggle/working/cognix_cal_bundle_v2/runner.py\", line 200, in execute\n    receipt = scan(response, cal, evaluation, exclusions, processor, ledger, EXPECTED_SIZE)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/cognix_cal_bundle_v2/streaming.py\", line 118, in scan\n    on_cal(sid, relative, read_exact(size))\n  File \"/kaggle/working/cognix_cal_bundle_v2/runner.py\", line 88, in __call__\n    feature = segmentation_histogram_features(array)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/cognix_cal_bundle_v2/frozen_sources/cognix/adapters/carla/real_features.py\", line 95, in segmentation_histogram_features\n    raise ValueError(\nValueError: segmentation class ids out of range [0, 29): min=1, max=32\n"
+}

@@ -1,0 +1,195 @@
+{
+  "TEST_payload_access_authorized": false,
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "development_comparison": {
+    "complete": true,
+    "conditional_seed_CI": [
+      -5.4543476426879355e-05,
+      0.00010744540516811291
+    ],
+    "exact_two_sided_sign_flip_p": 0.875,
+    "max": 0.00014292860318787515,
+    "mean": 2.6450964370616782e-05,
+    "median": -1.4824696298321172e-06,
+    "min": -8.61685472353102e-06,
+    "paired_dz": 0.4054995608469083,
+    "per_seed": {
+      "101": -1.4824696298321172e-06,
+      "202": 0.00014292860318787515,
+      "303": -8.61685472353102e-06,
+      "404": -2.8537540373019255e-06,
+      "505": 2.279297055873819e-06
+    },
+    "sample_SD": 6.523056231028334e-05,
+    "undefined_reasons": {}
+  },
+  "development_findings": [
+    "Both graph methods descriptively exceed NoGraph AUROC in all five seeds",
+    "StandardGAT and EpistemicGAT are extremely close; no consistent epistemic superiority",
+    "Canonical E is generally small; prior remains weak; preserve negative result"
+  ],
+  "environment_lock_sha256": "0e92846f45cb6d75e787c5d25b06f13bf1941b85104f8d6adf68e6973cd5de4d",
+  "executed": false,
+  "graph_protocol_sha256": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+  "graph_scientific_sha256": "baa7deb4f20698d3ed681d0676a14208ae1e9f9a88c0542a1024d5b14d416237",
+  "methods": [
+    "nograph",
+    "standard_gat",
+    "epistemic_gat"
+  ],
+  "prohibited": [
+    "best seed selection",
+    "new graph experiment",
+    "refit",
+    "prior amplification",
+    "feature/recipe/architecture/metric tuning from completed outcomes"
+  ],
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "runs": [
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_101/nograph/seed_101/checkpoint_epoch_004.pt",
+      "content_sha256": "03f85605bed5b88ba61d1d101f39da1a5d5cb4207616e426b4e878135f2f7394",
+      "file_sha256": "06119d7d10878cebe9a71dde39dfdc4296c167242df443f25766e8ca6c261942",
+      "frozen_anomaly_threshold": 0.40791332721710205,
+      "method": "nograph",
+      "seed": 101,
+      "selected_epoch": 4
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/standard_gat_101/standard_gat/seed_101/checkpoint_epoch_045.pt",
+      "content_sha256": "d4426b28eee3fe765a3aaf18e253d93d7693e525cf5eacb5d08293084bf7fc47",
+      "file_sha256": "361580654e585c4cc082883f37b8f3c9999cd2e2ab604976c635c4290160cedc",
+      "frozen_anomaly_threshold": 0.37511736154556274,
+      "method": "standard_gat",
+      "seed": 101,
+      "selected_epoch": 45
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/epistemic_gat_101/epistemic_gat/seed_101/checkpoint_epoch_045.pt",
+      "content_sha256": "a87cc51473806db3ad65a00b3feb05c9289722a58c49a6be26222f0d20e80b94",
+      "file_sha256": "ab17b6ed0a74dcd04564977c2f1c46e8315e334f634ffa7e9ddfd11f29a0be75",
+      "frozen_anomaly_threshold": 0.37508708238601685,
+      "method": "epistemic_gat",
+      "seed": 101,
+      "selected_epoch": 45
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_202/nograph/seed_202/checkpoint_epoch_004.pt",
+      "content_sha256": "30975eb5ad9161687861f9d32f8ced402eaca8c3fe502b33e96b1547270347ff",
+      "file_sha256": "c535aaadefaca805d0edf826d992356f6bcab026879551cbb73a89339c4b1cfe",
+      "frozen_anomaly_threshold": 0.4004901051521301,
+      "method": "nograph",
+      "seed": 202,
+      "selected_epoch": 4
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/standard_gat_202/standard_gat/seed_202/checkpoint_epoch_067.pt",
+      "content_sha256": "1f5c44e2c36ced4961029ac97662a2c301c574781d285407c9ea961406925e07",
+      "file_sha256": "e9ea171ad9eebe0191980cf10141f6a6910d09be6a6fdcdb92bc82feb6036c8b",
+      "frozen_anomaly_threshold": 0.4032386541366577,
+      "method": "standard_gat",
+      "seed": 202,
+      "selected_epoch": 67
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/epistemic_gat_202/epistemic_gat/seed_202/checkpoint_epoch_057.pt",
+      "content_sha256": "352d0e84bec121244e97049074d020f8889d02512273b445dfc625894e4d43a1",
+      "file_sha256": "e936dc61d7b9f68102fa49cef200452e53ed8844b0aaccf09d6b1a072ce695d4",
+      "frozen_anomaly_threshold": 0.38989758491516113,
+      "method": "epistemic_gat",
+      "seed": 202,
+      "selected_epoch": 57
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_303/nograph/seed_303/checkpoint_epoch_005.pt",
+      "content_sha256": "8449a6dc69e584f296df6450f1e846f86dc140461527603468430b5364fabd61",
+      "file_sha256": "45953e96fda283a23e78263ec6a57d67a26179438a324f3a6b9001360d801466",
+      "frozen_anomaly_threshold": 0.39097344875335693,
+      "method": "nograph",
+      "seed": 303,
+      "selected_epoch": 5
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/standard_gat_303/standard_gat/seed_303/checkpoint_epoch_046.pt",
+      "content_sha256": "2e5a39aa3458b99157f0cdd1acc17e1e08c1c657a4c838ca4cda0560f1729c7c",
+      "file_sha256": "dc29dfcceeda858bd573e4c0c53970f85307e51b256bccc844f2eabc0544bd1b",
+      "frozen_anomaly_threshold": 0.3785390853881836,
+      "method": "standard_gat",
+      "seed": 303,
+      "selected_epoch": 46
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/epistemic_gat_303/epistemic_gat/seed_303/checkpoint_epoch_046.pt",
+      "content_sha256": "62ae81e11204b87fbf8c7bd6db77b41e1d852368a28f74496271c961602cf6bf",
+      "file_sha256": "7db7b9288562aa68efcfea29daa07d54c140b8094104fca3a692f019595c7ba2",
+      "frozen_anomaly_threshold": 0.3785119652748108,
+      "method": "epistemic_gat",
+      "seed": 303,
+      "selected_epoch": 46
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_404/nograph/seed_404/checkpoint_epoch_004.pt",
+      "content_sha256": "d820137df2a5aea170fb7b59d0f597e83f126fca072063d248244d9b4509cb08",
+      "file_sha256": "53842ff3d60baed7ff6a8380949e4389139b928175a262f6bdc3bb60d0391f27",
+      "frozen_anomaly_threshold": 0.4074819087982178,
+      "method": "nograph",
+      "seed": 404,
+      "selected_epoch": 4
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/standard_gat_404/standard_gat/seed_404/checkpoint_epoch_088.pt",
+      "content_sha256": "a0102080ab8d00bc5aeea99d12b9c2dd5e9f7b18a71b4c5e2cc70c3d8b61a52d",
+      "file_sha256": "b88594d284e0400c31102e1ccfea48e85e90df6c35d4cf186b11ff2f17f5733a",
+      "frozen_anomaly_threshold": 0.34752345085144043,
+      "method": "standard_gat",
+      "seed": 404,
+      "selected_epoch": 88
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/epistemic_gat_404/epistemic_gat/seed_404/checkpoint_epoch_088.pt",
+      "content_sha256": "8f2a7e4d57de9f4a535dc21edd50dcfd37b9b9a9be61ddbac6e84facb0189ec4",
+      "file_sha256": "a653f27a2ab658bae32033bcd7ab8969024add516538493f3e309d251a7ff5e1",
+      "frozen_anomaly_threshold": 0.34752142429351807,
+      "method": "epistemic_gat",
+      "seed": 404,
+      "selected_epoch": 88
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_505/nograph/seed_505/checkpoint_epoch_004.pt",
+      "content_sha256": "853984ebfc818849773b6fcfef94306eecabdb89d57c17ffc7171934453861f1",
+      "file_sha256": "b5c43598e49df417799f6e3da18eb684bb8e8bdd9fb0f0fdff93083df963498a",
+      "frozen_anomaly_threshold": 0.39908409118652344,
+      "method": "nograph",
+      "seed": 505,
+      "selected_epoch": 4
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/standard_gat_505/standard_gat/seed_505/checkpoint_epoch_079.pt",
+      "content_sha256": "77c9054723ac207b8cb305e5ff62ee3810478dfc02614a7ec19d7cb7651a16d0",
+      "file_sha256": "569d4c77fb4efdb67a6adec3a96c39998ef611d46eca684c7fa54951c4f382dc",
+      "frozen_anomaly_threshold": 0.35932910442352295,
+      "method": "standard_gat",
+      "seed": 505,
+      "selected_epoch": 79
+    },
+    {
+      "checkpoint": "reports/carla_gat_paired_raw_runs_v1/epistemic_gat_505/epistemic_gat/seed_505/checkpoint_epoch_079.pt",
+      "content_sha256": "04741fd306100f4d9736e43751045d62a4eaaa5c10ddd1acb764e9008e7be061",
+      "file_sha256": "ce54335047c02185e7b092a77a46f4a189cb82b55565f599361e4bab2182a61c",
+      "frozen_anomaly_threshold": 0.3593127727508545,
+      "method": "epistemic_gat",
+      "seed": 505,
+      "selected_epoch": 79
+    }
+  ],
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES",
+  "trainer_bundle_sha256": "9012174611be989f5305f5cbc40f05527831c9f704e49d8823c52fed88ccea3b"
+}

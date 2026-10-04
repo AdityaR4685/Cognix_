@@ -1,0 +1,35 @@
+{
+  "archive_URL": "https://data.carlanomaly.de/v1/carlanomaly-base-test.tar.gz",
+  "attempt003_executed": false,
+  "body_accounting_caveat": "body_bytes_accounted_by_role includes announced non-directory body size before decode/discard. opaque_body_bytes_actually_discarded_by_role records completed opaque body chunks, excluding padding. Historical v1/v2 ledgers remain unchanged.",
+  "eval_bytes": "Compressed transport and decompressed opaque body discard are transport only; never image, Feather, sensor, label, feature, or model interpretation.",
+  "excluded_ID": "Opaque discard only; never scientific processing",
+  "expected_archive_sha256": "267e48f2249deb0269ad950aa81bca57dc02e3bbdf2d73acc172af267b18254a",
+  "expected_compressed_size": 91538225599,
+  "finalize_thresholds_only_after_full_archive_verified": true,
+  "gate": "Exact four-role immutable membership before any scientific callback; only FRESH_CAL admitted; CalProcessor rejects all non-FRESH_CAL",
+  "membership_override": false,
+  "memory_caps": {
+    "image_pixels": 16000000,
+    "required_member_bytes": 16777216,
+    "scenario_ticks": 100000,
+    "total_CAL_ticks": 2000000,
+    "transport_chunk_bytes": 65536
+  },
+  "original_125_CAL_retired": true,
+  "output": "/kaggle/working/cognix_final_conformal_cal_attempt003_v2",
+  "partial_attempt002_scores_reused": false,
+  "rank_1_based": 96,
+  "roles": {
+    "FINAL_EVAL_OPAQUE_DISCARD": 400,
+    "FRESH_CAL": 100,
+    "HISTORICAL_EXCLUDED_OPAQUE_DISCARD": 2,
+    "PRIOR_EXPOSED_CAL_OPAQUE_DISCARD": 125
+  },
+  "stream": "One sequential stream from byte zero. No GET/HEAD/range/retry during preparation; no compressed-offset seeking/resume.",
+  "thresholds_require_exact_fresh_CAL_count": 100,
+  "training": false,
+  "tuning": false,
+  "unknown_ID": "Stop before payload read or callback",
+  "zero_decode_proof_limit": "Code gates, synthetic decoder spies, and future runtime ledger; not an OS-wide non-access proof"
+}

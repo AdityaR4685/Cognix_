@@ -1,0 +1,6 @@
+{
+  "reason": "Old v2 reject-ID29 behavior is the explicitly amended OOV rule. Every other prior regression assertion is unchanged; frozen extractor still rejects OOV when called directly.",
+  "removed_assertion": "        expect_error(lambda: CalProcessor({}, {}, cal, out, \"cpu\")(c, \"segmentation-front/000001.png\", b.getvalue()), \"segmentation class ids out of range [0, 29): min=29, max=29\")\n        passed(\"frozen_segmentation_class_range_refusal_preserved\")",
+  "replacement_assertion": "        amended = CalProcessor({}, {}, cal, out, \"cpu\")\n        amended(c, \"segmentation-front/000001.png\", b.getvalue())\n        expected = np.zeros(29, dtype=np.float64); expected[22] = 1.0\n        assert np.array_equal(amended.data[\"seg\"][1], expected)\n        passed(\"preregistered_uniform_OOV_to_existing_Other_replaces_v2_OOV_refusal\")",
+  "source_v2_sha256": "e80ebf8ed35448bee665e568c06eb1cb66e2e8e6e7025aad8bace12dc62113b8"
+}

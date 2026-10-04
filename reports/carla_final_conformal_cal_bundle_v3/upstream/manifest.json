@@ -1,0 +1,1014 @@
+{
+  "schema_version": 2,
+  "protocol_version": "carla_train_expand20_v1",
+  "study_role": "N=20 is the final planned pre-GAT TRAIN-development expansion; invalid calibration leads to a methodology decision, not automatic acquisition beyond N=20",
+  "frozen_dataset_manifest_sha256": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+  "acquisition_config_sha256": "e55a6a18261832c5b6329e0e84f07866cd2f856a9d0f8e0a5b69341d4d445600",
+  "cache_content_sha256": "c2df480a712e819d85437a9bb141bca91b47b68e90ae84fcf78d9151b93b5539",
+  "source_code_hashes": {
+    "cognix/adapters/carla/cache_builder.py": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+    "cognix/adapters/carla/carlanomaly_loader.py": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+    "cognix/adapters/carla/normality.py": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+    "cognix/adapters/carla/pseudo_anomalies.py": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+    "cognix/adapters/carla/real_agents.py": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+    "cognix/adapters/carla/real_features.py": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+    "cognix/adapters/carla/train_acquisition.py": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4"
+  },
+  "git_head": "f3f876119b0d21655b3ba5c7db7bd996e628b2a2",
+  "n_rows": 74975,
+  "clean_rows": 59980,
+  "CAL_pseudo_rows": 14995,
+  "FIT_pseudo_rows": 0,
+  "scenario_dictionary": [
+    {
+      "scenario_id": "Town01/scenario-1",
+      "town": "Town01",
+      "partition": "CAL_NORMAL",
+      "source_hash_bundle_sha256": "2af32f76777a9c6d29032d426defeb7a5a1e9c3921297ac4fd7175835d2696c9"
+    },
+    {
+      "scenario_id": "Town01/scenario-10",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "072c3a12034896bb99b13cec1847a1027be5959f826792f47c97b846c9457325"
+    },
+    {
+      "scenario_id": "Town01/scenario-11",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "6d3a059e61424891dba81403a99532794c586aab9153126c8a0743fbf97e2f03"
+    },
+    {
+      "scenario_id": "Town01/scenario-12",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "dc69cf8790af0a203b2341b54579458b818d946735213acf9d39648fc257efb5"
+    },
+    {
+      "scenario_id": "Town01/scenario-13",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "9121a1e64216d088870b6c09c831430dca12b3fa5a7af5f75053cea6e9f2932f"
+    },
+    {
+      "scenario_id": "Town01/scenario-14",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "de32566abad0d555c7ca2232aa822c647caffbd76ad430f41949f4e543ed2e1b"
+    },
+    {
+      "scenario_id": "Town01/scenario-15",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "7b6786baff7059e7572b132b98780b49496a11d9c5d5fef489887752ebbeb5b4"
+    },
+    {
+      "scenario_id": "Town01/scenario-2",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "e1477f98a049174f663357e160ff4f280dd106f19d0ab4f5b5c6dd9ae4e38d67"
+    },
+    {
+      "scenario_id": "Town01/scenario-3",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "daee94543947c1e520d66d4b608e2b236f834f0bde3cd630a463f8ebab129e89"
+    },
+    {
+      "scenario_id": "Town01/scenario-4",
+      "town": "Town01",
+      "partition": "CAL_NORMAL",
+      "source_hash_bundle_sha256": "e39ceb26b43139b4bd4ab41f453a7b5fd41cafae23417239d59406d35b5ccaa2"
+    },
+    {
+      "scenario_id": "Town01/scenario-5",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "6e4e207f079e459af0845a1477d1e66f937e268c75cd62ddb9473f81d128ad9c"
+    },
+    {
+      "scenario_id": "Town01/scenario-6",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "3bc9f92bce8ecce86d0c6aab41efde005c8a7a393bf5bb10aa050e5a9229b2ab"
+    },
+    {
+      "scenario_id": "Town01/scenario-7",
+      "town": "Town01",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "d9cda4a86a29850ca579b15cbb06d0bf7d47b6e7939eff15b38cb69712c0c7cc"
+    },
+    {
+      "scenario_id": "Town01/scenario-8",
+      "town": "Town01",
+      "partition": "CAL_NORMAL",
+      "source_hash_bundle_sha256": "8233f4be1a49c0bdd5c74b013a8b064e7d0c38a7e29880ca332714a9ad518e6a"
+    },
+    {
+      "scenario_id": "Town01/scenario-9",
+      "town": "Town01",
+      "partition": "CAL_NORMAL",
+      "source_hash_bundle_sha256": "cc0889635bc46eafbfda010e824bb082b58902be25e04281811eb182bd5a0f98"
+    },
+    {
+      "scenario_id": "Town02/scenario-1",
+      "town": "Town02",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "d561676c8b52b43b08286bd4fd0cd5e9f73e26c03be45dd1ba3ace5764dc3ed4"
+    },
+    {
+      "scenario_id": "Town02/scenario-10",
+      "town": "Town02",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "77ac9ecf53f7e1d4875de93adb93b0bf4f4662c5d76ad4b904606fc3c2b0c798"
+    },
+    {
+      "scenario_id": "Town02/scenario-2",
+      "town": "Town02",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "50ce0c7ba381ff47b934441c39c3d0e03f30ccbb59f8f2ae63cdab4b6a8c8ef4"
+    },
+    {
+      "scenario_id": "Town02/scenario-3",
+      "town": "Town02",
+      "partition": "CAL_NORMAL",
+      "source_hash_bundle_sha256": "8e0ed5c15bf9b998228fa5df0c4e2a8bb6760fae52d1b43a78c6d138154c2b89"
+    },
+    {
+      "scenario_id": "Town02/scenario-4",
+      "town": "Town02",
+      "partition": "FIT_NORMAL",
+      "source_hash_bundle_sha256": "d28a76db68a6ded292daf20e381e96d59075c9a25e09a7689e9a4f2416de4ab2"
+    }
+  ],
+  "partition_dictionary": {
+    "0": "FIT_NORMAL",
+    "1": "CAL_NORMAL"
+  },
+  "agent_order": [
+    "Camera",
+    "Seg",
+    "GNSS",
+    "IMU"
+  ],
+  "recipe_dictionary": [
+    "camera_brightness_shift",
+    "camera_occlusion",
+    "gnss_bias",
+    "gnss_drift",
+    "imu_bias_scale",
+    "imu_spike",
+    "seg_region_corruption"
+  ],
+  "feature_dims": {
+    "camera": 18,
+    "gnss": 8,
+    "imu": 10,
+    "seg": 29
+  },
+  "calibration_audit": {
+    "Camera": {
+      "nll_initial": 0.6836150687835032,
+      "nll_final": 0.4891540139945097,
+      "n_iter": 6,
+      "converged": true,
+      "optimizer_converged": true,
+      "finite_optimum": true,
+      "suspected_separation": false,
+      "gradient_norm": 2.358648085510706e-17,
+      "minimum_curvature": 0.0718792867867041,
+      "slope_raw": 2.9612717881746042,
+      "boundary_trend": "not_decreasing",
+      "lower_profile_direction": false,
+      "status": "finite_stationary_candidate",
+      "separation": {
+        "ensemble_mean": {
+          "normal_range": [
+            0.010776910509120396,
+            0.8495465980801556
+          ],
+          "pseudo_range": [
+            8.462407543104016e-12,
+            0.8408899068349583
+          ],
+          "overlap_interval": [
+            0.010776910509120396,
+            0.8408899068349583
+          ],
+          "min_normal": 0.010776910509120396,
+          "max_pseudo": 0.8408899068349583,
+          "gap": -0.8301129963258379,
+          "best_threshold": 0.02664115634795022,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 2577,
+          "classification": "overlapping"
+        },
+        "pooled_members": {
+          "normal_range": [
+            0.009552917173642967,
+            0.8503214961382448
+          ],
+          "pseudo_range": [
+            5.474149412870098e-12,
+            0.841963094570955
+          ],
+          "overlap_interval": [
+            0.009552917173642967,
+            0.841963094570955
+          ],
+          "min_normal": 0.009552917173642967,
+          "max_pseudo": 0.841963094570955,
+          "gap": -0.832410177397312,
+          "best_threshold": 0.026676061547217654,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 12887,
+          "classification": "overlapping"
+        }
+      },
+      "slope_profile": [
+        {
+          "slope_raw": 1.0,
+          "intercept_raw": 0.7516775614350881,
+          "nll": 0.5068822660024254
+        },
+        {
+          "slope_raw": 2.0,
+          "intercept_raw": 0.2765942240009247,
+          "nll": 0.4933441265568392
+        },
+        {
+          "slope_raw": 5.0,
+          "intercept_raw": -1.041521487531869,
+          "nll": 0.5060557217730712
+        },
+        {
+          "slope_raw": 10.0,
+          "intercept_raw": -3.118519839108221,
+          "nll": 0.643201032757894
+        },
+        {
+          "slope_raw": 20.0,
+          "intercept_raw": -7.069270576930525,
+          "nll": 1.0531152125047176
+        },
+        {
+          "slope_raw": 50.0,
+          "intercept_raw": -18.027569154456742,
+          "nll": 2.438932924398364
+        },
+        {
+          "slope_raw": 100.0,
+          "intercept_raw": -21.1176451392008,
+          "nll": 3.562048006756808
+        },
+        {
+          "slope_raw": 200.0,
+          "intercept_raw": -14.812666194123095,
+          "nll": 3.6801128940384356
+        },
+        {
+          "slope_raw": 500.0,
+          "intercept_raw": -21.85412190497527,
+          "nll": 3.686971027088257
+        },
+        {
+          "slope_raw": 1000.0,
+          "intercept_raw": -44.38887410189771,
+          "nll": 3.689222739435212
+        },
+        {
+          "slope_raw": 2000.0,
+          "intercept_raw": -89.33354007022933,
+          "nll": 3.6914704483635234
+        },
+        {
+          "slope_raw": 5000.0,
+          "intercept_raw": -133.44189237119372,
+          "nll": 3.6932550054622135
+        }
+      ],
+      "relative_slope_profile": [
+        {
+          "slope_raw": 2.9612717881746042,
+          "intercept_raw": -0.1597389792182473,
+          "nll": 0.4891540139945096
+        },
+        {
+          "slope_raw": 5.9225435763492085,
+          "intercept_raw": -1.4297366310815494,
+          "nll": 0.5232179081455187
+        },
+        {
+          "slope_raw": 11.845087152698417,
+          "intercept_raw": -3.870498697036767,
+          "nll": 0.7114385006581013
+        }
+      ],
+      "validity_scope": "numerical evidence, not a global existence proof"
+    },
+    "Seg": {
+      "nll_initial": 1.800194955807599,
+      "nll_final": 0.18158567334680248,
+      "n_iter": 8,
+      "converged": true,
+      "optimizer_converged": true,
+      "finite_optimum": true,
+      "suspected_separation": false,
+      "gradient_norm": 1.3699069389433096e-16,
+      "minimum_curvature": 0.01453152732599787,
+      "slope_raw": 7.16395928020747,
+      "boundary_trend": "not_decreasing",
+      "lower_profile_direction": false,
+      "status": "finite_stationary_candidate",
+      "separation": {
+        "ensemble_mean": {
+          "normal_range": [
+            4.100000417896497e-06,
+            0.9505318719269733
+          ],
+          "pseudo_range": [
+            0.0,
+            0.899092943255719
+          ],
+          "overlap_interval": [
+            4.100000417896497e-06,
+            0.899092943255719
+          ],
+          "min_normal": 4.100000417896497e-06,
+          "max_pseudo": 0.899092943255719,
+          "gap": -0.899088843255301,
+          "best_threshold": 0.010240397509888916,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 910,
+          "classification": "overlapping"
+        },
+        "pooled_members": {
+          "normal_range": [
+            7.03633815136143e-07,
+            0.9509193069300758
+          ],
+          "pseudo_range": [
+            0.0,
+            0.8997115558878714
+          ],
+          "overlap_interval": [
+            7.03633815136143e-07,
+            0.8997115558878714
+          ],
+          "min_normal": 7.03633815136143e-07,
+          "max_pseudo": 0.8997115558878714,
+          "gap": -0.8997108522540563,
+          "best_threshold": 0.00952387169025454,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 4603,
+          "classification": "overlapping"
+        }
+      },
+      "slope_profile": [
+        {
+          "slope_raw": 1.0,
+          "intercept_raw": 1.358442412274116,
+          "nll": 0.31812939056999107
+        },
+        {
+          "slope_raw": 2.0,
+          "intercept_raw": 0.840133095214177,
+          "nll": 0.2701709806545221
+        },
+        {
+          "slope_raw": 5.0,
+          "intercept_raw": -0.3301998472754122,
+          "nll": 0.19282426509238165
+        },
+        {
+          "slope_raw": 10.0,
+          "intercept_raw": -1.3308936980047066,
+          "nll": 0.19224749980379063
+        },
+        {
+          "slope_raw": 20.0,
+          "intercept_raw": -2.178377985809218,
+          "nll": 0.28359343104823
+        },
+        {
+          "slope_raw": 50.0,
+          "intercept_raw": -3.1969736476308275,
+          "nll": 0.5846031581123557
+        },
+        {
+          "slope_raw": 100.0,
+          "intercept_raw": -3.889158929636525,
+          "nll": 0.8148877993745476
+        },
+        {
+          "slope_raw": 200.0,
+          "intercept_raw": -5.203180791708342,
+          "nll": 1.0200503113324395
+        },
+        {
+          "slope_raw": 500.0,
+          "intercept_raw": -7.580733139269588,
+          "nll": 1.2173868576826732
+        },
+        {
+          "slope_raw": 1000.0,
+          "intercept_raw": -9.765806308734083,
+          "nll": 1.2993452663809457
+        },
+        {
+          "slope_raw": 2000.0,
+          "intercept_raw": -13.340063731932826,
+          "nll": 1.3480789841295455
+        },
+        {
+          "slope_raw": 5000.0,
+          "intercept_raw": -38.906886449228644,
+          "nll": 1.4114417749424206
+        }
+      ],
+      "relative_slope_profile": [
+        {
+          "slope_raw": 7.16395928020747,
+          "intercept_raw": -0.875746812850568,
+          "nll": 0.18158567334680242
+        },
+        {
+          "slope_raw": 14.32791856041494,
+          "intercept_raw": -1.7603038828605844,
+          "nll": 0.22738182054318376
+        },
+        {
+          "slope_raw": 28.65583712082988,
+          "intercept_raw": -2.723992261436391,
+          "nll": 0.37750232767067804
+        }
+      ],
+      "validity_scope": "numerical evidence, not a global existence proof"
+    },
+    "GNSS": {
+      "nll_initial": 0.4701528264111788,
+      "nll_final": 0.08657462254069184,
+      "n_iter": 5,
+      "converged": true,
+      "optimizer_converged": true,
+      "finite_optimum": false,
+      "suspected_separation": true,
+      "gradient_norm": 0.10696926130865077,
+      "minimum_curvature": -0.0002841017834971857,
+      "slope_raw": 12.450427899372611,
+      "boundary_trend": "decreasing",
+      "lower_profile_direction": true,
+      "status": "suspected_separation",
+      "separation": {
+        "ensemble_mean": {
+          "normal_range": [
+            3.674647119550551e-16,
+            0.9542634474727032
+          ],
+          "pseudo_range": [
+            0.0,
+            0.0
+          ],
+          "overlap_interval": null,
+          "min_normal": 3.674647119550551e-16,
+          "max_pseudo": 0.0,
+          "gap": 3.674647119550551e-16,
+          "best_threshold": 1.8373235597752754e-16,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 0,
+          "classification": "completely_separated"
+        },
+        "pooled_members": {
+          "normal_range": [
+            0.0,
+            0.9544828059510059
+          ],
+          "pseudo_range": [
+            0.0,
+            0.0
+          ],
+          "overlap_interval": [
+            0.0,
+            0.0
+          ],
+          "min_normal": 0.0,
+          "max_pseudo": 0.0,
+          "gap": 0.0,
+          "best_threshold": 3.1846591924036234e-129,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 1,
+          "classification": "quasi_separated"
+        }
+      },
+      "slope_profile": [
+        {
+          "slope_raw": 1.0,
+          "intercept_raw": 0.7151780785396582,
+          "nll": 0.4142138902149963
+        },
+        {
+          "slope_raw": 2.0,
+          "intercept_raw": 0.25240638277891936,
+          "nll": 0.32385571517715095
+        },
+        {
+          "slope_raw": 5.0,
+          "intercept_raw": -0.7545756418114963,
+          "nll": 0.1726530462978079
+        },
+        {
+          "slope_raw": 10.0,
+          "intercept_raw": -1.577628720094658,
+          "nll": 0.09901789206661246
+        },
+        {
+          "slope_raw": 20.0,
+          "intercept_raw": -2.1511502807622467,
+          "nll": 0.06453669079981643
+        },
+        {
+          "slope_raw": 50.0,
+          "intercept_raw": -2.86980597041449,
+          "nll": 0.03763496864079322
+        },
+        {
+          "slope_raw": 100.0,
+          "intercept_raw": -3.348206858883311,
+          "nll": 0.026521284201559518
+        },
+        {
+          "slope_raw": 200.0,
+          "intercept_raw": -3.7356969449094897,
+          "nll": 0.019591165718266357
+        },
+        {
+          "slope_raw": 500.0,
+          "intercept_raw": -4.179170200020257,
+          "nll": 0.013104352184645071
+        },
+        {
+          "slope_raw": 1000.0,
+          "intercept_raw": -4.577500224033439,
+          "nll": 0.009019756017373622
+        },
+        {
+          "slope_raw": 2000.0,
+          "intercept_raw": -5.199059241628722,
+          "nll": 0.006248594186581959
+        },
+        {
+          "slope_raw": 5000.0,
+          "intercept_raw": -5.579966084435762,
+          "nll": 0.0056187830905237565
+        }
+      ],
+      "relative_slope_profile": [
+        {
+          "slope_raw": 12.450427899372611,
+          "intercept_raw": -1.7787929873888872,
+          "nll": 0.08578190827788225
+        },
+        {
+          "slope_raw": 24.900855798745223,
+          "intercept_raw": -2.321170482563865,
+          "nll": 0.0565878572639452
+        },
+        {
+          "slope_raw": 49.801711597490446,
+          "intercept_raw": -2.8668064431865528,
+          "nll": 0.037717301297699714
+        }
+      ],
+      "validity_scope": "numerical evidence, not a global existence proof"
+    },
+    "IMU": {
+      "nll_initial": 0.4778337746008448,
+      "nll_final": 0.13089761743557832,
+      "n_iter": 13,
+      "converged": true,
+      "optimizer_converged": true,
+      "finite_optimum": true,
+      "suspected_separation": false,
+      "gradient_norm": 1.0412598170581171e-16,
+      "minimum_curvature": 0.0013998760893466217,
+      "slope_raw": 14.663495066407458,
+      "boundary_trend": "not_decreasing",
+      "lower_profile_direction": false,
+      "status": "finite_stationary_candidate",
+      "separation": {
+        "ensemble_mean": {
+          "normal_range": [
+            2.7892002529219866e-23,
+            0.9801147654230583
+          ],
+          "pseudo_range": [
+            0.0,
+            0.7871166914511428
+          ],
+          "overlap_interval": [
+            2.7892002529219866e-23,
+            0.7871166914511428
+          ],
+          "min_normal": 2.7892002529219866e-23,
+          "max_pseudo": 0.7871166914511428,
+          "gap": -0.7871166914511428,
+          "best_threshold": 1.0200340518143278e-05,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 760,
+          "classification": "overlapping"
+        },
+        "pooled_members": {
+          "normal_range": [
+            2.733761530489996e-28,
+            0.9804747514960377
+          ],
+          "pseudo_range": [
+            0.0,
+            0.7888787636582771
+          ],
+          "overlap_interval": [
+            2.733761530489996e-28,
+            0.7888787636582771
+          ],
+          "min_normal": 2.733761530489996e-28,
+          "max_pseudo": 0.7888787636582771,
+          "gap": -0.7888787636582771,
+          "best_threshold": 1.0305866292560866e-05,
+          "threshold_rule": "normal iff score > threshold",
+          "violations": 3800,
+          "classification": "overlapping"
+        }
+      },
+      "slope_profile": [
+        {
+          "slope_raw": 1.0,
+          "intercept_raw": 0.6716897176751012,
+          "nll": 0.41033060610030503
+        },
+        {
+          "slope_raw": 2.0,
+          "intercept_raw": 0.17460505970313225,
+          "nll": 0.32019055780940825
+        },
+        {
+          "slope_raw": 5.0,
+          "intercept_raw": -0.862269947228622,
+          "nll": 0.1851663363924216
+        },
+        {
+          "slope_raw": 10.0,
+          "intercept_raw": -1.6351055000204011,
+          "nll": 0.13726723862889156
+        },
+        {
+          "slope_raw": 20.0,
+          "intercept_raw": -2.480648910875948,
+          "nll": 0.13584570994303413
+        },
+        {
+          "slope_raw": 50.0,
+          "intercept_raw": -4.6156614796671995,
+          "nll": 0.23559443439629127
+        },
+        {
+          "slope_raw": 100.0,
+          "intercept_raw": -8.165056622232912,
+          "nll": 0.4379640227986997
+        },
+        {
+          "slope_raw": 200.0,
+          "intercept_raw": -13.309028667594525,
+          "nll": 0.7897940416724175
+        },
+        {
+          "slope_raw": 500.0,
+          "intercept_raw": -3.4144165580996204,
+          "nll": 0.908301815802816
+        },
+        {
+          "slope_raw": 1000.0,
+          "intercept_raw": -3.608486006656086,
+          "nll": 0.9312255704490306
+        },
+        {
+          "slope_raw": 2000.0,
+          "intercept_raw": -3.9790241714376484,
+          "nll": 0.9511295924401787
+        },
+        {
+          "slope_raw": 5000.0,
+          "intercept_raw": -4.375461058375668,
+          "nll": 0.985439782655986
+        }
+      ],
+      "relative_slope_profile": [
+        {
+          "slope_raw": 14.663495066407458,
+          "intercept_raw": -2.060996483259189,
+          "nll": 0.13089761743557837
+        },
+        {
+          "slope_raw": 29.326990132814917,
+          "intercept_raw": -3.162317316840491,
+          "nll": 0.15902616996208152
+        },
+        {
+          "slope_raw": 58.65398026562983,
+          "intercept_raw": -5.232222944996214,
+          "nll": 0.2707876530736626
+        }
+      ],
+      "validity_scope": "numerical evidence, not a global existence proof"
+    }
+  },
+  "calibration_parameters_raw": {
+    "Camera": {
+      "slope": 2.9612717881746042,
+      "intercept": -0.15973900077000658,
+      "scientific_valid": true
+    },
+    "Seg": {
+      "slope": 7.16395928020747,
+      "intercept": -0.8757468258663557,
+      "scientific_valid": true
+    },
+    "GNSS": {
+      "slope": 12.450427899372611,
+      "intercept": -1.5864140186587425,
+      "scientific_valid": false
+    },
+    "IMU": {
+      "slope": 14.663495066407458,
+      "intercept": -2.0609964603027118,
+      "scientific_valid": true
+    }
+  },
+  "calibration_status": {
+    "Camera": "finite_stationary_candidate",
+    "Seg": "finite_stationary_candidate",
+    "GNSS": "suspected_separation",
+    "IMU": "finite_stationary_candidate"
+  },
+  "nullable_encoding": "NaN plus per-agent calibration_valid mask; invalid probability/total/aleatoric/epistemic unavailable for scientific use",
+  "target_normal_semantics": "constructed observation is clean (1) versus has controlled pseudo corruption (0), not physical safety",
+  "target_normal_per_agent_semantics": "only the corrupted modality has target 0; untouched modality blocks have constructed target 1",
+  "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration",
+  "calibration_sampling": "CAL normal observations + modality-matched pseudo; counts recorded per agent",
+  "window_scope": "GNSS/IMU causal [max(0,t-11),t]; Camera/Seg instantaneous tick t; stored window bounds describe parent observation provenance",
+  "seeds": {
+    "split": 2026,
+    "bootstrap": 42,
+    "pseudo": 0
+  },
+  "raw_data_present": false,
+  "graph_samples_constructed": false,
+  "graph_training_done": false,
+  "future_graph_training_constraint": "FIT-derived pseudo must be generated in a separately authorized stage; present CAL pseudo rows are not graph-training examples",
+  "arrays": {
+    "scenario_index": {
+      "dtype": "uint16",
+      "shape": [
+        74975
+      ]
+    },
+    "tick": {
+      "dtype": "int32",
+      "shape": [
+        74975
+      ]
+    },
+    "partition": {
+      "dtype": "uint8",
+      "shape": [
+        74975
+      ]
+    },
+    "features": {
+      "dtype": "float64",
+      "shape": [
+        74975,
+        65
+      ]
+    },
+    "member_normality_scores": {
+      "dtype": "float64",
+      "shape": [
+        74975,
+        4,
+        5
+      ]
+    },
+    "calibration_valid": {
+      "dtype": "bool",
+      "shape": [
+        4
+      ]
+    },
+    "prob_normal": {
+      "dtype": "float64",
+      "shape": [
+        74975,
+        4
+      ]
+    },
+    "total": {
+      "dtype": "float64",
+      "shape": [
+        74975,
+        4
+      ]
+    },
+    "aleatoric": {
+      "dtype": "float64",
+      "shape": [
+        74975,
+        4
+      ]
+    },
+    "epistemic": {
+      "dtype": "float64",
+      "shape": [
+        74975,
+        4
+      ]
+    },
+    "target_normal": {
+      "dtype": "uint8",
+      "shape": [
+        74975
+      ]
+    },
+    "target_normal_per_agent": {
+      "dtype": "uint8",
+      "shape": [
+        74975,
+        4
+      ]
+    },
+    "is_pseudo": {
+      "dtype": "bool",
+      "shape": [
+        74975
+      ]
+    },
+    "pseudo_parent_scenario_index": {
+      "dtype": "int32",
+      "shape": [
+        74975
+      ]
+    },
+    "pseudo_parent_tick": {
+      "dtype": "int32",
+      "shape": [
+        74975
+      ]
+    },
+    "recipe_index": {
+      "dtype": "int16",
+      "shape": [
+        74975
+      ]
+    },
+    "corrupted_modality_index": {
+      "dtype": "int8",
+      "shape": [
+        74975
+      ]
+    },
+    "severity": {
+      "dtype": "float64",
+      "shape": [
+        74975
+      ]
+    },
+    "pseudo_seed": {
+      "dtype": "int64",
+      "shape": [
+        74975
+      ]
+    },
+    "window_start_tick": {
+      "dtype": "int32",
+      "shape": [
+        74975
+      ]
+    },
+    "window_end_tick": {
+      "dtype": "int32",
+      "shape": [
+        74975
+      ]
+    }
+  },
+  "files": {
+    "compact_training_checkpoint.npz": {
+      "bytes": 35491336,
+      "sha256": "f82acd321219beeee5e033a93997c05d1bdd653b370faa6b01c35c5463028b69"
+    },
+    "fitted_oneclass_parameters.npz": {
+      "bytes": 48766,
+      "sha256": "71fa21e3db874110d6e8c10c89031b6a129364596afd314913b384ca14ee0af1"
+    }
+  },
+  "compute_reuse_policy_sha256": "9d6f188e478ef7376e0730df26018da4519166fd0ef467e7530bc7a8481031d2",
+  "compute_reuse": {
+    "safe_reuse": true,
+    "old_cache_file_sha256": "2f1692e47be32790380f84f65618e70c773397419e87a5ba45cb6404eafde4e5",
+    "old_cache_content_sha256": "e8dc6d712faca3ef0d0de7a073d98dffe3ef37cfce0ab0aa2c6119ed76655ad2",
+    "feature_code_unchanged": true,
+    "window_unchanged": true,
+    "schema_dimensions_unchanged": true,
+    "partition_independence_verified_from_unchanged_production_AST": true,
+    "source_hashes_reverified_by_streamed_archive_payload_comparison": true,
+    "clean_reused_scenarios": [
+      "Town01/scenario-1",
+      "Town01/scenario-10",
+      "Town01/scenario-11",
+      "Town01/scenario-12",
+      "Town01/scenario-13",
+      "Town01/scenario-14",
+      "Town01/scenario-15",
+      "Town01/scenario-2",
+      "Town01/scenario-3",
+      "Town01/scenario-4"
+    ],
+    "clean_reused_rows": 29990,
+    "pseudo_reused_scenarios": [
+      "Town01/scenario-4"
+    ],
+    "pseudo_reused_rows": 2999,
+    "old_CAL_to_FIT_pseudo_excluded": [
+      "Town01/scenario-10"
+    ],
+    "new_precomputed_scenarios": [
+      "Town01/scenario-5",
+      "Town01/scenario-6",
+      "Town01/scenario-7",
+      "Town01/scenario-8",
+      "Town01/scenario-9",
+      "Town02/scenario-1",
+      "Town02/scenario-10",
+      "Town02/scenario-2",
+      "Town02/scenario-3",
+      "Town02/scenario-4"
+    ],
+    "new_precomputed_clean_rows": 29990,
+    "new_precomputed_camera_calls": 29990,
+    "new_precomputed_seg_calls": 29990,
+    "new_clean_precompute_active_wall_s": 4092.219,
+    "new_clean_block_file_hashes": {
+      "Town01/scenario-5": "11a2b990c92439a82945d67bc31a9f48da776ea93c0dad4e82ab94a4f7646b19",
+      "Town01/scenario-6": "53b16dea13f218c85b85c634765a3df0e224e8cef9132b6c044d8fe4b4eae253",
+      "Town01/scenario-7": "4e99b14c39e3dd5b87a694e0947d998ddda1bb7ac9a3623471badef94d9c8f2c",
+      "Town01/scenario-8": "e7dd44c11308000010bc7573b4ac332f776f8bb0906fe446ec93fc38968f460f",
+      "Town01/scenario-9": "e10e2a5455e55fc6ffb539bfd9ad6baa105543abfd3e1a15285bde81d6c2c781",
+      "Town02/scenario-1": "d7453229932cac1243cc47d01435484a6881ee88a7c47d5b3f89497c8028c893",
+      "Town02/scenario-10": "86f3cdd7b1bccae118788bb30b3f1f669e5bdfa5e7d3428a202fe4cd3024da81",
+      "Town02/scenario-2": "480cdb70eeb7131da16b953001ed6a511f43e048035c89079f354de3113c081b",
+      "Town02/scenario-3": "1a3a4e87447fc4e74001b13beaecc008e85e179170023ff6f79ff8fc8f4e3be6",
+      "Town02/scenario-4": "ca4c1a63d653f55c271b2c21d3e92ab6d84b0e805e067278f02d9cbeab03c445"
+    },
+    "assembled_clean_features_byte_identical": true,
+    "new_clean_feature_rows": 29990,
+    "new_clean_camera_extractor_calls": 29990,
+    "new_clean_seg_extractor_calls": 29990,
+    "old_clean_scenario_raw_feature_extraction_calls": 0,
+    "clean_features_recomputed_during_final_assembly": 0
+  },
+  "feature_blocks": [
+    {
+      "agent": "Camera",
+      "start_inclusive": 0,
+      "stop_exclusive": 18
+    },
+    {
+      "agent": "Seg",
+      "start_inclusive": 18,
+      "stop_exclusive": 47
+    },
+    {
+      "agent": "GNSS",
+      "start_inclusive": 47,
+      "stop_exclusive": 55
+    },
+    {
+      "agent": "IMU",
+      "start_inclusive": 55,
+      "stop_exclusive": 65
+    }
+  ],
+  "uncertainty_definition": {
+    "total": "H(mean(member_prob_normal))",
+    "aleatoric": "mean(H(member_prob_normal))",
+    "epistemic": "max(0,total-aleatoric)",
+    "entropy_log_base": "natural",
+    "validated_agents_only": true
+  },
+  "corrupted_modality_dictionary": {
+    "-1": "clean",
+    "0": "Camera",
+    "1": "Seg",
+    "2": "GNSS",
+    "3": "IMU"
+  }
+}

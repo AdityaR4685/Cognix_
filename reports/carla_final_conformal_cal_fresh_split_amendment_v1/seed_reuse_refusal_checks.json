@@ -1,0 +1,18 @@
+[
+  {
+    "expected_refusal": "BLOCKED_SEED_ALREADY_GENERATED_NO_REDRAW",
+    "status": "PASSED_EXPECTED_REFUSAL",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_fresh_split_amendment_v1\\fresh_partition.py\", line 205, in <module>\n    modes[sys.argv[1]]()\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_fresh_split_amendment_v1\\fresh_partition.py\", line 151, in generate_seed\n    require(not p.exists() and not (HERE/'fresh_partition_execution_started.json').exists(),'BLOCKED_SEED_ALREADY_GENERATED_NO_REDRAW')\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_fresh_split_amendment_v1\\fresh_partition.py\", line 37, in require\n    if not ok:raise RuntimeError(status)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: BLOCKED_SEED_ALREADY_GENERATED_NO_REDRAW",
+    "seed_receipt_unchanged": true,
+    "mode": "--generate-seed"
+  },
+  {
+    "expected_refusal": "BLOCKED_SEED_SPENT_OR_DRAW_ALREADY_STARTED_NO_RERUN",
+    "status": "PASSED_EXPECTED_REFUSAL",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_fresh_split_amendment_v1\\fresh_partition.py\", line 205, in <module>\n    modes[sys.argv[1]]()\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_fresh_split_amendment_v1\\fresh_partition.py\", line 163, in draw\n    require(seed['seed_generated_once'] and not seed['seed_spent'] and not (HERE/'fresh_partition_execution_started.json').exists(),'BLOCKED_SEED_SPENT_OR_DRAW_ALREADY_STARTED_NO_RERUN')\n  File \"C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_final_conformal_cal_fresh_split_amendment_v1\\fresh_partition.py\", line 37, in require\n    if not ok:raise RuntimeError(status)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: BLOCKED_SEED_SPENT_OR_DRAW_ALREADY_STARTED_NO_RERUN",
+    "seed_receipt_unchanged": true,
+    "mode": "--draw-once"
+  }
+]
