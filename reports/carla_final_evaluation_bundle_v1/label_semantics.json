@@ -1,0 +1,20 @@
+{
+  "P_y": "P(0)=q_normal, P(1)=1-q_normal",
+  "alignment": "No interpolation, zero fill, missing-tick skips or anomaly directory substitution. IMU row i aligns tick i; explicit tick/frame if present must agree.",
+  "anomaly_scenarios": "False -> normal=0; True -> anomaly=1. Anomaly directories may contain all-False annotations.",
+  "authoritative_field": "anomaly-observation.feather['anomaly']",
+  "evidence": [
+    "evidence/sources/carlanomaly_loader.py.txt::load_timestep_labels/_check_synchronization",
+    "evidence/sources/official_anomaly_timestep.py.txt::_get_label_cache",
+    "evidence/protocol/conformal_protocol.json::target"
+  ],
+  "normal_scenarios": "Use official per-tick booleans. False -> normal=0; do not synthesize labels from directory names or missing files.",
+  "normality_probability": "P(target=normal) under TRAIN-derived clean-vs-pseudo calibration construction",
+  "official_class_order": [
+    "normal=0",
+    "anomaly=1"
+  ],
+  "resolved_before_TEST_access": true,
+  "tick_index": "anomaly-observation.feather['tick']; integer exactly 0..n-1",
+  "tick_scoring": "1-P(Y_t) at every synchronized tick t>=1; tick 0 excluded; maximum over all such ticks per scenario"
+}

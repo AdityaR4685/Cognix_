@@ -1,0 +1,78 @@
+{
+  "Attempt002_thresholds_exist": false,
+  "Attempt003_recompute": "ALL 125 CAL scenarios from byte zero; no partial score reuse; separately authorized only",
+  "EVAL_scientific_decoding": 0,
+  "HEAD": "1f8cb8cca741ad3f3b471b2d5da5129e0309c30b",
+  "administrative_changes": [
+    "new attempt003 output path",
+    "new v3 seals and provenance",
+    "explicit enforcement of existing pandas==2.2.3 runtime_requirements pin; existing runtime_lock.json kept byte-identical",
+    "require exact Tesla T4 device name, rather than v2 substring match; same frozen device pin"
+  ],
+  "amended": [
+    "TEST-time segmentation OOV preprocessing: all uint8 IDs >28 -> existing bin 22, after channel-0 selection"
+  ],
+  "attempt002_external_evidence_sha256": "a21a6f2ea64eabcdb2c636f79da1cc18709146e583910cd97a52e991331221ea",
+  "attempt002_partial_archive_sha256": "5c48384eee84003a00e672de9265e27c3f8a9634deed04250a0b852780c5ba91",
+  "class32_semantic_identity": "UNKNOWN",
+  "decision_basis": "Human-supplied public taxonomy and frozen model dimensional compatibility; no CAL outcome/frequency use",
+  "frequencies_used": false,
+  "no_fitting_training_tuning": true,
+  "partial_access_disclosure": "Post-Attempt-002 scientific compatibility amendment after 92 partial CAL scenarios; not method/science identity with v2",
+  "partial_scores_used": false,
+  "policy": {
+    "extractor": "unchanged frozen segmentation_histogram_features",
+    "histogram_dimensions": 29,
+    "input": "uint8 2-D or 3-D; channel 0 selected first",
+    "map": "ALL IDs >28 to existing Other bin 22",
+    "preserve": "all IDs 0..28"
+  },
+  "policy_decision": "ACCEPT_FIXED_OOV_TO_EXISTING_OTHER_22",
+  "rule_does_not_depend_on": [
+    "29/30/31/32 identity",
+    "anomaly directory",
+    "town",
+    "scenario type",
+    "labels",
+    "CAL membership",
+    "frequency",
+    "outcomes"
+  ],
+  "scientific_limitation": "Deterministic generic fallback preserves dimension but changes OOV inputs and can change scores; does not prove semantic equivalence or eliminate post-access amendment concerns.",
+  "supplied_taxonomy_provenance": {
+    "carla_gen_README_ObjectLabel_h_patch": {
+      "MyAnimals": 29,
+      "MyCars": 30
+    },
+    "classic_CARLA": {
+      "GuardRail": 28,
+      "Other": 22
+    },
+    "source_status": "HUMAN_SUPPLIED_EXTERNAL_PROVENANCE_NOT_NETWORK_FETCHED"
+  },
+  "unchanged": [
+    "CAL/EVAL membership",
+    "historical exclusions",
+    "all 15 checkpoints and hashes",
+    "one-class fitted parameters",
+    "Camera feature path",
+    "IMU feature path",
+    "graph architecture and weights",
+    "uncertainty definitions",
+    "label semantics",
+    "conformal score",
+    "alpha=.05",
+    "k=120",
+    "inclusive <=",
+    "scenario max",
+    "runtime version pins",
+    "archive URL/size/SHA",
+    "single-stream transport",
+    "EVAL opaque discard",
+    "no tuning/training",
+    "one attempt/no auto retry"
+  ],
+  "v1_v2_immutable": true,
+  "v2_ZIP_sha256": "2f1eeb7aff36a6608b643ef1afca5621df5b621b8da79f83ba1232d83418db79",
+  "v2_manifest_sha256": "dd5e559ebf16d73a67d7ecc720ec7f3200465c493e6f804479155e8b32007c66"
+}

@@ -1,0 +1,40 @@
+{
+  "GNSS": "Excluded from primary p/E/A and decisions: structurally invalid calibrated probability/UQ remains null; raw-score auxiliary study deferred to future work",
+  "TEST_payload_access_authorized": false,
+  "attribution": {
+    "available": "Per-modality p/E/A; two-layer incoming attention alpha and final node probabilities v_i=sigmoid(z_i). q=sum_i v_i/3; v_i/3 are exact readout summands, not independent raw-sensor influence because each graph node already mixes senders.",
+    "future": "Adapter may expose existing attention/node logits without changing q, checked against frozen forward results before TEST. A new intervention or Shapley baseline would need a separately preregistered attribution study; no TEST tuning.",
+    "generic_attribution_limit": "Generic EpistemicShapley uses its own coalition belief evaluation, which is not automatically the frozen learned graph/readout. Do not label those values explanations of q without a separate frozen graph-consistent coalition game and baseline/missing-node semantics.",
+    "meaning": "Attention is routing, not causal importance; readout summands are bookkeeping. No Shapley sign/importance score is invented."
+  },
+  "client_date": "2026-10-02",
+  "client_timezone": "Asia/Calcutta",
+  "executed": false,
+  "forbidden_interpretations": [
+    "certified driving safety",
+    "P(safe action)",
+    "physical risk bound",
+    "causal anomaly attribution"
+  ],
+  "inputs": "15 q/r scores, input modality p/E/A, candidate sets and provenance/status; attention and node sigmoid readout diagnostics when exposed faithfully",
+  "labels": [
+    "normality evidence",
+    "anomaly evidence",
+    "uncertainty diagnostics",
+    "conformal support",
+    "abstention",
+    "review request"
+  ],
+  "multi_seed_method_logic": "Display every frozen result. A common normal singleton with consistent hard labels across all 15 is a candidate normal-evidence summary. Any anomaly support, ambiguity, failure or disagreement requests review. This operational agreement rule is not a new conformal set and has no selected-case .95 correctness claim.",
+  "per_predictor_logic": {
+    "C_anomaly_only": "official anomaly-label support / require review",
+    "C_empty": "abstain / inconsistent conformal support / require review",
+    "C_normal_and_anomaly": "abstain / ambiguous support / request more observations or review",
+    "C_normal_only": "official normal-label support; report as evidence only, no vehicle-control authorization",
+    "hard_threshold_disagrees_with_singleton": "flag disagreement / abstain operationally; retain both raw outputs",
+    "invalid_or_missing_input_or_unfitted_conformal": "abstain / require review; no numerical fallback"
+  },
+  "protocol_version": "carla_final_evaluation_preregistration_v1",
+  "status": "SEALED_DESIGN_ONLY_WITH_EXPLICIT_READINESS_GATES",
+  "threshold_selection": "Use the 15 recorded development thresholds for descriptive hard classifications. No new numeric E, score, set-size or risk threshold is tuned. Set cardinality rule is structural. Additional operational thresholds would require separate development data/protocol excluding FINAL_CONFORMAL_CAL and FINAL_EVALUATION; not authorized here."
+}
