@@ -1,0 +1,142 @@
+{
+  "best_seed_selection": false,
+  "conformal_descriptive_seed_means": {
+    "epistemic_gat": {
+      "abstention_rate": 0.9997959866220736,
+      "ambiguous_set_rate": 0.9997959866220736,
+      "empty_set_rate": 0.0,
+      "equal_scenario_mean_set_size": 1.9997959866220736,
+      "pooled_mean_set_size": 1.9997959866220736,
+      "pooled_tick_coverage": 0.9998076923076923,
+      "scenario_macro_tick_coverage": 0.9998076923076923,
+      "scenario_simultaneous_coverage": 0.96,
+      "signed_coverage_gap": {
+        "pooled_tick_coverage": 0.04980769230769233,
+        "scenario_macro_tick_coverage": 0.04980769230769233,
+        "scenario_simultaneous_coverage": 0.010000000000000031
+      },
+      "undercoverage_gap": {
+        "pooled_tick_coverage": 0.0,
+        "scenario_macro_tick_coverage": 0.0,
+        "scenario_simultaneous_coverage": 0.0014999999999999903
+      }
+    },
+    "nograph": {
+      "abstention_rate": 0.9993729096989966,
+      "ambiguous_set_rate": 0.9993729096989966,
+      "empty_set_rate": 0.0,
+      "equal_scenario_mean_set_size": 1.9993729096989967,
+      "pooled_mean_set_size": 1.9993729096989967,
+      "pooled_tick_coverage": 0.9994163879598662,
+      "scenario_macro_tick_coverage": 0.9994163879598662,
+      "scenario_simultaneous_coverage": 0.9565,
+      "signed_coverage_gap": {
+        "pooled_tick_coverage": 0.04941638795986629,
+        "scenario_macro_tick_coverage": 0.04941638795986629,
+        "scenario_simultaneous_coverage": 0.006500000000000017
+      },
+      "undercoverage_gap": {
+        "pooled_tick_coverage": 0.0,
+        "scenario_macro_tick_coverage": 0.0,
+        "scenario_simultaneous_coverage": 0.0
+      }
+    },
+    "standard_gat": {
+      "abstention_rate": 0.9997926421404683,
+      "ambiguous_set_rate": 0.9997926421404683,
+      "empty_set_rate": 0.0,
+      "equal_scenario_mean_set_size": 1.9997926421404684,
+      "pooled_mean_set_size": 1.9997926421404684,
+      "pooled_tick_coverage": 0.9998060200668896,
+      "scenario_macro_tick_coverage": 0.9998060200668896,
+      "scenario_simultaneous_coverage": 0.96,
+      "signed_coverage_gap": {
+        "pooled_tick_coverage": 0.04980602006688965,
+        "scenario_macro_tick_coverage": 0.04980602006688965,
+        "scenario_simultaneous_coverage": 0.010000000000000031
+      },
+      "undercoverage_gap": {
+        "pooled_tick_coverage": 0.0,
+        "scenario_macro_tick_coverage": 0.0,
+        "scenario_simultaneous_coverage": 0.0014999999999999903
+      }
+    }
+  },
+  "development_context": "EpistemicGAT was not consistently superior during development.",
+  "endpoint": "strict scenario-macro AUROC",
+  "ensemble_used": false,
+  "epistemic_gat_minus_nograph": {
+    "complete": false,
+    "conditional_seed_CI": null,
+    "exact_two_sided_sign_flip_p": null,
+    "max": null,
+    "mean": null,
+    "median": null,
+    "min": null,
+    "per_seed": {
+      "101": null,
+      "202": null,
+      "303": null,
+      "404": null,
+      "505": null
+    },
+    "sample_SD": null,
+    "undefined_seed_ids": [
+      "101",
+      "202",
+      "303",
+      "404",
+      "505"
+    ]
+  },
+  "epistemic_gat_minus_standard_gat": {
+    "complete": false,
+    "conditional_seed_CI": null,
+    "exact_two_sided_sign_flip_p": null,
+    "max": null,
+    "mean": null,
+    "median": null,
+    "min": null,
+    "per_seed": {
+      "101": null,
+      "202": null,
+      "303": null,
+      "404": null,
+      "505": null
+    },
+    "sample_SD": null,
+    "undefined_seed_ids": [
+      "101",
+      "202",
+      "303",
+      "404",
+      "505"
+    ]
+  },
+  "optional_descriptive_scenario_bootstrap": "Not requested; omitted under the preregistered optional procedure. No RNG is instantiated.",
+  "primary": "epistemic_gat_minus_standard_gat",
+  "standard_gat_minus_nograph": {
+    "complete": false,
+    "conditional_seed_CI": null,
+    "exact_two_sided_sign_flip_p": null,
+    "max": null,
+    "mean": null,
+    "median": null,
+    "min": null,
+    "per_seed": {
+      "101": null,
+      "202": null,
+      "303": null,
+      "404": null,
+      "505": null
+    },
+    "sample_SD": null,
+    "undefined_seed_ids": [
+      "101",
+      "202",
+      "303",
+      "404",
+      "505"
+    ]
+  }
+}
