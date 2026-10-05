@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "experiment": "COGNIX Experiment 2A",
+  "status": "FROZEN_PREPARATION_ONLY",
+  "execution_authorized_now": false,
+  "baseline_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "methods": [
+    "NoGraph",
+    "StandardGAT",
+    "EpistemicGAT"
+  ],
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "paired_design": "identical scenario/sample keys for all methods per seed; all five seeds retained; separate oriented paired contrasts",
+  "best_seed_selection": false,
+  "prediction_ensembling": false,
+  "prediction_semantics": "P(target = normal) under the TRAIN-derived constructed clean-vs-pseudo calibration task",
+  "separate_conclusions": [
+    "data-breadth effect: FULL-TRAIN versus frozen historical N20",
+    "graph effect: StandardGAT versus NoGraph",
+    "epistemic-prior effect: EpistemicGAT versus StandardGAT"
+  ],
+  "A_retrospective_locked_benchmark": {
+    "label": "RETROSPECTIVE_LOCKED_OLD_TEST",
+    "count": 400,
+    "membership_sha256": "9410f13cc563362bf5ef7ed52333807131bea4fe5a5d51a13c1924e4c855a60a",
+    "status": "future descriptive comparison only after complete model and analysis freeze and separate authorization",
+    "fresh_or_untouched": false,
+    "influence_on_development": false,
+    "tuning_after_viewing_scores": false,
+    "other_old_roles": "100 fresh-conformal CAL, 125 exposed CAL and 2 exclusions remain development-forbidden; no inherited TEST calibration states",
+    "N20_comparator": "frozen historical N20 models/states only under separately locked evaluation; historical detailed TEST outcomes are not read to specify Experiment 2A",
+    "inference_limit": "retrospective descriptions cannot establish fresh generalization; no causal proof of breadth from selection-reused old TEST"
+  },
+  "B_fresh_CARLA_Simulator_design": {
+    "status": "proposed later two-set design; no simulator generation now",
+    "family_preregistration": "before any simulation output, separately freeze CARLA version/assets/map hashes, scenario generator code, supported town/weather/traffic/anomaly families, normal/corruption definitions, inclusion/integrity rules, camera/seg/IMU schema, causal windows, scenario unit, ticks, schedule, disjoint seed namespaces and fixed sizes without old TEST scores",
+    "sizes_and_seeds": "not invented in this preparation; require separate generator feasibility/resource specification and an outcome-blind authorization before creation",
+    "DEV_SIM": {
+      "role": "protocol/data/schema health checks before final freeze",
+      "family": "preregistered simulator scenario family",
+      "separation": "disjoint scenario IDs/seeds/run manifests from FINAL-SIM; independent outputs/storage/permissions",
+      "selection_policy": "in 2A use for integrity/runtime/schema checks only; no representation/recipe/calibration/architecture changes; any proposed performance-guided tuning must first have an explicit pre-outcome development protocol or move to a new numbered experiment",
+      "scientific_limit": "once inspected, DEV-SIM is development evidence and never relabeled final",
+      "generated_now": false
+    },
+    "FINAL_SIM": {
+      "spec_freeze_timing": "after training/development protocol and model-selection procedure are frozen, before any FINAL-SIM generation/outcome inspection",
+      "generation": "separate frozen seed/scenario specification; separate storage; generated after development protocol freeze; outcomes unavailable to developers until all states/thresholds/analysis are locked",
+      "evaluation": "once after Gate 3 and model freeze under separate final authorization",
+      "tuning": false,
+      "reuse_DEV_as_final": false,
+      "generated_now": false,
+      "failures": "preregister objective unreadable/incomplete simulation handling and failure reporting before generation; no dropping based on model outcomes, no reruns because disappointing results"
+    }
+  },
+  "future_metric_analysis_lock": {
+    "definitions": "new final protocol must bind formulas before final outcomes; keep corruption score = 1-P(target=normal), constructed normal target semantics, scenario-level aggregation and temporal dependence explicit; never claim physical safety probability",
+    "primary_generalization_endpoint_plan": "scenario-macro corruption AUROC, plus preregistered calibration/error metrics; data-breadth, graph and epistemic-prior contrasts reported separately on matched evidence",
+    "H2A_comparison": "use fixed historical N20 and FULL-TRAIN pipelines on the same genuinely fresh holdout with matched modalities/methods/seeds where available; do not refit or repair N20 after inspection; missing comparable frozen states => comparison unavailable with reason",
+    "three_contrasts": [
+      "FULL-TRAIN minus historical N20 for each fixed method (breadth)",
+      "StandardGAT minus NoGraph (graph)",
+      "EpistemicGAT minus StandardGAT (epistemic prior)"
+    ],
+    "seed_aggregation": "per-seed scores first, all five paired differences, mean/median/SD and failure accounting; averaging reported statistics is allowed; averaging predictions is not authorized",
+    "independent_unit": "whole scenario; retain ticks/pairs/methods/seeds together in any scenario bootstrap; no tick independence claim",
+    "success_thresholds": "no material-effect numerical cutoff invented now; separate final analysis must preregister any confirmatory effect margin/sample-size justification before new performance or holdout inspection; until then conclusions descriptive and uncertainty-qualified",
+    "all_models_near_chance": "report broader data insufficient; any feature/pseudo repair requires new numbered Experiment 2B",
+    "negative_effects": "retain and report, including missing/failed seeds; no selective metric/seed/scenario reporting"
+  },
+  "no_post_hoc_changes": [
+    "threshold",
+    "best seed",
+    "architecture",
+    "feature scaling",
+    "pseudo recipe",
+    "severity",
+    "calibration model",
+    "metrics",
+    "bad-scenario dropping",
+    "positive class",
+    "aggregation",
+    "reruns because disappointing outcomes"
+  ],
+  "final_evaluation_started_now": false,
+  "performance_metrics_generated_now": false
+}

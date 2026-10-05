@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "sealed_Experiment_1_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "N20_prefix": {
+    "path": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\train_prefix_expand20.tar.gz",
+    "exists": true,
+    "bytes": 26205017360,
+    "expected_bytes": 26205017360,
+    "actual_sha256": "015ef22f4312b70336f92214ac069979df9c57a42c26e0aec913863917961698",
+    "expected_sha256": "015ef22f4312b70336f92214ac069979df9c57a42c26e0aec913863917961698",
+    "matches_accepted_binding": true,
+    "measurement": "full-file Get-FileHash -Algorithm SHA256 in this preparation session",
+    "mtime_ns": 1790926035663458300,
+    "raw_prefix_is_incomplete_gzip": "expected; historical stopping boundary, not full archive EOF"
+  },
+  "N20_manifest_config_validation": {
+    "frozen_acquisition_config": {
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_train_expand20_v1\\frozen_acquisition_config.json",
+      "bytes": 6469,
+      "expected_sha256": "e55a6a18261832c5b6329e0e84f07866cd2f856a9d0f8e0a5b69341d4d445600",
+      "actual_sha256": "e55a6a18261832c5b6329e0e84f07866cd2f856a9d0f8e0a5b69341d4d445600",
+      "matches": true,
+      "detached_binding_matches_sealed_HEAD": true
+    },
+    "frozen_dataset_manifest": {
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_train_expand20_v1\\frozen_dataset_manifest.json",
+      "bytes": 21296234,
+      "expected_sha256": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+      "actual_sha256": "5f401224e65ab581af7d7558c65b64e149af863bfbe21023968906d3f1066ddd",
+      "matches": true,
+      "detached_binding_matches_sealed_HEAD": true
+    },
+    "frozen_compute_reuse_policy": {
+      "path": "C:\\Users\\Aditya\\OneDrive\\Documents\\Cognix2\\reports\\carla_train_expand20_v1\\frozen_compute_reuse_policy.json",
+      "bytes": 1220,
+      "expected_sha256": "9d6f188e478ef7376e0730df26018da4519166fd0ef467e7530bc7a8481031d2",
+      "actual_sha256": "9d6f188e478ef7376e0730df26018da4519166fd0ef467e7530bc7a8481031d2",
+      "matches": true,
+      "detached_binding_matches_sealed_HEAD": true
+    }
+  },
+  "N20_archive_boundary": {
+    "kind": "subsequent_scenario_header",
+    "next_scenario_id": "Town02/scenario-5",
+    "tar_header_offset": 28207053312,
+    "member": "train/Town02/scenario-5/rgb-front"
+  },
+  "N20_complete_scenarios": 20,
+  "N20_town_counts": {
+    "Town01": 15,
+    "Town02": 5
+  },
+  "source_and_code_hashes": {
+    "cognix/adapters/carla/cache_builder.py": {
+      "expected_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+      "actual_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+      "matches": true
+    },
+    "cognix/adapters/carla/carlanomaly_loader.py": {
+      "expected_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+      "actual_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+      "matches": true
+    },
+    "cognix/adapters/carla/normality.py": {
+      "expected_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+      "actual_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+      "matches": true
+    },
+    "cognix/adapters/carla/pseudo_anomalies.py": {
+      "expected_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+      "actual_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+      "matches": true
+    },
+    "cognix/adapters/carla/real_agents.py": {
+      "expected_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+      "actual_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+      "matches": true
+    },
+    "cognix/adapters/carla/real_features.py": {
+      "expected_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+      "actual_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+      "matches": true
+    },
+    "cognix/adapters/carla/train_acquisition.py": {
+      "expected_sha256": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+      "actual_sha256": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+      "matches": true
+    },
+    "cognix/graph/epistemic_gat.py": {
+      "expected_sha256": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+      "actual_sha256": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+      "matches": true
+    },
+    "cognix/graph/no_graph.py": {
+      "expected_sha256": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+      "actual_sha256": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+      "matches": true
+    },
+    "cognix/graph/standard_gat.py": {
+      "expected_sha256": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+      "actual_sha256": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+      "matches": true
+    }
+  },
+  "historical_evidence_file_bindings": {
+    "reports/carla_train_expand20_v1/acquisition_result.json": {
+      "sha256": "45278ca14b28db7060a9e679a44d6ada77c440da697d6cde2b2e19cbb1eeae85",
+      "bytes": 4674
+    },
+    "reports/carla_train_expand20_v1/cache_result.json": {
+      "sha256": "b7b13076536efd35a1e5316fb9dbbe7dba64059986406d7a8fbb48904cce3a16",
+      "bytes": 5081
+    },
+    "reports/carla_train_expand20_v1/integrity_results.json": {
+      "sha256": "d6e199a03c4f892f1c0793596710b9bc3a3569f668ad1b8d7c622fe276c7d606",
+      "bytes": 4920
+    },
+    "reports/carla_gat_preregistration_v1/protocol.json": {
+      "sha256": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+      "bytes": 15091
+    },
+    "reports/carla_gat_preregistration_v1/graph_schema.json": {
+      "sha256": "f1a0f509416cc2dee8265463c43c1596c4b981c1b7f6113645b53f3eda4b2fd3",
+      "bytes": 4361
+    },
+    "reports/carla_gat_preregistration_v1/metrics_spec.json": {
+      "sha256": "b6fe616c4c1049222307f1e3d914a221b4553fbb18429a739ca448413bed0fdd",
+      "bytes": 4211
+    },
+    "reports/carla_gat_preregistration_v1/split_manifest.json": {
+      "sha256": "e95118b4149aa9d7e203f45679fb771a1123b97662dbe3548b9435ca8588b479",
+      "bytes": 2865
+    },
+    "reports/carla_gat_preregistration_v1/SHA256SUMS": {
+      "sha256": "07faf35caa538ce9ab74e21d2c46755ce1805fd6d6330a741f5a4393f16bbc7d",
+      "bytes": 854
+    },
+    "reports/carla_gat_preregistration_v1/SHA256SUMS.sha256": {
+      "sha256": "eb67f8eb662fd7b56d22d8c1569fae165b8a6f10e3b341683d5830fffcbedd1c",
+      "bytes": 77
+    },
+    "reports/carla_final_conformal_cal_bundle_v4/partition_binding.json": {
+      "sha256": "418ab33b6fce93c0ce2e2bdb6d6e3fc756362a25886adfcfc0706ce93458cfea",
+      "bytes": 1384
+    }
+  },
+  "protected_old_TEST_roles": {
+    "CAL_count": 100,
+    "CAL_membership_sha256": "bb75bd2244c4ab4b25b246e738db281cb5371d63e57a9632c72dd320fe638736",
+    "EVAL_count": 400,
+    "EVAL_membership_sha256": "9410f13cc563362bf5ef7ed52333807131bea4fe5a5d51a13c1924e4c855a60a",
+    "PRIOR_EXPOSED_CAL_count": 125,
+    "RNG_replayed": false,
+    "four_role_total": 627,
+    "fresh_partition_receipt_sha256": "5cde41e1921577e32f13f3228bd5cbaf512e4533b2ca8017f791e0d10de5f29b",
+    "fresh_partition_seal_sha256": "36669903304cbe3ced226299bbcca257d6dfbb64d2f180085250874aeff01ce0",
+    "fresh_union_equals_original_EVAL": true,
+    "historical_exclusion_count": 2,
+    "historical_exclusions": [
+      "test/anomaly/Town01/change-weather/scenario-1",
+      "test/anomaly/Town01/change-weather/scenario-10"
+    ],
+    "historical_exclusions_sha256": "44f99c4238263adc090b64e8c2da8b7063b72d727aa15d3921c49df4982a20de",
+    "old_CAL_retired": true,
+    "overlap": 0,
+    "preregistration_sha256": "4b89f183ac9e283e25f70731f726a733669d5d17997018cc995fac00eaff3d50",
+    "prior_exposed_CAL_sha256": "652020b48796d8035d5b78aac9b3d1f869d9ebddcefa3963b2bea02f092bb858",
+    "seed_receipt_sha256": "834f0990506ad484d0a0143d4191a26942323da5ea31f740aa8429c01d2b7c81",
+    "seed_spent": true,
+    "sorted_source_sha256": "437e24e244b1396fb96ab7920edba3847e5ccdeb2950eee77c8d5ac47612d3e8",
+    "source_pool_sha256": "85bb93828421c53e54064bfc7de0eb355b5e016427749ada59ee4fffdec157da"
+  },
+  "protected_role_counts": {
+    "FINAL_EVAL": 400,
+    "FRESH_CONFORMAL_CAL": 100,
+    "PRIOR_EXPOSED_CAL": 125,
+    "HISTORICAL_EXCLUSIONS": 2
+  },
+  "protected_role_total": 627,
+  "protected_roles_use": "denylist/integrity binding only; never training, calibration, representation, feature or pseudo design, tuning, early stopping, model selection, acquisition sizing, town/scenario selection",
+  "remote_TRAIN": {
+    "url": "https://data.carlanomaly.de/v1/carlanomaly-base-train.tar.gz",
+    "total_bytes": 146453559283,
+    "ETag": "\"6a200b7a-22194ff7f3\"",
+    "evidence": "reports/carla_train_expand20_v1/acquisition_result.json, cross-checked frozen_acquisition_config.preserved_N10",
+    "fresh_remote_check_performed": false,
+    "official_full_archive_sha256": null,
+    "full_hash_rule": "compute future full stream SHA-256; compare official/accepted full digest only if one is actually available; prefix SHA-256 is not a full-archive hash"
+  },
+  "historical_storage_evidence": {
+    "N20_source_member_bytes": 28114872858,
+    "largest_N20_scenario_member_bytes": 1897838354,
+    "N20_new_clean_block_bytes_for_10_scenarios": 19240727,
+    "N20_clean_rows": 59980,
+    "N20_cache_bytes": 52787238,
+    "N20_new_clean_precompute_active_wall_s": 4092.219,
+    "N20_preprocessing_wall_s": 4837.875
+  },
+  "reuse_not_executed": true,
+  "required_pre_reuse_revalidation": [
+    "exact prefix size and full hash",
+    "manifest/config/seal cross-bindings",
+    "source hashes",
+    "source-member hashes and scenario identity for each clean block",
+    "schema/window/preprocessing and partition independence",
+    "prior artifact preservation"
+  ],
+  "on_any_required_failure": "STOP; no repair, redownload, overwrite or substitution without separate human authorization"
+}

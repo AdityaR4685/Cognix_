@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "experiment": "COGNIX Experiment 2A",
+  "status": "FROZEN_PREPARATION_ONLY",
+  "execution_authorized_now": false,
+  "baseline_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "network_requests_this_milestone": 0,
+  "TEST_requests_this_milestone": 0,
+  "TEST_payload_bytes_this_milestone": 0,
+  "TRAIN_acquisition_executed": false,
+  "recommended_later_mode": "VERIFIED_CONTINUATION_PENDING_LIVE_RANGE_AND_IDENTITY_CHECKS",
+  "local_preflight_passed": true,
+  "remote_feasibility_proved": false,
+  "source": {
+    "url": "https://data.carlanomaly.de/v1/carlanomaly-base-train.tar.gz",
+    "total_bytes": 146453559283,
+    "ETag": "\"6a200b7a-22194ff7f3\"",
+    "evidence": "reports/carla_train_expand20_v1/acquisition_result.json, cross-checked frozen_acquisition_config.preserved_N10",
+    "fresh_remote_check_performed": false,
+    "official_full_archive_sha256": null,
+    "full_hash_rule": "compute future full stream SHA-256; compare official/accepted full digest only if one is actually available; prefix SHA-256 is not a full-archive hash"
+  },
+  "source_split_allowlist": [
+    "official TRAIN"
+  ],
+  "protected_source_denylist": "all official TEST URLs, roots, payloads and four historical roles; no TEST request or scientific payload decoding",
+  "prefix": {
+    "path": "C:\\Users\\Aditya\\AppData\\Local\\Temp\\carla_train_expand20\\train_prefix_expand20.tar.gz",
+    "exists": true,
+    "bytes": 26205017360,
+    "expected_bytes": 26205017360,
+    "actual_sha256": "015ef22f4312b70336f92214ac069979df9c57a42c26e0aec913863917961698",
+    "expected_sha256": "015ef22f4312b70336f92214ac069979df9c57a42c26e0aec913863917961698",
+    "matches_accepted_binding": true,
+    "measurement": "full-file Get-FileHash -Algorithm SHA256 in this preparation session",
+    "mtime_ns": 1790926035663458300,
+    "raw_prefix_is_incomplete_gzip": "expected; historical stopping boundary, not full archive EOF"
+  },
+  "staging": "separate new Experiment-2 FULL-TRAIN directory on an explicitly authorized volume, outside all historical paths; no directory created now; never overwrite or append to N20 prefix",
+  "future_steps": [
+    "revalidate HEAD/historical source and prefix bindings and current disk admission before any request",
+    "make independent new FULL-TRAIN staging copy of the entire verified N20 prefix; hash copy and verify exact size; never link writable archive to historical prefix",
+    "replay the staging prefix from compressed byte zero through a single live gzip/TAR decoder to reconstruct state, compressed hash, parsed members and archive order",
+    "consume every byte of the exact prefix and retain decoder read-ahead/partial member state; old Town02/scenario-5 boundary is a cross-check, not a compressed seek point",
+    "issue one authorized TRAIN Range continuation starting exactly at 26205017360 with Accept-Encoding: identity and the historically bound validator",
+    "append verified response bytes only to new staging file; feed same live decoder in byte order; sequentially inventory and verify scenarios",
+    "optionally execute separately authorized unchanged clean-only compact extraction per verified scenario; no fitting/pseudo generation until partition freeze and later authorization",
+    "consume full compressed stream, validate gzip completion/trailer and TAR traversal, freeze accepted inventory/corruption ledger/source identity and full hash",
+    "freeze deterministic FULL-TRAIN partition once; future raw replay supplies required role-specific pseudo inputs without retaining all extracted images"
+  ],
+  "HTTP_contract": {
+    "Range": "bytes=26205017360-",
+    "If_Range": "\"6a200b7a-22194ff7f3\"",
+    "required_status": 206,
+    "Content_Range_start": 26205017360,
+    "Content_Range_end": 146453559282,
+    "Content_Range_total": 146453559283,
+    "expected_response_payload_bytes": 120248541923,
+    "Content_Length": "if present must equal expected raw compressed payload length; count actual bytes regardless",
+    "Content_Encoding": "absent or identity only; transport must not transparently decompress/re-encode",
+    "ETag": "exact quoted historical validator required; missing/weak/changed validator fails closed",
+    "redirects": "no automatic unbound redirects; stop for source-identity review",
+    "response_200_fallback": false,
+    "arbitrary_later_range_independent_decompression": false,
+    "retry": "no automatic blind append/retry; exact persisted cursor, hash and live decoder reconstruction must be revalidated under an approved recovery protocol"
+  },
+  "scenario_integrity": {
+    "required": "unchanged strict official TRAIN loader contract, readable Camera/Seg images, aligned Camera/Seg/IMU ticks, finite required IMU values, required metadata tables; retain member identities and source hashes",
+    "member_checks": [
+      "safe relative train/ paths only; reject path traversal, symlinks/hardlinks and path aliases",
+      "TAR header checksum/type/declared size valid",
+      "every member fully consumed and SHA-256 recorded with original member name, bytes and offsets",
+      "no duplicate canonical member or scenario identity",
+      "required RGB/Seg payloads actually decode successfully under unchanged decoder; required tables readable and aligned",
+      "finite required sensor values",
+      "scenario boundary proves all required members consumed; next scenario header only completes previous scenario after integrity predicates pass"
+    ],
+    "whole_scenarios": "accept only verified complete scenarios; a partial trailing scenario is never counted",
+    "end_of_archive": "final scenario accepted only at genuine validated TAR end plus full gzip completion, not transport disconnect or byte limit",
+    "corruption": "objectively unreadable required members => evidence-rich ledger entry, never model-based exclusion; no substitution; uncertain global archive structure/identity => STOP",
+    "budget_limit": "pause incomplete traversal; never declare full completion or drop large scenarios to meet storage/runtime limits"
+  },
+  "completion_all_required": [
+    "full historical total 146453559283 compressed bytes received across verified prefix plus continuation",
+    "SHA-256 over entire ordered compressed stream, including prefix",
+    "gzip EOF and all applicable CRC32/ISIZE trailers validated (ISIZE is modulo 2^32, not a full decompressed-size oracle)",
+    "TAR header/data traversal and legitimate end blocks complete; permitted trailing padding consumed through gzip EOF; no unparsed nonzero members",
+    "every complete TRAIN scenario inventoried with acceptance/corruption evidence",
+    "source total/validator match historically bound metadata",
+    "compare any available authoritative full archive hash; none recorded locally, do not invent one",
+    "full partition-independent provenance sealed before splitting/fitting"
+  ],
+  "failure_conditions": [
+    "local prefix absent, byte/hash mismatch",
+    "accepted manifest/config/source binding mismatch",
+    "changed source validator/total",
+    "missing/incorrect Range semantics",
+    "HTTP 200, encoding transformation or identity ambiguity",
+    "short/extra response, truncated gzip, trailer mismatch, incomplete TAR",
+    "unsafe/ambiguous archive member structure",
+    "insufficient space or runtime failure"
+  ],
+  "failure_response": "STOP and preserve historical evidence and new staging diagnostic state; no automatic repair, overwrite, substitution, fresh download or performance-dependent scenario filtering",
+  "if_continuation_impossible": "document exact failure; full fresh TRAIN download requires separate human authorization and a new storage/identity preflight; never perform automatically",
+  "request_and_byte_ledger": "future driver must count all TRAIN/TEST/network requests and compressed payload bytes; zero TEST counters required"
+}

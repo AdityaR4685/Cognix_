@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "experiment": "COGNIX Experiment 2A",
+  "status": "FROZEN_PREPARATION_ONLY",
+  "execution_authorized_now": false,
+  "baseline_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "risks": [
+    {
+      "id": "R01",
+      "risk": "insufficient disk space",
+      "detection": "free-space polling, admission caps and per-scenario/archive growth ledger",
+      "prevention": "use separate single compressed archive, bounded scenario temp and reserve; never assume expansion ratios are true bounds",
+      "fail_closed_response": "pause incomplete acquisition; request new capacity/budget; never delete history or drop scenarios"
+    },
+    {
+      "id": "R02",
+      "risk": "source/archive change",
+      "detection": "total/quoted ETag mismatch, invalid Range, eventual source hash discrepancy",
+      "prevention": "bind accepted URL/size/ETag, exact prefix hash and identity response contract",
+      "fail_closed_response": "STOP; record exact mismatch; no substitution/fresh download without separate authorization"
+    },
+    {
+      "id": "R03",
+      "risk": "failed Range continuation",
+      "detection": "HTTP not 206 or Content-Range/encoding/length mismatch",
+      "prevention": "exact compressed offset and identity encoding; verify validator before append",
+      "fail_closed_response": "STOP and preserve new staging; fresh download requires separate authorization"
+    },
+    {
+      "id": "R04",
+      "risk": "corrupted local prefix",
+      "detection": "missing prefix, wrong length or full SHA-256",
+      "prevention": "full prefix validation before copy/reuse; immutable historical source",
+      "fail_closed_response": "STOP; no repair, overwrite, redownload or substitute"
+    },
+    {
+      "id": "R05",
+      "risk": "very large preprocessing runtime",
+      "detection": "progress/throughput/resource/failure logs independent of model performance",
+      "prevention": "bounded chunks, compact clean blocks, durable checkpoints and deterministic replay",
+      "fail_closed_response": "pause/report resource failure; do not silently accept partial traversal or change target"
+    },
+    {
+      "id": "R06",
+      "risk": "modality calibration invalidity",
+      "detection": "unchanged accepted finite-optimum/separation audit and per-modality statuses",
+      "prevention": "FIT/CAL role isolation; unchanged calibration and validity code",
+      "fail_closed_response": "STOP before GAT; methodology decision; any repair is Experiment 2B"
+    },
+    {
+      "id": "R07",
+      "risk": "pseudo anomalies not representative of real anomalies",
+      "detection": "distinguish constructed CAL diagnostics from fresh final evidence; later locked discrepancy reporting",
+      "prevention": "keep recipe/severity fixed; explicit constructed target semantics; fresh final holdout",
+      "fail_closed_response": "report limitation/negative results; never retune 2A from final outcomes"
+    },
+    {
+      "id": "R08",
+      "risk": "feature representation insufficiency",
+      "detection": "TRAIN-only health diagnostics, then locked generalization evidence",
+      "prevention": "freeze features to isolate breadth; separate breadth/graph/prior conclusions",
+      "fail_closed_response": "retain negative outcome; new representation experiment 2B, no invisible rescue"
+    },
+    {
+      "id": "R09",
+      "risk": "score saturation",
+      "detection": "score/probability range, exact constants, member disagreement and UQ distributions",
+      "prevention": "unchanged calibrated score/UQ definitions; no slope cap, severity search or prior amplification",
+      "fail_closed_response": "apply Gate 2 invalid rule if appropriate; otherwise report saturation/weak-prior limitations unchanged"
+    },
+    {
+      "id": "R10",
+      "risk": "old TEST leakage",
+      "detection": "source role allowlists, old-role hash denylist, access/request counters and audit",
+      "prevention": "no old detailed TEST results or decoded payloads in development; explicit retrospective label",
+      "fail_closed_response": "STOP and report leakage; quarantine affected new artifacts; new protocol/authorization needed"
+    },
+    {
+      "id": "R11",
+      "risk": "accidental reuse of partition-dependent artifacts",
+      "detection": "complete artifact classification and clean/source projection hashes; parent/role provenance validation",
+      "prevention": "new partition once; rebuild all pseudo/calibrator/model/graph/checkpoint/threshold/prediction state",
+      "fail_closed_response": "STOP affected reuse; no automatic role relabel of fitted state or pseudo rows"
+    },
+    {
+      "id": "R12",
+      "risk": "simulator dev/final leakage",
+      "detection": "seed/ID/member manifest intersection and output access audit",
+      "prevention": "disjoint DEV/FINAL specification/storage; FINAL output embargo until full freeze",
+      "fail_closed_response": "STOP final access; disclose exposure and invalid freshness; new holdout requires separate protocol"
+    },
+    {
+      "id": "R13",
+      "risk": "raw pseudo inputs discarded too early",
+      "detection": "verify archive retention and reproducible member extraction before temporary raw release",
+      "prevention": "retain independent full archive; partition first, later local raw replay for CAL/FIT pseudo",
+      "fail_closed_response": "STOP pseudo work; no feature-space substitute or altered recipe; restore only from bound retained TRAIN source"
+    },
+    {
+      "id": "R14",
+      "risk": "misleading partial archive completion",
+      "detection": "compressed byte count, gzip trailer/EOF and TAR/member completion proof",
+      "prevention": "full-stream completion gate distinct from per-scenario completion; no partial trailing scenario",
+      "fail_closed_response": "STOP and mark incomplete; never treat prefix as FULL TRAIN"
+    },
+    {
+      "id": "R15",
+      "risk": "post-hoc rescue or selective reporting",
+      "detection": "state/preprocessing/metric/threshold/seed seal comparisons and complete failure ledger",
+      "prevention": "freeze analysis before final; preserve all paired seeds and negative results",
+      "fail_closed_response": "report deviation; any scientific change is new numbered experiment"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "experiment": "COGNIX Experiment 2A",
+  "status": "FROZEN_PREPARATION_ONLY",
+  "execution_authorized_now": false,
+  "baseline_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "H2A": "Increasing the amount and environmental diversity of OFFICIAL NORMAL CARLAanomaly TRAIN data, while keeping core feature definitions, uncertainty definitions, pseudo-anomaly philosophy and downstream comparison structure fixed, improves transfer of agent-level normality evidence beyond the narrow N=20 training distribution.",
+  "intentional_variable": "N=20 partial official TRAIN versus ALL complete scenarios in official CARLAanomaly TRAIN",
+  "target": "ALL complete official TRAIN scenarios",
+  "N": null,
+  "town_count": null,
+  "unknown_until": "complete verified official TRAIN archive traversal",
+  "fixed_N_or_quota": false,
+  "selection": "actual parsed archive order; whole scenarios; no cherry-picking, performance-dependent stopping, town or weather balancing by dropping scenarios",
+  "integrity_exclusion_rule": "Only objectively unreadable/corrupt required members under acquisition_plan integrity predicates may exclude a scenario. Preserve its ID, ordinal, bytes, hashes, failure and all evidence in a corruption ledger. Model behavior cannot determine inclusion. Ambiguous source/stream failure stops the entire acquisition.",
+  "split": {
+    "timing": "ONCE after full complete-scenario inventory is frozen, before any fitting",
+    "canonical_ID_rule": "unchanged strict TRAIN loader identity TownXX/scenario-X; reject noncanonical aliases/duplicates; preserve actual archive ordinal separately",
+    "steps": [
+      "collect every accepted complete canonical scenario ID",
+      "sort IDs lexicographically using unchanged Python string ordering",
+      "instantiate numpy.random.Generator(numpy.random.PCG64(2026)) once",
+      "permute the sorted complete ID list once",
+      "n_cal = max(1, round(0.25 * N)) using Python ties-to-even",
+      "CAL_NORMAL = first n_cal permuted IDs; FIT_NORMAL = remainder"
+    ],
+    "seed": 2026,
+    "rng": "NumPy PCG64",
+    "CAL_formula": "max(1, round(0.25 * N))",
+    "FIT_formula": "N - n_cal",
+    "N_edge_case": "if FIT or CAL is empty stop before fitting; never change seed or membership to fix it",
+    "preserve_old_membership": false,
+    "seed_search": false,
+    "repeat_permutation": false,
+    "rebalance_after_performance": false,
+    "freeze_record": [
+      "N",
+      "n_fit",
+      "n_cal",
+      "sorted canonical IDs",
+      "permutation indices",
+      "complete FIT/CAL membership",
+      "archive ordinal",
+      "town counts overall and by role",
+      "available weather/environment descriptors and explicit missing values",
+      "source/member hashes",
+      "partition SHA-256",
+      "NumPy version"
+    ],
+    "partition_hash_encoding": "UTF-8 JSON, sort_keys=True, separators=(comma,colon), allow_nan=False, containing sorted IDs, permutation, ordered membership, seed and split rule; save exact bytes and detached SHA-256"
+  },
+  "frozen_modeling": {
+    "causal_window_length_ticks": 12,
+    "feature_schema": {
+      "cache_schema_version": 2,
+      "dims": {
+        "camera": 18,
+        "gnss": 8,
+        "imu": 10,
+        "seg": 29
+      },
+      "extractor_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b"
+    },
+    "scientific_source_hashes": {
+      "cognix/adapters/carla/cache_builder.py": {
+        "expected_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+        "actual_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+        "matches": true
+      },
+      "cognix/adapters/carla/carlanomaly_loader.py": {
+        "expected_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+        "actual_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+        "matches": true
+      },
+      "cognix/adapters/carla/normality.py": {
+        "expected_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "actual_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "matches": true
+      },
+      "cognix/adapters/carla/pseudo_anomalies.py": {
+        "expected_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+        "actual_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+        "matches": true
+      },
+      "cognix/adapters/carla/real_agents.py": {
+        "expected_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+        "actual_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+        "matches": true
+      },
+      "cognix/adapters/carla/real_features.py": {
+        "expected_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+        "actual_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+        "matches": true
+      },
+      "cognix/adapters/carla/train_acquisition.py": {
+        "expected_sha256": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+        "actual_sha256": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+        "matches": true
+      },
+      "cognix/graph/epistemic_gat.py": {
+        "expected_sha256": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+        "actual_sha256": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+        "matches": true
+      },
+      "cognix/graph/no_graph.py": {
+        "expected_sha256": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+        "actual_sha256": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+        "matches": true
+      },
+      "cognix/graph/standard_gat.py": {
+        "expected_sha256": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+        "actual_sha256": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+        "matches": true
+      }
+    },
+    "feature_definitions": "unchanged Camera, Segmentation and IMU definitions in bound real_features.py",
+    "one_class_scores": "unchanged bound normality.py and real_agents.py; FIT clean only",
+    "bootstrap_member_scores": {
+      "calibration": "CAL clean + modality-matched CAL pseudo",
+      "fit": "FIT clean only",
+      "n_members": 5,
+      "seed": 42,
+      "validity_audit": "current production unchanged"
+    },
+    "uncertainty": "unchanged calibrated member-probability entropy decomposition; total H(mean p), aleatoric mean H(p_member), epistemic total minus aleatoric; canonical units nats; score-space disagreement remains a diagnostic",
+    "pseudo_definitions_and_default_severities": {
+      "default_severities": {
+        "camera_brightness_shift": 0.35,
+        "camera_occlusion": 0.25,
+        "gnss_bias": 25.0,
+        "gnss_drift": 50.0,
+        "imu_bias_scale": 0.5,
+        "imu_spike": 15.0,
+        "seg_region_corruption": 0.2
+      },
+      "max_pseudo_per_tick": 1,
+      "recipes": [
+        "camera_brightness_shift",
+        "camera_occlusion",
+        "seg_region_corruption",
+        "gnss_bias",
+        "gnss_drift",
+        "imu_spike",
+        "imu_bias_scale"
+      ],
+      "seed": 0,
+      "source": "CAL_NORMAL only"
+    },
+    "pseudo_role_override": "recipe definitions/severities/seed rotation unchanged; recompute CAL pseudo only from new CAL parents; FIT graph pseudo only from new FIT parents under separate graph protocol; never reuse historical pseudo rows",
+    "active_downstream_modalities": [
+      "Camera",
+      "Seg",
+      "IMU"
+    ],
+    "GNSS": {
+      "probability_UQ_downstream": "EXCLUDED",
+      "reason": "accepted calibration channel structurally invalid in Experiment 1",
+      "repair_or_new_calibration": "not authorized in 2A",
+      "re_enable": "only separately preregistered methodology study 2B",
+      "optional_raw_GNSS_secondary": "not included in this 2A primary plan; any secondary analysis requires a separate pre-outcome protocol"
+    },
+    "methods": [
+      "NoGraph",
+      "StandardGAT",
+      "EpistemicGAT"
+    ],
+    "paired_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "best_seed_selection": false,
+    "prediction_ensembling": false,
+    "retain_negative_results": true,
+    "architecture_changes": "require a separately numbered experiment"
+  },
+  "prediction_semantics": "P(target = normal) under the TRAIN-derived constructed clean-vs-pseudo calibration task",
+  "prohibited_probability_claims": [
+    "safe driving probability",
+    "probability the vehicle is safe",
+    "physical safety probability",
+    "guaranteed official anomaly posterior"
+  ],
+  "old_TEST_protection": {
+    "counts": {
+      "FINAL_EVAL": 400,
+      "FRESH_CONFORMAL_CAL": 100,
+      "PRIOR_EXPOSED_CAL": 125,
+      "HISTORICAL_EXCLUSIONS": 2
+    },
+    "all_four_roles_forbidden_for": [
+      "training",
+      "calibration fitting",
+      "representation fitting",
+      "feature selection",
+      "pseudo-anomaly design",
+      "hyperparameter or threshold tuning",
+      "model selection",
+      "early stopping selection",
+      "deciding acquisition size",
+      "choosing towns/scenarios",
+      "architecture adequacy decisions"
+    ],
+    "detailed_old_TEST_results_tuning_signal": false,
+    "old_400_future_label": "RETROSPECTIVE_LOCKED_OLD_TEST",
+    "fresh_or_untouched_Experiment_2_test_claim": false
+  },
+  "closed_history": "Experiment 1 is closed; prior reports, results, archives and states are immutable; historical N20 protocol remains distinct and frozen",
+  "no_post_hoc_rescue": [
+    "threshold",
+    "best seed",
+    "architecture",
+    "feature scaling",
+    "pseudo recipe",
+    "severity",
+    "calibration model",
+    "metrics",
+    "bad-scenario dropping",
+    "positive class",
+    "aggregation",
+    "reruns because disappointing outcomes"
+  ],
+  "success_conclusions_separate": [
+    "data-breadth effect: FULL-TRAIN versus frozen historical N20",
+    "graph effect: StandardGAT versus NoGraph",
+    "epistemic-prior effect: EpistemicGAT versus StandardGAT"
+  ],
+  "success_not_required": "EpistemicGAT need not win to support a data-breadth effect; no negative result may be hidden",
+  "next_authorizations": [
+    "review preparation",
+    "authorize exact TRAIN-only acquisition/staging/extraction scope",
+    "authorize fitting only after Gate 1",
+    "authorize graph protocol/construction/training only after Gate 2",
+    "authorize DEV-SIM and later FINAL-SIM under separate preregistrations",
+    "authorize final/retrospective evaluation after Gate 3"
+  ]
+}

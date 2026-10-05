@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "experiment": "COGNIX Experiment 2A",
+  "status": "FROZEN_PREPARATION_ONLY",
+  "execution_authorized_now": false,
+  "baseline_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "measured_disk": {
+    "drive": "C:",
+    "total_bytes": 510911311872,
+    "used_bytes": 246540386304,
+    "free_bytes": 264370925568
+  },
+  "historical_compressed_prefix_bytes": 26205017360,
+  "historical_remote_total_bytes": 146453559283,
+  "future_remaining_network_bytes_if_valid_continuation": 120248541923,
+  "estimation_basis": {
+    "N20_source_member_bytes": 28114872858,
+    "largest_N20_scenario_member_bytes": 1897838354,
+    "N20_new_clean_block_bytes_for_10_scenarios": 19240727,
+    "N20_clean_rows": 59980,
+    "N20_cache_bytes": 52787238,
+    "N20_new_clean_precompute_active_wall_s": 4092.219,
+    "N20_preprocessing_wall_s": 4837.875
+  },
+  "estimation_limit": "compressed-size ratios from N20 are planning heuristics only; neither scenario count nor full raw/compact size has a proven statistical or mathematical upper bound. No N or town prediction.",
+  "A_full_raw_retention": {
+    "additional_compressed_staging_bytes": 146453559283,
+    "estimated_full_raw_member_bytes": 157127283767,
+    "estimate_formula": "N20 inventoried member bytes * historical full compressed size / N20 prefix bytes; excludes filesystem and TAR overhead",
+    "estimated_raw_plus_archive_bytes": 303580843050,
+    "with_20GiB_reserve_bytes": 325055679530,
+    "feasible_on_current_drive_under_estimate": false,
+    "strict_upper_bound_known": false,
+    "risk": "all images/sensor payloads, filesystem overhead and a separate compressed archive compete with existing evidence; no deletion of historical files to create space"
+  },
+  "B_streamed_compact_extraction": {
+    "recommended": true,
+    "scientific_constraint": "clean features alone cannot regenerate raw pixel/temporal pseudo corruptions after new FIT/CAL membership; retain the separate full compressed archive and replay raw inputs scenario-by-scenario after partition freeze",
+    "workflow": [
+      "compressed stream -> sequential scenario verification and exact member hashes",
+      "unchanged clean feature extractor -> partition-independent compact block and durable source/schema/code/window bindings",
+      "seal block and provenance; keep independent compressed archive as exact raw reproduction source",
+      "release only authorized NEW scenario temporary extraction",
+      "after full inventory/partition freeze and later pseudo authorization, replay retained local archive to recreate required CAL/FIT raw windows; never use historical pseudo rows",
+      "seal role-specific pseudo provenance before releasing recreated temporary raw inputs"
+    ],
+    "additional_full_compressed_staging_bytes": 146453559283,
+    "estimated_clean_compact_bytes": 215063621,
+    "conservative_2x_clean_compact_planning_bytes": 430127242,
+    "compact_projection_formula": "N20 ten-scenario new-clean block bytes * 2 * remote/prefix ratio; may over/underestimate future diversity and duration",
+    "operational_caps": {
+      "one_raw_scenario_temp_bytes": 8589934592,
+      "compact_and_provenance_output_admission_bytes": 4294967296,
+      "decoder_io_and_staging_overhead_bytes": 2147483648,
+      "minimum_free_disk_reserve_bytes": 21474836480
+    },
+    "estimated_upper_bound_under_admission_caps_bytes": 182960781299,
+    "current_free_minus_capped_plan_bytes": 81410144269,
+    "current_local_storage_admission_pass": true,
+    "cap_exceed_response": "pause and report resource requirement; preserve verified blocks/provenance/stream state; never exclude a scientifically eligible scenario or label partial traversal complete. Additional capacity/budget requires review.",
+    "no_extra_full_archive_copy": "new staging copy is itself the final full archive; do not hold a second duplicate full archive",
+    "feature_reproducibility": "archive SHA-256 plus source ETag/size/URL, per-member SHA-256/size/name/offset, scenario identity, feature code/schema/window/preprocessing/dependency versions, block bytes/content hashes; archive retention persists through pseudo work and audit"
+  },
+  "runtime": {
+    "known_historical_new_clean_10_scenario_seconds": 4092.219,
+    "rough_full_clean_seconds": 45741,
+    "rough_full_clean_hours": 12.705794926431325,
+    "rough_seconds_are_not_promises": true,
+    "extra_costs": [
+      "full prefix SHA-256 checks",
+      "copy and sequential gzip/TAR replay",
+      "complete member hashing/image validation",
+      "retained archive replay after partition freeze",
+      "CAL/FIT pseudo extraction",
+      "later fitting and graph training not estimated or executed here"
+    ],
+    "continuation_bytes_estimate_only": "N20 acquisition elapsed time is a historical observation; future throughput/network is unmeasured",
+    "controls": [
+      "bounded compressed/decompressed chunks with backpressure",
+      "one scenario workspace, deterministic fixed causal windows",
+      "monitor free disk before writes and each boundary",
+      "atomic publication only after complete block/provenance verification",
+      "durable checkpoint and failure ledger, no silent overwrite",
+      "reserve resources independent of performance"
+    ]
+  },
+  "cleanup_policy": {
+    "execution_now": false,
+    "historical_evidence_never_delete": true,
+    "allowed_only": "explicitly owned new Experiment-2 temporary raw data with durable archive/member/block provenance already verified",
+    "required_before_delete": [
+      "resolve absolute path inside approved new staging temp root",
+      "reject symlink/junction and ancestor of historical evidence",
+      "confirm ownership ledger and exact scenario",
+      "confirm required raw reproduction archive retained and verified",
+      "confirm no pending pseudo/feature reader needs temporary data"
+    ],
+    "retain_on_failure": "preserve new diagnostic manifests/hash ledger and verified archive state; report partial temp data; no sweeping cleanup of unrelated artifacts"
+  },
+  "recommendation": "verified continuation into one separately retained compressed archive with compact clean blocks and bounded scenario temporary raw extraction/replays; remote feasibility and resource admission must be rechecked after separate authorization"
+}
