@@ -1,0 +1,44 @@
+Failed to find real location of C:\Users\Aditya\AppData\Local\Programs\Python\Python314\python.exe
+Traceback (most recent call last):
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\capture_v1_failure.py", line 19, in <module>
+    graph_replay.replay_current()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v1\graph_replay.py", line 115, in replay_current
+    modules=authenticate_gate2();modules['gate2_resolution'].real_context()
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\gate2_execution_bundle_v3\gate2_resolution.py", line 87, in real_context
+    legacy.verify_science()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\gate1_execution_bundle_v8\recovery_common.py", line 89, in verify_science
+    require(hashlib.sha256(git('show',HEAD+':'+r['path'])).hexdigest()==r['committed_blob_sha256'],'Committed scientific binding changed')
+                           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\gate1_execution_bundle_v8\recovery_common.py", line 52, in git
+    return subprocess.check_output(['git',*args],cwd=REPO)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aditya\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Aditya\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 555, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aditya\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aditya\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 1549, in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v1\graph_common.py", line 266, in guard
+    counters['blocked_subprocess_attempts'] += 1; require(False, 'Subprocess not approved')
+                                                  ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v1\graph_common.py", line 62, in require
+    raise PreparationError(message + '; STOP FOR HUMAN REVIEW')
+graph_common.PreparationError: Subprocess not approved; STOP FOR HUMAN REVIEW

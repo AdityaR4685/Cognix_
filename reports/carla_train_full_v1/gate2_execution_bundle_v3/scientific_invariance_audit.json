@@ -1,0 +1,49 @@
+{
+  "allowed_pseudo_amendment": "Canonical inventory admission/revalidation and replacement of the defective CAL input hash expression only",
+  "byte_identical_to_v2": {
+    "development_gate_spec.json": true,
+    "execute_gate2.py": true,
+    "full_train_preregistered_protocol.json": true,
+    "gate2_audit.py": true,
+    "gate2_data.py": true,
+    "gate2_resolution.py": true,
+    "gate2_science.py": true,
+    "synthetic_storage_fixtures.py": true
+  },
+  "pseudo_source_v2_sha256": "58a67f59ac905c9246a8aacfc681a524e2b760d362c4ca34d3e40fbf30c70bc2",
+  "pseudo_source_v3_sha256": "1e4e89d9d213641c7d485e7bdb04f74a4418461ce315dff55e0da62d8444171d",
+  "scientific_parameters_and_environment_unchanged": {
+    "GNSS_downstream": true,
+    "HEAD": true,
+    "active_modalities": true,
+    "active_pseudo_severities": true,
+    "bootstrap_members": true,
+    "bootstrap_seed": true,
+    "dimensions": true,
+    "environment": true,
+    "environment_sha256": true,
+    "expected_storage_counts": true,
+    "extra_source_hashes": true,
+    "max_pseudo_per_tick": true,
+    "membership": true,
+    "prediction_semantics": true,
+    "preprocessing_policy_sha256": true,
+    "protocol_hashes": true,
+    "pseudo_base_seed": true,
+    "pseudo_rotation": true,
+    "scientific_hashes": true,
+    "source_identity": true,
+    "window_ticks": true
+  },
+  "success": true,
+  "unchanged_pseudo_scientific_AST": {
+    "CALSink.close": true,
+    "CALSink.member_begin": true,
+    "CALSink.member_complete": true,
+    "CALSink.member_data": true,
+    "CALSink.scenario_complete_scientific_body_after_exact_engineering_edits": true,
+    "generate_tick": true,
+    "read_pseudo": true,
+    "write_jsonl_gzip": true
+  }
+}

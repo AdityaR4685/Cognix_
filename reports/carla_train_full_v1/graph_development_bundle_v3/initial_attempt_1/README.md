@@ -1,0 +1,21 @@
+# Experiment-2B graph development bundle v3
+
+Preparation only. STOP FOR HUMAN REVIEW. No graph-data v3 or real model execution is authorized or executed.
+
+V3 closes the two production-realism gaps identified in review of V2: all 101 clean blocks are read through authenticated gate2_data.load_clean / gate2_resolution.resolve_arrays, and all 101 raw records are read through the sealed inventory API and bound using its exact summary/digest and Gate2-v3 ReplayInventory.bind. This does not revisit V2's valid Git/authentication and scientific invariance conclusions.
+
+V1 (7da8ffb4ded5ee446f07b369577a9f62f5191592c9da682f680ac76705fb8ece) and V2 (b0bb3ff9bdb33732442de9b8ea47b415039307612e13924f39c520bc02406c6a) remain immutable. V1 failed pending evidence remains exactly its 260-byte authorization.json and empty units/. Its original read-only reproduction and evidence are copied byte-identically from V2, never rerun or resumed. The full preservation baseline binds every existing report/scientific file and write metadata. V2's exact preserved file inventory is in v2_review_findings.json.
+
+No graph science changes. Exporter, graph replay, models, trainer, current restoration and upstream scientific definitions remain byte-identical to V2. The subprocess_policy.py file and its policy audit are byte-identical to V2. Only the exact sealed22 scientific Git reads, existing read-only Git forms and reviewed local Windows version probe remain admitted. No arbitrary shell, Git write/network, TEST or historical namespace write capability is added.
+
+The SAME execution_closure.pre_source_closure serves preparation, preflight and future data. Fourteen mandatory steps check external seal, Git, historical preservation, absent future namespaces, upstream bindings, real_context, all101 clean blocks (33native/68adopted), all101 canonical raw inventory records, scientific restoration prerequisites without creating real objects, non-model imports, exact installed environment, disk/resources and barriers. Only complete_source_integrity may then read the full146453559283-byte archive for SHA verification. Source fingerprint is rechecked before pending creation. No sensor payload is parsed by preparation/preflight, clean features are never recomputed/copied, and models are never fitted/calibrated/scored in production checks.
+
+Seg compatibility tests exercise the exact accepted sanitizer on synthetic IDs0..255. IDs0..28 are preserved;29..255 map to22. A runtime generate_pair probe stops immediately before the actual Seg pseudo implementation and proves sanitizer-before-recipe order. Seg29 and all pseudo semantics remain unchanged;31..255 have no added semantic interpretation.
+
+The conservative disk gate preserves20GiB raw reserve, the128MiB retained-member cap, whole one-scenario scratch upper bound, two full artifact size budgets and8GiB additional margin. It deletes no historical evidence. Estimates and actual production maxima are in disk_resource_audit.json.
+
+All original80 tests are retained (bounded synthetic CPU model fixtures only), with actual production read-only integration and ordering/fault-injection tests. Six simulated failures must stop before the full archive hash and pending creation. They alter no source/evidence. Source hashes in accepted results must match all sealed Python files.
+
+Graph validation remains development-only: upstream fitting used all76 FIT including15 GRAPH_VAL. P(target=normal) concerns the TRAIN-derived constructed clean/pseudo task and is never a physical safety probability. No seed replacement, performance minimum or requirement that EpistemicGAT wins is introduced.
+
+Future paths are C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\.graph_development_data_v3.pending, C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_data_v3, C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_runs_v3; V1 and V2 runtime namespaces cannot be written. No V3 runtime exists now. Every named requested audit is emitted separately and sealed with exact inventory and SHA256SUMS/detached external seal. Files become read-only. Commands in future_commands.json use cmd.exe syntax and require the external V3 seal reported at completion. The future data command must await separate human authorization.

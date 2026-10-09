@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "experiment": "COGNIX Experiment 2A",
+  "status": "FROZEN_PREPARATION_ONLY",
+  "execution_authorized_now": false,
+  "baseline_commit": "866637b1b73615af3178d5f242ce8b53e74d5115",
+  "freeze_timing": "before any Experiment-2 performance is observed",
+  "gates": [
+    {
+      "name": "DATA / INTEGRITY",
+      "scope": "DATA HEALTH only; no performance criterion",
+      "all_required": [
+        "complete official TRAIN compressed stream and gzip completion/trailer validated",
+        "complete TAR traversal and final source total/validator/hash record",
+        "every complete scenario inventoried in actual parsed order; objectively corrupt scenarios fully logged",
+        "no unreadable required Camera/Seg/IMU modalities among accepted scenarios",
+        "aligned Camera/Seg/IMU ticks under unchanged loader; finite required sensor values",
+        "source/member hashes and clean-block schema/code/window/provenance bound",
+        "town/environment diversity reported with missing descriptors explicit; no balancing/drop rule",
+        "deterministic FULL-TRAIN whole-scenario partition frozen once; nonempty FIT and CAL",
+        "zero TEST access and protected role exclusion",
+        "storage/runtime completion not merely a partial prefix"
+      ],
+      "pass": "all predicates true and inventory/provenance/partition sealed",
+      "failure": "STOP; no fitting; preserve evidence and report exact failed integrity predicate; no performance-based exclusion"
+    },
+    {
+      "name": "TRAIN-ONLY SCIENTIFIC HEALTH",
+      "authorization": "fitting requires separate human authorization after Gate 1 PASS",
+      "upstream_fit": "new FIT_NORMAL clean only; unchanged one-class/bootstrap algorithms",
+      "mapping_fit": "new CAL_NORMAL clean + new CAL-derived modality-matched pseudo only; scenario isolated; no FIT graph pseudo used to calibrate",
+      "active_modalities": [
+        "Camera",
+        "Seg",
+        "IMU"
+      ],
+      "audit_source": {
+        "path": "cognix/adapters/carla/normality.py",
+        "sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "class": "ScoreCalibrator",
+        "contract": "unchanged optimization_info finite_optimum/separation/profile audit and require_valid(diagnostic=False); diagnostic=True permits evidence recording only, never an invalid scientific prediction channel"
+      },
+      "diagnostics_required_per_modality": [
+        "all accepted calibration audit fields including separation geometry, optimizer convergence, stationarity/curvature, absolute/relative slope profiles and boundary trends",
+        "score and calibrated probability ranges, finite counts and saturation counts",
+        "member score/probability disagreement and canonical epistemic/aleatoric distribution summaries",
+        "CAL clean-vs-pseudo separation and class-specific distributions",
+        "exact constant-output checks on combined clean/pseudo probabilities and feature/score outputs",
+        "provenance/sample counts/recipe roles and scenario isolation"
+      ],
+      "status_values": [
+        "VALID",
+        "INVALID_STRUCTURAL",
+        "INVALID_NUMERIC",
+        "INVALID_OTHER"
+      ],
+      "decision_order": [
+        {
+          "status": "INVALID_NUMERIC",
+          "predicate": "nonfinite required features/member scores/probabilities/UQ/parameters, or probability/UQ domain failure under unchanged scientific implementation"
+        },
+        {
+          "status": "INVALID_STRUCTURAL",
+          "predicate": "accepted unchanged audit reports strict/weak separability, suspected separation, improving boundary/direction profile or otherwise absent finite optimum with structural nonexistence evidence"
+        },
+        {
+          "status": "INVALID_OTHER",
+          "predicate": "audit finite_optimum is false without structural diagnosis, missing/incomplete audit/provenance, no supported CAL classes, or exact constant predictive output over combined clean+modality-matched pseudo task"
+        },
+        {
+          "status": "VALID",
+          "predicate": "accepted require_valid succeeds, all required finite/domain/provenance predicates pass and no exact constant predictive collapse; range/saturation/disagreement diagnostics explicitly reported"
+        }
+      ],
+      "noncriteria": [
+        "no minimum pseudo AUROC/ECE improvement invented",
+        "zero/tiny canonical epistemic uncertainty is retained and reported; no amplification or guaranteed nonzero-UQ gate",
+        "saturation fractions and pseudo separation are diagnostic, not proof of real anomaly performance or an excuse to change severities"
+      ],
+      "invalid_any_active_modality": "STOP before graph construction/GAT training; write methodology-decision report; no automatic repair; repair belongs to separately preregistered Experiment 2B",
+      "pass": "all three modalities explicitly VALID and sealed audit/provenance report",
+      "pseudo_interpretation": "TRAIN pseudo discrimination is development diagnostic only; never real anomaly performance evidence"
+    },
+    {
+      "name": "PRE-FINAL DEVELOPMENT",
+      "entry": "Gate 1 and Gate 2 PASS plus separately authorized, frozen FULL-TRAIN graph protocol",
+      "methods": [
+        "NoGraph",
+        "StandardGAT",
+        "EpistemicGAT"
+      ],
+      "paired_seeds": [
+        101,
+        202,
+        303,
+        404,
+        505
+      ],
+      "development_sources": "Experiment-2 official TRAIN FIT-derived graph training/validation only; upstream CAL reserved for mapping; no official TEST or FINAL-SIM",
+      "historical_graph_definition_binding": {
+        "sha256": "68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203",
+        "bytes": 15091
+      },
+      "frozen_structure": {
+        "NoGraph": {
+          "architecture": "bias-free shared Linear(3,12) -> ELU -> Dropout(0.1) -> bias-free Linear(12,1); mean(sigmoid(node_logit))",
+          "implementation": "future report/adapter-side classifier; frozen core identity NoGraph remains unchanged",
+          "initialization": "Xavier uniform; matching run seed",
+          "inputs": "same p/E/A; same fixed 3 nodes",
+          "message_passing": false,
+          "name": "NoGraph shared-node MLP, distinct from frozen identity NoGraph plugin",
+          "parameters": 48,
+          "reason": "trainable nonlinear baseline with 48 parameters against 50 in each GAT; no deliberate information/capacity deficit"
+        },
+        "GAT_architecture": {
+          "attention_logit": "LeakyReLU(a^T[W h_i || W h_j], negative_slope=0.2)",
+          "dropout": 0.1,
+          "dropout_location": "post-softmax normalized attention, exactly existing layer",
+          "final_activation": "linear node logits; sigmoid only for node probability",
+          "heads_per_layer": 1,
+          "hidden_dim": 8,
+          "initialization": "Xavier uniform for every W and attention vector; identical cloned tensors per Standard/Epistemic seed",
+          "input_dim": 3,
+          "intermediate_activation": "ELU",
+          "layers": 2,
+          "linear_bias": false,
+          "output_dim": 1,
+          "parameter_count_each": 50,
+          "pooling": "q_normal=mean_i sigmoid(z_i); no extra fusion, belief or decision layer"
+        },
+        "base_node_features": {
+          "fitted_scaler": null,
+          "model_dtype": "float32",
+          "order": [
+            "prob_normal",
+            "epistemic",
+            "aleatoric"
+          ],
+          "raw_compact_features_in_primary_node_vector": false,
+          "shape": [
+            3,
+            3
+          ],
+          "source_computation_dtype": "float64",
+          "total_omitted_reason": "total=aleatoric+epistemic is redundant",
+          "units": [
+            "probability",
+            "natural-log entropy nats",
+            "natural-log entropy nats"
+          ]
+        },
+        "node_order": [
+          "Camera",
+          "IMU",
+          "Seg"
+        ],
+        "epistemic_attention": {
+          "division_by_zero": "1+E>=1; require finite nonnegative E",
+          "equations": [
+            "w_j=1/(1+E_j)",
+            "e_ij^epi=e_ij+log(w_j)=e_ij-log(1+E_j)",
+            "alpha_ij=exp(e_ij)*w_j/sum_{k in incoming_neighbors(i)} exp(e_ik)*w_k"
+          ],
+          "floating_point": "reuse existing float32 prior/log implementation; tiny E can round to a neutral prior; accept weak/null effects without post-result amplification",
+          "monotonic": "for fixed learned logits and other senders, increasing E_j decreases its normalized attention to each eligible receiver before dropout",
+          "neutral": "use_epistemic_prior=False gives w=1; if every E=0 both attention operators coincide",
+          "normalization_or_FIT_scale": null,
+          "scope": "same original canonical E_j at both layers; sender prior only, no receiver factor",
+          "source": "unchanged cognix.graph.epistemic_gat.EpistemicGATLayerPT and compute_epistemic_weights",
+          "strength": "fixed 1, no search",
+          "units": "E is canonical entropy-gap in nats, not variance or its square root"
+        },
+        "training_specification": {
+          "batch_size_graphs": 256,
+          "device": "single T4; no distributed training",
+          "early_stopping": {
+            "checkpoint": "independently save actual lowest validation BCE among executed epochs, earliest epoch on exact tie",
+            "min_delta": 1e-05,
+            "minimum_epochs": 1,
+            "monitor_tracker": "reset only if loss < tracked_best-min_delta; update tracked_best only on such improvement",
+            "patience": 10
+          },
+          "execute_this_milestone": false,
+          "gradient_clipping": null,
+          "learning_rate": 0.001,
+          "loss": "mean BCE(q_normal,target_normal) over graph-training samples; no node-label auxiliary loss",
+          "maximum_epochs": 100,
+          "optimizer": "Adam",
+          "precision": "float32; no AMP or TF32",
+          "scheduler": null,
+          "seeds": [
+            101,
+            202,
+            303,
+            404,
+            505
+          ],
+          "shuffle": "PCG64(seed+zero_based_epoch_index); same row keys and permutation across all methods",
+          "upstream_agents_frozen": true,
+          "validation_loss": "equal-scenario mean BCE over the NEW frozen graph-validation scenario list",
+          "weight_decay": 0.0001
+        },
+        "threshold_rule": {
+          "candidate_set": "sorted unique validation p_corruption values union {0,1}",
+          "classify": "corruption iff p_corruption>=tau",
+          "objective": "maximize arithmetic mean of per-validation-scenario corruption F1",
+          "optimism": "threshold selection and reported validation F1 use the same validation data; report as development statistics, not confirmatory evaluation",
+          "select_using": "graph validation only, separately for each method and seed at its selected checkpoint",
+          "tie_break": "largest tau",
+          "zero_denominator_F1": 0
+        }
+      },
+      "graph_membership_plan": {
+        "whole_scenarios": true,
+        "seed": 2027,
+        "rng": "NumPy PCG64",
+        "planned_rule": "sorted new FIT IDs; permute once, n_graph_val=max(1,round(0.20*n_fit)) with Python ties-to-even; first n_graph_val IDs validation, remainder graph train; CAL excluded; no old memberships copied",
+        "derivation": "same historical 3-of-15 validation fraction and seed, scaled deterministically to new FIT size; bind exact membership under separate FULL-TRAIN graph protocol before any graph performance",
+        "empty_role_response": "STOP; do not seed-search/rebalance",
+        "pseudo": "inherits parent graph role; five non-GNSS recipe order/default severities unchanged; no CAL pseudo reuse",
+        "conditional_validation_limit": "upstream one-class representation fitted all FIT scenarios including graph validation; development scores are not full-pipeline unseen-scenario evidence"
+      },
+      "old_TEST_may_not_choose": [
+        "epoch",
+        "architecture",
+        "threshold",
+        "seed",
+        "loss",
+        "hidden size",
+        "attention mechanism",
+        "pseudo recipe",
+        "feature transformation",
+        "acquisition size/towns"
+      ],
+      "failure_rules": [
+        "keep all failed runs and reasons; no seed replacement/best-seed selection",
+        "nonfinite predictions/states or source/role/determinism violation => STOP final access and report",
+        "no minimum graph AUROC or requirement that EpistemicGAT wins",
+        "near-chance/null results retained; representation/pseudo repair is a new numbered experiment",
+        "missing planned seed invalidates complete paired aggregation; no hidden omission"
+      ],
+      "pre_final_freeze_required": [
+        "all state-file hashes per method/seed",
+        "preprocessing/source/feature hashes",
+        "per-method/per-seed thresholds",
+        "metric definitions and positive class",
+        "seed aggregation without prediction ensemble",
+        "analysis plan and separate three contrasts",
+        "failure rules",
+        "separately frozen fresh final scenario/seed specification"
+      ],
+      "pass": "complete authorized development with all required hashes/analysis/failure ledger frozen and no unresolved integrity/numeric violation; scientific null results do not redefine the gate",
+      "after_pass": "separate final-evaluation authorization only; no final dataset access now"
+    }
+  ],
+  "no_new_metrics_generated": true,
+  "no_invalid_channel_automatic_repair": true,
+  "methodology_changes": "separately preregistered numbered Experiment 2B or later; never an invisible rescue"
+}

@@ -1,0 +1,362 @@
+{
+  "CAL_scenarios": 25,
+  "FIT_scenarios": 76,
+  "GAT_executed": false,
+  "GNSS_downstream": "EXCLUDED",
+  "HEAD": "1e636800438a681ecfba7630ed372581abc4c8c7",
+  "Python_version": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "TEST_requests": 0,
+  "action": "STOP FOR HUMAN REVIEW",
+  "active_modalities": [
+    "Camera",
+    "Seg",
+    "IMU"
+  ],
+  "adopted_feature_files_copied": false,
+  "adopted_v7_feature_bytes_identical": true,
+  "all_101_blocks_adoptions_verified": true,
+  "all_101_canonical_raw_ledger_digests_cross_checked_with_sealed_index": true,
+  "all_101_gate2_loader_resolutions_independently_verified": true,
+  "block_resolution_counts": {
+    "V7_TO_V8_IDENTITY_ADOPTION": 68,
+    "V8_NATIVE_EXTRACTED": 33
+  },
+  "block_resolution_manifest_sha256": "c02bc92b6f0a720b0d189f6e1d5e3ba198e4c0c707c89fd4e1c91f960eb9f61b",
+  "block_resolution_role_counts": {
+    "CAL_NORMAL": {
+      "V7_TO_V8_IDENTITY_ADOPTION": 16,
+      "V8_NATIVE_EXTRACTED": 9
+    },
+    "FIT_NORMAL": {
+      "V7_TO_V8_IDENTITY_ADOPTION": 52,
+      "V8_NATIVE_EXTRACTED": 24
+    }
+  },
+  "calibration_executed_now": false,
+  "environment_sha256": "440400123c5dc686a42b498895e0d711d3a155ebf015e118786b0b4331b5e345",
+  "feature_recomputed": false,
+  "fitting_executed_now": false,
+  "graph_constructed": false,
+  "guard_counters": {
+    "TEST_requests": 0,
+    "blocked_TEST_attempts": 0,
+    "blocked_graph_attempts": 0,
+    "blocked_mutation_attempts": 0,
+    "blocked_network_attempts": 0,
+    "blocked_source_attempts": 0,
+    "network_requests": 0
+  },
+  "library_versions": {
+    "Pillow": "12.3.0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.3",
+    "pyarrow": "25.0.1",
+    "scipy": "1.18.0"
+  },
+  "native_v8_feature_bytes_unchanged": true,
+  "network_requests": 0,
+  "partition_SHA256_verified": "706c819ec568fd2dd2a1a89d9d7cc13eed7ba86466d8b5aa4ad4de277a863230",
+  "partition_recomputed": false,
+  "partition_runtime_seal_verified": "bd257b2d2d5d4c9b28ea12419418bdea0f9b03473757360e538abca61ce0550d",
+  "preprocessing_policy_sha256": "cae968ac595520ae9e297f7326743d0ce6dd4cc8c0cbd61a7f8649e53cba1bf6",
+  "preservation": {
+    "directories_verified": 248,
+    "files_verified": 14430,
+    "hashes_sizes_mtimes_and_exact_inventories_unchanged": true
+  },
+  "pseudo_generated_now": false,
+  "raw_ledger_record_sha256_field_present": false,
+  "scientific_hashes": {
+    "amendment_files": {
+      "experiment_2b_registration.json": "f306005518b84373331c669ccfac4da8ea9f9143b2c524e648a2abb60ee5f915",
+      "segmentation_oov.py": "22b8712257391c4f415c72992fa3369d7408efcc9c69c27abc8257746038f4d9",
+      "v8_clean_features.py": "0981e210b181a2e36229d738f43196699f503abf1423975aedffdf19e3b24090"
+    },
+    "dependencies": {
+      "Pillow": "12.3.0",
+      "numpy": "2.5.1",
+      "pandas": "3.0.3",
+      "pyarrow": "25.0.1"
+    },
+    "experiment": "Experiment 2B",
+    "frozen_extraction_files": {
+      "clean_features.py": "60a4b06ebba4f33d0b41760f1069d3e2eba1222d153e15cdf9ea85340acfadb1",
+      "train_contract.json": "0bfcf54615126513ebadc2a3a50afd9ac81abce20dcd04d8dcdb149f9d769420",
+      "train_contract_validation.py": "d247b0e457c23ec9e77c3aa91baca372f4e4971a37cf6bce76d832fb3d9adbab"
+    },
+    "frozen_segmentation_function_sha256": "275237bf161fb27d0d7cd48764df1692a90ee8d493160998eb01409401e0a1c5",
+    "preprocessing_policy_sha256": "cae968ac595520ae9e297f7326743d0ce6dd4cc8c0cbd61a7f8649e53cba1bf6",
+    "source_files": [
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+        "path": "cognix/adapters/carla/cache_builder.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes"
+        ],
+        "preregistered_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+        "working_file_sha256": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+        "path": "cognix/adapters/carla/carlanomaly_loader.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "CRLF_committed_blob_bytes"
+        ],
+        "preregistered_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab",
+        "working_file_sha256": "4f6531ef0a08cb4e41287de803a8f61dbc045a72ea6c3dbf104f00c9d3b359ab"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "path": "cognix/adapters/carla/normality.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes"
+        ],
+        "preregistered_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "working_file_sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+        "path": "cognix/adapters/carla/pseudo_anomalies.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "CRLF_committed_blob_bytes"
+        ],
+        "preregistered_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224",
+        "working_file_sha256": "9481519f6869d21437ca6f8684bb3cb7756f9e86850bef639226bafcbb9e8224"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+        "path": "cognix/adapters/carla/real_agents.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes"
+        ],
+        "preregistered_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+        "working_file_sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+        "path": "cognix/adapters/carla/real_features.py",
+        "preregistered_digest_matching_representations": [
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "d3a3016c77366fae63404fe23c0929e2b184ce7d1a1332238fe28d546b3a574b",
+        "working_file_sha256": "66f3e6a59b42f65679642be137a0fadd081f61251cfe8728cd22e089e9110232"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+        "path": "cognix/adapters/carla/train_acquisition.py",
+        "preregistered_digest_matching_representations": [
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "df3d27a0950572599d99fddfe307650787d325e6fe490e502d2003949029fae4",
+        "working_file_sha256": "a3710b2064b4a01972d95cf0d9d13f74a8705284fe1384210c3a802a031c600f"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "cd162e22ff8792deab4598ce00ddbddc89e364aede5c56e23afde95c686ae5a0",
+        "path": "cognix/graph/epistemic_gat.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "CRLF_committed_blob_bytes"
+        ],
+        "preregistered_sha256": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9",
+        "working_file_sha256": "d5f3ebe4e9d91bdb73e15d571181ce61bbc4741ee57deba13d6aa6f8e01d59a9"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "0de197d86ef35ba48551402ce20ffa44feb4aae90980d517ee53033ad47548ae",
+        "path": "cognix/graph/no_graph.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "CRLF_committed_blob_bytes"
+        ],
+        "preregistered_sha256": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1",
+        "working_file_sha256": "6908c9f48fa4aa6e13f5c5ec72e40bace756b3039f1a4ba704ed0e00805bb8b1"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "95c59827e3c308c45fe9f3ad1fc1d2386cbf837782c8e5a18a60366ee4c58457",
+        "path": "cognix/graph/standard_gat.py",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "CRLF_committed_blob_bytes"
+        ],
+        "preregistered_sha256": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853",
+        "working_file_sha256": "2caf10e5a9e5c2b3dc3380517492ff5759a4bef495ffdbeb89ebd7aa10eb6853"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "b7c4b3312c2202fa58bfeed8f91d62d48af7d92b804e022da336c1ca3601bc9a",
+        "path": "reports/carla_train_full_v1/PREPARATION_SHA256SUMS",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "b7c4b3312c2202fa58bfeed8f91d62d48af7d92b804e022da336c1ca3601bc9a",
+        "working_file_sha256": "b7c4b3312c2202fa58bfeed8f91d62d48af7d92b804e022da336c1ca3601bc9a"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "14841a111372e7f6a9d86da78447c910d44aaf73cd349b49e775bf6b1a97ff9a",
+        "path": "reports/carla_train_full_v1/PREPARATION_SHA256SUMS.sha256",
+        "preregistered_digest_matching_representations": [],
+        "preregistered_sha256": null,
+        "working_file_sha256": "14841a111372e7f6a9d86da78447c910d44aaf73cd349b49e775bf6b1a97ff9a"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "3e0e00621923a1308b266b2d3b5d9c4a8245ee2095a314d1c7f1cc5eeed79089",
+        "path": "reports/carla_train_full_v1/README.md",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "3e0e00621923a1308b266b2d3b5d9c4a8245ee2095a314d1c7f1cc5eeed79089",
+        "working_file_sha256": "3e0e00621923a1308b266b2d3b5d9c4a8245ee2095a314d1c7f1cc5eeed79089"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "847ea24339652d0fae9b6b6e01e85e8bd8e35dc9150b770f82f643243f69780d",
+        "path": "reports/carla_train_full_v1/acquisition_plan.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "847ea24339652d0fae9b6b6e01e85e8bd8e35dc9150b770f82f643243f69780d",
+        "working_file_sha256": "847ea24339652d0fae9b6b6e01e85e8bd8e35dc9150b770f82f643243f69780d"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "1a6e8b6289301ec7355fbffef8fdac54f44c19c3230f23da2fceb28d527f165f",
+        "path": "reports/carla_train_full_v1/development_gate_spec.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "1a6e8b6289301ec7355fbffef8fdac54f44c19c3230f23da2fceb28d527f165f",
+        "working_file_sha256": "1a6e8b6289301ec7355fbffef8fdac54f44c19c3230f23da2fceb28d527f165f"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "545fb7e733f713be622b57f2d50bdffc48b9c4077a381d8e1e149d91b4c22643",
+        "path": "reports/carla_train_full_v1/evaluation_plan.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "545fb7e733f713be622b57f2d50bdffc48b9c4077a381d8e1e149d91b4c22643",
+        "working_file_sha256": "545fb7e733f713be622b57f2d50bdffc48b9c4077a381d8e1e149d91b4c22643"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "f32d40ea71514c79e6b967a7fde2fc135efda79590343b12b0dc7a36738103e6",
+        "path": "reports/carla_train_full_v1/full_train_preregistered_protocol.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "f32d40ea71514c79e6b967a7fde2fc135efda79590343b12b0dc7a36738103e6",
+        "working_file_sha256": "f32d40ea71514c79e6b967a7fde2fc135efda79590343b12b0dc7a36738103e6"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "52fc57d4d2f557924b54eeb7a031d156f0a486d0c75717b75d53273c6a89dabd",
+        "path": "reports/carla_train_full_v1/historical_bindings.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "52fc57d4d2f557924b54eeb7a031d156f0a486d0c75717b75d53273c6a89dabd",
+        "working_file_sha256": "52fc57d4d2f557924b54eeb7a031d156f0a486d0c75717b75d53273c6a89dabd"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "e725224ed9dba64e59f97cfd242341c77487246ee9be5fa8773d23c05fe02743",
+        "path": "reports/carla_train_full_v1/initial_state.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "e725224ed9dba64e59f97cfd242341c77487246ee9be5fa8773d23c05fe02743",
+        "working_file_sha256": "e725224ed9dba64e59f97cfd242341c77487246ee9be5fa8773d23c05fe02743"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "a6778b491389fcaf5a2814d4fedef404fcf4c955c81eefd99287e836c2f6308e",
+        "path": "reports/carla_train_full_v1/reuse_policy.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "a6778b491389fcaf5a2814d4fedef404fcf4c955c81eefd99287e836c2f6308e",
+        "working_file_sha256": "a6778b491389fcaf5a2814d4fedef404fcf4c955c81eefd99287e836c2f6308e"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "b2bf345233649d9cabe413b4e42f6de408d5982ca715a1f2e1187cde3c6606a0",
+        "path": "reports/carla_train_full_v1/risk_register.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "b2bf345233649d9cabe413b4e42f6de408d5982ca715a1f2e1187cde3c6606a0",
+        "working_file_sha256": "b2bf345233649d9cabe413b4e42f6de408d5982ca715a1f2e1187cde3c6606a0"
+      },
+      {
+        "EOL_equivalence_verified": true,
+        "committed_blob_sha256": "c84d36bb9f4e89e791a607fef770577b5d2283d659875c097e66104609e0977a",
+        "path": "reports/carla_train_full_v1/storage_runtime_plan.json",
+        "preregistered_digest_matching_representations": [
+          "raw_working_bytes",
+          "committed_blob_bytes",
+          "LF_normalized_working_bytes"
+        ],
+        "preregistered_sha256": "c84d36bb9f4e89e791a607fef770577b5d2283d659875c097e66104609e0977a",
+        "working_file_sha256": "c84d36bb9f4e89e791a607fef770577b5d2283d659875c097e66104609e0977a"
+      }
+    ]
+  },
+  "source_full_sha256_remeasured": true,
+  "source_identity_verified": {
+    "bytes": 146453559283,
+    "path": "E:\\carlanomaly-base-train.tar.gz",
+    "sha256": "6cf22ecf7d2910b45ed71127525834d1a4a26a65cc65918e7b5e27da95a38683"
+  },
+  "success": true,
+  "v1_committed_units": {},
+  "v1_failure_evidence_verified": true,
+  "v2_committed_FIT_unit_seals": {
+    "fit-Camera": "531ec474585318ac91ba8d7f281690c432a4a444fee96cf743a5a44222780bb6",
+    "fit-IMU": "3ca96bf8a5aa1042619ab721c3f517bb38df0e592ff5f60aa509e946de4d3bd4",
+    "fit-Seg": "ee72ee058a38ca87c451e26f4c814d7db92a1ac000d6cbbe278ebcded22f8075"
+  },
+  "v2_failure_evidence_verified": true,
+  "v8_COMPLETE_GATE1_verified": true,
+  "v8_seal_verified": "257a2bf005b57f0bd8e1cd82789debedb5a72d27f0960b1a03e66cb6b1a1f810",
+  "verification_elapsed_seconds": 572.9922466000135
+}

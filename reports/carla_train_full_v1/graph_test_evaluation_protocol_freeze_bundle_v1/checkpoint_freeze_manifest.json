@@ -1,0 +1,165 @@
+{
+  "TEST_access_during_freeze": false,
+  "best_seed_selection": false,
+  "checkpoint_policy": "all 15 pre-TEST development-selected checkpoints retained; no best-seed selection, seed replacement, retraining, or post-hoc checkpoint selection",
+  "graph_data_seal": "633b5801b86523c0a9396e45c02ddd23ae927a41ee032528eb0285bdbf296066",
+  "replacement_seed": false,
+  "result_dependent_retry": false,
+  "scientific_content_sha256": "c8a82c361514fdad9807e23fbfd691c354db081cecdb22506a068a950a688a13",
+  "selected": [
+    {
+      "method": "EpistemicGAT",
+      "raw_run_seal": "5a966223e3f095f2fa979e6d1a557848f7e2f28625306d370bf0e471deb88708",
+      "run_id": "EpistemicGAT_101",
+      "seed": 101,
+      "selected_checkpoint_epoch": 40,
+      "selected_checkpoint_file": "checkpoint_epoch_040.pt",
+      "selected_checkpoint_sha256": "b26211407aea0637e0a76e7eae0016d3303dd4866a38eb45a25f67147c4d4c81",
+      "selected_corruption_threshold": 0.4051145315170288
+    },
+    {
+      "method": "EpistemicGAT",
+      "raw_run_seal": "5eec868cfbd25b49d358a6c0e194f234dc2806587d2992d76186f80c1ffca8e4",
+      "run_id": "EpistemicGAT_202",
+      "seed": 202,
+      "selected_checkpoint_epoch": 75,
+      "selected_checkpoint_file": "checkpoint_epoch_075.pt",
+      "selected_checkpoint_sha256": "d98bc00b19e8cd17d25926eed53903732055bc3711189145d91eeb772d3935f2",
+      "selected_corruption_threshold": 0.4521142244338989
+    },
+    {
+      "method": "EpistemicGAT",
+      "raw_run_seal": "20664a7c4516bca15daefa996979ef7867775293d387dacc4c18dcf9f69f3549",
+      "run_id": "EpistemicGAT_303",
+      "seed": 303,
+      "selected_checkpoint_epoch": 46,
+      "selected_checkpoint_file": "checkpoint_epoch_046.pt",
+      "selected_checkpoint_sha256": "d9ba4146eac12b78a9cc124bef7112c4998c407429dc3273bd6296e923529e02",
+      "selected_corruption_threshold": 0.35929667949676514
+    },
+    {
+      "method": "EpistemicGAT",
+      "raw_run_seal": "cdbd4c1e5650627442b20f4a4451967d38f03c4510fe414df010216a51f3e701",
+      "run_id": "EpistemicGAT_404",
+      "seed": 404,
+      "selected_checkpoint_epoch": 49,
+      "selected_checkpoint_file": "checkpoint_epoch_049.pt",
+      "selected_checkpoint_sha256": "a83d7fbd2d296b94a1e25f263a467239081d8fdc61ba44a4a5847e4a68f92415",
+      "selected_corruption_threshold": 0.42403340339660645
+    },
+    {
+      "method": "EpistemicGAT",
+      "raw_run_seal": "dc8f6bd5c640184bcb0dd3b09b35adcc207d360cd0b93e26624784f86dedb1ea",
+      "run_id": "EpistemicGAT_505",
+      "seed": 505,
+      "selected_checkpoint_epoch": 34,
+      "selected_checkpoint_file": "checkpoint_epoch_034.pt",
+      "selected_checkpoint_sha256": "5fa29737a13fe87b9bdaea3285225bf9e2b4fe31a5897fbdb730a39c86de2e8c",
+      "selected_corruption_threshold": 0.36755263805389404
+    },
+    {
+      "method": "NoGraph",
+      "raw_run_seal": "e7e90f3e460d24fe7a4e009f172ecc00afe945af172bf9f399c1e5a46a8f41b8",
+      "run_id": "NoGraph_101",
+      "seed": 101,
+      "selected_checkpoint_epoch": 97,
+      "selected_checkpoint_file": "checkpoint_epoch_097.pt",
+      "selected_checkpoint_sha256": "9069f465e169c0e6e057957fe12953dae994ea2ae875c99f755051d4c57f9863",
+      "selected_corruption_threshold": 0.38459062576293945
+    },
+    {
+      "method": "NoGraph",
+      "raw_run_seal": "493824a7deb10f5c3aac120652f7fdec79e4f92e42f1adcc95fbcfae097dafce",
+      "run_id": "NoGraph_202",
+      "seed": 202,
+      "selected_checkpoint_epoch": 90,
+      "selected_checkpoint_file": "checkpoint_epoch_090.pt",
+      "selected_checkpoint_sha256": "9ffcc161bc4e3d7a763d22055faea1270c347500b9dcc25ec605916d3ca28c81",
+      "selected_corruption_threshold": 0.3896033763885498
+    },
+    {
+      "method": "NoGraph",
+      "raw_run_seal": "5c70eb131e7e00d43ea370fa07a9969d457ba627cde5888bf33cd011eec38a3a",
+      "run_id": "NoGraph_303",
+      "seed": 303,
+      "selected_checkpoint_epoch": 97,
+      "selected_checkpoint_file": "checkpoint_epoch_097.pt",
+      "selected_checkpoint_sha256": "d998af669828265cf32b28d30c93120adef1c0a92fc1127283d8ad418fe01fa2",
+      "selected_corruption_threshold": 0.3878277540206909
+    },
+    {
+      "method": "NoGraph",
+      "raw_run_seal": "d290668820dffc6862a0aea40facbcd2892341a9c7e12f5e92baa041cb3d9bb0",
+      "run_id": "NoGraph_404",
+      "seed": 404,
+      "selected_checkpoint_epoch": 97,
+      "selected_checkpoint_file": "checkpoint_epoch_097.pt",
+      "selected_checkpoint_sha256": "5afa1d6b80ee3df7f776955d1b27e96a8e880eb8ea6ea5523a3a0b78082b9503",
+      "selected_corruption_threshold": 0.38646554946899414
+    },
+    {
+      "method": "NoGraph",
+      "raw_run_seal": "cd49e128a7474e1ac5ab7f9deca21782c908bbcec04b4bf2cb4d2085045ab7ed",
+      "run_id": "NoGraph_505",
+      "seed": 505,
+      "selected_checkpoint_epoch": 83,
+      "selected_checkpoint_file": "checkpoint_epoch_083.pt",
+      "selected_checkpoint_sha256": "a48ff05334414b56012ddd8e79496bc1494ff4ebda9af3c07b307f5621fe5613",
+      "selected_corruption_threshold": 0.3946409821510315
+    },
+    {
+      "method": "StandardGAT",
+      "raw_run_seal": "894878173e84b9c05c478d6305233aaa36cd7f6e9b6e26c13cbed72147fb35e1",
+      "run_id": "StandardGAT_101",
+      "seed": 101,
+      "selected_checkpoint_epoch": 40,
+      "selected_checkpoint_file": "checkpoint_epoch_040.pt",
+      "selected_checkpoint_sha256": "41265ba58736b3951cc1c7bf61995d8745449bab9370106b8efcd973092a6d88",
+      "selected_corruption_threshold": 0.4050847291946411
+    },
+    {
+      "method": "StandardGAT",
+      "raw_run_seal": "0a6cae04440b727cfa9909bff12ad544bb91c54a88918bb9f956bb4cfe27b271",
+      "run_id": "StandardGAT_202",
+      "seed": 202,
+      "selected_checkpoint_epoch": 73,
+      "selected_checkpoint_file": "checkpoint_epoch_073.pt",
+      "selected_checkpoint_sha256": "ad311e424527c13796641150b0a6a769d0995f97164347345f7f02b844f78354",
+      "selected_corruption_threshold": 0.448649525642395
+    },
+    {
+      "method": "StandardGAT",
+      "raw_run_seal": "6b4cb09b7dd7a4b78dbd24f5986b514e6dd49bd07cab9143a07d177fd31d4cf3",
+      "run_id": "StandardGAT_303",
+      "seed": 303,
+      "selected_checkpoint_epoch": 49,
+      "selected_checkpoint_file": "checkpoint_epoch_049.pt",
+      "selected_checkpoint_sha256": "c57374ba9ed19ff31b2728f5044ba0ede5777738f95f368f7b32c6741d765779",
+      "selected_corruption_threshold": 0.3565298318862915
+    },
+    {
+      "method": "StandardGAT",
+      "raw_run_seal": "23fef0495fcc8602cdb5ae9436d46842938f45073dcaa2a1f3ec793441373851",
+      "run_id": "StandardGAT_404",
+      "seed": 404,
+      "selected_checkpoint_epoch": 49,
+      "selected_checkpoint_file": "checkpoint_epoch_049.pt",
+      "selected_checkpoint_sha256": "b678607cab2b9f91a1f3c9a744254a11562021bfa05fac5d6c1b60b77cafb6d4",
+      "selected_corruption_threshold": 0.42339760065078735
+    },
+    {
+      "method": "StandardGAT",
+      "raw_run_seal": "68d57a3fd7e5fc230b503bdb31714545d2f4779c23556449878b25b68a65c7cd",
+      "run_id": "StandardGAT_505",
+      "seed": 505,
+      "selected_checkpoint_epoch": 34,
+      "selected_checkpoint_file": "checkpoint_epoch_034.pt",
+      "selected_checkpoint_sha256": "1fb971de4317db25de4fdd901361f94579d14f0b44b528b41a3d387245b91f98",
+      "selected_corruption_threshold": 0.3675604462623596
+    }
+  ],
+  "selected_checkpoint_count": 15,
+  "source_results_zip_sha256": "f51a7bffe538a31b3339bbab38fbb2c0d3e92abd05f92d9d755f716856c4515f",
+  "status": "FROZEN_SELECTED_CHECKPOINTS_NO_TEST_ACCESS",
+  "training_bundle_seal": "0010e7f912b318a3ffdf45c0537d281cd2eafabeb4d89b89ef74f4b787eee7d0"
+}

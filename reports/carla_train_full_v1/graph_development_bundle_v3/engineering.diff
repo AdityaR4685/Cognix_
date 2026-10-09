@@ -1,0 +1,1400 @@
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\amendment_evidence.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\amendment_evidence.py
+@@ -1,13 +1,11 @@
+-"""V1 failure preservation and exact scientific AST invariance; engineering deltas are explicit."""
++"""Exact v2 preservation, scientific byte/AST equality and explicit engineering normalization."""
+ import ast
+ import copy
++import difflib
+ import importlib.util
+-import difflib
+ from graph_common import *
+ 
+-EXACT_SCIENTIFIC_PYTHON=('current_upstream.py','current_restore.py','graph_export.py','graph_replay.py',
+-    'graph_models.py','graph_training.py','synthetic_fixtures.py','test_graph_export.py','test_graph_training.py',
+-    'generate_graph_data.py','prepare_graph_bundle.py')
++ENGINEERING_MODULES={'preflight_graph.py','prepare_amendment.py','amendment_evidence.py'}
+ EXACT_DOCUMENTS=('current_experiment_bindings.json','current_partition_audit.json','current_gate2_restore_audit.json',
+     'graph_science_spec.json','training_spec.json','threshold_spec.json','historical_protocol_adaptation.json',
+     'historical_evidence_exclusion.json')
+@@ -20,133 +18,129 @@
+     return module
+ 
+ 
+-def ast_dump(value):return ast.dump(value,annotate_fields=True,include_attributes=False)
++def ast_dump(node):return ast.dump(node,annotate_fields=True,include_attributes=False)
+ 
+ 
+-def strip_v2_engineering(tree,old_tree,filename):
+-    """Only enumerated source-level engineering edits may be normalized."""
+-    tree=copy.deepcopy(tree)
+-    if filename=='graph_common.py':
+-        removed={'V1_BUNDLE','V1_BUNDLE_SEAL','V1_PENDING'}
+-        tree.body=[n for n in tree.body if not (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and
+-            t.id in removed for t in n.targets)) and not (isinstance(n,ast.FunctionDef) and n.name=='verify_v1_failure')]
+-        for n in tree.body:
+-            if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id in ('DATA','RUNS','PENDING','DATA_TOKEN') for t in n.targets):
+-                for v in ast.walk(n.value):
+-                    if isinstance(v,ast.Constant) and type(v.value) is str:
+-                        v.value=v.value.replace('graph_development_data_v2','graph_development_data_v1').replace(
+-                            'graph_development_runs_v2','graph_development_runs_v1').replace('GRAPH_DATA_V2','GRAPH_DATA_V1')
+-            if isinstance(n,ast.FunctionDef) and n.name=='future_namespaces_absent':
+-                require(ast_dump(n.body[-1])==ast_dump(ast.parse('verify_v1_failure()').body[0]),'Unexpected failed-evidence admission change')
+-                n.body=n.body[:-1]
+-                for v in ast.walk(n):
+-                    if isinstance(v,ast.Constant) and type(v.value) is str:
+-                        v.value=v.value.replace('graph_development_data_v2','graph_development_data_v1').replace(
+-                            'graph_development_runs_v2','graph_development_runs_v1')
+-            if isinstance(n,ast.FunctionDef) and n.name=='make_guard':
+-                expected_import=ast.parse('from subprocess_policy import authenticated_policy, subprocess_admission').body[0]
+-                expected_assignment=ast.parse('policy=authenticated_policy()').body[0]
+-                require(ast_dump(n.body[1])==ast_dump(expected_import) and ast_dump(n.body[2])==ast_dump(expected_assignment),
+-                    'Unexpected subprocess policy bootstrap edit')
+-                n.body=n.body[:1]+n.body[3:]
+-                assignment=next(v for v in n.body if isinstance(v,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='counters' for t in v.targets))
+-                require(assignment.value.keywords[-1].arg=='admitted_scientific_git_reads' and
+-                    isinstance(assignment.value.keywords[-1].value,ast.List) and not assignment.value.keywords[-1].value.elts,
+-                    'Unexpected command observation amendment')
+-                assignment.value.keywords=assignment.value.keywords[:-1]
+-                guard=next(v for v in n.body if isinstance(v,ast.FunctionDef) and v.name=='guard')
+-                old_make=next(v for v in old_tree.body if isinstance(v,ast.FunctionDef) and v.name=='make_guard')
+-                old_guard=next(v for v in old_make.body if isinstance(v,ast.FunctionDef) and v.name=='guard')
+-                def is_subprocess(v):return isinstance(v,ast.If) and ast_dump(v.test)==ast_dump(ast.parse("event == 'subprocess.Popen'",mode='eval').body)
+-                old_branch=next(v for v in old_guard.body if is_subprocess(v))
+-                require(sum(is_subprocess(v) for v in guard.body)==1,'Ambiguous subprocess amendment')
+-                expected_branch=ast.parse("""if event == 'subprocess.Popen':
+-    admission=subprocess_admission(args,policy)
+-    if not admission:
+-        counters['blocked_subprocess_attempts'] += 1; require(False, 'Subprocess not approved')
+-    if admission['kind']=='authenticated-scientific-git-show':
+-        counters['admitted_scientific_git_reads'].append(admission)
+-""").body[0]
+-                require(ast_dump(next(v for v in guard.body if is_subprocess(v)))==ast_dump(expected_branch),
+-                    'Unexplained subprocess-authentication edit')
+-                guard.body=[copy.deepcopy(old_branch) if is_subprocess(v) else v for v in guard.body]
+-    elif filename=='run_synthetic_tests.py':
+-        main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
+-        imp=ast.parse('from test_subprocess_amendment import SubprocessSynthetic,SubprocessAdversarial').body[0]
+-        require(sum(ast_dump(n)==ast_dump(imp) for n in main.body)==1,'Unexpected test harness edit')
+-        main.body=[n for n in main.body if ast_dump(n)!=ast_dump(imp)]
+-        loop=next(n for n in main.body if isinstance(n,ast.For) and isinstance(n.target,ast.Name) and n.target.id=='cls')
+-        require([n.id for n in loop.iter.elts]==['ExportSynthetic','ExportAdversarial','ModelSynthetic','ModelAdversarial',
+-            'SubprocessSynthetic','SubprocessAdversarial'],'Unexpected suite edit')
+-        loop.iter.elts=loop.iter.elts[:4]
+-    elif filename=='preflight_graph.py':
+-        fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='verify_preflight')
+-        # Added metadata checks bind the failed v1 evidence and engineering amendment.
+-        expected=ast.parse('from amendment_evidence import verify_amendment\nverify_amendment()').body
+-        require(all(ast_dump(fn.body[i+1])==ast_dump(v) for i,v in enumerate(expected)),
+-                'Unexpected engineering preflight edit')
+-        fn.body=fn.body[:1]+fn.body[3:]
++def namespace_text(raw):
++    return raw.replace('graph_development_data_v2','graph_development_data_v3').replace(
++        'graph_development_runs_v2','graph_development_runs_v3').replace('FULL_TRAIN_GRAPH_DATA_V2','FULL_TRAIN_GRAPH_DATA_V3')
++
++
++def expected_common(old):
++    tree=ast.parse(namespace_text(old.decode()))
++    # Historic V1 evidence literals are untouched. Only the V3 future glob changes.
++    extra=ast.parse("V2_BUNDLE = REPORT / 'graph_development_bundle_v2'\nV2_BUNDLE_SEAL = 'b0bb3ff9bdb33732442de9b8ea47b415039307612e13924f39c520bc02406c6a'").body
++    index=next(i for i,n in enumerate(tree.body) if isinstance(n,ast.Assign) and any(
++        isinstance(t,ast.Name) and t.id=='V1_PENDING' for t in n.targets))+1
++    tree.body[index:index]=extra
++    fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='future_namespaces_absent')
++    # Historic V2 paths are protected by absence assertions, never writable.
++    fn.body.extend(ast.parse("for name in ('graph_development_data_v2','graph_development_runs_v2','.graph_development_data_v2.pending'):\n    require(not safe_path(REPORT/name).exists(),'Historical v2 runtime cannot be reused')").body)
++    return tree
++
++
++def verify_publication_science(old,new):
++    a=next(n for n in ast.parse(old).body if isinstance(n,ast.FunctionDef) and n.name=='main')
++    b=next(n for n in ast.parse(new).body if isinstance(n,ast.FunctionDef) and n.name=='publish_authorized_data')
++    start=next(i for i,n in enumerate(a.body) if isinstance(n,ast.Expr) and isinstance(n.value,ast.Call) and
++        isinstance(n.value.func,ast.Name) and n.value.func.id=='future_namespaces_absent')
++    expected=copy.deepcopy(a.body[start:])
++    class Parameters(ast.NodeTransformer):
++        def visit_Attribute(self,n):
++            if isinstance(n.value,ast.Name) and n.value.id=='args' and n.attr in ('bundle_seal','authorize_graph_data_generation'):
++                return ast.Name(id='bundle_seal' if n.attr=='bundle_seal' else 'authorization',ctx=ast.Load())
++            return self.generic_visit(n)
++    expected=[Parameters().visit(n) for n in expected]
++    auth_index=next(i for i,n in enumerate(expected) if isinstance(n,ast.Expr) and isinstance(n.value,ast.Call) and
++        isinstance(n.value.func,ast.Name) and n.value.func.id=='write_json')
++    expected[auth_index+1:auth_index+1]=ast.parse("write_json(PENDING/'pre_source_admission.json',dict(closure=closure,source_integrity=source))").body
++    require(ast_dump(ast.Module(body=expected,type_ignores=[]))==ast_dump(ast.Module(body=b.body[2:],type_ignores=[])),
++        'Unexplained future replay/publication tail change')
++
++
++def expected_test_runner(old):
++    tree=ast.parse(old)
++    main=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='main')
++    index=next(i for i,n in enumerate(main.body) if isinstance(n,ast.ImportFrom) and n.module=='test_subprocess_amendment')+1
++    main.body[index:index]=ast.parse('from test_production_closure import ProductionIntegration,OrderingAdversarial,write_test_reports').body
++    loop=next(n for n in main.body if isinstance(n,ast.For) and isinstance(n.target,ast.Name) and n.target.id=='cls')
++    loop.iter.elts.extend([ast.Name(id='ProductionIntegration',ctx=ast.Load()),ast.Name(id='OrderingAdversarial',ctx=ast.Load())])
++    index=next(i for i,n in enumerate(main.body) if isinstance(n,ast.For) and isinstance(n.target,ast.Name) and n.target.id=='item')
++    main.body[index:index]=ast.parse('write_test_reports(record)').body
+     return tree
+ 
+ 
+ def scientific_invariance():
+-    verify_seal(V1_BUNDLE,V1_BUNDLE_SEAL)
+-    records=[]
+-    all_old=sorted(p.name for p in V1_BUNDLE.glob('*.py'))
+-    permitted_modified={'graph_common.py','run_synthetic_tests.py','preflight_graph.py'}
+-    for name in all_old:
+-        old=(V1_BUNDLE/name).read_bytes();new=(BUNDLE/name).read_bytes()
+-        require(name in permitted_modified or old==new,'Unexpected scientific Python byte difference: '+name)
+-        a,b=ast.parse(old),ast.parse(new)
+-        normalized=strip_v2_engineering(b,a,name)
+-        require(ast_dump(a)==ast_dump(normalized),'Unexplained Python AST change: '+name)
++    verify_seal(V1_BUNDLE,V1_BUNDLE_SEAL);verify_seal(V2_BUNDLE,V2_BUNDLE_SEAL)
++    records=[];exact=[]
++    for path in sorted(V2_BUNDLE.glob('*.py')):
++        name=path.name;old=path.read_bytes();new=(BUNDLE/name).read_bytes();a=ast.parse(old);b=ast.parse(new)
++        if name in ENGINEERING_MODULES:
++            equality='Engineering-only evidence/lifecycle/pre-source entrypoint; no scientific definitions'
++        elif name=='graph_common.py':
++            require(ast_dump(expected_common(old))==ast_dump(b),'Unexplained shared scientific constants/guard AST change')
++            equality='Only V3 runtime/token and historical V2 absence bindings'
++        elif name=='test_subprocess_amendment.py':
++            expected=old.decode().replace("REPORT/'graph_development_data_v3'","REPORT/'graph_development_data_v4'")
++            require(ast_dump(ast.parse(namespace_text(expected)))==ast_dump(b),'Unexplained retained subprocess test change')
++            equality='Original 24 tests retained; V3 namespace assertions only'
++        elif name=='generate_graph_data.py':
++            verify_publication_science(old,new)
++            equality='Shared pre-source closure before pending; unchanged source replay/publication tail'
++        elif name=='run_synthetic_tests.py':
++            require(ast_dump(expected_test_runner(old))==ast_dump(b),'Unexplained original test harness change')
++            equality='Original 80 tests retained; additive classes and named report emission'
++        else:
++            require(old==new,'Scientific or subprocess-policy Python changed: '+name);exact.append(name)
++            equality='Byte-identical whole module and every function/class AST'
+         functions=[]
+         for fn in a.body:
+             if isinstance(fn,(ast.FunctionDef,ast.ClassDef)):
+-                counterpart=next(n for n in normalized.body if isinstance(n,type(fn)) and n.name==fn.name)
+-                require(ast_dump(fn)==ast_dump(counterpart),'Scientific function/class body differs: '+name+':'+fn.name)
+-                functions.append(dict(name=fn.name,v1_AST_sha256=digest(ast_dump(fn).encode()),
+-                    normalized_v2_AST_sha256=digest(ast_dump(counterpart).encode()),equal=True))
+-        records.append(dict(file=name,v1_sha256=digest(old),v2_sha256=digest(new),byte_identical=old==new,
+-            normalized_whole_module_AST_equal=True,function_class_bodies=functions))
++                matches=[n for n in b.body if isinstance(n,type(fn)) and n.name==fn.name]
++                functions.append(dict(name=fn.name,v2_AST_sha256=digest(ast_dump(fn).encode()),
++                    v3_AST_sha256=digest(ast_dump(matches[0]).encode()) if matches else None,
++                    exact_AST_equal=bool(matches and ast_dump(fn)==ast_dump(matches[0]))))
++        records.append(dict(file=name,v2_sha256=digest(old),v3_sha256=digest(new),byte_identical=old==new,
++            permitted_engineering_normalization=equality,functions=functions))
+     documents=[]
+     for name in EXACT_DOCUMENTS+NAMESPACE_DOCUMENTS:
+-        a=read_json(V1_BUNDLE/name);b=read_json(BUNDLE/name)
+-        if name in NAMESPACE_DOCUMENTS:
+-            raw=canonical(b).replace(b'graph_development_data_v2',b'graph_development_data_v1').replace(
+-                b'graph_development_runs_v2',b'graph_development_runs_v1')
+-            b=json.loads(raw)
+-        require(a==b,'Unexplained scientific/binding document change: '+name)
+-        if name in EXACT_DOCUMENTS:require((V1_BUNDLE/name).read_bytes()==(BUNDLE/name).read_bytes(),'Exact scientific document bytes changed')
+-        documents.append(dict(file=name,v1_sha256=hash_file(V1_BUNDLE/name),v2_sha256=hash_file(BUNDLE/name),
+-            scientifically_equal=True,normalization='runtime namespace only' if name in NAMESPACE_DOCUMENTS else 'none'))
+-    return dict(status='PASS',v1_bundle_seal=V1_BUNDLE_SEAL,python=records,documents=documents,
+-        allowed_normalizations=['DATA/RUNS/PENDING v2 namespace constants and future namespace globs',
+-            'new v2 authorization token','v1 failure evidence admission bindings',
+-            'strict authenticated subprocess rule and read observation only',
+-            'extra engineering evidence checks in preflight','additive synthetic/adversarial suite registration'],
+-        scientific_Python_byte_identical=list(EXACT_SCIENTIFIC_PYTHON),
++        old=(V2_BUNDLE/name).read_bytes();new=(BUNDLE/name).read_bytes()
++        require(new==(namespace_text(old.decode()).encode() if name in NAMESPACE_DOCUMENTS else old),
++            'Scientific document bytes changed: '+name)
++        documents.append(dict(file=name,v2_sha256=digest(old),v3_sha256=digest(new),scientifically_equal=True,
++            normalization='V3 runtime paths only' if name in NAMESPACE_DOCUMENTS else 'none'))
++    require(hash_file(BUNDLE/'subprocess_policy.py')==hash_file(V2_BUNDLE/'subprocess_policy.py'),'Reviewed V2 subprocess policy changed')
++    for name in ('v1_failure_evidence.json','v1_failure_readonly_reproduction.txt'):
++        require((BUNDLE/name).read_bytes()==(V2_BUNDLE/name).read_bytes(),'V1 forensic evidence changed')
++    return dict(status='PASS',v1_seal=V1_BUNDLE_SEAL,v2_seal=V2_BUNDLE_SEAL,python=records,documents=documents,
++        scientific_Python_byte_identical=exact,scientific_files_changed=[],
+         graph_pair_identity_semantics_unchanged=True,all_primary_graph_functions_AST_equal=True,
++        current_restoration_and_upstream_science_byte_identical=True,subprocess_policy_byte_identical=True,
++        allowed_normalizations=['V3 runtime paths/token and historical V2 absence bindings',
++            'Shared engineering pre-source execution order and publication admission evidence',
++            'Engineering evidence/lifecycle entrypoints','Additive tests; retained namespace assertions ported to V3'],
+         membership_recomputed=False,no_scientific_parameter_or_behavior_changes=True)
+ 
+ 
+ def verify_amendment():
+     failure=read_json(BUNDLE/'v1_failure_evidence.json')
+-    require(verify_v1_failure()==failure['preserved_pending'],'V1 failure evidence changed')
++    require(verify_v1_failure()==failure['preserved_pending'],'V1 pending evidence changed')
+     from subprocess_policy import policy_report
+-    require(canonical(policy_report())==canonical(read_json(BUNDLE/'subprocess_allowlist_audit.json')),'Authenticated subprocess policy changed')
+-    require(scientific_invariance()==read_json(BUNDLE/'scientific_invariance_audit.json'),'Scientific invariance evidence changed')
+-    return dict(scientific_invariance='PASS',v1_pending_preserved=True,v1_bundle_unchanged=True)
++    require(canonical(policy_report())==canonical(read_json(BUNDLE/'subprocess_allowlist_audit.json')),
++        'Reviewed V2 subprocess admission policy changed')
++    require(scientific_invariance()==read_json(BUNDLE/'scientific_invariance_audit.json'),'V3 scientific invariance changed')
++    require(all(p.stat().st_file_attributes&stat.FILE_ATTRIBUTE_READONLY for p in V2_BUNDLE.rglob('*') if p.is_file()),
++        'V2 immutable attributes changed')
++    return dict(status='PASS',v1_pending_preserved=True,v1_bundle_preserved=True,v2_bundle_preserved=True)
+ 
+ 
+ def write_diff():
+-    lines=[];changes=[];new=[];unchanged=[]
++    lines=[];modified=[];new=[];unchanged=[]
+     for p in sorted(BUNDLE.glob('*.py')):
+-        old=V1_BUNDLE/p.name
++        old=V2_BUNDLE/p.name
+         if old.exists() and old.read_bytes()==p.read_bytes():unchanged.append(p.name);continue
+-        if old.exists():changes.append(p.name);before=old.read_text(encoding='utf-8').splitlines(True)
++        if old.exists():modified.append(p.name);before=old.read_text().splitlines(True)
+         else:new.append(p.name);before=[]
+-        lines.extend(difflib.unified_diff(before,p.read_text(encoding='utf-8').splitlines(True),
+-            fromfile=str(old) if old.exists() else '/dev/null',tofile=str(p)))
++        lines.extend(difflib.unified_diff(before,p.read_text().splitlines(True),fromfile=str(old) if old.exists() else '/dev/null',tofile=str(p)))
+     write_new(BUNDLE/'engineering.diff',''.join(lines).encode())
+-    return dict(modified_python_relative_to_v1=changes,new_python_relative_to_v1=new,unchanged_python=unchanged)
++    return dict(modified_python_relative_to_v2=modified,new_python_relative_to_v2=new,byte_identical_python=unchanged)
+--- /dev/null
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\execution_closure.py
+@@ -0,0 +1,186 @@
++"""One pre-source closure for preparation, read-only preflight, and future data."""
++import contextlib
++from graph_common import *
++import graph_common
++from current_upstream import authenticate_gate2,verify_current,same_current
++from production_audits import (verify_production_clean_resolution,verify_production_inventory_schema,
++    verify_compatibility_prerequisites,verify_non_model_imports,verify_environment,disk_resource_audit)
++
++PRE_SOURCE_STEPS=('guard_installed','external_seal','git_state','historical_preservation','future_namespaces',
++    'upstream_small_seals_and_partitions','real_context','production_clean_resolution',
++    'production_inventory_schema','compatibility_prerequisites','non_model_imports','environment',
++    'disk_resources','barriers')
++
++
++@contextlib.contextmanager
++def read_only_scientific_barrier():
++    previous=sys.getprofile();calls={};metadata_cache={}
++    audit_scope={'active':True}
++    def pre_source_audit(event,args):
++        if not audit_scope['active']:return
++        if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)):
++            if norm(args[0])==norm(os.devnull):return
++            require(norm(args[0])!=norm(SOURCE['path']),'TRAIN archive read before pre-source closure completion')
++            mode,flags=args[1:3]
++            require(not ((isinstance(mode,str) and any(c in mode for c in 'wax+')) or
++                flags&(os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC)), 'Write inside read-only pre-source closure')
++        if event in ('os.remove','os.rmdir','os.mkdir','os.rename','os.chmod','os.utime','os.link','os.symlink','shutil.copyfile'):
++            require(False,'Mutation inside read-only pre-source closure')
++    sys.addaudithook(pre_source_audit)
++    forbidden={'feed','replay_file','build_inventory','metadata_from_memory','generate_pseudo_anomaly',
++        'generate_pair','write_scenario','fit','fit_calibrator','predict_normality','prob_normal','node',
++        'restore_current','new_agent','restore_agent','assemble_fit','modality_calibration',
++        'camera_embedding_features','segmentation_histogram_features','imu_window_features'}
++    model_classes=('MahalanobisNormality','BootstrapNormalityEnsemble','EnsemblePredictiveCalibrator',
++        'RealCameraAgent','RealSegAgent','RealIMUAgent','RealNormalityAgent','RestoredScorer','TrainReplay','FITSink')
++    def observe(frame,event,arg):
++        if event!='call':return
++        code=frame.f_code
++        if code not in metadata_cache:
++            filename=code.co_filename
++            if not os.path.normcase(filename).startswith(os.path.normcase(str(REPO))+os.sep):
++                metadata_cache[code]=None
++            else:
++                path=Path(filename);name=code.co_name;qualified=code.co_qualname
++                invalid=name in forbidden or name=='__init__' and any(cls+'.' in qualified for cls in model_classes)
++                key=(path.relative_to(REPO).as_posix(),qualified,code.co_firstlineno) if any(
++                    path.is_relative_to(REPORT/root) for root in ('gate1_execution_bundle_v8','gate2_execution_bundle_v3')) else None
++                metadata_cache[code]=(invalid,qualified,key)
++        metadata=metadata_cache[code]
++        if metadata is None:return
++        invalid,qualified,key=metadata
++        if invalid:require(False,'Semantic source/feature/pseudo/model execution forbidden in pre-source closure: '+qualified)
++        if key is not None:calls[key]=calls.get(key,0)+1
++    sys.setprofile(observe)
++    try:yield calls
++    finally:
++        sys.setprofile(previous)
++        audit_scope['active']=False
++
++
++def verify_barriers():
++    records=[]
++    for phase in ('preflight','graph-data'):
++        guard,counters=make_guard(phase,source_integrity=True)
++        cases=[('socket.connect',(None,)),('open',(r'E:\carlanomaly-base-test.tar.gz','rb',os.O_RDONLY)),
++            ('import',('torch',None,None,None,None)),('import',('cognix.graph',None,None,None,None))]
++        for version in (1,2):
++            for name in (f'graph_development_data_v{version}',f'graph_development_runs_v{version}',
++                f'.graph_development_data_v{version}.pending'):
++                cases.append(('open',(str(REPORT/name/'forbidden'),'wb',os.O_WRONLY|os.O_CREAT)))
++        cases.append(('open',(str(RUNS/'forbidden'),'wb',os.O_WRONLY|os.O_CREAT)))
++        for event,args in cases:
++            try:guard(event,args)
++            except PreparationError:records.append(dict(phase=phase,event=event,target=str(args[0]),blocked=True))
++            else:require(False,'TEST/network/model/historical write barrier failed')
++        require(counters['TEST_requests']==counters['network_requests']==0,'Barrier probe performed real access')
++    return dict(status='PASS',probes=records,simulated_audit_events_only=True,real_operations_performed=False,
++        shared_subprocess_implementation='subprocess_policy.subprocess_admission',
++        subprocess_policy_byte_identical_to_v2=hash_file(BUNDLE/'subprocess_policy.py')==hash_file(V2_BUNDLE/'subprocess_policy.py'),
++        source_semantic_execution_blocked_by_profile=True,activity=dict(ZERO))
++
++
++def run_ordered_steps(callbacks,trace):
++    require(tuple(callbacks)==PRE_SOURCE_STEPS,'Pre-source engineering order changed')
++    values={}
++    for name,callback in callbacks.items():
++        trace.append(dict(step=name,event='BEGIN'))
++        values[name]=callback(values)
++        trace.append(dict(step=name,event='PASS'))
++    return values
++
++
++def pre_source_closure(external_seal,*,preparing=False,progress=lambda message:None):
++    """Steps 1-14. No archive SHA or pending creation can occur here."""
++    require(graph_common.ACTIVE_PHASE in ('prepare','synthetic','preflight','graph-data'),'Missing process guard')
++    require(not preparing or graph_common.ACTIVE_PHASE in ('prepare','synthetic'),'Unsealed preparation only in reviewed fixture/preparation phase')
++    from amendment_evidence import verify_amendment
++    from subprocess_policy import policy_report
++    def seal_step(values):
++        if preparing:
++            require(external_seal is None and not (BUNDLE/'SHA256SUMS').exists(),'Invalid unsealed preparation admission')
++            return dict(unsealed_preparation_only=True)
++        result=verify_seal(BUNDLE,external_seal)
++        tests=read_json(BUNDLE/'synthetic_test_results.json')
++        actual={p.name:hash_file(p) for p in BUNDLE.glob('*.py')}
++        require(tests['passed']==tests['tests_run'] and tests['failed']==tests['errors']==tests['skipped']==0 and
++            tests['bundle_python_sha256']==actual and tests['real_activity']==ZERO,
++            'Accepted tested implementation/evidence mismatch BEFORE source hash')
++        require(read_json(BUNDLE/'source_code_audit.json')['new_bundle_python_sha256']==actual and
++            read_json(BUNDLE/'preparation_audit.json')['scientific_invariance']=='PASS',
++            'Source/preparation evidence mismatch BEFORE source hash')
++        require(all(p.stat().st_file_attributes&stat.FILE_ATTRIBUTE_READONLY for p in BUNDLE.rglob('*') if p.is_file()),
++            'V3 immutable attributes changed BEFORE source hash')
++        return result
++    def git_step(values):
++        state=git_state();require(state['HEAD']==HEAD and not state['tracked'] and not state['staged'],'Git state mismatch')
++        if (BUNDLE/'preparation_initial.json').exists():
++            require(state==read_json(BUNDLE/'preparation_initial.json')['git_state'],'Current Git status changed')
++        return state
++    def history(values):
++        verify_amendment()
++        return verify_preservation(read_json(BUNDLE/'preservation_baseline.json'),progress)
++    def current(values):
++        result=verify_current(full_source_hash=False,progress=progress)
++        same_current(result,read_json(BUNDLE/'current_experiment_bindings.json'))
++        return result
++    def context_step(values):
++        modules=authenticate_gate2()
++        ctx=modules['gate2_resolution'].real_context()
++        modules['gate2_resolution']._CONTEXT=ctx
++        return dict(modules=modules,ctx=ctx)
++    def clean(values):
++        r=values['real_context'];return verify_production_clean_resolution(r['modules'],r['ctx'],progress)
++    def inventory(values):
++        r=values['real_context'];return verify_production_inventory_schema(r['modules'],r['ctx'],progress)
++    callbacks={
++        'guard_installed':lambda v:dict(phase=graph_common.ACTIVE_PHASE,shared_policy=policy_report()['policy']['schema']),
++        'external_seal':seal_step,'git_state':git_step,'historical_preservation':history,
++        'future_namespaces':lambda v:future_namespaces_absent(),
++        'upstream_small_seals_and_partitions':current,'real_context':context_step,
++        'production_clean_resolution':clean,'production_inventory_schema':inventory,
++        'compatibility_prerequisites':lambda v:verify_compatibility_prerequisites(v['real_context']['modules']),
++        'non_model_imports':lambda v:verify_non_model_imports(),
++        'environment':lambda v:verify_environment(),
++        'disk_resources':lambda v:disk_resource_audit(v['production_inventory_schema']),
++        'barriers':lambda v:verify_barriers()}
++    trace=[]
++    with read_only_scientific_barrier() as calls:
++        values=run_ordered_steps(callbacks,trace)
++    ctx=values['real_context']['ctx'];ctx.unchanged()
++    return dict(status='PASS',pre_source_steps=list(PRE_SOURCE_STEPS),trace=trace,
++        real_context_status='PASS',resolution_context_identity_sha256=ctx.identity_sha256,
++        production_clean_resolution=values['production_clean_resolution'],
++        production_inventory_schema=values['production_inventory_schema'],
++        compatibility_prerequisites=values['compatibility_prerequisites'],non_model_imports=values['non_model_imports'],
++        environment=values['environment'],disk_resources=values['disk_resources'],barriers=values['barriers'],
++        historical_preservation=values['historical_preservation'],git_state=values['git_state'],
++        source_fingerprint_before_full_hash=source_fingerprint(),
++        reached_production_functions=[dict(path=p,qualified_function=fn,first_line=line,calls=count,
++            source_sha256=hash_file(REPO/p)) for (p,fn,line),count in sorted(calls.items())],
++        full_archive_hash_invoked=False,pending_created=False,features_recomputed=False,
++        clean_store_created=False,real_models_instantiated=False,activity=dict(ZERO))
++
++
++def complete_source_integrity(closure,progress=lambda message:None):
++    require(closure['status']=='PASS' and [r['step'] for r in closure['trace'] if r['event']=='PASS']==list(PRE_SOURCE_STEPS),
++        'Incomplete pre-source closure')
++    before=source_fingerprint()
++    require(before==closure['source_fingerprint_before_full_hash'] and before['bytes']==SOURCE['bytes'],
++        'Source fingerprint changed before full integrity hash')
++    progress('All fourteen pre-source gates PASS; now hashing full TRAIN archive, integrity only')
++    sha=hash_file(SOURCE['path'],source_progress=True)
++    require(sha==SOURCE['sha256'] and source_fingerprint()==before,'Full source SHA/fingerprint mismatch')
++    return dict(status='PASS',bytes=SOURCE['bytes'],sha256=sha,fingerprint_before=before,fingerprint_after=source_fingerprint(),
++        fresh_full_archive_hash=True,source_payload_parsed=False,pending_created=False,
++        trace=closure['trace']+[dict(step='full_source_hash',event='PASS'),dict(step='source_fingerprint_recheck',event='PASS')])
++
++
++def admission_then_publication(closure_callback,integrity_callback,publication_callback):
++    """Shared order seam; publication is unreachable on closure or SHA failure."""
++    closure=closure_callback()
++    source=integrity_callback(closure)
++    require(source['status']=='PASS' and source['sha256']==SOURCE['sha256'] and
++        source['bytes']==SOURCE['bytes'] and source['fingerprint_before']==source['fingerprint_after'],
++        'Publication needs successful source integrity')
++    return publication_callback(closure,source)
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\generate_graph_data.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\generate_graph_data.py
+@@ -10,15 +10,26 @@
+     args=parser.parse_args()
+     counters=install_guard('graph-data',source_integrity=True)
+     verify_seal(BUNDLE,args.bundle_seal)
+-    from preflight_graph import verify_preflight
+-    verify_preflight(args.bundle_seal,full_source_hash=True)
++    from execution_closure import pre_source_closure,complete_source_integrity,admission_then_publication
++    from graph_replay import replay_current
++    admission_then_publication(
++        lambda:pre_source_closure(args.bundle_seal,progress=lambda message:print(message,flush=True)),
++        lambda closure:complete_source_integrity(closure,lambda message:print(message,flush=True)),
++        lambda closure,source:publish_authorized_data(args.bundle_seal,args.authorize_graph_data_generation,closure,source))
++
++
++def publish_authorized_data(bundle_seal,authorization,closure,source):
++    require(__import__('graph_common').ACTIVE_PHASE=='graph-data','Data publication guard missing')
++    require(authorization==DATA_TOKEN and closure['status']==source['status']=='PASS' and
++        source_fingerprint()==source['fingerprint_after'],'Publication admission changed')
+     future_namespaces_absent()
+     PENDING.mkdir();(PENDING/'units').mkdir()
+-    write_json(PENDING/'authorization.json',dict(bundle_seal=args.bundle_seal,authorization=args.authorize_graph_data_generation,
++    write_json(PENDING/'authorization.json',dict(bundle_seal=bundle_seal,authorization=authorization,
+         scope='Graph data only; model execution is forbidden',HEAD=HEAD))
++    write_json(PENDING/'pre_source_admission.json',dict(closure=closure,source_integrity=source))
+     from graph_replay import replay_current
+     manifest=replay_current()
+-    manifest['preparation_bundle_seal']=args.bundle_seal
++    manifest['preparation_bundle_seal']=bundle_seal
+     write_json(PENDING/'manifest.json',manifest)
+     require(not RUNS.exists() and not DATA.exists(),'Publish destination or model runtime already exists')
+     data_seal=seal_tree(PENDING,'artifact_inventory.json')
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\graph_common.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\graph_common.py
+@@ -16,12 +16,14 @@
+ BUNDLE = Path(__file__).resolve().parent
+ REPORT = BUNDLE.parent
+ REPO = REPORT.parents[1]
+-DATA = REPORT / 'graph_development_data_v2'
+-RUNS = REPORT / 'graph_development_runs_v2'
+-PENDING = REPORT / '.graph_development_data_v2.pending'
++DATA = REPORT / 'graph_development_data_v3'
++RUNS = REPORT / 'graph_development_runs_v3'
++PENDING = REPORT / '.graph_development_data_v3.pending'
+ V1_BUNDLE = REPORT / 'graph_development_bundle_v1'
+ V1_BUNDLE_SEAL = '7da8ffb4ded5ee446f07b369577a9f62f5191592c9da682f680ac76705fb8ece'
+ V1_PENDING = REPORT / '.graph_development_data_v1.pending'
++V2_BUNDLE = REPORT / 'graph_development_bundle_v2'
++V2_BUNDLE_SEAL = 'b0bb3ff9bdb33732442de9b8ea47b415039307612e13924f39c520bc02406c6a'
+ HEAD = '1e636800438a681ecfba7630ed372581abc4c8c7'
+ SOURCE = {'path': r'E:\carlanomaly-base-train.tar.gz', 'bytes': 146453559283,
+           'sha256': '6cf22ecf7d2910b45ed71127525834d1a4a26a65cc65918e7b5e27da95a38683'}
+@@ -41,7 +43,7 @@
+ PROTOCOL = REPO / 'reports/carla_gat_preregistration_v1/protocol.json'
+ PROTOCOL_SHA = '68f035acda758bed0e7c3799a116f58a03719fee4e39f6468fdeaac0ef6ab203'
+ HISTORICAL_EXPORTER = REPO / 'cognix/adapters/carla/graph_fit_export.py'
+-DATA_TOKEN = 'HUMAN_REVIEWED_EXPERIMENT_2B_FULL_TRAIN_GRAPH_DATA_V2'
++DATA_TOKEN = 'HUMAN_REVIEWED_EXPERIMENT_2B_FULL_TRAIN_GRAPH_DATA_V3'
+ NODE_ORDER = ('Camera', 'IMU', 'Seg')
+ FEATURE_ORDER = ('prob_normal', 'epistemic', 'aleatoric')
+ DIMS = {'Camera': 18, 'IMU': 10, 'Seg': 29}
+@@ -210,9 +212,11 @@
+ def future_namespaces_absent():
+     for path in (DATA, RUNS, PENDING):
+         require(not safe_path(path).exists(), 'Future namespace already exists: ' + path.name)
+-    require(not list(REPORT.glob('.graph_development_data_v2.pending*')) and
+-            not list(REPORT.glob('.graph_development_runs_v2.pending*')), 'Unreviewed pending evidence exists')
++    require(not list(REPORT.glob('.graph_development_data_v3.pending*')) and
++            not list(REPORT.glob('.graph_development_runs_v3.pending*')), 'Unreviewed pending evidence exists')
+     verify_v1_failure()
++    for name in ('graph_development_data_v2','graph_development_runs_v2','.graph_development_data_v2.pending'):
++        require(not safe_path(REPORT/name).exists(),'Historical v2 runtime cannot be reused')
+ 
+ 
+ def verify_v1_failure():
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\preflight_graph.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\preflight_graph.py
+@@ -1,47 +1,39 @@
+-"""Read-only future preflight: no RNG membership replay, scoring, model startup, or writes."""
++"""Read-only v3 preflight: the exact shared pre-source production closure."""
+ import argparse
+ from graph_common import *
+-from current_upstream import verify_current,same_current
+-from current_restore import inspect_current_states
++from execution_closure import pre_source_closure,complete_source_integrity
+ 
+ 
+ def verify_preflight(external_seal,*,full_source_hash=True,progress=lambda message:None):
+-    seal=verify_seal(BUNDLE,external_seal)
+-    from amendment_evidence import verify_amendment
+-    verify_amendment()
++    closure=pre_source_closure(external_seal,progress=progress)
++    source=complete_source_integrity(closure,progress) if full_source_hash else None
++    tests=read_json(BUNDLE/'synthetic_test_results.json')
++    actual={p.name:hash_file(p) for p in BUNDLE.glob('*.py')}
++    require(tests['failed']==tests['errors']==tests['skipped']==0 and tests['passed']==tests['tests_run'] and
++        tests['bundle_python_sha256']==actual and tests['real_activity']==ZERO,'Accepted tested source/evidence mismatch')
++    require(all(p.stat().st_file_attributes&stat.FILE_ATTRIBUTE_READONLY for p in BUNDLE.rglob('*') if p.is_file()),
++        'V3 bundle is not immutable/read-only')
++    require(read_json(BUNDLE/'preparation_audit.json')['scientific_invariance']=='PASS','Preparation invariance failed')
+     future_namespaces_absent()
+-    bindings=read_json(BUNDLE/'current_experiment_bindings.json')
+-    current=verify_current(full_source_hash=full_source_hash,progress=progress);same_current(current,bindings)
+-    require(inspect_current_states()==read_json(BUNDLE/'current_gate2_restore_audit.json'),'Gate-2 state/mapping audit changed')
+-    require(current['partition']==read_json(BUNDLE/'current_partition_audit.json'),'Frozen membership audit changed')
+-    audit=read_json(BUNDLE/'source_code_audit.json')
+-    require(audit['current_scientific_dependency_sha256']==current['scientific_source_hashes'],'Scientific dependency audit changed')
+-    actual={p.name:hash_file(p) for p in sorted(BUNDLE.glob('*.py'))}
+-    require(audit['new_bundle_python_sha256']==actual,'New implementation changed')
+-    preparation=read_json(BUNDLE/'preparation_audit.json')
+-    tests=read_json(BUNDLE/preparation['accepted_test_evidence'])
+-    require(tests['failed']==tests['errors']==tests['skipped']==0 and tests['passed']==tests['tests_run'] and
+-        tests['bundle_python_sha256']==actual and tests['real_activity']==ZERO,'Tested implementation/evidence mismatch')
+-    preservation=verify_preservation(read_json(BUNDLE/'preservation_baseline.json'),progress)
+-    state=git_state()
+-    require(state['HEAD']==HEAD and not state['tracked'] and not state['staged'],'Git changed')
+-    initial=read_json(BUNDLE/'preparation_initial.json')['git_state']
+-    require(state['status']==initial['status'],'Git status differs from initial current preparation status')
+-    require(all(getattr(p.stat(),'st_file_attributes',0)&stat.FILE_ATTRIBUTE_READONLY for p in BUNDLE.rglob('*') if p.is_file()),
+-        'Bundle files are not immutable/read-only')
+     return dict(status='READ_ONLY_PREFLIGHT_PASS',bundle_path=str(BUNDLE),bundle_seal=external_seal,
+-        seal_verification=seal,graph_partition_sha256=GRAPH_PARTITION_SHA,graph_partition_seal=SEALS['graph_partition_freeze_v1'],
+-        graph_data_runtime_exists=False,graph_run_runtime_exists=False,files_written=0,membership_recomputed=False,
+-        current_Gate2_restoration_inspected_only=True,source_full_sha_freshly_verified=full_source_hash,
+-        historical_preservation=preservation,tests={k:tests[k] for k in ('passed','failed','errors','skipped')},
+-        git_state=state,activity=dict(ZERO))
++        shared_pre_source_closure='execution_closure.pre_source_closure',source_integrity=source,
++        real_context_status=closure['real_context_status'],
++        clean_counts={k:closure['production_clean_resolution'][k] for k in
++            ('total_loaded','native_count','adopted_count','FIT_loaded','CAL_loaded','GRAPH_TRAIN_loaded','GRAPH_VAL_loaded')},
++        inventory_records_checked=closure['production_inventory_schema']['production_records_checked'],
++        canonical_digests_checked=closure['production_inventory_schema']['canonical_digests_checked'],
++        fake_record_sha256_dependency=False,disk_resources=closure['disk_resources'],
++        execution_order='PASS',historical_preservation=closure['historical_preservation'],git_state=closure['git_state'],
++        data_v3_exists=False,pending_v3_exists=False,runs_v3_exists=False,files_written=0,
++        tests={k:tests[k] for k in ('passed','failed','errors','skipped')},activity=dict(ZERO))
+ 
+ 
+ def main():
+     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--bundle-seal',required=True);args=parser.parse_args()
+     counters=install_guard('preflight',source_integrity=True)
+     result=verify_preflight(args.bundle_seal,progress=lambda message:print(message,flush=True))
+-    result['guard_counters']=counters
++    result['guard_counters']={k:v for k,v in counters.items() if k!='admitted_scientific_git_reads'}
++    result['authenticated_scientific_git_reads']=len(counters['admitted_scientific_git_reads'])
+     print(json.dumps(result,sort_keys=True))
+ 
+ 
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\prepare_amendment.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\prepare_amendment.py
+@@ -1,175 +1,176 @@
+-"""V2 preparation only; exact v1 science plus authenticated read-only verification capability."""
++"""V3 preparation/sealing only; never run graph-data or real model entrypoints."""
+ import argparse
+-import ast
+ import datetime
+ from graph_common import *
+-from current_upstream import verify_current,same_current
+-from current_restore import inspect_current_states
+ from amendment_evidence import scientific_invariance,verify_amendment,write_diff
++from execution_closure import pre_source_closure,complete_source_integrity,PRE_SOURCE_STEPS
++from production_audits import segmentation_compatibility_audit
+ from subprocess_policy import policy_report
++
++REQUIRED=('README.md','v1_failure_evidence.json','v2_review_findings.json','known_failure_recurrence_matrix.json',
++    'engineering_amendment.json','subprocess_allowlist_audit.json','execution_path_closure_audit.json',
++    'production_clean_resolution_audit.json','production_inventory_schema_audit.json','segmentation_compatibility_audit.json',
++    'disk_resource_audit.json','execution_order_audit.json','scientific_invariance_audit.json','source_code_audit.json',
++    'preservation_baseline.json','preservation_audit.json','synthetic_test_results.json',
++    'production_integration_test_results.json','adversarial_test_results.json','future_commands.json',
++    'bundle_inventory.json','SHA256SUMS','SHA256SUMS.sha256')
+ 
+ 
+ def initial():
+     counters=install_guard('prepare',source_integrity=True)
+-    future_namespaces_absent();verify_seal(V1_BUNDLE,V1_BUNDLE_SEAL)
+-    require(not (BUNDLE/'preparation_initial.json').exists(),'V2 initialization already exists')
+-    git_before=git_state();require(git_before['HEAD']==HEAD and not git_before['tracked'] and not git_before['staged'],'Git state mismatch')
+-    pending=verify_v1_failure()
+-    trace=BUNDLE/'v1_failure_readonly_reproduction.txt'
+-    text=trace.read_text(encoding='utf-8-sig')
+-    require('Subprocess not approved; STOP FOR HUMAN REVIEW' in text and
+-        'verify_science' in text and 'real_context' in text and 'replay_current' in text and
+-        'Read-only failure probe cannot proceed' not in text,'Exact v1 engineering rejection not reproduced')
++    future_namespaces_absent();verify_seal(V1_BUNDLE,V1_BUNDLE_SEAL);verify_seal(V2_BUNDLE,V2_BUNDLE_SEAL)
++    require(not (BUNDLE/'preparation_initial.json').exists(),'V3 initialization already exists')
++    state=git_state();require(state['HEAD']==HEAD and not state['tracked'] and not state['staged'],'Git mismatch')
+     baseline=preservation_snapshot(lambda message:print(message,flush=True))
+     write_json(BUNDLE/'preservation_baseline.json',baseline)
+-    current=verify_current(full_source_hash=True,progress=lambda message:print(message,flush=True))
+-    same_current(current,read_json(BUNDLE/'current_experiment_bindings.json'))
+-    require(inspect_current_states()==read_json(BUNDLE/'current_gate2_restore_audit.json'),'Restoration/mapping changed')
+-    sourcefiles=current['scientific_source_hashes']
+-    failure=dict(classification='ENGINEERING_GUARD_MISMATCH_ONLY; NOT A SCIENTIFIC FAILURE',
+-        original_exception='graph_common.PreparationError: Subprocess not approved; STOP FOR HUMAN REVIEW',
+-        original_call_chain=['generate_graph_data.py','replay_current()','authenticate_gate2()',
+-            'gate2_resolution.real_context()','recovery_common.verify_science()',
+-            "subprocess.check_output(['git','show',HEAD+':'+scientific_path])",'v1 audit-hook rejection'],
+-        original_failure_provenance='Human-provided exact exception, call chain, authorization and zero-activity record; pending contains no original stderr file',
+-        exact_readonly_reproduction=dict(traceback_file=trace.name,sha256=hash_file(trace),
+-            starts_below_CLI='replay_current() in immutable v1; CLI publication is not rerun',
+-            instrumentation='v1 preflight/read-only audit closure remains installed; phase marker admits replay_current assertion only; profile prohibits restoration/replay/pseudo/fit if reached',
+-            exception_matches=True,pending_reused=False),
+-        preserved_pending=pending,activity=dict(ZERO),v1_bundle_seal=V1_BUNDLE_SEAL)
+-    write_json(BUNDLE/'v1_failure_evidence.json',failure)
+-    write_json(BUNDLE/'subprocess_allowlist_audit.json',policy_report())
+-    invariance=scientific_invariance();write_json(BUNDLE/'scientific_invariance_audit.json',invariance)
++    write_json(BUNDLE/'preparation_initial.json',dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
++        git_state=state,source_fingerprint=source_fingerprint(),v1_pending=verify_v1_failure(),
++        v1_bundle_seal=V1_BUNDLE_SEAL,v2_bundle_seal=V2_BUNDLE_SEAL,full_archive_hash_invoked=False))
++    write_json(BUNDLE/'scientific_invariance_audit.json',scientific_invariance())
++    require(canonical(policy_report())==canonical(read_json(V2_BUNDLE/'subprocess_allowlist_audit.json')),
++        'Reviewed V2 subprocess policy semantics changed')
++    write_new(BUNDLE/'subprocess_allowlist_audit.json',(V2_BUNDLE/'subprocess_allowlist_audit.json').read_bytes())
++    v2_files=inventory(V2_BUNDLE)
++    write_json(BUNDLE/'v2_review_findings.json',dict(status='ENGINEERING_PRODUCTION_REALISM_GATES_REQUIRED',
++        v2_bundle_seal=V2_BUNDLE_SEAL,v2_valid_historical_evidence=True,
++        retained_v2_conclusions=['80 tests PASS','scientific invariance PASS','real_context authentication PASS',
++            'Gate1 verify_science and all 22 sealed Git reads PASS','arbitrary subprocess/Git/network blocked','V1 pending protected'],
++        findings=['V2 checks resolution manifest and real_context but does not production-load all101 clean blocks',
++            'V2 does not independently bind all101 raw production records through ReplayInventory and sealed summary/digest',
++            'V2 full-source hash precedes predictable runtime closure checks'],
++        scientific_failure=False,v2_files_modified=[],exact_v2_files_preserved=v2_files,
++        evidence_provenance='Human review request; preserved sealed V2 source/tests',activity=dict(ZERO)))
++    write_json(BUNDLE/'known_failure_recurrence_matrix.json',dict(status='ENGINEERING_REGRESSION_GATES_DEFINED',rows=[
++        dict(failure='Graph data v1 authenticated git show blocked',prevention='Byte-identical reviewed V2 subprocess policy; actual22 reads and real_context under same future admission',
++            evidence='subprocess_allowlist_audit.json; production_integration_test_results.json'),
++        dict(failure='Gate2 v1 assumes adopted v7 block has physical v8 arrays',prevention='All101 canonical gate2_data.load_clean calls; exact33native/68adopted and sealed provenance',
++            evidence='production_clean_resolution_audit.json'),
++        dict(failure='Gate2 v2 fixture-only raw record_sha256 assumption',prevention='All101 actual raw records; exact sealed summary/digest/ReplayInventory.bind; inventedfield rejected',
++            evidence='production_inventory_schema_audit.json'),
++        dict(failure='Predictable resolver/schema/auth/environment/disk error after146GBhash',prevention='Shared fourteen pre-source gates; six fault injections prove zero hash/pending calls',
++            evidence='execution_order_audit.json; adversarial_test_results.json')],
++        historical_failures_unchanged=True,scientific_rescue_or_result_tuning=False))
+     python=read_json(BUNDLE/'current_experiment_bindings.json')['environment']['python_executable']
+-    write_json(BUNDLE/'future_commands.json',dict(
+-        read_only_preflight=f'& "{python}" -B "{BUNDLE / "preflight_graph.py"}" --bundle-seal <externally-reviewed-v2-seal>',
+-        future_graph_data_generation=f'& "{python}" -B "{BUNDLE / "generate_graph_data.py"}" --bundle-seal <externally-reviewed-v2-seal> --authorize-graph-data-generation {DATA_TOKEN}',
+-        commands_executed=False,real_data_authorized=False,real_training_authorized=False,
+-        never_reuse_v1_runtime=True,v1_pending_evidence=str(V1_PENDING)))
+-    write_json(BUNDLE/'engineering_amendment.json',dict(
+-        status='PREPARATION_ONLY_ENGINEERING_AMENDMENT',v1_bundle_seal=V1_BUNDLE_SEAL,
+-        reason='V1 audit hook blocked frozen authenticated upstream scientific Git-blob verification before replay/pseudo',
+-        execution_blocker='Missing exact sealed commit/path authenticity reads',
+-        science_changed=False,scientific_invariance='PASS',
+-        amendment=['New v2 DATA/RUNS/PENDING paths and authorization token',
+-            'Authenticated 22 full-commit/path Git blob reads for unchanged Gate1 verify_science; exact argv and repo cwd',
+-            'Canonical native Windows command encoding; reject extra options, shell strings, alternate revisions, paths and executable spoofing',
+-            'Existing four read-only Git commands and historical protocol identity check retained; reviewed cmd.exe /c ver retained',
+-            'V1 bundle and failed pending evidence bound and protected; v1 DATA/RUNS must remain absent',
+-            'Additive read-only upstream and adversarial tests, trace, AST invariance and exact preservation evidence'],
+-        inspected_verification_chain=dict(entry='gate2_resolution.real_context',
+-            authentication='gate2_resolution.authenticate_verifiers authenticates all discovered v8 modules and exact origins',
+-            reached_roots=['recovery_common.verify_science/verify_bundle/git/hash_file',
+-                'local_inventory.verify_inventory/inventory_records/check_layout/member_digest/summary/digest',
+-                'clean_block_store.scientific_hashes','v7_adoption.audit_candidates',
+-                'v7_clean_block_store.scientific_hashes/verify_block/block_binding/content_hash',
+-                'atomic_publication.inspect_publication and publication integrity readback helpers',
+-                'local_source.fingerprint/stat_fingerprint','gate2_common seal/hash/JSON/path helpers',
+-                'ResolutionContext.__init__/identity/unchanged'],
+-            legitimate_subprocesses='recovery_common.git: rev-parse HEAD, diff --name-only, diff --cached --name-only; 22 exact git show full-commit:path reads',
+-            other_reached_functions_subprocesses='None; sealed inventory and existing block readback only',
+-            raw_inventory_build_or_parser_replay_or_clean_feature_extract_or_publication_functions_called=False,
+-            exact_dynamic_project_function_trace='upstream_verification_call_trace_<accepted-attempt>.json',
+-            upstream_scientific_source_sha256=sourcefiles),
+-        future_namespace=dict(data=str(DATA),runs=str(RUNS),pending=str(PENDING)),
+-        future_authorization_token=DATA_TOKEN,v1_pending_preserved=True,
+-        real_graph_data_v2_executed=False,real_model_training_executed=False,
+-        failure_null_result_rules='Unchanged v1 specification; no seed replacements, no minimum performance/win criterion, no invisible scientific rescue',
+-        activity=dict(ZERO),next_action='STOP FOR HUMAN REVIEW'))
+-    readme=f'''# Experiment-2B graph development bundle v2
++    write_json(BUNDLE/'future_commands.json',dict(shell='Windows cmd.exe',
++        read_only_preflight=f'"{python}" -B "{BUNDLE / "preflight_graph.py"}" --bundle-seal EXTERNALLY_REVIEWED_V3_SEAL',
++        future_graph_data_generation=f'"{python}" -B "{BUNDLE / "generate_graph_data.py"}" --bundle-seal EXTERNALLY_REVIEWED_V3_SEAL --authorize-graph-data-generation {DATA_TOKEN}',
++        external_seal_required=True,graph_data_command_executed=False,real_data_authorized=False,real_training_authorized=False,
++        data=str(DATA),pending=str(PENDING),runs=str(RUNS)))
++    write_json(BUNDLE/'engineering_amendment.json',dict(status='PREPARATION_ONLY_STOP_FOR_HUMAN_REVIEW',
++        reason='Close mixed production clean-resolution and actual raw inventory schema gates before expensive source hash',
++        v1_bundle_seal=V1_BUNDLE_SEAL,v2_bundle_seal=V2_BUNDLE_SEAL,science_changed=False,
++        scientific_invariance='PASS',subprocess_policy_byte_identical_to_v2=True,
++        pre_source_steps=list(PRE_SOURCE_STEPS),after_pre_source=['fresh_full_SOURCE_SHA','source_fingerprint_recheck',
++            'create_new_V3_pending','record_V3_authorization','authenticated_source_replay','complete_replay_validation','publish_final_V3_data'],
++        future_namespace=dict(data=str(DATA),pending=str(PENDING),runs=str(RUNS)),authorization_token=DATA_TOKEN,
++        shared_closure='execution_closure.pre_source_closure',resolver_logic_reimplemented=False,
++        inventory_digest_reimplemented=False,real_source_semantic_replay=False,real_model_execution=False,
++        known_failures='known_failure_recurrence_matrix.json',activity=dict(ZERO)))
++    readme=f'''# Experiment-2B graph development bundle v3
+ 
+-Engineering amendment only. STOP FOR HUMAN REVIEW. Graph-data v2 and model training are not authorized or executed.
++Preparation only. STOP FOR HUMAN REVIEW. No graph-data v3 or real model execution is authorized or executed.
+ 
+-The immutable v1 bundle seal is {V1_BUNDLE_SEAL}. Its authorized data attempt failed before restoration/replay/pseudo because the v1 guard rejected an unchanged authenticated Gate1 verify_science Git read. The exact exception/call chain and 260-byte authorization evidence are bound in v1_failure_evidence.json. A complete read-only reproduction traceback is retained; the original pending evidence contains no stderr. This is an engineering guard mismatch, not a scientific failure.
++V3 closes the two production-realism gaps identified in review of V2: all 101 clean blocks are read through authenticated gate2_data.load_clean / gate2_resolution.resolve_arrays, and all 101 raw records are read through the sealed inventory API and bound using its exact summary/digest and Gate2-v3 ReplayInventory.bind. This does not revisit V2's valid Git/authentication and scientific invariance conclusions.
+ 
+-V1 pending evidence at {V1_PENDING} remains exactly authorization.json plus empty units/. It is never written, renamed, deleted, reused or resumed. Its content hashes, inventory, directory/file identity and write metadata are frozen. V1 data and run namespaces cannot be used by v2.
++V1 ({V1_BUNDLE_SEAL}) and V2 ({V2_BUNDLE_SEAL}) remain immutable. V1 failed pending evidence remains exactly its 260-byte authorization.json and empty units/. Its original read-only reproduction and evidence are copied byte-identically from V2, never rerun or resumed. The full preservation baseline binds every existing report/scientific file and write metadata. V2's exact preserved file inventory is in v2_review_findings.json.
+ 
+-The only new subprocess capability is git show {HEAD}:<one of the 22 exact sealed recovery_bindings.source_files paths>. The guard independently authenticates Gate1 v6/v7/v8 and Gate2 v3 seals, binds the installed Git executable, checks exact argv shape, fixed full commit and exact member path, and requires the repository cwd. The unchanged Gate1 verifier checks returned blob hashes. Arbitrary Git show, alternate refs, arbitrary paths, traversal, options, injected commands, shells, executable overrides, Git writes and Git network commands remain blocked. Existing rev-parse/status/diff and exact historical-protocol reads and the reviewed local Windows version probe remain allowed.
++No graph science changes. Exporter, graph replay, models, trainer, current restoration and upstream scientific definitions remain byte-identical to V2. The subprocess_policy.py file and its policy audit are byte-identical to V2. Only the exact sealed22 scientific Git reads, existing read-only Git forms and reviewed local Windows version probe remain admitted. No arbitrary shell, Git write/network, TEST or historical namespace write capability is added.
+ 
+-Eleven Python files, including all exporter, replay, restoration, model, trainer and original scientific test code, are byte-identical to v1. Scientific specifications and current data/state/partition bindings are identical; two documents change runtime paths only. scientific_invariance_audit.json compares whole Python modules and every top-level function/class AST, normalizing only the enumerated engineering edits. Any unexplained difference fails preparation. Graph pair identity semantics remain unchanged. No recipes, mappings, membership, architecture, optimizer, seeds, stopping/checkpoint/shuffle/threshold rules or negative/null/failure rules change.
++The SAME execution_closure.pre_source_closure serves preparation, preflight and future data. Fourteen mandatory steps check external seal, Git, historical preservation, absent future namespaces, upstream bindings, real_context, all101 clean blocks (33native/68adopted), all101 canonical raw inventory records, scientific restoration prerequisites without creating real objects, non-model imports, exact installed environment, disk/resources and barriers. Only complete_source_integrity may then read the full146453559283-byte archive for SHA verification. Source fingerprint is rechecked before pending creation. No sensor payload is parsed by preparation/preflight, clean features are never recomputed/copied, and models are never fitted/calibrated/scored in production checks.
+ 
+-Current graph validation remains development-only: upstream fitting used all 76 FIT scenarios, including the 15 GRAPH_VAL scenarios. The scientific interpretation remains P(target=normal) under the TRAIN-derived constructed clean-vs-pseudo task, never physical safety probability.
++Seg compatibility tests exercise the exact accepted sanitizer on synthetic IDs0..255. IDs0..28 are preserved;29..255 map to22. A runtime generate_pair probe stops immediately before the actual Seg pseudo implementation and proves sanitizer-before-recipe order. Seg29 and all pseudo semantics remain unchanged;31..255 have no added semantic interpretation.
+ 
+-The complete original 56-test suite is included, with additive authenticated upstream read-only and adversarial tests. Existing clean block arrays may be read by canonical integrity validators; they are not recomputed or scored. No TRAIN sensor payload is parsed/replayed. Full archive SHA reads are integrity-only. Model smoke tests use bounded synthetic CPU fixtures only.
++The conservative disk gate preserves20GiB raw reserve, the128MiB retained-member cap, whole one-scenario scratch upper bound, two full artifact size budgets and8GiB additional margin. It deletes no historical evidence. Estimates and actual production maxima are in disk_resource_audit.json.
+ 
+-Only v2 future data paths are writable under a separately authorized data phase: {PENDING} and {DATA}. {RUNS} is reserved for a separately reviewed future model execution adapter. Failed v1 evidence remains protected in every phase. No new v2 runtime exists during preparation.
++All original80 tests are retained (bounded synthetic CPU model fixtures only), with actual production read-only integration and ordering/fault-injection tests. Six simulated failures must stop before the full archive hash and pending creation. They alter no source/evidence. Source hashes in accepted results must match all sealed Python files.
+ 
+-All previous reports and scientific sources, including v1 and historical graph/final/conformal outputs, are hashed for preservation without using historical scores. SHA256SUMS, its detached seal and exact inventory bind this v2 bundle; files become read-only after sealing. Future preflight verifies the external v2 seal, all upstream identities, scientific invariance, allowlist, tested source, preserved v1 failure, full historical preservation and absent v2 runtime paths without writes or model startup.
++Graph validation remains development-only: upstream fitting used all76 FIT including15 GRAPH_VAL. P(target=normal) concerns the TRAIN-derived constructed clean/pseudo task and is never a physical safety probability. No seed replacement, performance minimum or requirement that EpistemicGAT wins is introduced.
+ 
+-Future commands are recorded in future_commands.json. Use the external v2 seal reported at completion. The data command is not authorization and must not run until separately approved:
+-
+-```powershell
+-& "{python}" -B "{BUNDLE/'preflight_graph.py'}" --bundle-seal <externally-reviewed-v2-seal>
+-& "{python}" -B "{BUNDLE/'generate_graph_data.py'}" --bundle-seal <externally-reviewed-v2-seal> --authorize-graph-data-generation {DATA_TOKEN}
+-```
++Future paths are {PENDING}, {DATA}, {RUNS}; V1 and V2 runtime namespaces cannot be written. No V3 runtime exists now. Every named requested audit is emitted separately and sealed with exact inventory and SHA256SUMS/detached external seal. Files become read-only. Commands in future_commands.json use cmd.exe syntax and require the external V3 seal reported at completion. The future data command must await separate human authorization.
+ '''
+     write_new(BUNDLE/'README.md',readme.encode())
+-    write_json(BUNDLE/'preparation_initial.json',dict(time_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+-        git_state=git_before,source_full_sha256=current['source_full_sha_independently_measured'],
+-        preserved_v1_pending=pending,v1_bundle_seal=V1_BUNDLE_SEAL,guard_counters=counters,activity=dict(ZERO)))
+-    print('V2_PREPARATION_INITIALIZED; no real data/runs or replay',flush=True)
++    closure=pre_source_closure(None,preparing=True,progress=lambda message:print(message,flush=True))
++    write_json(BUNDLE/'execution_path_closure_audit.json',closure)
++    write_json(BUNDLE/'production_clean_resolution_audit.json',closure['production_clean_resolution'])
++    write_json(BUNDLE/'production_inventory_schema_audit.json',closure['production_inventory_schema'])
++    write_json(BUNDLE/'disk_resource_audit.json',closure['disk_resources'])
++    write_json(BUNDLE/'preservation_audit.json',closure['historical_preservation'])
++    modules=__import__('current_upstream').authenticate_gate2()
++    write_json(BUNDLE/'segmentation_compatibility_audit.json',segmentation_compatibility_audit(modules))
++    write_json(BUNDLE/'preparation_initialize_success.json',dict(status='ALL_PRE_SOURCE_PRODUCTION_GATES_PASS',
++        full_archive_hash_invoked=False,pending_created=False,guard_counters=counters,activity=dict(ZERO)))
++    print('V3_INITIALIZED_ALL101_CLEAN_AND_INVENTORY_PASS; NO_FULL_SOURCE_HASH_YET',flush=True)
+ 
+ 
+ def seal(attempt):
+     counters=install_guard('prepare',source_integrity=True)
+-    future_namespaces_absent();require(not (BUNDLE/'SHA256SUMS').exists(),'V2 already sealed')
+-    tests=read_json(BUNDLE/f'synthetic_test_attempt_{attempt}.json')
+-    require(tests['passed']==tests['tests_run'] and tests['failed']==tests['errors']==tests['skipped']==0,'Tests must all pass')
++    future_namespaces_absent();require(not (BUNDLE/'SHA256SUMS').exists(),'V3 already sealed')
++    tests=read_json(BUNDLE/'synthetic_test_results.json')
++    require(tests['attempt']==attempt and tests['passed']==tests['tests_run'] and
++        tests['failed']==tests['errors']==tests['skipped']==0,'All accepted tests must PASS')
+     python={p.name:hash_file(p) for p in sorted(BUNDLE.glob('*.py'))}
+-    require(tests['bundle_python_sha256']==python,'Python changed after tests')
++    require(tests['bundle_python_sha256']==python,'Implementation changed after tests')
++    integration=read_json(BUNDLE/'production_integration_test_results.json')
++    require(integration['status']=='PASS' and integration['failed']==integration['errors']==integration['skipped']==0,
++        'Production integration tests failed')
++    order=read_json(BUNDLE/'execution_order_audit.json')
++    require(order['status']=='PASS' and len(order['six_predictable_failure_injections'])==6 and
++        all(r['full_source_hash_calls']==r['pending_create_calls']==0 for r in order['six_predictable_failure_injections']),
++        'Cheap failure ordering not proven')
+     verify_amendment()
+-    current=verify_current(progress=lambda message:print(message,flush=True))
+-    same_current(current,read_json(BUNDLE/'current_experiment_bindings.json'))
+-    require(inspect_current_states()==read_json(BUNDLE/'current_gate2_restore_audit.json'),'Gate2 state/mapping changed')
+-    preservation=verify_preservation(read_json(BUNDLE/'preservation_baseline.json'),lambda message:print(message,flush=True))
+-    state=git_state();require(state==read_json(BUNDLE/'preparation_initial.json')['git_state'],'Git status/tracked/staged changed')
++    closure=pre_source_closure(None,preparing=True,progress=lambda message:print(message,flush=True))
++    require(closure['production_clean_resolution']==read_json(BUNDLE/'production_clean_resolution_audit.json') and
++        closure['production_inventory_schema']==read_json(BUNDLE/'production_inventory_schema_audit.json'),
++        'Production clean/inventory evidence changed since tests')
++    write_json(BUNDLE/'pre_seal_execution_path_closure_audit.json',closure)
++    source=complete_source_integrity(closure,lambda message:print(message,flush=True))
++    write_json(BUNDLE/'source_integrity_audit.json',source)
++    future_namespaces_absent()
++    require(git_state()==read_json(BUNDLE/'preparation_initial.json')['git_state'],'Git changed')
++    changes=write_diff()
++    old={p.relative_to(V2_BUNDLE).as_posix() for p in V2_BUNDLE.rglob('*') if p.is_file()}
++    predicted={'source_code_audit.json','preparation_audit.json','bundle_inventory.json','SHA256SUMS','SHA256SUMS.sha256'}
++    current={p.relative_to(BUNDLE).as_posix() for p in BUNDLE.rglob('*') if p.is_file()}|predicted
++    exact=[name for name in sorted(old&current) if (BUNDLE/name).is_file() and hash_file(BUNDLE/name)==hash_file(V2_BUNDLE/name)]
+     baseline=read_json(BUNDLE/'preservation_baseline.json')
+     exporter=next(r for r in baseline['files'] if r['path']==HISTORICAL_EXPORTER.relative_to(REPO).as_posix())
+-    changes=write_diff()
+-    predicted={'source_code_audit.json','preparation_audit.json','bundle_inventory.json','SHA256SUMS','SHA256SUMS.sha256'}
+-    old_names={p.relative_to(V1_BUNDLE).as_posix() for p in V1_BUNDLE.rglob('*') if p.is_file()}
+-    new_names={p.relative_to(BUNDLE).as_posix() for p in BUNDLE.rglob('*') if p.is_file()}|predicted
+-    unchanged_names=[name for name in sorted(old_names&new_names) if (BUNDLE/name).is_file() and
+-                     hash_file(V1_BUNDLE/name)==hash_file(BUNDLE/name)]
+-    file_changes=dict(modified_files=sorted((old_names&new_names)-set(unchanged_names)),
+-        new_files=sorted(new_names-old_names),byte_identical_copied_files=unchanged_names,
+-        v1_evidence_not_relabelled_as_v2=sorted(old_names-new_names),
+-        v1_files_deleted_or_changed=False,exact_new_hashes='Sealed v2 SHA256SUMS; Python hashes also enumerated below')
+     write_json(BUNDLE/'source_code_audit.json',dict(status='PASS',new_bundle_python_sha256=python,
+-        current_scientific_dependency_sha256=current['scientific_source_hashes'],
+-        exact_new_python_files=[str(BUNDLE/name) for name in python],
+-        modified_python_hashes_relative_to_v1={name:python[name] for name in changes['modified_python_relative_to_v1']},
+-        new_python_hashes_relative_to_v1={name:python[name] for name in changes['new_python_relative_to_v1']},
+-        changes_relative_to_v1=changes,historical_exporter_before_after=exporter,historical_exporter_unchanged=True,
+-        all_file_changes_relative_to_v1=file_changes,
+-        v1_bundle_seal=V1_BUNDLE_SEAL,v1_bundle_unchanged=True,historical_graph_outputs_untouched=True,
+-        scientific_invariance='PASS',scientific_functions_changed=[],tracked_sources_added_or_changed=[],
+-        exact_binding_documents_changed_relative_to_v1=list(('graph_export_spec.json','graph_training_authorization_design.json')),
+-        old_v1_preparation_logs_not_relabelled_as_v2=True))
+-    trace_name=f'upstream_verification_call_trace_{attempt}.json'
+-    require((BUNDLE/trace_name).is_file(),'Missing exact verification function trace')
+-    write_json(BUNDLE/'preparation_audit.json',dict(status='V2_PREPARATION_ONLY_COMPLETE_STOP_FOR_HUMAN_REVIEW',
+-        accepted_test_evidence=f'synthetic_test_attempt_{attempt}.json',adversarial_evidence=f'adversarial_test_attempt_{attempt}.json',
+-        verification_call_trace=trace_name,tests={k:tests[k] for k in ('passed','failed','errors','skipped','tests_run')},
+-        v1_pending_preserved=True,v1_pending_evidence=verify_v1_failure(),v1_bundle_unchanged=True,v1_bundle_seal=V1_BUNDLE_SEAL,
+-        historical_preservation=preservation,historical_N20_exporter_unchanged=True,historical_graph_outputs_untouched=True,
+-        scientific_invariance='PASS',current_upstream_hashes_verified=True,source_full_SHA_independently_verified=True,
+-        full_source_sealing_check='Initial fresh independent full hash plus identical source fingerprint; every future preflight fresh full hash',
+-        membership_recomputed=False,graph_partition_sha256=GRAPH_PARTITION_SHA,
+-        graph_partition_seal=SEALS['graph_partition_freeze_v1'],graph_data_runtime_exists=False,graph_run_runtime_exists=False,
+-        graph_data_generation_authorized=False,graph_training_authorized=False,activity=dict(ZERO),git_state=state,
+-        changes_relative_to_v1=changes,guard_counters=counters,next_action='STOP FOR HUMAN REVIEW'))
+-    bundle_seal=seal_tree(BUNDLE)
++        changes_relative_to_v2=changes,all_file_changes_relative_to_v2=dict(
++            modified_v3_counterparts=sorted((old&current)-set(exact)),new_v3_files=sorted(current-old),
++            byte_identical_v2_copies=exact,old_v2_evidence_not_relabelled=sorted(old-current),
++            v2_files_deleted_or_modified=False),
++        exact_modified_new_python_sha256={name:python[name] for name in
++            changes['modified_python_relative_to_v2']+changes['new_python_relative_to_v2']},
++        scientific_files_changed=[],scientific_invariance='PASS',current_upstream_and_restoration_byte_identical=True,
++        graph_replay_export_model_training_byte_identical=True,subprocess_policy_byte_identical=True,
++        historical_N20_exporter_unchanged=True,historical_N20_exporter=exporter,
++        all_previous_outputs_preserved=True,v1_pending_inventory_sha256=verify_v1_failure()['inventory_sha256'],
++        exact_v2_preserved_files=inventory(V2_BUNDLE),v1_seal=V1_BUNDLE_SEAL,v2_seal=V2_BUNDLE_SEAL))
++    write_json(BUNDLE/'preparation_audit.json',dict(status='V3_PREPARATION_ONLY_COMPLETE_STOP_FOR_HUMAN_REVIEW',
++        scientific_invariance='PASS',tests={k:tests[k] for k in ('passed','failed','errors','skipped','tests_run')},
++        production_integration_tests={k:integration[k] for k in ('passed','failed','errors','skipped')},
++        real_context_status='PASS',production_clean_counts=integration['clean_counts'],production_inventory_records_checked=101,
++        canonical_summaries_checked=101,canonical_digests_checked=101,fake_record_sha256_dependency=False,
++        segmentation_compatibility='PASS',disk_resource='PASS',execution_order='PASS',
++        full_source_integrity=source,historical_preservation=closure['historical_preservation'],
++        v1_preserved=True,v2_preserved=True,v1_pending_preserved=True,v1_reproduction_preserved=True,
++        v1_pending=verify_v1_failure(),all_real_models_instantiated=False,
++        data_v3_exists=False,pending_v3_exists=False,runs_v3_exists=False,
++        graph_data_generation_executed=False,real_model_training_executed=False,activity=dict(ZERO),
++        git_state=closure['git_state'],changes_relative_to_v2=changes,guard_counters=counters))
++    require(all((BUNDLE/name).is_file() for name in REQUIRED if name not in
++        ('bundle_inventory.json','SHA256SUMS','SHA256SUMS.sha256')),'Missing required named evidence')
++    value=seal_tree(BUNDLE)
+     for path in BUNDLE.rglob('*'):
+         if path.is_file():path.chmod(stat.S_IREAD)
+-    require(all(p.stat().st_file_attributes&stat.FILE_ATTRIBUTE_READONLY for p in BUNDLE.rglob('*') if p.is_file()),'V2 files not read-only')
+-    print(json.dumps(dict(status='V2_SEALED_STOP_FOR_HUMAN_REVIEW',bundle_path=str(BUNDLE),bundle_seal=bundle_seal,
+-        tests={k:tests[k] for k in ('passed','failed','errors','skipped')},scientific_invariance='PASS',
+-        v1_pending_inventory_sha256=verify_v1_failure()['inventory_sha256'],changes=changes,activity=dict(ZERO))),flush=True)
++    require(all(p.stat().st_file_attributes&stat.FILE_ATTRIBUTE_READONLY for p in BUNDLE.rglob('*') if p.is_file()),'V3 not read-only')
++    print(json.dumps(dict(status='V3_SEALED_STOP_FOR_HUMAN_REVIEW',bundle_path=str(BUNDLE),bundle_seal=value,
++        tests={k:tests[k] for k in ('passed','failed','errors','skipped')},production_integration_tests=integration['passed'],
++        clean_counts=integration['clean_counts'],scientific_invariance='PASS',activity=dict(ZERO))),flush=True)
+ 
+ 
+ if __name__=='__main__':
+     parser=argparse.ArgumentParser();parser.add_argument('action',choices=['initialize','seal']);parser.add_argument('--test-attempt',type=int)
+     args=parser.parse_args()
+     if args.action=='initialize':initial()
+-    else:require(args.test_attempt is not None,'Accepted synthetic attempt required');seal(args.test_attempt)
++    else:require(args.test_attempt is not None,'Accepted test attempt required');seal(args.test_attempt)
+--- /dev/null
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\production_audits.py
+@@ -0,0 +1,217 @@
++"""Read-only production consumers; no reconstructed resolver or inventory digest."""
++import ast
++import importlib
++import importlib.util
++import shutil
++import numpy as np
++from graph_common import *
++from current_restore import inspect_current_states
++
++RAW_TYPES = {'archive_ordinal':int,'emitted_rows':int,'first_tar_offset':int,
++    'image_readability':str,'image_tick_coverage':dict,'last_tar_offset':int,
++    'member_count':int,'members':list,'metadata_integrity':dict,'n_ticks':int,
++    'parser_member_chain_sha256':str,'scenario_id':str,'schema':str,
++    'source_member_set_sha256':str,'state':str,'town':str}
++
++
++def verify_production_clean_resolution(modules, ctx, progress=lambda message:None):
++    frozen=read_json(REPORT/'gate2_execution_bundle_v3/verified_block_resolutions.json')
++    expected={r['scenario_id']:r for r in frozen['resolutions']}
++    partition=read_json(BUNDLE/'current_partition_audit.json')
++    require(set(expected)==set(ctx.scenarios)==set(partition['FIT_NORMAL']+partition['CAL_NORMAL_excluded']),
++        'Production clean scenario admission mismatch')
++    records=[]
++    for index,sid in enumerate(sorted(ctx.scenarios),1):
++        # This is the exact load_clean -> resolve_arrays path used by FITSink.
++        clean=modules['gate2_data'].load_clean(sid,admitted=ctx)
++        require(clean['scenario_id']==sid and clean['source_split']=='train' and clean['role']=='clean' and
++            clean['synthetic_corruption'] is False,'Production clean role mismatch')
++        provenance=clean['resolved_provenance']
++        require(provenance==expected[sid],'Production resolution differs from sealed Gate2 manifest')
++        require(not provenance['feature_recomputed'] and not provenance['adopted_feature_files_copied'],
++            'Production features recomputed/copied')
++        arrays=clean['arrays']; shapes={};dtypes={}
++        for modality in NODE_ORDER:
++            array=arrays[modality.lower()]
++            require(array.shape==(2999,DIMS[modality]) and array.dtype==np.dtype('float64') and
++                np.isfinite(array).all(),'Production clean shape/dtype/finite contract failed: '+sid+':'+modality)
++            shapes[modality]=list(array.shape);dtypes[modality]=str(array.dtype)
++        require(np.array_equal(arrays['tick'],np.arange(1,3000)) and
++            np.all(arrays['scenario_id']==sid) and np.all(arrays['source_split']=='train') and
++            np.all(arrays['town']==sid.split('/')[0]),'Production row identity mismatch')
++        role='FIT_NORMAL' if sid in ctx.membership['FIT_NORMAL'] else 'CAL_NORMAL'
++        graph_role='GRAPH_TRAIN' if sid in partition['GRAPH_TRAIN'] else 'GRAPH_VAL' if sid in partition['GRAPH_VAL'] else None
++        require((role=='FIT_NORMAL')==(graph_role is not None),'Production partition role mismatch')
++        records.append(dict(scenario_id=sid,archive_ordinal=provenance['archive_ordinal'],role=role,
++            graph_role=graph_role,storage_form=provenance['storage_form'],emitted_rows=2999,
++            shapes=shapes,dtypes=dtypes,all_finite=True,exact_sealed_provenance_equal=True,
++            canonical_npz_sha256=clean['block_npz_sha256'],canonical_content_sha256=clean['block_content_sha256'],
++            canonical_provenance_sha256=digest(canonical(provenance))))
++        if index%10==0:progress('Production clean load: %d / 101'%index)
++    counts={kind:sum(r['storage_form']==kind for r in records) for kind in
++        ('V8_NATIVE_EXTRACTED','V7_TO_V8_IDENTITY_ADOPTION')}
++    totals=dict(total_loaded=len(records),native_count=counts['V8_NATIVE_EXTRACTED'],
++        adopted_count=counts['V7_TO_V8_IDENTITY_ADOPTION'],FIT_loaded=sum(r['role']=='FIT_NORMAL' for r in records),
++        CAL_loaded=sum(r['role']=='CAL_NORMAL' for r in records),
++        GRAPH_TRAIN_loaded=sum(r['graph_role']=='GRAPH_TRAIN' for r in records),
++        GRAPH_VAL_loaded=sum(r['graph_role']=='GRAPH_VAL' for r in records))
++    require(totals==dict(total_loaded=101,native_count=33,adopted_count=68,FIT_loaded=76,CAL_loaded=25,
++        GRAPH_TRAIN_loaded=61,GRAPH_VAL_loaded=15),'Incomplete production clean resolution')
++    return dict(status='PASS',**totals,resolution_counts=counts,records=records,failures=[],
++        feature_recomputation=False,new_clean_store_created=False,features_copied=False,
++        resolver='authenticated gate2_data.load_clean -> gate2_resolution.resolve_arrays',
++        resolution_manifest_sha256=hash_file(REPORT/'gate2_execution_bundle_v3/verified_block_resolutions.json'),
++        resolver_source_sha256=hash_file(Path(modules['gate2_resolution'].__file__)),
++        loader_source_sha256=hash_file(Path(modules['gate2_data'].__file__)),activity=dict(ZERO))
++
++
++def validate_inventory_record(raw,ordinal,replay):
++    require(type(raw) is dict and set(raw)==set(RAW_TYPES) and
++        all(type(raw[key]) is kind for key,kind in RAW_TYPES.items()),'Production raw inventory schema/type mismatch')
++    require('record_sha256' not in raw and raw['schema']==replay.index['scenarios'][ordinal-1]['schema'] and
++        raw['archive_ordinal']==ordinal and raw['n_ticks']==3000 and raw['emitted_rows']==2999 and
++        raw['town']==raw['scenario_id'].split('/')[0] and raw['member_count']==len(raw['members']),
++        'Production raw inventory alignment/count mismatch')
++    legacy=replay.legacy
++    summary=legacy.summary(raw)  # Only the exact sealed implementation.
++    record_digest=legacy.digest(raw)  # Never graph_common.digest or a compact-JSON substitute.
++    indexed=replay.index['scenarios'][ordinal-1]
++    require(dict(summary,record_sha256=record_digest)==indexed,'Production canonical summary/digest disagreement')
++    require(replay.bind(raw,ordinal)==record_digest,'Production ReplayInventory binding mismatch')
++    n,_=legacy.check_layout(raw['scenario_id'],raw['members'])
++    require(n==raw['n_ticks'] and legacy.member_digest(raw['members'])==raw['source_member_set_sha256'],
++        'Production member-set binding mismatch')
++    return summary,record_digest
++
++
++def verify_production_inventory_schema(modules,ctx,progress=lambda message:None):
++    replay=modules['gate2_replay_inventory'].load_verified_replay_inventory(ctx.source)
++    require(Path(replay.legacy.__file__).resolve()==REPORT/'gate1_execution_bundle_v8/local_inventory.py',
++        'Foreign production inventory API')
++    seen=set(); records=[]; max_scratch=0; max_member=0
++    for ordinal,raw in enumerate(replay.legacy.inventory_records(REPORT/'gate1_execution_bundle_v8',replay.index),1):
++        require(ordinal<=101 and raw.get('scenario_id') not in seen,'Extra/duplicate production raw record')
++        summary,sha=validate_inventory_record(raw,ordinal,replay)
++        seen.add(raw['scenario_id'])
++        scratch=sum(m['size'] for m in raw['members'] if m['type']!='5')
++        largest=max(m['size'] for m in raw['members'])
++        max_scratch=max(max_scratch,scratch);max_member=max(max_member,largest)
++        records.append(dict(scenario_id=raw['scenario_id'],archive_ordinal=ordinal,canonical_summary=summary,
++            canonical_digest=sha,indexed_digest=replay.index['scenarios'][ordinal-1]['record_sha256'],
++            raw_record_sha256_present=False,summary_exact=True,digest_exact=True,
++            all_source_member_fields_canonically_bound=True,whole_scenario_raw_bytes_upper_bound=scratch,
++            largest_raw_member_bytes=largest))
++        if ordinal%20==0:progress('Production raw inventory: %d / 101'%ordinal)
++    replay.finish([r['archive_ordinal'] for r in records])
++    require(len(records)==101 and seen==set(ctx.scenarios),'Production raw inventory coverage mismatch')
++    return dict(status='PASS',production_records_checked=101,canonical_summaries_checked=101,
++        canonical_digests_checked=101,fake_record_sha256_dependency=False,
++        caller_supplied_record_sha256_required=False,mismatches=[],records=records,
++        exact_raw_schema={key:kind.__name__ for key,kind in RAW_TYPES.items()},
++        canonical_summary='sealed local_inventory.summary(raw)',canonical_digest='sealed local_inventory.digest(raw)',
++        consumer='sealed gate2_replay_inventory.ReplayInventory.bind(raw,ordinal)',
++        alternative_digest_implementation_introduced=False,inventory_rebuilt=False,
++        TRAIN_sensor_payload_parsed=False,index_or_ledger_modified=False,
++        index_sha256=hash_file(REPORT/'gate1_execution_bundle_v8/source_inventory.json'),
++        ledger_sha256=hash_file(REPORT/'gate1_execution_bundle_v8/inventory_scenarios.jsonl.gz'),
++        API_sha256=hash_file(Path(replay.legacy.__file__)),
++        maximum_whole_scenario_scratch_bytes=max_scratch,maximum_actual_raw_member_bytes=max_member,
++        activity=dict(ZERO))
++
++
++def verify_compatibility_prerequisites(modules):
++    science=modules['gate2_science'].load_science()
++    required=('sanitize','generate_pseudo_anomaly','camera_embedding_features',
++        'segmentation_histogram_features','imu_window_features','MahalanobisNormality',
++        'BootstrapNormalityEnsemble','EnsemblePredictiveCalibrator','ensemble_to_uncertainty')
++    require(all(callable(science.get(key)) for key in required),'Graph replay scientific compatibility missing')
++    states=inspect_current_states()
++    require(states==read_json(BUNDLE/'current_gate2_restore_audit.json'),'Restoration prerequisites changed')
++    return dict(status='PASS',required_definitions=list(required),states_and_mapping_inspection=states,
++        real_objects_instantiated=False,real_features_scored=False,fit_or_calibration_executed=False)
++
++
++def verify_non_model_imports():
++    names=('numpy','scipy','pandas','pyarrow','pyarrow.feather','PIL.Image','graph_replay','current_restore','train_replay')
++    records={}
++    for name in names:
++        module=importlib.import_module(name)
++        path=Path(module.__file__).resolve();records[name]=dict(origin=str(path),sha256=hash_file(path))
++        if name=='train_replay':require(path==REPORT/'gate1_execution_bundle_v8/train_replay.py','Foreign production parser')
++        if name in ('graph_replay','current_restore'):require(path==BUNDLE/(name+'.py'),'Foreign graph module')
++    return dict(status='PASS',imports=records,parser_constructed=False,models_instantiated=False)
++
++
++def verify_environment():
++    name='gate2_preflight';root=REPORT/'gate2_execution_bundle_v3'
++    existing=sys.modules.get(name);require(existing is None or Path(existing.__file__).resolve()==root/(name+'.py'),
++        'Foreign production environment verifier')
++    spec=importlib.util.find_spec(name);require(spec and Path(spec.origin).resolve()==root/(name+'.py'),
++        'Foreign production environment discovery')
++    verifier=importlib.import_module(name)
++    actual=verifier.environment();expected=read_json(root/'execution_bindings.json')['environment']
++    require(actual==expected,'Production Python/native/library environment changed')
++    return dict(status='PASS',canonical_environment_sha256=digest(canonical(actual)),
++        environment_verifier_sha256=hash_file(Path(verifier.__file__)),python=actual['python'],
++        executable_sha256=actual['executable_sha256'],libraries=actual['libraries'],
++        all_installed_library_file_manifests_equal=True,all_python_native_runtime_hashes_equal=True)
++
++
++def disk_resource_audit(inventory_audit,*,free_bytes=None):
++    spec=read_json(BUNDLE/'graph_export_spec.json')
++    reserve=spec['free_disk_reserve_bytes'];cap=spec['raw_member_cap_bytes']
++    require(reserve==20<<30 and cap==128<<20,'Existing raw scratch limits changed')
++    require(inventory_audit['maximum_actual_raw_member_bytes']<=cap,'Production raw member exceeds existing cap')
++    scratch=inventory_audit['maximum_whole_scenario_scratch_bytes']
++    pairs=sum(spec['maximum_pairs_before_skips'].values())
++    # Conservative size budget: 64 KiB per metadata row and per ledger record,
++    # exact float64 node bytes, plus 1 GiB for NPZ/JSON/unit seals and global manifest.
++    artifact=pairs*(3*(64<<10)+2*3*3*8)+(1<<30)
++    margin=8<<30
++    # Rename publication does not duplicate payloads; nevertheless reserve both.
++    required=reserve+scratch+2*artifact+margin
++    usage=shutil.disk_usage(REPORT);free=usage.free if free_bytes is None else free_bytes
++    require(free>=required,'Insufficient disk/resource margin BEFORE full TRAIN hash')
++    return dict(status='PASS',target_drive=REPORT.anchor,total_bytes=usage.total,free_bytes=free,
++        raw_scratch_reserve_bytes=reserve,maximum_permitted_retained_raw_member_bytes=cap,
++        maximum_actual_raw_member_bytes=inventory_audit['maximum_actual_raw_member_bytes'],
++        one_scenario_scratch_upper_bound_bytes=scratch,maximum_pairs=pairs,
++        graph_data_artifact_upper_bound_bytes=artifact,pending_and_final_artifact_budget_bytes=2*artifact,
++        additional_margin_bytes=margin,required_free_bytes=required,remaining_margin_bytes=free-required,
++        estimate_basis='64 KiB per each of two graph metadata rows and one candidate ledger; exact nodes; 1 GiB containers/manifests; whole raw scenario upper bound',
++        historical_evidence_deleted=False,simulated_free_space=free_bytes is not None)
++
++
++def segmentation_compatibility_audit(modules):
++    science=modules['gate2_science'].load_science()
++    raw=np.arange(256,dtype=np.uint8).reshape(16,16);before=raw.tobytes()
++    sanitized,counts=science['sanitize'](raw)
++    expected=np.arange(256,dtype=np.uint8);expected[29:]=22
++    require(np.array_equal(sanitized.reshape(-1),expected) and raw.tobytes()==before,'Frozen Seg compatibility mismatch')
++    vector=science['segmentation_histogram_features'](sanitized)
++    require(vector.shape==(29,) and vector.dtype==np.float64,'Seg29 expansion or dtype change')
++    # Call the unchanged generate_pair through its sanitizer branch, stopping
++    # exactly at the pseudo call. No pseudo implementation, node scorer or graph runs.
++    from graph_export import generate_pair
++    observed=[]
++    class StopBeforePseudo(Exception):pass
++    class FixtureAdmission:
++        def role(self,sid,source_split):
++            require(sid=='fixture/SegCompatibility' and source_split=='train','Foreign Seg probe')
++            return 'GRAPH_TRAIN'
++    def stop(sample,**kwargs):
++        require(np.array_equal(sample['Seg'],sanitized),'Sanitizer did not run before Seg recipe')
++        observed.append(dict(recipe_id=kwargs['recipe_id'],seed=kwargs['seed'],severity=kwargs['severity']))
++        raise StopBeforePseudo()
++    probe=dict(science,generate_pseudo_anomaly=stop)
++    try:generate_pair(probe,{m:None for m in NODE_ORDER},FixtureAdmission(),'fixture/SegCompatibility',2,raw,
++        {m:np.zeros(DIMS[m],dtype=np.float64) for m in NODE_ORDER})
++    except StopBeforePseudo:pass
++    require(observed==[dict(recipe_id='seg_region_corruption',seed=2,severity=.2)],'Seg pre-recipe runtime probe incomplete')
++    return dict(status='PASS',ids_0_through_28_unchanged=True,ids_29_through_255_mapped_to_bin_22=True,
++        exact_mapping=expected.tolist(),sanitizer_applied_before_Seg_pseudo_generation=True,
++        runtime_probe='synthetic 0..255 array, stops immediately before real pseudo implementation',
++        real_pseudo_implementation_called=False,semantic_interpretation_added_for_31_through_255=False,
++        Seg29_expanded=False,adaptive_replacement_or_tuning=False,raw_input_mutated=False,
++        sanitizer_source_sha256=hash_file(REPORT/'gate1_execution_bundle_v8/segmentation_oov.py'),
++        graph_export_sha256=hash_file(BUNDLE/'graph_export.py'),counts=counts,activity=dict(ZERO))
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\run_synthetic_tests.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\run_synthetic_tests.py
+@@ -17,8 +17,9 @@
+     from test_graph_export import ExportSynthetic,ExportAdversarial
+     from test_graph_training import ModelSynthetic,ModelAdversarial
+     from test_subprocess_amendment import SubprocessSynthetic,SubprocessAdversarial
++    from test_production_closure import ProductionIntegration,OrderingAdversarial,write_test_reports
+     suite=unittest.TestSuite()
+-    for cls in (ExportSynthetic,ExportAdversarial,ModelSynthetic,ModelAdversarial,SubprocessSynthetic,SubprocessAdversarial):
++    for cls in (ExportSynthetic,ExportAdversarial,ModelSynthetic,ModelAdversarial,SubprocessSynthetic,SubprocessAdversarial,ProductionIntegration,OrderingAdversarial):
+         for name in sorted(cls.__dict__):
+             if name.startswith('test_'):suite.addTest(cls(name))
+     stream=io.StringIO()
+@@ -42,6 +43,7 @@
+     write_json(BUNDLE/f'adversarial_test_attempt_{args.attempt}.json',dict(attempt=args.attempt,
+         evidence_kind='blocked synthetic adversarial attempts; zero actual TEST/network requests',
+         records=[r for r in result.records if 'Adversarial.' in r['test']]))
++    write_test_reports(record)
+     for item in scratch.rglob('*'):safe_path(item)
+     shutil.rmtree(scratch)
+     print(json.dumps({k:record[k] for k in ('attempt','passed','failed','errors','skipped','tests_run')}))
+--- /dev/null
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\test_production_closure.py
+@@ -0,0 +1,227 @@
++"""Real sealed-production read-only integration and cheap-failure ordering probes."""
++import copy
++import unittest
++from unittest.mock import patch,Mock
++from types import SimpleNamespace
++import graph_common
++from graph_common import *
++from current_upstream import authenticate_gate2
++from execution_closure import (PRE_SOURCE_STEPS,pre_source_closure,complete_source_integrity,
++    run_ordered_steps,admission_then_publication,read_only_scientific_barrier)
++from production_audits import (validate_inventory_record,segmentation_compatibility_audit,
++    disk_resource_audit,verify_production_clean_resolution)
++
++_PRODUCTION={}
++_FAILURES=[]
++
++
++class ProductionIntegration(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        # Every actual Popen in the real shared closure is also admitted by the
++        # future graph-data guard, using its exact unchanged subprocess policy.
++        scope={'enabled':True};guard,counters=make_guard('graph-data',source_integrity=True)
++        def future_subprocess_probe(event,args):
++            if scope['enabled'] and event=='subprocess.Popen':guard(event,args)
++        sys.addaudithook(future_subprocess_probe)
++        try:cls.closure=pre_source_closure(None,preparing=True,progress=lambda message:print(message,flush=True))
++        finally:scope['enabled']=False
++        cls.future_counters=counters
++        cls.modules=authenticate_gate2();cls.ctx=cls.modules['gate2_resolution'].context()
++        cls.replay=cls.modules['gate2_replay_inventory'].load_verified_replay_inventory(cls.ctx.source)
++        cls.raw=next(cls.replay.legacy.inventory_records(REPORT/'gate1_execution_bundle_v8',cls.replay.index))
++        _PRODUCTION.update(closure=cls.closure,future_subprocess_counters=counters)
++
++    def test_real_context_under_future_graph_data_policy(self):
++        self.assertEqual(self.closure['real_context_status'],'PASS')
++        self.assertEqual(len(self.future_counters['admitted_scientific_git_reads']),22)
++        self.assertEqual(self.future_counters['blocked_subprocess_attempts'],0)
++
++    def test_all_101_production_clean_shapes_dtypes_finite(self):
++        audit=self.closure['production_clean_resolution'];self.assertEqual(audit['total_loaded'],101)
++        for record in audit['records']:
++            self.assertEqual(record['shapes'],{m:[2999,DIMS[m]] for m in NODE_ORDER})
++            self.assertEqual(record['dtypes'],{m:'float64' for m in NODE_ORDER});self.assertTrue(record['all_finite'])
++
++    def test_all_76_FIT_and_25_CAL_loaded(self):
++        audit=self.closure['production_clean_resolution']
++        self.assertEqual((audit['FIT_loaded'],audit['CAL_loaded']),(76,25))
++
++    def test_native_adopted_33_68_and_exact_provenance(self):
++        audit=self.closure['production_clean_resolution']
++        self.assertEqual((audit['native_count'],audit['adopted_count']),(33,68))
++        self.assertTrue(all(r['exact_sealed_provenance_equal'] for r in audit['records']))
++        self.assertFalse(audit['feature_recomputation']);self.assertFalse(audit['new_clean_store_created'])
++
++    def test_graph_membership_61_15_excludes_CAL(self):
++        audit=self.closure['production_clean_resolution']
++        self.assertEqual((audit['GRAPH_TRAIN_loaded'],audit['GRAPH_VAL_loaded']),(61,15))
++        self.assertTrue(all(r['graph_role'] is None for r in audit['records'] if r['role']=='CAL_NORMAL'))
++
++    def test_101_real_inventory_summaries_and_digests(self):
++        audit=self.closure['production_inventory_schema']
++        self.assertEqual([audit[k] for k in ('production_records_checked','canonical_summaries_checked','canonical_digests_checked')],[101,101,101])
++        self.assertEqual(audit['mismatches'],[])
++        self.assertTrue(all(r['canonical_digest']==r['indexed_digest'] for r in audit['records']))
++
++    def test_raw_record_sha256_not_required(self):
++        self.assertNotIn('record_sha256',self.raw)
++        summary,sha=validate_inventory_record(self.raw,1,self.replay)
++        self.assertEqual(sha,self.replay.index['scenarios'][0]['record_sha256'])
++        self.assertFalse(self.closure['production_inventory_schema']['fake_record_sha256_dependency'])
++
++    def test_frozen_seg_compatibility_and_pre_recipe_probe(self):
++        audit=segmentation_compatibility_audit(self.modules)
++        self.assertEqual(audit,read_json(BUNDLE/'segmentation_compatibility_audit.json'))
++        self.assertTrue(audit['sanitizer_applied_before_Seg_pseudo_generation'])
++
++    def test_environment_imports_disk_before_archive_hash(self):
++        for key in ('compatibility_prerequisites','non_model_imports','environment','disk_resources','barriers'):
++            self.assertEqual(self.closure[key]['status'],'PASS')
++        self.assertFalse(self.closure['full_archive_hash_invoked'])
++        self.assertGreaterEqual(self.closure['disk_resources']['free_bytes'],self.closure['disk_resources']['required_free_bytes'])
++
++    def test_no_model_or_replay_semantics_in_production_closure(self):
++        self.assertEqual(self.closure['activity'],ZERO);self.assertFalse(self.closure['real_models_instantiated'])
++        with self.assertRaises(PreparationError):
++            with read_only_scientific_barrier():self.modules['gate2_science'].new_agent({},'Camera')
++
++    def test_preflight_and_data_use_same_closure_and_admission(self):
++        from preflight_graph import pre_source_closure as preflight_closure
++        self.assertIs(preflight_closure,pre_source_closure)
++        tree=__import__('ast').parse((BUNDLE/'generate_graph_data.py').read_bytes())
++        self.assertTrue(any(isinstance(n,__import__('ast').ImportFrom) and n.module=='execution_closure' and
++            {'pre_source_closure','complete_source_integrity','admission_then_publication'}<={a.name for a in n.names}
++            for n in __import__('ast').walk(tree)))
++        self.assertEqual(hash_file(BUNDLE/'subprocess_policy.py'),hash_file(V2_BUNDLE/'subprocess_policy.py'))
++
++    def test_reviewed_Windows_ver_probe_null_handle_inside_readonly_closure(self):
++        import platform
++        with read_only_scientific_barrier():
++            # Explicitly force the subprocess, bypassing platform.uname's cache.
++            result=platform._syscmd_ver()
++        self.assertEqual(len(result),3)
++        self.assertTrue(result[2])
++
++
++class OrderingAdversarial(unittest.TestCase):
++    def assert_cheap_failure(self,label,step,callback):
++        calls=[];trace=[]
++        callbacks={name:(lambda values:dict(status='PASS')) for name in PRE_SOURCE_STEPS}
++        callbacks[step]=lambda values:callback()
++        def closure():
++            run_ordered_steps(callbacks,trace);return dict(status='PASS')
++        source=Mock(side_effect=lambda result:calls.append('full_source_hash'))
++        pending=Mock(side_effect=lambda a,b:calls.append('pending_create'))
++        with self.assertRaises(Exception):admission_then_publication(closure,source,pending)
++        self.assertEqual(source.call_count,0);self.assertEqual(pending.call_count,0);self.assertEqual(calls,[])
++        self.assertFalse(PENDING.exists())
++        _FAILURES.append(dict(failure=label,stage=step,status='PASS',full_source_hash_calls=0,
++            pending_create_calls=0,trace=trace,real_source_corrupted=False))
++
++    def test_resolver_failure_before_full_hash(self):
++        def injected():
++            with patch.object(ProductionIntegration.modules['gate2_data'],'load_clean',side_effect=PreparationError('SIMULATED resolver failure')):
++                verify_production_clean_resolution(ProductionIntegration.modules,ProductionIntegration.ctx)
++        self.assert_cheap_failure('resolver_failure','production_clean_resolution',injected)
++
++    def test_adopted_block_missing_before_full_hash(self):
++        resolver=ProductionIntegration.modules['gate2_resolution'];original=resolver.resolve_arrays
++        def missing(sid,admitted=None):
++            if ProductionIntegration.ctx.expected[sid]['kind']=='V7_TO_V8_IDENTITY_ADOPTION':
++                raise FileNotFoundError('SIMULATED missing adopted v7 arrays; no actual source mutation')
++            return original(sid,admitted)
++        def injected():
++            with patch.object(resolver,'resolve_arrays',side_effect=missing):
++                verify_production_clean_resolution(ProductionIntegration.modules,ProductionIntegration.ctx)
++        self.assert_cheap_failure('adopted_block_missing','production_clean_resolution',injected)
++
++    def test_schema_mismatch_before_full_hash(self):
++        malformed=dict(ProductionIntegration.raw,record_sha256='fixture-only-convenience')
++        self.assert_cheap_failure('raw_schema_mismatch','production_inventory_schema',
++            lambda:validate_inventory_record(malformed,1,ProductionIntegration.replay))
++
++    def test_wrong_inventory_digest_before_full_hash(self):
++        index=copy.deepcopy(ProductionIntegration.replay.index);index['scenarios'][0]['record_sha256']='0'*64
++        fake=SimpleNamespace(index=index,legacy=ProductionIntegration.replay.legacy,
++            bind=lambda *args:require(False,'Wrong indexed digest must fail before bind'))
++        self.assert_cheap_failure('wrong_inventory_digest','production_inventory_schema',
++            lambda:validate_inventory_record(ProductionIntegration.raw,1,fake))
++
++    def test_subprocess_denial_before_full_hash(self):
++        guard,counters=make_guard('graph-data')
++        self.assert_cheap_failure('subprocess_denial','real_context',
++            lambda:guard('subprocess.Popen',('git',['git','show',HEAD+':arbitrary.py'],str(REPO),None)))
++
++    def test_insufficient_disk_before_full_hash(self):
++        self.assert_cheap_failure('insufficient_disk','disk_resources',
++            lambda:disk_resource_audit(ProductionIntegration.closure['production_inventory_schema'],free_bytes=0))
++
++    def test_schema_types_reject_fixture_only_convenience(self):
++        raw=dict(ProductionIntegration.raw);raw['archive_ordinal']='1'
++        with self.assertRaises(PreparationError):validate_inventory_record(raw,1,ProductionIntegration.replay)
++        raw=dict(ProductionIntegration.raw);del raw['members']
++        with self.assertRaises(PreparationError):validate_inventory_record(raw,1,ProductionIntegration.replay)
++
++    def test_source_hash_failure_prevents_pending(self):
++        closure=Mock(return_value=ProductionIntegration.closure);source=Mock(side_effect=PreparationError('SIMULATED source SHA failure'))
++        publish=Mock()
++        with self.assertRaises(PreparationError):admission_then_publication(closure,source,publish)
++        self.assertEqual(publish.call_count,0);self.assertFalse(PENDING.exists())
++
++    def test_successful_hash_then_fingerprint_then_pending_order(self):
++        events=[];trace=[]
++        callbacks={name:(lambda values,key=name:events.append(key)) for name in PRE_SOURCE_STEPS}
++        def closure():
++            run_ordered_steps(callbacks,trace)
++            return dict(status='PASS',trace=trace,source_fingerprint_before_full_hash=source_fingerprint())
++        def source(value):
++            events.append('full_source_hash')
++            with patch('execution_closure.hash_file',return_value=SOURCE['sha256']):result=complete_source_integrity(value)
++            events.append('source_fingerprint_recheck');return result
++        def pending(a,b):events.append('pending_create_simulation_only');return dict(status='PASS')
++        self.assertEqual(admission_then_publication(closure,source,pending)['status'],'PASS')
++        self.assertEqual(events,list(PRE_SOURCE_STEPS)+['full_source_hash','source_fingerprint_recheck','pending_create_simulation_only'])
++        self.assertFalse(PENDING.exists())
++
++    def test_v1_v2_runtime_and_pending_immutability(self):
++        before=verify_v1_failure()
++        for phase in ('prepare','synthetic','preflight','graph-data'):
++            guard,counters=make_guard(phase)
++            for version in (1,2):
++                root=REPORT/f'.graph_development_data_v{version}.pending'
++                for event,args in (('open',(str(root/'x'),'wb',os.O_WRONLY|os.O_CREAT)),
++                    ('os.remove',(str(root/'authorization.json'),-1)),('os.rename',(str(root),str(PENDING),-1,-1))):
++                    with self.assertRaises(PreparationError):guard(event,args)
++        self.assertEqual(verify_v1_failure(),before)
++
++
++def write_test_reports(record):
++    if record['failed'] or record['errors'] or record['skipped']:
++        write_json(BUNDLE/f'failed_test_report_{record["attempt"]}.json',dict(counts={k:record[k] for k in
++            ('passed','failed','errors','skipped','tests_run')},failures=_FAILURES))
++        return
++    require(_PRODUCTION and len(_FAILURES)==6,'Missing production or failure-injection proof')
++    combined=dict(record,evidence_kind='Original 80 synthetic/adversarial tests plus real read-only production integration and ordering injection')
++    write_json(BUNDLE/'synthetic_test_results.json',combined)
++    records=[r for r in record['records'] if 'ProductionIntegration.' in r['test']]
++    write_json(BUNDLE/'production_integration_test_results.json',dict(status='PASS',passed=len(records),failed=0,
++        errors=0,skipped=0,records=records,real_clean_blocks_used=True,real_raw_inventory_records_used=True,
++        shared_future_graph_data_subprocess_guard_invoked_for_actual_commands=True,
++        authenticated_scientific_git_reads=len(_PRODUCTION['future_subprocess_counters']['admitted_scientific_git_reads']),
++        clean_counts={k:_PRODUCTION['closure']['production_clean_resolution'][k] for k in
++            ('total_loaded','FIT_loaded','CAL_loaded','native_count','adopted_count','GRAPH_TRAIN_loaded','GRAPH_VAL_loaded')},
++        canonical_inventory_records_checked=101,canonical_digests_checked=101,activity=dict(ZERO)))
++    adversarial=[r for r in record['records'] if 'Adversarial.' in r['test']]
++    write_json(BUNDLE/'adversarial_test_results.json',dict(status='PASS',passed=len(adversarial),failed=0,
++        errors=0,skipped=0,records=adversarial,failure_injections=_FAILURES,actual_TEST_or_network_requests=0))
++    write_json(BUNDLE/'execution_order_audit.json',dict(status='PASS',same_shared_pre_source_function=True,
++        required_order=list(PRE_SOURCE_STEPS)+['full_source_hash','source_fingerprint_recheck','pending_create',
++            'record_authorization','source_replay','complete_replay_validation','publish_final_data'],
++        actual_production_pre_source_trace=_PRODUCTION['closure']['trace'],
++        pre_source_function_sha256=hash_file(BUNDLE/'execution_closure.py'),
++        six_predictable_failure_injections=_FAILURES,pending_before_source_hash=False,
++        pending_after_source_hash_and_fingerprint_only=True,success_order_test_uses_mock_hash_no_pending_created=True,
++        all_required_real_production_checks_before_full_archive_hash=True,
++        data_generation_executed=False,activity=dict(ZERO)))
++    write_json(BUNDLE/'production_integration_closure_audit.json',_PRODUCTION['closure'])
+--- C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v2\test_subprocess_amendment.py
++++ C:\Users\Aditya\Cognix2_recovered\reports\carla_train_full_v1\graph_development_bundle_v3\test_subprocess_amendment.py
+@@ -50,9 +50,9 @@
+         self.assertEqual(counters['blocked_subprocess_attempts'],22)
+ 
+     def test_only_v2_runtime_constants_and_token(self):
+-        self.assertEqual(DATA,REPORT/'graph_development_data_v2');self.assertEqual(RUNS,REPORT/'graph_development_runs_v2')
+-        self.assertEqual(PENDING,REPORT/'.graph_development_data_v2.pending')
+-        self.assertEqual(DATA_TOKEN,'HUMAN_REVIEWED_EXPERIMENT_2B_FULL_TRAIN_GRAPH_DATA_V2')
++        self.assertEqual(DATA,REPORT/'graph_development_data_v3');self.assertEqual(RUNS,REPORT/'graph_development_runs_v3')
++        self.assertEqual(PENDING,REPORT/'.graph_development_data_v3.pending')
++        self.assertEqual(DATA_TOKEN,'HUMAN_REVIEWED_EXPERIMENT_2B_FULL_TRAIN_GRAPH_DATA_V3')
+         future_namespaces_absent();self.assertEqual(verify_v1_failure()['units_count'],0)
+ 
+     def test_scientific_whole_module_AST_invariance(self):
+@@ -160,7 +160,7 @@
+     def test_v2_runtime_write_scope_exact(self):
+         guard,c=make_guard('graph-data')
+         for root in (DATA,PENDING):guard('open',(str(root/'x'),'wb',os.O_WRONLY|os.O_CREAT))
+-        for root in (RUNS,BUNDLE,REPORT/'graph_development_data_v3'):
++        for root in (RUNS,BUNDLE,REPORT/'graph_development_data_v4'):
+             with self.assertRaises(PreparationError):guard('open',(str(root/'x'),'wb',os.O_WRONLY|os.O_CREAT))
+         # Simulated audit events above perform no filesystem operations.
+         self.assertFalse(DATA.exists());self.assertFalse(PENDING.exists());self.assertFalse(RUNS.exists())

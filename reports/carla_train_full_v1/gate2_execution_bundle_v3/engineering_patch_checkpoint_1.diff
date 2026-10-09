@@ -1,0 +1,520 @@
+--- v2/gate2_common.py
++++ v3/gate2_common.py
+@@ -17,7 +17,10 @@
+ STORE = REPORT / 'gate1_local_extraction_v8'
+ PARTITION_BUNDLE = REPORT / 'partition_freeze_bundle_v1'
+ PARTITION = REPORT / 'partition_freeze_v1'
+-TARGET = REPORT / 'gate2_train_health_v2'
++TARGET = REPORT / 'gate2_train_health_v3'
++V2 = REPORT / 'gate2_execution_bundle_v2'
++V2_RUNTIME = REPORT / 'gate2_train_health_v2'
++V2_SEAL = 'd268be110ba02d86523e35f002bbcd4164b139811244bbdd2cde54979d9e212c'
+ V1 = REPORT / 'gate2_execution_bundle_v1'
+ V1_RUNTIME = REPORT / 'gate2_train_health_v1'
+ V1_SEAL = '9d1ddc92177718cae655184cf4b5409078034c1fdbde379be90f30d802a24ec2'
+@@ -29,7 +32,7 @@
+ PARTITION_SHA = '706c819ec568fd2dd2a1a89d9d7cc13eed7ba86466d8b5aa4ad4de277a863230'
+ PARTITION_SEAL = 'bd257b2d2d5d4c9b28ea12419418bdea0f9b03473757360e538abca61ce0550d'
+ PARTITION_BUNDLE_SEAL = 'e925e480a103c26e21bd5d3bca8eabf0f61db0485dd852732208f5320a05935d'
+-TOKEN = 'HUMAN_REVIEWED_EXPERIMENT_2B_GATE2_TRAIN_HEALTH_V2'
++TOKEN = 'HUMAN_REVIEWED_EXPERIMENT_2B_GATE2_TRAIN_HEALTH_V3'
+ SOURCE = {'path': r'E:\carlanomaly-base-train.tar.gz', 'bytes': 146453559283,
+           'sha256': '6cf22ecf7d2910b45ed71127525834d1a4a26a65cc65918e7b5e27da95a38683'}
+ MODALITIES = ('Camera', 'Seg', 'IMU')
+--- v2/gate2_forensics.py
++++ v3/gate2_forensics.py
+@@ -1,6 +1,6 @@
+ """Independent, read-only binding of the stopped v1 engineering attempt."""
+ from gate2_common import (V1, V1_RUNTIME, V1_SEAL, HEAD, V8_SEAL, PARTITION_SHA,
+-    PARTITION_SEAL, SOURCE, require, safe_path, read_json, verify_seal,
++    PARTITION_SEAL, SOURCE, V2, V2_RUNTIME, V2_SEAL, require, safe_path, read_json, verify_seal,
+     hash_file, canonical, digest)
+ 
+ 
+@@ -60,3 +60,88 @@
+         'real_pseudo_generated': False, 'graph_constructed': False, 'GAT_executed': False,
+         'TEST_requests': 0, 'network_requests': 0, 'historical_runtime_mutated': False,
+         'action': 'STOP FOR HUMAN REVIEW'}
++
++
++V2_FIT_SEALS = {
++    'fit-Camera': '531ec474585318ac91ba8d7f281690c432a4a444fee96cf743a5a44222780bb6',
++    'fit-IMU': '3ca96bf8a5aa1042619ab721c3f517bb38df0e592ff5f60aa509e946de4d3bd4',
++    'fit-Seg': 'ee72ee058a38ca87c451e26f4c814d7db92a1ac000d6cbbe278ebcded22f8075'}
++
++
++def verify_v2_failure():
++    verify_seal(V2, V2_SEAL)
++    root = safe_path(V2_RUNTIME)
++    require({p.name for p in root.iterdir()} == {'run_manifest.json','lease','units','attempts'} and
++            (root/'lease').read_bytes() == b'0', 'Unexpected v2 runtime or final scientific evidence')
++    m = read_json(root/'run_manifest.json')
++    require((root/'run_manifest.json').read_bytes() == canonical(m) and
++            m['schema'] == 'transactional-Experiment-2B-Gate2-v2' and m['HEAD'] == HEAD and
++            m['bundle_seal'] == V2_SEAL and m['v8_seal'] == V8_SEAL and
++            m['partition_sha256'] == PARTITION_SHA and m['partition_runtime_seal'] == PARTITION_SEAL and
++            m['bindings'] == read_json(V2/'execution_bindings.json') and
++            m['membership'] == m['bindings']['membership'] and m['environment'] == m['bindings']['environment'] and
++            m['source_binding']['identity'] == SOURCE and
++            m['upstream_completion']['source_binding'] == m['source_binding'] and
++            m['block_resolutions'] == read_json(V2/'verified_block_resolutions.json') and
++            m['historical_v1_failure_binding'] == m['bindings']['v1_failure_evidence_sha256'] and
++            m['graph_constructed'] is False and m['GAT_executed'] is False and
++            m['TEST_requests'] == m['network_requests'] == 0, 'V2 runtime immutable binding mismatch')
++    units = root/'units'
++    require({p.name for p in units.iterdir()} == set(V2_FIT_SEALS), 'V2 unit set changed or CAL/audit/decision exists')
++    fit_records = {}
++    for name, expected in V2_FIT_SEALS.items():
++        path = safe_path(units/name)
++        verify_seal(path, expected)
++        unit = read_json(path/'unit.json')
++        fit = read_json(path/'fit_binding.json')
++        require(unit['name'] == name and unit['run_manifest_sha256'] == hash_file(root/'run_manifest.json') and
++                unit['inputs']['partition_sha256'] == PARTITION_SHA and
++                unit['inputs']['fit_input_sha256'] == fit['input_array_sha256'] and
++                fit['FIT_NORMAL'] == m['membership']['FIT_NORMAL'] and
++                fit['CAL_NORMAL_excluded'] == m['membership']['CAL_NORMAL'] and
++                fit['ordered_consumed_scenarios'] == sorted(m['membership']['FIT_NORMAL']) and
++                fit['total_rows'] == 76*2999 and fit['bootstrap_members'] == 5 and fit['bootstrap_seed'] == 42 and
++                fit['pseudo_rows'] == fit['TEST_rows'] == 0, 'V2 immutable FIT provenance mismatch')
++        fit_records[name] = {'seal':expected,'fit_binding_sha256':hash_file(path/'fit_binding.json'),
++            'unit_json_sha256':hash_file(path/'unit.json'),
++            'upstream_state_hashes':read_json(path/'upstream_state_hashes.json')}
++    attempts = list((root/'attempts').iterdir())
++    require(len(attempts) == 1 and attempts[0].name == 'ea6a5f043e444d5badcd0d1fb999c4a5',
++            'Ambiguous v2 stopped attempt')
++    attempt = safe_path(attempts[0])
++    attempt_seal = verify_seal(attempt)['seal']
++    request = read_json(attempt/'attempt.json')
++    ledger = read_json(attempt/'failure_ledger.json')
++    require(request['attempt'] == attempt.name and
++            request['run_manifest_sha256'] == hash_file(root/'run_manifest.json') and
++            ledger['phase'] == 'CAL_pseudo_only' and ledger['status'] == 'EXECUTION_STOPPED' and
++            ledger['exception'] == "KeyError('record_sha256')" and ledger['committed_units'] == V2_FIT_SEALS and
++            ledger['graph_constructed'] is False and ledger['GAT_executed'] is False and
++            ledger['TEST_requests'] == ledger['network_requests'] == 0 and
++            ledger['scientific_repair_performed'] is False and ledger['preserve_all_evidence'] is True,
++            'V2 stopped execution ledger mismatch')
++    require("self.current['record_sha256']" in ledger['traceback'] and 'scenario_complete' in ledger['traceback'],
++            'V2 evidence-binding failure cause changed')
++    raw = safe_path(attempt/'raw-Town01__scenario-5')
++    require(raw.is_dir() and {p.name for p in attempt.iterdir()} == {'attempt.json','failure_ledger.json',
++            'methodology_decision.md','DIRECTORY_INVENTORY.json','SHA256SUMS','SHA256SUMS.sha256',raw.name},
++            'V2 raw/pending/failure inventory changed')
++    files = [p for p in raw.rglob('*') if p.is_file()]
++    require(len(files) == 1288 and sum(p.stat().st_size for p in files) == 329415042,
++            'V2 failed raw CAL workspace incomplete')
++    owned = read_json(raw/'owned_workspace.json')
++    require(owned['scenario_id'] == 'Town01/scenario-5' and
++            owned['run_manifest_sha256'] == hash_file(root/'run_manifest.json'), 'V2 raw workspace ownership mismatch')
++    return {'v2_bundle':str(V2),'v2_bundle_seal':V2_SEAL,'runtime':str(root),
++        'run_manifest_sha256':hash_file(root/'run_manifest.json'),'attempt':attempt.name,
++        'attempt_seal':attempt_seal,'failure_ledger_sha256':hash_file(attempt/'failure_ledger.json'),
++        'attempt_json_sha256':hash_file(attempt/'attempt.json'),'failure_ledger':ledger,
++        'committed_units':V2_FIT_SEALS,'FIT_records':fit_records,
++        'no_CAL_source_or_audit_or_decision_unit':True,'FINAL_absent':True,
++        'scientific_PASS_FAIL_result_obtained':False,'scientific_validity_inferred':False,
++        'historical_FIT_units_are_intermediate_evidence_only':True,
++        'raw_workspace':str(raw),'raw_files':len(files),'raw_bytes':sum(p.stat().st_size for p in files),
++        'raw_workspace_bound_by_verified_attempt_seal':True,
++        'v2_mutated_resumed_repaired_resealed_or_cleaned':False,
++        'graph_constructed':False,'GAT_executed':False,'TEST_requests':0,'network_requests':0,
++        'scientific_repair_performed':False,'action':'STOP FOR HUMAN REVIEW'}
+--- v2/gate2_preflight.py
++++ v3/gate2_preflight.py
+@@ -9,7 +9,7 @@
+ from pathlib import Path
+ from gate2_common import (BUNDLE, REPO, REPORT, V8, STORE, PARTITION, TARGET, HEAD,
+     V8_SEAL, PARTITION_SHA, PARTITION_SEAL, PARTITION_BUNDLE_SEAL, SOURCE, MODALITIES,
+-    DIMS, RECIPES, SEVERITIES, V1, V1_RUNTIME, V1_SEAL, V7_SEAL, TOKEN,
++    DIMS, RECIPES, SEVERITIES, V1, V1_RUNTIME, V1_SEAL, V2, V2_RUNTIME, V2_SEAL, V7_SEAL, TOKEN,
+     require, read_json, hash_file, verify_seal, canonical,
+     authenticate_upstream, install_guard, git, safe_path)
+ 
+@@ -60,7 +60,7 @@
+ 
+ def namespace_check(preparation=False):
+     safe_path(TARGET)
+-    allowed = {BUNDLE.name, TARGET.name, V1.name, V1_RUNTIME.name}
++    allowed = {BUNDLE.name, TARGET.name, V1.name, V1_RUNTIME.name, V2.name, V2_RUNTIME.name}
+     for path in REPORT.iterdir():
+         name = path.name.lower()
+         require(not ((name.startswith('gate2') or name.startswith('.gate2')) and path.name not in allowed),
+@@ -78,21 +78,27 @@
+                 'bootstrap_members': 5, 'bootstrap_seed': 42,
+                 'pseudo_rotation': list(RECIPES), 'active_pseudo_severities': SEVERITIES,
+                 'max_pseudo_per_tick': 1, 'pseudo_base_seed': 0, 'GNSS_downstream': 'EXCLUDED'}
+-    expected.update(schema='Experiment-2B-Gate2-engineering-amendment-v2',
++    expected.update(schema='Experiment-2B-Gate2-engineering-amendment-v3',
+                     real_runtime=TARGET.relative_to(REPO).as_posix(), authorization_token=TOKEN,
+-                    v7_seal=V7_SEAL, v1_bundle_seal=V1_SEAL,
++                    v7_seal=V7_SEAL, v1_bundle_seal=V1_SEAL, v2_bundle_seal=V2_SEAL,
++                    FIT_policy='Recompute frozen FIT under v3 manifest; no cross-runtime adoption',
+                     expected_storage_counts={'V8_NATIVE_EXTRACTED': 33, 'V7_TO_V8_IDENTITY_ADOPTION': 68},
+                     preparation_only=True, real_execution_authorized_now=False)
+     require(all(bindings.get(k) == value for k, value in expected.items()), 'Execution binding mismatch')
+-    from gate2_forensics import verify_v1_failure
++    from gate2_forensics import verify_v1_failure, verify_v2_failure
+     require(verify_v1_failure() == read_json(BUNDLE / 'v1_failure_evidence.json'),
+             'Preserved v1 failure evidence changed')
+     require(hash_file(BUNDLE / 'v1_failure_evidence.json') == bindings['v1_failure_evidence_sha256'],
+             'V1 forensic binding changed')
++    require(verify_v2_failure() == read_json(BUNDLE/'v2_failure_evidence.json') and
++            hash_file(BUNDLE/'v2_failure_evidence.json') == bindings['v2_failure_evidence_sha256'],
++            'Preserved v2 stopped execution evidence changed')
+     for relative, sha in bindings['sealed_validation_sources'].items():
+         require(hash_file(REPO / relative) == sha, 'Sealed validation source changed: ' + relative)
++    for name,sha in bindings['canonical_inventory_source_hashes'].items():
++        require(hash_file(V8/name) == sha, 'Canonical inventory implementation/evidence changed: ' + name)
+     for name, sha in bindings['unchanged_scientific_implementation'].items():
+-        require(hash_file(BUNDLE / name) == sha == hash_file(V1 / name),
++        require(hash_file(BUNDLE / name) == sha == hash_file(V2 / name),
+                 'Scientific implementation changed: ' + name)
+     require(bindings['preprocessing_policy_sha256'] ==
+             bindings['scientific_hashes']['preprocessing_policy_sha256'] ==
+@@ -150,10 +156,14 @@
+     resolutions = verify_all_resolutions()
+     require(resolutions['counts'] == bindings['expected_storage_counts'] and
+             resolutions['membership'] == bindings['membership'], 'Block resolution counts/roles changed')
++    from gate2_replay_inventory import verify_all_replay_bindings
++    replay_inventory = verify_all_replay_bindings(evidence['index']['source_binding'])
++    require(replay_inventory['scenario_count'] == 101, 'Incomplete canonical replay inventory binding proof')
+     namespace_check(preparation)
+     return {'bindings': bindings, 'membership': bindings['membership'], 'environment': environment(),
+             'completion': evidence['completion'], 'source_binding': evidence['index']['source_binding'],
+             'preservation': preservation, 'block_resolutions': resolutions,
++            'replay_inventory_bindings': replay_inventory,
+             'summary': {'HEAD': HEAD, 'v8_seal_verified': V8_SEAL,
+                 'v8_COMPLETE_GATE1_verified': True, 'all_101_blocks_adoptions_verified': True,
+                 'partition_SHA256_verified': PARTITION_SHA,
+@@ -172,6 +182,10 @@
+                 'adopted_v7_feature_bytes_identical': True, 'native_v8_feature_bytes_unchanged': True,
+                 'feature_recomputed': False, 'adopted_feature_files_copied': False,
+                 'v1_failure_evidence_verified': True, 'v1_committed_units': {},
++                'v2_failure_evidence_verified': True,
++                'v2_committed_FIT_unit_seals': read_json(BUNDLE/'v2_failure_evidence.json')['committed_units'],
++                'all_101_canonical_raw_ledger_digests_cross_checked_with_sealed_index':True,
++                'raw_ledger_record_sha256_field_present':False,
+                 'pseudo_generated_now': False, 'graph_constructed': False, 'GAT_executed': False,
+                 'TEST_requests': 0, 'network_requests': 0, 'action': 'STOP FOR HUMAN REVIEW'}}
+ 
+--- v2/gate2_pseudo.py
++++ v3/gate2_pseudo.py
+@@ -72,9 +72,11 @@
+ 
+ 
+ class CALSink:
+-    def __init__(self, runtime, science, records, source_binding):
++    def __init__(self, runtime, science, records, source_binding, replay_inventory):
+         self.runtime, self.science, self.membership = runtime, science, runtime.evidence['membership']
+         self.records, self.source_binding = iter(records), source_binding
++        self.replay_inventory = replay_inventory
++        self.scenario_inventory_record_sha256 = None
+         self.current = None
+         self.stream = None
+         self.ordinals_verified = []
+@@ -85,6 +87,7 @@
+         require(expected is not None and expected['scenario_id'] == record['scenario_id'] and
+                 expected['archive_ordinal'] == record['archive_ordinal'] and
+                 expected['first_tar_offset'] == record['first_tar_header_offset'], 'TRAIN source order mismatch')
++        self.scenario_inventory_record_sha256 = self.replay_inventory.bind(expected,len(self.ordinals_verified)+1)
+         self.current = expected
+         self.expected_members = iter(expected['members'])
+         sid = expected['scenario_id']
+@@ -140,6 +143,8 @@
+             require(expected == record, 'Exact sealed TRAIN member disagreement')
+ 
+     def scenario_complete(self, record):
++        require(self.replay_inventory.bind(self.current,len(self.ordinals_verified)+1) ==
++                self.scenario_inventory_record_sha256, 'Replay record changed before CAL consumption')
+         require(self.current['scenario_id'] == record['scenario_id'] and
+                 next(self.expected_members, None) is None and
+                 record['member_chain_sha256'] == self.current['parser_member_chain_sha256'],
+@@ -195,7 +200,7 @@
+             write_jsonl_gzip(pending / 'provenance.jsonl.gz', rows)
+             write_new(pending / 'pseudo_summary.json', pretty(stats))
+         self.runtime.commit(self.unit_name, writer, {'source_binding': self.source_binding,
+-            'scenario_inventory_record_sha256': self.current['record_sha256'],
++            'scenario_inventory_record_sha256': self.scenario_inventory_record_sha256,
+             'clean_block_sha256': clean['block_npz_sha256']})
+         # Only owned successful scratch is released, after sealed unit readback.
+         owned = safe_path(self.raw)
+@@ -222,7 +227,9 @@
+     from local_source import fingerprint
+     binding = runtime.evidence['source_binding']
+     require(fingerprint(SOURCE['path']) == binding['fingerprint'], 'Source fingerprint changed before CAL replay')
+-    sink = CALSink(runtime, science, local_inventory.inventory_records(V8), binding)
++    from gate2_replay_inventory import load_verified_replay_inventory
++    replay_inventory = load_verified_replay_inventory(binding)
++    sink = CALSink(runtime, science, local_inventory.inventory_records(V8,replay_inventory.index), binding, replay_inventory)
+     parser = TrainReplay(sink=sink, on_member=lambda member: None)
+     last = time.monotonic()
+     try:
+@@ -239,6 +246,7 @@
+                 sink.ordinals_verified == list(range(1, 102)) and
+                 next(sink.records, None) is None and fingerprint(SOURCE['path']) == binding['fingerprint'],
+                 'Incomplete or mismatched full CAL source replay')
++        replay_inventory.finish(sink.ordinals_verified)
+         def writer(pending):
+             write_new(pending / 'source_replay.json', pretty({'compressed_bytes': parser.compressed_bytes,
+                 'compressed_sha256': parser.compressed_hash.hexdigest(), 'gzip_eof': True, 'TAR_end': True,
+--- v2/gate2_runtime.py
++++ v3/gate2_runtime.py
+@@ -16,14 +16,17 @@
+ 
+ 
+ def manifest_for(bundle_seal, evidence):
+-    return {'schema': 'transactional-Experiment-2B-Gate2-v2', 'experiment': 'Experiment 2B',
++    return {'schema': 'transactional-Experiment-2B-Gate2-v3', 'experiment': 'Experiment 2B',
+             'HEAD': HEAD, 'bundle_seal': bundle_seal, 'v8_seal': V8_SEAL,
+             'partition_sha256': PARTITION_SHA, 'partition_runtime_seal': PARTITION_SEAL,
+             'bindings': evidence['bindings'], 'environment': evidence['environment'],
+             'source_binding': evidence['source_binding'], 'membership': evidence['membership'],
+             'upstream_completion': evidence['completion'],
+             'block_resolutions': evidence.get('block_resolutions'),
++            'replay_inventory_bindings': evidence.get('replay_inventory_bindings'),
+             'historical_v1_failure_binding': evidence['bindings'].get('v1_failure_evidence_sha256'),
++            'historical_v2_failure_binding': evidence['bindings'].get('v2_failure_evidence_sha256'),
++            'FIT_policy': 'Recompute frozen FIT under v3 manifest; no cross-runtime adoption',
+             'graph_constructed': False,
+             'GAT_executed': False, 'TEST_requests': 0, 'network_requests': 0,
+             'prediction_semantics': evidence['bindings']['prediction_semantics']}
+--- v2/prepare_amendment.py
++++ v3/prepare_amendment.py
+@@ -6,7 +6,7 @@
+ import time
+ import traceback
+ from gate2_common import *
+-from gate2_forensics import verify_v1_failure
++from gate2_forensics import verify_v1_failure, verify_v2_failure
+ from gate2_preflight import namespace_check, validate_bindings, verify_inputs, progress_printer
+ 
+ 
+@@ -16,35 +16,43 @@
+     namespace_check(preparation=True)
+     failure = verify_v1_failure()
+     write_new(BUNDLE / 'v1_failure_evidence.json', pretty(failure))
++    v2_failure = verify_v2_failure()
++    write_new(BUNDLE/'v2_failure_evidence.json',pretty(v2_failure))
+     authenticate_upstream()
+     from partition_common import evidence_files
+-    roots = read_json(V1 / 'preservation_baseline.json')['roots'] + [
+-        V1.relative_to(REPO).as_posix(), V1_RUNTIME.relative_to(REPO).as_posix()]
++    roots = read_json(V2 / 'preservation_baseline.json')['roots'] + [
++        V2.relative_to(REPO).as_posix(), V2_RUNTIME.relative_to(REPO).as_posix()]
+     baseline = evidence_files(roots)
+     write_new(BUNDLE / 'preservation_baseline.json', pretty(baseline))
+-    bindings = read_json(V1 / 'execution_bindings.json')
+-    bindings.update(schema='Experiment-2B-Gate2-engineering-amendment-v2',
++    bindings = read_json(V2 / 'execution_bindings.json')
++    bindings.update(schema='Experiment-2B-Gate2-engineering-amendment-v3',
+         prepared_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+         real_runtime=TARGET.relative_to(REPO).as_posix(), authorization_token=TOKEN,
+-        v1_bundle_seal=V1_SEAL, v7_seal=V7_SEAL,
++        v1_bundle_seal=V1_SEAL, v2_bundle_seal=V2_SEAL, v7_seal=V7_SEAL,
++        v2_failure_evidence_sha256=hash_file(BUNDLE/'v2_failure_evidence.json'),
+         v1_failure_evidence_sha256=hash_file(BUNDLE / 'v1_failure_evidence.json'),
+         expected_storage_counts={'V8_NATIVE_EXTRACTED': 33, 'V7_TO_V8_IDENTITY_ADOPTION': 68},
+-        amendment_scope='Engineering storage resolution only; unchanged Experiment 2B science',
++        amendment_scope='Engineering canonical CAL inventory-record evidence binding only; unchanged Experiment 2B science',
++        FIT_policy='Recompute frozen FIT under v3 manifest; no cross-runtime adoption',
+         sealed_validation_sources={p.relative_to(REPO).as_posix(): hash_file(p)
+                                    for p in sorted(V8.glob('*.py'))},
+-        unchanged_scientific_implementation={n: hash_file(V1 / n) for n in
+-            ('gate2_science.py', 'gate2_audit.py', 'gate2_pseudo.py', 'execute_gate2.py')})
++        unchanged_scientific_implementation={n: hash_file(V2 / n) for n in
++            ('gate2_science.py','gate2_audit.py','execute_gate2.py','gate2_data.py','gate2_resolution.py')},
++        canonical_inventory_source_hashes={n:hash_file(V8/n) for n in
++            ('local_inventory.py','atomic_publication.py','source_inventory.json','inventory_scenarios.jsonl.gz')})
+     write_new(BUNDLE / 'execution_bindings.json', pretty(bindings))
+     validate_bindings(bindings)
+     require(all(v == 0 for v in counters.values()), 'Preparation initialization guard violation')
+     write_new(BUNDLE / 'initial_preparation_audit.json', pretty({
+-        'v1_failure_proved_before_v2_bindings': True, 'v1_committed_units': {},
++        'v1_failure_proved_before_v3_bindings': True, 'v1_committed_units': {},
++        'v2_stopped_failure_and_three_FIT_units_verified_before_v3_bindings':True,
++        'v2_committed_units':v2_failure['committed_units'],
+         'baseline_files': len(baseline['files']), 'baseline_directories': len(baseline['directories']),
+         'guard_counters': counters, 'real_fitting_executed': False,
+         'real_calibration_executed': False, 'real_pseudo_generated': False,
+         'graph_constructed': False, 'GAT_executed': False, 'TEST_requests': 0,
+         'network_requests': 0, 'real_runtime_created': False, 'action': 'STOP FOR HUMAN REVIEW'}))
+-    print('V2 bindings initialized; v1 stopped failure verified; baseline: %s files, %s directories' %
++    print('V3 bindings initialized; v1/v2 stopped failures verified; baseline: %s files, %s directories' %
+           (len(baseline['files']), len(baseline['directories'])), flush=True)
+ 
+ 
+@@ -62,6 +70,7 @@
+         write_new(BUNDLE / f'read_only_verification_attempt_{number}_results.json', pretty(audit))
+         write_new(BUNDLE / 'read_only_upstream_verification.json', pretty(audit))
+         write_new(BUNDLE / 'verified_block_resolutions.json', pretty(evidence['block_resolutions']))
++        write_new(BUNDLE/'verified_replay_inventory_bindings.json',pretty(evidence['replay_inventory_bindings']))
+         print(json.dumps({k:v for k,v in audit.items() if k != 'scientific_hashes'}, indent=2), flush=True)
+     except BaseException as exc:
+         path = BUNDLE / f'read_only_verification_attempt_{number}_failure.txt'
+@@ -90,12 +99,20 @@
+     validate_bindings(bindings)
+     audit = read_json(BUNDLE / 'read_only_upstream_verification.json')
+     resolutions = read_json(BUNDLE / 'verified_block_resolutions.json')
++    replay = read_json(BUNDLE/'verified_replay_inventory_bindings.json')
+     require(audit['success'] and audit['source_full_sha256_remeasured'] and
+             audit['all_101_gate2_loader_resolutions_independently_verified'] and
+             audit['block_resolution_counts'] == bindings['expected_storage_counts'] == resolutions['counts'] and
+             resolutions['membership'] == bindings['membership'] and
+             digest(canonical(resolutions['resolutions'])) == resolutions['resolution_manifest_sha256'] ==
+             audit['block_resolution_manifest_sha256'], 'Incomplete verification/resolution evidence')
++    require(audit['all_101_canonical_raw_ledger_digests_cross_checked_with_sealed_index'] and
++            replay['scenario_count'] == 101 and
++            replay['index_file_sha256'] == bindings['canonical_inventory_source_hashes']['source_inventory.json'] and
++            replay['ledger_file_sha256'] == bindings['canonical_inventory_source_hashes']['inventory_scenarios.jsonl.gz'] and
++            all(r['canonical_record_sha256'] == r['indexed_record_sha256'] and
++                not r['raw_ledger_contains_record_sha256'] for r in replay['bindings']),
++            'Incomplete canonical replay inventory proof')
+     source = read_json(V8 / 'source_verification.json')
+     require(fingerprint(SOURCE['path']) == source['fingerprint'], 'Source changed after full verification')
+     require(git('rev-parse', 'HEAD') == HEAD and not git('diff', '--name-only') and
+@@ -103,6 +120,8 @@
+     require(all(v == 0 for v in counters.values()), 'Seal guard violation')
+     write_new(BUNDLE / 'preservation_audit.json', pretty(dict(preservation,
+         v1_failure_evidence_verified=True, v1_bundle_seal=V1_SEAL,
++        v2_failure_evidence_verified=True,v2_bundle_seal=V2_SEAL,v2_runtime_unchanged=True,
++        v2_FIT_and_raw_pending_failed_attempt_seals_unchanged=True,
+         v1_runtime_unchanged=True, all_historical_failure_pending_attempt_evidence_unchanged=True,
+         baseline_sha256=hash_file(BUNDLE / 'preservation_baseline.json'))))
+     names = sorted([p.name for p in BUNDLE.iterdir()] +
+@@ -119,8 +138,8 @@
+         commit_performed=False, push_performed=False,
+         synthetic_tests_note='Modeling/calibration/pseudo in tests use artificial fixtures only; no real fitting, calibration or pseudo generation occurred.',
+         bundle_files=names, bundle_seal_record='Detached SHA256SUMS.sha256; no self-referential hash',
+-        future_read_only_preflight_command='python -B reports/carla_train_full_v1/gate2_execution_bundle_v2/gate2_preflight.py --bundle-seal <REVIEWED_V2_SEAL>',
+-        future_authorized_execution_command='python -B reports/carla_train_full_v1/gate2_execution_bundle_v2/execute_gate2.py --bundle-seal <REVIEWED_V2_SEAL> --authorize-gate2 ' + TOKEN,
++        future_read_only_preflight_command='python -B reports/carla_train_full_v1/gate2_execution_bundle_v3/gate2_preflight.py --bundle-seal <REVIEWED_V3_SEAL>',
++        future_authorized_execution_command='python -B reports/carla_train_full_v1/gate2_execution_bundle_v3/execute_gate2.py --bundle-seal <REVIEWED_V3_SEAL> --authorize-gate2 ' + TOKEN,
+         action='STOP FOR HUMAN REVIEW')
+     write_new(BUNDLE / 'preparation_audit.json', pretty(audit))
+     seal = seal_tree(BUNDLE)
+--- v2/run_synthetic_tests.py
++++ v3/run_synthetic_tests.py
+@@ -98,6 +98,9 @@
+     import test_storage_amendment
+     test_storage_amendment.SCRATCH = scratch
+     suite.addTests(unittest.defaultTestLoader.loadTestsFromModule(test_storage_amendment))
++    import test_replay_inventory
++    test_replay_inventory.SCRATCH = scratch
++    suite.addTests(unittest.defaultTestLoader.loadTestsFromModule(test_replay_inventory))
+     suite.addTests(frozen_regressions(test_gate2.SCIENCE))
+     transcript = io.StringIO()
+     result = unittest.TextTestRunner(stream=transcript, verbosity=2).run(suite)
+@@ -116,6 +119,9 @@
+               'frozen_regression_runner': 'Original selected AST function bodies with limited pytest assertion adapter, and original v8 OOVRuleTests under unittest',
+               'attempt': number}
+     report['success'] &= all(v == 0 for v in counters.values())
++    if test_replay_inventory.SCHEMA_EVIDENCE is not None:
++        write_new(BUNDLE/f'realistic_schema_regression_attempt_{number}_evidence.json',
++                  pretty(test_replay_inventory.SCHEMA_EVIDENCE))
+     write_new(BUNDLE / f'synthetic_test_attempt_{number}_transcript.txt', transcript.getvalue().encode())
+     write_new(BUNDLE / f'synthetic_test_attempt_{number}_results.json', pretty(report))
+     print(transcript.getvalue(), end='')
+--- v2/test_gate2.py
++++ v3/test_gate2.py
+@@ -638,11 +638,21 @@
+         observed.feed(source)
+         self.assertTrue(observed.finished)
+         records = [{'scenario_id': r['scenario_id'], 'archive_ordinal': r['archive_ordinal'],
++                    'schema':'frozen-local-TRAIN-scenario-v7','town':r['scenario_id'].split('/')[0],
++                    'n_ticks':3000,'emitted_rows':2999,
+                     'first_tar_offset': r['first_tar_header_offset'],
+                     'parser_member_chain_sha256': r['member_chain_sha256'],
+-                    'record_sha256': '0' * 64,
+                     'members': [m for m in observed.members if m['scenario_id'] == r['scenario_id']]}
+                    for r in observed.completed]
++        import local_inventory
++        from gate2_replay_inventory import ReplayInventory
++        for record in records:
++            record['source_member_set_sha256'] = local_inventory.member_digest(record['members'])
++        entries = [dict(local_inventory.summary(r),record_sha256=local_inventory.digest(r)) for r in records]
++        inventory_index = {'schema':'frozen-local-TRAIN-inventory-v7','source_binding':{'synthetic':True},
++            'ledger_name':'inventory_scenarios.jsonl.gz','scenarios':entries,'scenario_count':len(entries),
++            'scenario_index_sha256':local_inventory.digest(entries)}
++        self.assertTrue(all('record_sha256' not in r for r in records))
+         arrays = {'camera': np.repeat(SCIENCE['camera_embedding_features'](decoded_camera)[None, :], 2999, axis=0),
+                   'seg': np.repeat(SCIENCE['segmentation_histogram_features'](SCIENCE['sanitize'](segmentation)[0])[None, :], 2999, axis=0),
+                   'imu': np.stack([SCIENCE['imu_window_features'](imu[max(0, t - 11):t + 1]) for t in range(1, 3000)]),
+@@ -657,7 +667,8 @@
+         clean = {'arrays': arrays, 'block_npz_sha256': '0' * 64}
+         with run.lease():
+             run.begin_attempt()
+-            sink = CALSink(run, SCIENCE, records, evidence['source_binding'])
++            sink = CALSink(run, SCIENCE, records, evidence['source_binding'],
++                           ReplayInventory(inventory_index,evidence['source_binding'],local_inventory))
+             replay = TrainReplay(sink=sink, on_member=lambda member: None)
+             with patch('gate2_pseudo.load_clean', return_value=clean), \
+                  patch('gate2_pseudo.shutil.disk_usage', return_value=type('Disk', (), {'free': 1 << 50})()):
+@@ -665,6 +676,8 @@
+             self.assertTrue(replay.finished)
+             self.assertEqual(sink.ordinals_verified, [1, 2])
+             unit = run.unit('cal-' + sid.replace('/', '__'))
++            self.assertEqual(read_json(unit/'unit.json')['inputs']['scenario_inventory_record_sha256'],
++                             local_inventory.digest(records[0]))
+             generated, provenance = read_pseudo(unit)
+             self.assertGreater(len(provenance), 0)
+             self.assertEqual(len({r['parent_tick'] for r in provenance}), len(provenance))
+@@ -679,11 +692,20 @@
+     def test_source_member_mismatch_stops_before_pseudo_generation(self):
+         run = RuntimeTests.runtime(self)
+         expected = {'scenario_id': 'synthetic-CAL', 'archive_ordinal': 1,
++                    'schema':'frozen-local-TRAIN-scenario-v7','n_ticks':3000,'emitted_rows':2999,
+                     'first_tar_offset': 512, 'members': [{'path': 'train/synthetic-CAL/imu.feather',
+-                    'sha256': 'a' * 64}], 'parser_member_chain_sha256': 'b' * 64}
+-        with run.lease():
+-            run.begin_attempt()
+-            sink = CALSink(run, SCIENCE, [expected], {'synthetic': True})
++                    'sha256': 'a' * 64}], 'parser_member_chain_sha256': 'b' * 64,
++                    'source_member_set_sha256':'d'*64}
++        import local_inventory
++        from gate2_replay_inventory import ReplayInventory
++        entries = [dict(local_inventory.summary(expected),record_sha256=local_inventory.digest(expected))]
++        inventory_index = {'schema':'frozen-local-TRAIN-inventory-v7','source_binding':{'synthetic':True},
++            'ledger_name':'inventory_scenarios.jsonl.gz','scenarios':entries,'scenario_count':1,
++            'scenario_index_sha256':local_inventory.digest(entries)}
++        with run.lease():
++            run.begin_attempt()
++            sink = CALSink(run, SCIENCE, [expected], {'synthetic': True},
++                           ReplayInventory(inventory_index,{'synthetic':True},local_inventory))
+             sink.scenario_begin({'scenario_id': 'synthetic-CAL', 'archive_ordinal': 1,
+                                  'first_tar_header_offset': 512})
+             with self.assertRaises(ReviewRequired):
+--- v2/test_storage_amendment.py
++++ v3/test_storage_amendment.py
+@@ -344,20 +344,27 @@
+     def test_distinct_runtime_and_authorization_cannot_resume_v1(self):
+         from execute_gate2 import authorization
+         self.assertNotEqual(c.TARGET,c.V1_RUNTIME)
+-        self.assertEqual(c.TARGET.name,'gate2_train_health_v2')
++        self.assertEqual(c.TARGET.name,'gate2_train_health_v3')
+         with self.assertRaises(c.ReviewRequired):
+             authorization('HUMAN_REVIEWED_EXPERIMENT_2B_GATE2_TRAIN_HEALTH_V1')
++        with self.assertRaises(c.ReviewRequired):
++            authorization('HUMAN_REVIEWED_EXPERIMENT_2B_GATE2_TRAIN_HEALTH_V2')
+ 
+     def test_future_runtime_binds_complete_resolutions_and_historical_failure(self):
+         from gate2_runtime import manifest_for
+-        e={'bindings':{'prediction_semantics':c.SEMANTICS,'v1_failure_evidence_sha256':'a'*64},
++        e={'bindings':{'prediction_semantics':c.SEMANTICS,'v1_failure_evidence_sha256':'a'*64,
++                       'v2_failure_evidence_sha256':'c'*64},
+            'environment':{},'source_binding':{},'membership':{},'completion':{},
+            'block_resolutions':{'synthetic':True}}
+         manifest=manifest_for('b'*64,e)
+         self.assertEqual(manifest['block_resolutions'],e['block_resolutions'])
+         self.assertEqual(manifest['historical_v1_failure_binding'],'a'*64)
+-        self.assertEqual(manifest['schema'],'transactional-Experiment-2B-Gate2-v2')
++        self.assertEqual(manifest['schema'],'transactional-Experiment-2B-Gate2-v3')
++        self.assertEqual(manifest['historical_v2_failure_binding'],'c'*64)
++        self.assertEqual(manifest['FIT_policy'],'Recompute frozen FIT under v3 manifest; no cross-runtime adoption')
+ 
+     def test_scientific_implementation_is_byte_identical_to_v1(self):
+-        for name in ('gate2_science.py','gate2_audit.py','gate2_pseudo.py','execute_gate2.py'):
++        for name in ('gate2_science.py','gate2_audit.py','execute_gate2.py'):
+             self.assertEqual((c.BUNDLE/name).read_bytes(),(c.V1/name).read_bytes())
++        for name in ('gate2_data.py','gate2_resolution.py'):
++            self.assertEqual((c.BUNDLE/name).read_bytes(),(c.V2/name).read_bytes())
