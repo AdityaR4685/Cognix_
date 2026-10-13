@@ -1,0 +1,58 @@
+{
+  "checkpoint_freeze_seal": "9f787f8c3f8cb093b1daaea1a3bf414265456f5f0b139ac7f1d5e176c9d9a62c",
+  "expected_checkpoint_freeze_seal": "9f787f8c3f8cb093b1daaea1a3bf414265456f5f0b139ac7f1d5e176c9d9a62c",
+  "expected_download_evidence_seal": "45aa8860a0f3ca6423fffd0977181cfff2ea61f57d4772ba57c293d7e0cd43be",
+  "expected_test_protocol_seal": "d4ceb25023f49acc96ab2a62f05f7fdc92c88c608705ce5fbc34dfe64367691e",
+  "expected_test_structure_seal": "8e6493a29170a7effb6eec25ce2522f2c59f1ce28ea003af8766975bf7ed5c82",
+  "feature_contract": {
+    "Camera_dim": 18,
+    "IMU_dim": 10,
+    "Seg_OOV": "channel 0 IDs above 28 remap to 22 before frozen 29-bin histogram",
+    "Seg_dim": 29,
+    "emitted_ticks": "1..n_ticks-1",
+    "imu_window": "max(0,t-11)..t inclusive",
+    "tick_zero": "decode/validate only, not emitted"
+  },
+  "prediction_phase_policy": {
+    "allowed_payloads": [
+      "rgb-front/*.jpg",
+      "segmentation-front/*.png",
+      "imu.feather"
+    ],
+    "forbidden_before_prediction_seal": [
+      "anomaly-observation.feather",
+      "anomaly-front/*"
+    ],
+    "labels_opened": false,
+    "optimizer": false,
+    "other_payloads_unused": true,
+    "predictions_generated": false,
+    "recalibration": false,
+    "representation_fitting": false,
+    "threshold_tuning": false,
+    "training": false
+  },
+  "runtime": {
+    "Pillow": "12.3.0",
+    "executable": "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "executable_sha256": "4942b86a6597e5aee0128daa00050ed79bc21f6e709a78eb19cbfeb0c2f39ac9",
+    "inference_device_planned": "CPU",
+    "numpy": "2.5.1",
+    "pandas": "3.0.3",
+    "platform": "win32",
+    "pyarrow": "25.0.1",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "torch": "2.14.0",
+    "training_environment_claimed": false
+  },
+  "schema": "COGNIX-label-blind-TEST-execution-preparation-v1",
+  "status": "PREPARATION_ONLY_NO_TEST_PAYLOAD_ACCESS",
+  "test_archive": {
+    "bytes": 91538225599,
+    "path": "E:\\carlanomaly-base-test.tar.gz",
+    "sha256": "267e48f2249deb0269ad950aa81bca57dc02e3bbdf2d73acc172af267b18254a"
+  },
+  "test_download_evidence_seal": "45aa8860a0f3ca6423fffd0977181cfff2ea61f57d4772ba57c293d7e0cd43be",
+  "test_protocol_seal": "d4ceb25023f49acc96ab2a62f05f7fdc92c88c608705ce5fbc34dfe64367691e",
+  "test_structure_seal": "8e6493a29170a7effb6eec25ce2522f2c59f1ce28ea003af8766975bf7ed5c82"
+}

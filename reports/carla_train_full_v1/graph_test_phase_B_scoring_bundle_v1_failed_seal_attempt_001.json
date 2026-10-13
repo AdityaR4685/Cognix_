@@ -1,0 +1,27 @@
+{
+  "actual_newline_byte_count": 0,
+  "attempt": 1,
+  "directory_scientific_payload_files": [
+    "phase_B_design.json",
+    "phase_B_metric_contract.json",
+    "phase_B_scorer.py",
+    "self_test_result.json"
+  ],
+  "literal_backslash_n_count": 4,
+  "malformed_SHA256SUMS_sha256": "304246b4db02e904a9d8c4868d10c39aee478cc7123f0d437b5097eec5851edc",
+  "metrics_on_TEST_computed": false,
+  "payload_sha256": {
+    "phase_B_design.json": "fb967f6fc493b6155a13cdf23bbd9764c87a239cf7b24a68f5fede22de766fa8",
+    "phase_B_metric_contract.json": "d34c562102f8a001e6edba93af62e95bce7039f3e508e763ad348e68fc582259",
+    "phase_B_scorer.py": "7409379626f7836909b428088b53d5fbab92d2f4d0b8b6f68d5a4b7f12fa5ddd",
+    "self_test_result.json": "290b41223c16ae9fb966eafbafdcd7d0df86446990f517f9a9819913752f4603"
+  },
+  "reason": "SHA256SUMS contained literal backslash-n separators instead of newline bytes",
+  "recorded_detached_seal": "304246b4db02e904a9d8c4868d10c39aee478cc7123f0d437b5097eec5851edc",
+  "retry_requires_review": true,
+  "schema": "COGNIX-TEST-phase-B-failed-seal-attempt-v1",
+  "scientific_payload_modified": false,
+  "status": "FAILED_SEAL_FORMATTING_ATTEMPT_PRESERVED",
+  "test_archive_opened": false,
+  "test_label_payload_opened": false
+}
