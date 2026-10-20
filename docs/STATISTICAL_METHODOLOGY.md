@@ -3,6 +3,8 @@
 ## Overview
 COGNIX evaluates the robustness and utility of uncertainty-aware mechanisms through structured statistical analysis. To separate signal from noise, COGNIX requires multi-seed evaluations for all core ablation studies (e.g. `NoGraph` vs `StandardGAT` vs `EpistemicGAT`).
 
+**Experiment 2B exception: frozen descriptive protocol.** The closed Experiment 2B used exactly five prespecified paired seeds (101, 202, 303, 404, and 505), retaining all 15 runs. Its mean paired differences, sample SD (ddof = 1), minima, and maxima are descriptive. No inferential significance test was prespecified or performed. The general guidance below does not authorize more seeds, post-hoc tests, confidence intervals, or a significance claim for this experiment. Its prespecified 627-scenario macro-AUROC was undefined, and paired AUROC effects were unavailable. See the [final report](research/COGNIX_FINAL_STATUS.md#6-experiment-2b-closed-held-out-graph-evaluation).
+
 ## Principles
 1. **Multi-Seed Stability**: A single seed is anecdotal. COGNIX defaults to using 20–30 random seeds for rigorous evaluation. This allows us to assess average algorithmic behavior across multiple datasets, random initialization matrices, and dropout masks.
 2. **Paired Comparisons**: To reduce variance across initialization states, ablation comparisons use the *same* sequence of random seeds. For example, Seed 42 is used for both `StandardGAT` and `EpistemicGAT`. This creates paired observations.

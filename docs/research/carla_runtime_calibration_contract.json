@@ -1,0 +1,364 @@
+{
+  "TEST_labels_decoded": false,
+  "TEST_used_for_calibration": false,
+  "agent_order": [
+    "Camera",
+    "IMU",
+    "Seg"
+  ],
+  "archive_identity": {
+    "archive_contents_opened_in_this_task": false,
+    "current_fingerprint": {
+      "bytes": 146453559283,
+      "ctime_ns": 1791279830951575600,
+      "device": 8847577511520410145,
+      "inode": 844424930132017,
+      "mtime_ns": 1791284879888543500
+    },
+    "fingerprint_matches_authenticated_history": true,
+    "fresh_full_archive_hash": false,
+    "historical_sha256": "6cf22ecf7d2910b45ed71127525834d1a4a26a65cc65918e7b5e27da95a38683",
+    "path": "E:\\carlanomaly-base-train.tar.gz"
+  },
+  "configuration_role": "existing predeclared demonstration default",
+  "conformal": {
+    "alpha": 0.05,
+    "artifact_id": null,
+    "artifact_seal": null,
+    "calibrated_confidence_field": "original fused confidence unchanged, with conformal metadata",
+    "class_order": [
+      "constructed_pseudo_or_non_normal",
+      "constructed_normal"
+    ],
+    "coverage_validity": "Not established: no independent CAL source; temporal/scenario exchangeability also needs a specified protocol",
+    "dtype": "float64",
+    "empty_sets_possible": true,
+    "fitted_quantile": null,
+    "implementation": "cognix.calibration.conformal.ConformalPredictor",
+    "inclusive_comparison": true,
+    "input": "numpy.array([[1 - fused_confidence, fused_confidence]])",
+    "input_shape": [
+      "N",
+      2
+    ],
+    "n_cal": null,
+    "nonconformity": "1 - input_probability[true_class]",
+    "probability_magnitude_transformed": false,
+    "quantile": "ceil((n_cal+1)*(1-alpha))-th sorted score of {cal_scores, +infinity}",
+    "serialization": "existing sorted cal_scores .npy; n_cal restored from length",
+    "target_coverage": 0.95
+  },
+  "contract_id": "carla-runtime-NoGraph-seed101-audit-v1",
+  "executable_calibration_artifact": false,
+  "feature_dimensions": {
+    "Camera": 18,
+    "IMU": 10,
+    "Seg": 29
+  },
+  "fusion": {
+    "collective_score": "clip(sum_i(normalized_weight_i * refined_p_i), 0, 1)",
+    "epsilon": 1e-06,
+    "implementation": "cognix.belief.fusion.EpistemicWeightedFusion",
+    "reliability": {
+      "Camera": 1.0,
+      "IMU": 1.0,
+      "Seg": 1.0
+    },
+    "reliability_source": "explicit uniform runtime assumption; no compatible fitted artifact identified",
+    "weight": "r_i/(e_i+epsilon); normalized by sum(raw_weights)+epsilon"
+  },
+  "graph": {
+    "artifact_id": "NoGraph_101",
+    "checkpoint_epoch": 97,
+    "checkpoint_sha256": "9069f465e169c0e6e057957fe12953dae994ea2ae875c99f755051d4c57f9863",
+    "node_dtype": "float32",
+    "node_feature_order": [
+      "prob_normal",
+      "epistemic",
+      "aleatoric"
+    ],
+    "node_probability": "clip(sigmoid(node_outputs[:, 0]), 1e-7, 1-1e-7)",
+    "original_epistemic_dtype": "float64",
+    "seed": 101,
+    "strategy": "NoGraph"
+  },
+  "partition": {
+    "CAL_count": 25,
+    "CAL_membership": [
+      "Town01/scenario-5",
+      "Town01/scenario-7",
+      "Town02/scenario-10",
+      "Town02/scenario-2",
+      "Town02/scenario-4",
+      "Town03/scenario-1",
+      "Town03/scenario-13",
+      "Town03/scenario-15",
+      "Town03/scenario-4",
+      "Town05/scenario-10",
+      "Town05/scenario-12",
+      "Town05/scenario-13",
+      "Town05/scenario-14",
+      "Town05/scenario-17",
+      "Town05/scenario-20",
+      "Town05/scenario-6",
+      "Town10HD/scenario-11",
+      "Town10HD/scenario-14",
+      "Town10HD/scenario-15",
+      "Town10HD/scenario-16",
+      "Town10HD/scenario-17",
+      "Town10HD/scenario-24",
+      "Town10HD/scenario-28",
+      "Town10HD/scenario-30",
+      "Town10HD/scenario-7"
+    ],
+    "FIT_count": 76,
+    "path": "reports/carla_train_full_v1/partition_freeze_v1/partition.json",
+    "sha256": "706c819ec568fd2dd2a1a89d9d7cc13eed7ba86466d8b5aa4ad4de277a863230",
+    "untouched_CAL_scenarios": [],
+    "upstream_fit_or_mapping_union_count": 101
+  },
+  "schema_version": 1,
+  "separate_calibrator_required_per_configuration": true,
+  "software": {
+    "fastapi": "0.141.1",
+    "interpreter": "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "pyarrow": "25.0.1",
+    "pytest": "9.1.1",
+    "python": "3.12.10",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.16.3",
+    "torch": "2.14.0"
+  },
+  "source_hashes": {
+    "cognix/adapters/carla/normality.py": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+    "cognix/adapters/carla/real_agents.py": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+    "cognix/adapters/carla/real_features.py": "66f3e6a59b42f65679642be137a0fadd081f61251cfe8728cd22e089e9110232",
+    "cognix/adapters/carla/replay_source.py": "9971bb62af6332caa4a43031176ddd199a2bb050143c679f6509c8355b1ed483",
+    "cognix/adapters/carla/runtime_artifacts.py": "b1e81e921279fab8aeef32dabc091b13357074219e7351e8ea4f559dc96bd088",
+    "cognix/artifacts/persistence.py": "a150bc0ccb7277fc98c3e7e05ecd39ea6968d364cc78ced0be838e26c57d8d41",
+    "cognix/belief/fusion.py": "3ee89834ed804ffb34a1f7c4ebc7b6b3789952b0166b23f04e7460ba3a1a52d8",
+    "cognix/calibration/conformal.py": "1e873f4198898ceb8409db59003fc3c26c4346f8309e45085ca1be7d0a4c927f",
+    "cognix/config/schema.py": "6cea5e8c87f6423caf36273260618a1c01ee5804589c0fb89d0d1c7faad2b8c4",
+    "cognix/core/interfaces.py": "18db110e7323f5b79c97bee5a7ba2bff40c71a02cdf2dd49c334c4addc86c031",
+    "cognix/core/types.py": "0d1f0565034d8802b1158fd5b19eb7f635841de9488ea15767e8cbe825ff5dcc",
+    "cognix/engine/decision_engine.py": "a0c75bb8aa75bc30c15e1a546e3827affe1a0f08d578982ba548a1dcb417dfa3",
+    "cognix/engine/pipeline.py": "be57eda85b07e91eb531478766282cdca885fd7b72d31fc0c1df9c487a85cfe3",
+    "cognix/engine/result.py": "7311b6c9f650045c48a309bcac171ab321e62b8b4154423093b6bd114088a6b5",
+    "cognix/runtime/bridge.py": "7f12599ba691732a087907a1befae25476cf105e7d463e07698e21d72478ea68",
+    "reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/kaggle_models.py": "9972c26ea427952309e77e0e5c5a4ccabf7647cd5599e9c1ad440cb75d02bdd2"
+  },
+  "status": "BLOCKED_NO_INDEPENDENT_TRAIN_CALIBRATION_SOURCE",
+  "target_semantics": "P(target=normal) under TRAIN-derived constructed clean-vs-pseudo task",
+  "upstream_artifacts": [
+    {
+      "CAL_overlap_count": 25,
+      "CAL_parent_scenarios": [
+        "Town01/scenario-5",
+        "Town01/scenario-7",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4",
+        "Town03/scenario-1",
+        "Town03/scenario-13",
+        "Town03/scenario-15",
+        "Town03/scenario-4",
+        "Town05/scenario-10",
+        "Town05/scenario-12",
+        "Town05/scenario-13",
+        "Town05/scenario-14",
+        "Town05/scenario-17",
+        "Town05/scenario-20",
+        "Town05/scenario-6",
+        "Town10HD/scenario-11",
+        "Town10HD/scenario-14",
+        "Town10HD/scenario-15",
+        "Town10HD/scenario-16",
+        "Town10HD/scenario-17",
+        "Town10HD/scenario-24",
+        "Town10HD/scenario-28",
+        "Town10HD/scenario-30",
+        "Town10HD/scenario-7"
+      ],
+      "agent": "Camera",
+      "feature_dimension": 18,
+      "fit_unit_seal": "53d2d845a815d3e44e92de45a34a2e6f8d797d4b45218488e30c1549415065a9",
+      "member_artifacts": [
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_0.npz",
+          "sha256": "34106bfc48608964b3ad387f72eb271176dd7f828260173c7c7407c96f4c2880"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_1.npz",
+          "sha256": "735409bc950f7a310e36a5a9935224dec50a2fc0a346238259df7dde93457605"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_2.npz",
+          "sha256": "0f21a49e989be876e7bcb1ed48bc84c15dceff8b3dbaa788ab8bdb79606bd342"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_3.npz",
+          "sha256": "20d890781125862f9fc66bd856b9df0295959aa85b08e6d972b75f0e910676c5"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_4.npz",
+          "sha256": "6699faeadd29960ef8b03ec3e5d0e1276ee10ddbec6899f70debc72f69834b6c"
+        }
+      ],
+      "probability_mapping_class": "EnsemblePredictiveCalibrator (unchanged production agent)",
+      "probability_mapping_fitted_on_CAL": true,
+      "probability_mapping_parameters_source": {
+        "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-Camera/audit_arrays.npz",
+        "sha256": "1143306ff90c8fc6d6532c6bf3902128094bfdce33d7c89bf256dd9089983e08"
+      },
+      "probability_mapping_unit_seal": "f5bbfc5c58638ea467a497f763c5781b6c9af9299cc9198d84f1dd0c9d6054de",
+      "sample_counts": {
+        "CAL_clean": 74975,
+        "CAL_combined": 96400,
+        "CAL_pseudo": 21425,
+        "FIT_clean": 227924
+      },
+      "untouched_CAL_parent_count": 0
+    },
+    {
+      "CAL_overlap_count": 25,
+      "CAL_parent_scenarios": [
+        "Town01/scenario-5",
+        "Town01/scenario-7",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4",
+        "Town03/scenario-1",
+        "Town03/scenario-13",
+        "Town03/scenario-15",
+        "Town03/scenario-4",
+        "Town05/scenario-10",
+        "Town05/scenario-12",
+        "Town05/scenario-13",
+        "Town05/scenario-14",
+        "Town05/scenario-17",
+        "Town05/scenario-20",
+        "Town05/scenario-6",
+        "Town10HD/scenario-11",
+        "Town10HD/scenario-14",
+        "Town10HD/scenario-15",
+        "Town10HD/scenario-16",
+        "Town10HD/scenario-17",
+        "Town10HD/scenario-24",
+        "Town10HD/scenario-28",
+        "Town10HD/scenario-30",
+        "Town10HD/scenario-7"
+      ],
+      "agent": "IMU",
+      "feature_dimension": 10,
+      "fit_unit_seal": "b98f82f0e38cea714b49910e9209a5da41244480f0ad7678ff917347f816446e",
+      "member_artifacts": [
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_0.npz",
+          "sha256": "b24a1690f73c293b1e96559a7a87a1d8a26db58ad9c921d59f12355cf1060bea"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_1.npz",
+          "sha256": "f66bdf4a8a47f7466ec371fdd29ccff407d45b1fa91844b7e8f394627222813c"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_2.npz",
+          "sha256": "611519a9d7086164110d534fae8379d75461569148885ef0987ed6eae1ca62aa"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_3.npz",
+          "sha256": "1bcc296956a2c871932e0cfeee090fc2f80b94603848a610727f1946249a9e77"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_4.npz",
+          "sha256": "f279102d0392252a7e4e5307b3a6a09fa585e1c9a235db276ae4cd336a52be9b"
+        }
+      ],
+      "probability_mapping_class": "EnsemblePredictiveCalibrator (unchanged production agent)",
+      "probability_mapping_fitted_on_CAL": true,
+      "probability_mapping_parameters_source": {
+        "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-IMU/audit_arrays.npz",
+        "sha256": "549517868c7ea8f39481a0e5f1b61e2bc435f161437d326b26cd657e3320e5e2"
+      },
+      "probability_mapping_unit_seal": "77dfbcb6f6c2f350c1c7e01559590c0d159b64f9bc3bcf652e230540e2298b1a",
+      "sample_counts": {
+        "CAL_clean": 74975,
+        "CAL_combined": 96375,
+        "CAL_pseudo": 21400,
+        "FIT_clean": 227924
+      },
+      "untouched_CAL_parent_count": 0
+    },
+    {
+      "CAL_overlap_count": 25,
+      "CAL_parent_scenarios": [
+        "Town01/scenario-5",
+        "Town01/scenario-7",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4",
+        "Town03/scenario-1",
+        "Town03/scenario-13",
+        "Town03/scenario-15",
+        "Town03/scenario-4",
+        "Town05/scenario-10",
+        "Town05/scenario-12",
+        "Town05/scenario-13",
+        "Town05/scenario-14",
+        "Town05/scenario-17",
+        "Town05/scenario-20",
+        "Town05/scenario-6",
+        "Town10HD/scenario-11",
+        "Town10HD/scenario-14",
+        "Town10HD/scenario-15",
+        "Town10HD/scenario-16",
+        "Town10HD/scenario-17",
+        "Town10HD/scenario-24",
+        "Town10HD/scenario-28",
+        "Town10HD/scenario-30",
+        "Town10HD/scenario-7"
+      ],
+      "agent": "Seg",
+      "feature_dimension": 29,
+      "fit_unit_seal": "cd315bcd4062e38b6227d4ce9c07a7576c6e30a8bd5a5903cedab176c069a379",
+      "member_artifacts": [
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_0.npz",
+          "sha256": "51281493a33aa4823a69afe94b1814e968ececd72424a87f50f0f74e80ecb132"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_1.npz",
+          "sha256": "a8ba934a64c79bcce54070a4657a2a69310c2c80f252262376ff52ce906613e8"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_2.npz",
+          "sha256": "957f16204d057f98764c49f8e8cebf9d163f70479c6059312c7b84eb85156faa"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_3.npz",
+          "sha256": "2781c59028fa0ad9fc21e78714a2e5f63f722d292ff72a902a10b7a6d3821a1a"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_4.npz",
+          "sha256": "02733ce6a8d92a494362668fb56581407fbd82c941c4b5d22a4065b8001c623a"
+        }
+      ],
+      "probability_mapping_class": "EnsemblePredictiveCalibrator (unchanged production agent)",
+      "probability_mapping_fitted_on_CAL": true,
+      "probability_mapping_parameters_source": {
+        "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-Seg/audit_arrays.npz",
+        "sha256": "543942f83b543e9c8b1d4c18c3b80d72e08991eeea3ed653d6bde9a48beee2f2"
+      },
+      "probability_mapping_unit_seal": "19a9c9fcc8332929fe11a9c2d78d05d02ac531634b8d3e9044fc2006b16b9805",
+      "sample_counts": {
+        "CAL_clean": 74975,
+        "CAL_combined": 85700,
+        "CAL_pseudo": 10725,
+        "FIT_clean": 227924
+      },
+      "untouched_CAL_parent_count": 0
+    }
+  ]
+}

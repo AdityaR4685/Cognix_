@@ -1,0 +1,41 @@
+{
+  "task_modified_files": [
+    "cognix/engine/pipeline.py",
+    "dashboard/app.py",
+    "dashboard/static/index.html",
+    "dashboard/test_live.py",
+    "docs/research/RESEARCH_DASHBOARD.md"
+  ],
+  "task_created_files": [
+    "cognix/adapters/carla/replay_source.py",
+    "cognix/adapters/carla/runtime_artifacts.py",
+    "cognix/runtime/__init__.py",
+    "cognix/runtime/bridge.py",
+    "cognix/runtime/replay.py",
+    "dashboard/payload.py",
+    "dashboard/replay_smoke.py",
+    "dashboard/sources.py",
+    "docs/research/CARLA_DATASET_PIPELINE_INTEGRATION.md",
+    "docs/research/carla_dataset_dashboard.jpg",
+    "docs/research/carla_dataset_http_validation.json",
+    "docs/research/carla_dataset_integration_changes.json",
+    "docs/research/carla_dataset_integration_preservation.json",
+    "docs/research/carla_dataset_replay_validation.json",
+    "docs/research/scripts/audit_dataset_integration.py",
+    "tests/unit/test_replay_integration.py"
+  ],
+  "preserved_preexisting_modified_files": [
+    "CONTINUE_FROM_HERE.md",
+    "README.md",
+    "docs/STATISTICAL_METHODOLOGY.md",
+    "docs/architecture/overview.md",
+    "docs/research/ABLATION_PLAN.md",
+    "docs/research/COGNIX_FINAL_STATUS.md",
+    "docs/research/METRIC_PROVENANCE.md",
+    "docs/research/REPRODUCIBILITY.md"
+  ],
+  "preserved_preexisting_untracked_count": 15426,
+  "git_diff_stat": " CONTINUE_FROM_HERE.md                |  48 +--\n README.md                            |   6 +-\n cognix/engine/pipeline.py            |  37 ++-\n dashboard/app.py                     | 576 +++++++++++++----------------------\n dashboard/static/index.html          | 184 ++++++++---\n dashboard/test_live.py               | 102 ++++---\n docs/STATISTICAL_METHODOLOGY.md      |   2 +\n docs/architecture/overview.md        |   4 +-\n docs/research/ABLATION_PLAN.md       |   4 +-\n docs/research/COGNIX_FINAL_STATUS.md | 112 ++++++-\n docs/research/METRIC_PROVENANCE.md   |   8 +\n docs/research/REPRODUCIBILITY.md     |  14 +\n docs/research/RESEARCH_DASHBOARD.md  | 134 ++++++--\n 13 files changed, 714 insertions(+), 517 deletions(-)\n",
+  "git_status_short": " M CONTINUE_FROM_HERE.md\n M README.md\n M cognix/engine/pipeline.py\n M dashboard/app.py\n M dashboard/static/index.html\n M dashboard/test_live.py\n M docs/STATISTICAL_METHODOLOGY.md\n M docs/architecture/overview.md\n M docs/research/ABLATION_PLAN.md\n M docs/research/COGNIX_FINAL_STATUS.md\n M docs/research/METRIC_PROVENANCE.md\n M docs/research/REPRODUCIBILITY.md\n M docs/research/RESEARCH_DASHBOARD.md\n?? 120\n?? cognix/adapters/carla/replay_source.py\n?? cognix/adapters/carla/runtime_artifacts.py\n?? cognix/runtime/\n?? dashboard/payload.py\n?? dashboard/replay_smoke.py\n?? dashboard/sources.py\n?? docs/research/CARLA_DATASET_PIPELINE_INTEGRATION.md\n?? docs/research/EXPERIMENT_2B_PACKAGING_AUDIT.md\n?? docs/research/carla_dataset_dashboard.jpg\n?? docs/research/carla_dataset_http_validation.json\n?? docs/research/carla_dataset_integration_changes.json\n?? docs/research/carla_dataset_integration_preservation.json\n?? docs/research/carla_dataset_replay_validation.json\n?? docs/research/experiment_2b_packaging_validation.json\n?? docs/research/figures/\n?? docs/research/scripts/\n?? reports/carla_train_full_v1/.graph_development_data_v1.pending/\n?? reports/carla_train_full_v1/gate1_acquisition_recovery_v3/\n?? reports/carla_train_full_v1/gate1_acquisition_recovery_v4/\n?? reports/carla_train_full_v1/gate1_acquisition_recovery_v6/\n?? reports/carla_train_full_v1/gate1_execution_bundle_v3/\n?? reports/carla_train_full_v1/gate1_execution_bundle_v4/\n?? reports/carla_train_full_v1/gate1_execution_bundle_v5/\n?? reports/carla_train_full_v1/gate1_execution_bundle_v6/\n?? reports/carla_train_full_v1/gate1_execution_bundle_v7/\n?? reports/carla_train_full_v1/gate1_execution_bundle_v8/\n?? reports/carla_train_full_v1/gate1_local_extraction_v7/\n?? reports/carla_train_full_v1/gate1_local_extraction_v8/\n?? reports/carla_train_full_v1/gate2_execution_bundle_v1/\n?? reports/carla_train_full_v1/gate2_execution_bundle_v2/\n?? reports/carla_train_full_v1/gate2_train_health_v1/\n?? reports/carla_train_full_v1/gate2_train_health_v2/\n?? reports/carla_train_full_v1/gate2_train_health_v3/\n?? reports/carla_train_full_v1/graph_development_bundle_v1/\n?? reports/carla_train_full_v1/graph_development_bundle_v2/\n?? reports/carla_train_full_v1/graph_development_data_v3/\n?? reports/carla_train_full_v1/graph_partition_freeze_v1/\n?? reports/carla_train_full_v1/graph_test_download_evidence_v1/\n?? reports/carla_train_full_v1/graph_test_final_conclusion_bundle_v1/\n?? reports/carla_train_full_v1/graph_test_label_blind_execution_bundle_v1/\n?? reports/carla_train_full_v1/graph_test_phase_A_predictions_v1/\n?? reports/carla_train_full_v1/graph_test_phase_B_results_v1/\n?? reports/carla_train_full_v1/graph_test_phase_B_scoring_bundle_v1_failed_seal_attempt_001.json\n?? reports/carla_train_full_v1/graph_test_phase_B_scoring_bundle_v1_superseded_prelabel/\n?? reports/carla_train_full_v1/graph_test_phase_B_scoring_bundle_v1_supersession_record.json\n?? reports/carla_train_full_v1/graph_test_phase_B_scoring_bundle_v2/\n?? reports/carla_train_full_v1/graph_test_structure_inspection_v1/\n?? reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/\n?? reports/carla_train_full_v1/kaggle_graph_training_results_v1/\n?? reports/carla_train_full_v1/partition_freeze_v1/\n?? si+3\n?? tests/unit/test_replay_integration.py\n",
+  "staged_files": []
+}

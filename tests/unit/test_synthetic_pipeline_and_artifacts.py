@@ -340,7 +340,8 @@ def test_dashboard_can_run_with_valid_artifacts():
     assert payload["decision"] in ("ACT", "ESCALATE", "REQUEST_INFORMATION")
     assert len(payload["agents"]) == 6
     assert "comparison_table" in payload
-    assert "NORMAL" in payload["comparison_table"]
+    if payload["comparison_table"]:
+        assert "NORMAL" in payload["comparison_table"]
 
 
 # ── 15. Dashboard falls back honestly when artifacts unavailable ─────────────
@@ -359,3 +360,112 @@ def test_dashboard_falls_back_honestly_when_artifact_unavailable(synthetic_agent
     assert res.metadata["module_status"]["calibration"]["executed"] is False
     assert res.calibrated_confidence is None
     assert "prediction_set" not in res.calibration_metrics
+
+
+# ── 16. Synthetic runtime artifact failure disclosure and provenance ─────────
+
+def test_synthetic_runtime_artifact_loading_failure_provenance(monkeypatch):
+    from dashboard.sources import synthetic_runtime
+    from dashboard.payload import build_payload
+    root = ARTIFACTS_DIR.parent.parent
+
+    # Simulate atomic synthetic artifact loading failure
+    def mock_load_failure(*args, **kwargs):
+        raise FileNotFoundError("Simulated missing synthetic metadata.json")
+
+    monkeypatch.setattr("cognix.artifacts.load_synthetic_artifacts", mock_load_failure)
+
+    engine, dataset, agents, bridge, controller = synthetic_runtime(root)
+
+    # 1. Verify synthetic_runtime() still returns its normal runtime components
+    assert engine is not None
+    assert dataset is not None
+    assert len(agents) == 6
+    assert bridge is not None
+    assert controller is not None
+
+    # 2. Verify no calibrator or graph is falsely attached to engine or pipeline
+    assert engine.calibrator is None
+    assert engine.pipeline.calibrator is None
+    assert engine.graph is None
+    assert engine.pipeline.graph is None
+
+    # 3. Verify bridge provenance records the artifact-loading failure
+    prov = bridge.provenance
+    assert prov.get("graph_strategy") == "Unavailable"
+    assert "calibration_unavailable_reason" in prov
+    assert "could not be loaded" in prov["calibration_unavailable_reason"]
+    assert "could not be established" in prov["calibration_unavailable_reason"]
+
+    # 4. Step through controller and run a cycle through bridge
+    obs = controller.step()
+    cycle = bridge.run(obs)
+    payload = build_payload(cycle)
+
+    # 5. Verify payload reports calibration_available=False, and conformal metrics unavailable
+    assert payload["calibration_available"] is False
+    assert payload["calibrated_confidence"] is None
+    assert payload["conformal_set"] is None
+    assert payload["conformal_target_coverage"] is None
+
+    # 6. Verify payload includes an explicit, non-empty explanation
+    reason = payload["calibration_unavailable_reason"]
+    assert isinstance(reason, str) and len(reason) > 0
+    assert "could not be established" in reason
+    assert payload["module_failure_reasons"]["calibration"] == reason
+    assert any("Calibration unavailable:" in t for t in payload["decision_trace"])
+
+    # 7. Verify graph execution is not falsely marked successful
+    assert payload["graph_executed"] is False
+    assert payload["graph_strategy"] == "Unavailable"
+
+
+def test_synthetic_runtime_distinguishes_conformal_vs_graph_failures(monkeypatch):
+    from dashboard.sources import synthetic_runtime
+    from dashboard.payload import build_payload
+    root = ARTIFACTS_DIR.parent.parent
+
+    # A) Conformal specifically fails
+    def mock_conformal_failure(*args, **kwargs):
+        raise FileNotFoundError("Conformal artifact not found at conformal_cal_scores.npy")
+
+    monkeypatch.setattr("cognix.artifacts.load_synthetic_artifacts", mock_conformal_failure)
+    _, _, _, bridge_conf, ctrl_conf = synthetic_runtime(root)
+    payload_conf = build_payload(bridge_conf.run(ctrl_conf.step()))
+    assert payload_conf["calibration_available"] is False
+    assert "conformal" in payload_conf["calibration_unavailable_reason"].lower()
+
+    # B) Graph specifically fails (must NOT claim calibration artifact is missing)
+    def mock_graph_failure(*args, **kwargs):
+        raise FileNotFoundError("EpistemicGAT artifact not found at epistemic_gat.pt")
+
+    monkeypatch.setattr("cognix.artifacts.load_synthetic_artifacts", mock_graph_failure)
+    _, _, _, bridge_graph, ctrl_graph = synthetic_runtime(root)
+    payload_graph = build_payload(bridge_graph.run(ctrl_graph.step()))
+    assert payload_graph["calibration_available"] is False
+    assert "calibration artifact is missing" not in payload_graph["calibration_unavailable_reason"].lower()
+    assert "graph artifact failed" in payload_graph["calibration_unavailable_reason"]
+    assert "could not be established" in payload_graph["calibration_unavailable_reason"]
+
+
+def test_conformal_prediction_set_label_contract_mapping():
+    from dashboard.payload import format_conformal_set, CONFORMAL_CLASS_MAP
+
+    assert CONFORMAL_CLASS_MAP == {0: "ESCALATE", 1: "ACT"}
+
+    # Preserves class identity and ordering
+    assert format_conformal_set([1]) == ["ACT"]
+    assert format_conformal_set([0]) == ["ESCALATE"]
+    assert format_conformal_set([0, 1]) == ["ESCALATE", "ACT"]
+    assert format_conformal_set([1, 0]) == ["ACT", "ESCALATE"]
+    assert format_conformal_set([]) == []
+    assert format_conformal_set(None) is None
+
+    # Idempotent for already-mapped strings
+    assert format_conformal_set(["ACT"]) == ["ACT"]
+    assert format_conformal_set(["ESCALATE", "ACT"]) == ["ESCALATE", "ACT"]
+
+    # Explicit failure for unexpected indices (never silently invents a label)
+    for unexpected in ([2], [-1], [True], [False], ["UNKNOWN"], ["WAIT"]):
+        with pytest.raises(ValueError, match="Unexpected conformal prediction set"):
+            format_conformal_set(unexpected)

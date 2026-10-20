@@ -42,7 +42,7 @@ The central research mechanism evaluated by COGNIX flows as follows:
     attribution / escalation
 ```
 
-By explicitly isolating **epistemic uncertainty** (model ignorance or out-of-distribution shift), COGNIX provides a mechanism to reduce the prior influence of degraded agents before the network graph routes attention, potentially improving the reliability of the fused belief.
+By explicitly isolating **epistemic uncertainty** (model ignorance or out-of-distribution shift), COGNIX provides a mechanism to reduce the prior influence of uncertain agents before the network graph routes attention. The specific sender prior evaluated in Experiment 2B showed no descriptive evidence of additional held-out benefit over StandardGAT.
 
 ## 📊 3. Experimental Evidence
 
@@ -53,6 +53,10 @@ COGNIX is evaluated under a rigorous benchmarking infrastructure (Phase B). In t
 - **Fail-Loud Research Integrity**: The pipeline strictly enforces a fail-loud behavior in research mode (e.g., rejecting fallback values when uncertainty decomposition fails), guaranteeing mathematically sound provenance for all reported metrics.
 
 *Note: The magnitude of these effects depends heavily on the training quality of the agents and the severity of the distributional shift.*
+
+**Closed Experiment 2B: official held-out TEST.** All 15 frozen runs (NoGraph, StandardGAT, and EpistemicGAT; five paired seeds) were evaluated on 627 scenarios and 187,473 scored timesteps per run. StandardGAT improved BCE relative to NoGraph for every seed, but reduced corruption F1 under the frozen GRAPH_VAL thresholds for every seed. Graph communication's benefit was therefore metric-dependent. EpistemicGAT was approximately neutral to slightly worse than StandardGAT. The prespecified 627-scenario macro-AUROC was undefined because all 107 normal scenarios were single-class; none were dropped. Five-seed comparisons are descriptive, with no prespecified or performed inferential significance test.
+
+`q_normal` represents P(target = normal) under the TRAIN-derived constructed clean-vs-pseudo task and must not be interpreted as a probability of physical driving safety. `p_corruption = 1 - q_normal`. These findings concern the evaluated graph sender prior and do not extend the separate synthetic fusion findings above to official TEST. See the [comprehensive research report](docs/research/COGNIX_FINAL_STATUS.md#6-experiment-2b-closed-held-out-graph-evaluation) for tables, figures, protocol details, and limitations. Experiment 2B is closed and immutable; its TEST evaluation must not be rerun or retuned.
 
 ## 🎯 4. Research Targets
 

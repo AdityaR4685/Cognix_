@@ -1,0 +1,66 @@
+{
+  "TEST_metrics_computed": false,
+  "TEST_used_for_calibration": false,
+  "alpha_for_candidate_contract": 0.05,
+  "artifact_loader_or_seal_success_claimed": false,
+  "artifact_seal": null,
+  "audit_script_sha256": "9b1181a30f1a136b83ab9880e68a27b0beb130d6a942d30b1870917940eee71d",
+  "calibration_generation_started": false,
+  "commands": [
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B docs/research/scripts/audit_runtime_calibration.py baseline",
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B docs/research/scripts/audit_runtime_calibration.py capture_core",
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B docs/research/scripts/audit_runtime_calibration.py audit",
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B -m pytest tests/unit/test_runtime_calibration_audit.py tests/unit/test_replay_integration.py tests/unit/test_dashboard.py tests/integration/test_full_pipeline_integration.py -q -p no:cacheprovider --basetemp=C:/Users/Aditya/Cognix2_recovered/.runtime_calibration_work/pytest-1",
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B -m pytest tests/unit/test_runtime_calibration_audit.py tests/unit/test_replay_integration.py tests/unit/test_dashboard.py tests/integration/test_full_pipeline_integration.py -q -p no:cacheprovider --basetemp=C:/Users/Aditya/Cognix2_recovered/.runtime_calibration_work/pytest-2 --junitxml=docs/research/carla_runtime_calibration_tests.xml",
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B docs/research/scripts/audit_runtime_calibration.py cleanup",
+    "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -B docs/research/scripts/audit_runtime_calibration.py verify",
+    "git -c core.whitespace=cr-at-eol diff --check"
+  ],
+  "existing_deprecation_warnings": 14,
+  "existing_integration_tests_fit_isolated_synthetic_fixtures": true,
+  "final_tests": {
+    "by_module": {
+      "tests.integration.test_full_pipeline_integration": 10,
+      "tests.unit.test_dashboard": 5,
+      "tests.unit.test_replay_integration": 19,
+      "tests.unit.test_runtime_calibration_audit": 29
+    },
+    "errors": 0,
+    "failures": 0,
+    "junit_path": "docs/research/carla_runtime_calibration_tests.xml",
+    "junit_sha256": "3b0c45b56188ec99852dcff9df3e1991bac63b12e0a63ed2d101bd321b40635b",
+    "passed": 63,
+    "skipped": 0,
+    "tests": 63
+  },
+  "git_diff_check_exit_code": 0,
+  "git_staged_files": [],
+  "initial_test_attempt": {
+    "causes": [
+      "test comparison did not fix Monte Carlo Shapley permutations",
+      "fixture used sorted_ids instead of sorted_canonical_ids"
+    ],
+    "failed": 11,
+    "passed": 52,
+    "resolution": "Fixed test-only RNG control and exact partition field; no runtime/scientific tuning"
+  },
+  "interpreter": "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "manual_real_replay": {
+    "TEST_labels_decoded": false,
+    "status": "NOT_RUN_CALIBRATION_NOT_FROZEN"
+  },
+  "n_cal": null,
+  "new_runtime_calibration_or_threshold_tuning": false,
+  "new_test_source_sha256": "e18c8f1f89764a528173ad820c06746be407de59b498efe14fa26b2a050d0325",
+  "previous_dataset_integration_receipts_unchanged": true,
+  "protected_reports": {
+    "byte_count": 5914657424,
+    "directory_count": 634,
+    "file_count": 18036,
+    "sha256": "fca2deb52752ddfdefb11a2fd26dab50d9e3a5cc83ceb6fa83ebca4bfe97cc5f"
+  },
+  "quantile": null,
+  "research_or_runtime_model_training": false,
+  "runtime_calibration_artifact": null,
+  "status": "AUDIT_VALIDATED_CALIBRATION_STOPPED"
+}

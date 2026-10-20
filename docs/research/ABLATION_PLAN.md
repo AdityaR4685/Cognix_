@@ -27,8 +27,8 @@ In each run, we disable exactly ONE component and measure the delta in system pe
 
 ### 3. Ablation: No Epistemic GAT
 - **Change**: Replace `EpistemicGAT` with standard `GATLayer` (no epistemic prior).
-- **Expected Observation**: Attention weights will fail to down-weight agents with high epistemic uncertainty before feature aggregation.
-- **Metric**: Reduced robustness to localized agent degradation.
+- **Hypothesis**: Removing the sender prior changes attention weighting; whether it improves or reduces downstream performance must be evaluated rather than assumed.
+- **Closed Experiment 2B evidence**: The evaluated EpistemicGAT sender prior showed no descriptive evidence of improvement over StandardGAT on official TEST. BCE was mixed and slightly worse on average; F1 was essentially neutral to slightly worse. StandardGAT versus NoGraph improved BCE but reduced frozen-threshold corruption F1 across all five seeds. The prespecified macro-AUROC was undefined. See the [final report](COGNIX_FINAL_STATUS.md#6-experiment-2b-closed-held-out-graph-evaluation). This closed experiment must not be rerun or retuned under this general ablation plan.
 
 ### 4. Ablation: No Escalation
 - **Change**: Set `escalation=False` in `DecisionEngine` config.

@@ -1,6 +1,8 @@
 # COGNIX Architecture Overview
 
-The COGNIX architecture is built around a unidirectional data flow from raw agent predictions to a final, safe system decision.
+The COGNIX architecture is built around a unidirectional data flow from raw agent predictions to a system decision with uncertainty and escalation metadata. This architecture does not establish physical driving safety.
+
+The evaluated graph mechanism in closed Experiment 2B compares NoGraph, StandardGAT, and an EpistemicGAT sender prior `w_j = 1 / (1 + E_j)` (attention-logit adjustment `-log(1 + E_j)`). StandardGAT improved held-out TEST BCE across all five frozen seeds while reducing frozen-threshold corruption F1 across all five. The sender prior showed no descriptive evidence of additional benefit. COGNIX's contribution is the uncertainty-aware architecture and evaluation of its metric-dependent behavior; experimental superiority of this prior is not established. `q_normal` represents P(target = normal) under the TRAIN-derived constructed clean-vs-pseudo task and must not be interpreted as a probability of physical driving safety. See the [final report](../research/COGNIX_FINAL_STATUS.md#6-experiment-2b-closed-held-out-graph-evaluation).
 
 ## Pipeline Architecture
 

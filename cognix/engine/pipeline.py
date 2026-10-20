@@ -52,6 +52,18 @@ def _safe_call(fn: Any, *args: Any, **kwargs: Any) -> Any | None:
         return None
 
 
+def _optional_method(owner: Any, key: str, default: str) -> str:
+    """Optional provenance must not invalidate a successful numeric stage."""
+    try:
+        metadata = getattr(owner, "metadata", {})
+        if callable(metadata):
+            metadata = metadata()
+        method = metadata.get(key, default)
+        return method if isinstance(method, str) and method else default
+    except Exception:
+        return default
+
+
 class CognixPipeline:
     """
     Orchestrates the full COGNIX decision pipeline.
@@ -224,22 +236,25 @@ class CognixPipeline:
                             np.clip(refined_probs[idx], 1e-7, 1 - 1e-7)
                         )
 
-                    # Build communication info from last layer attention
-                    attn_matrix = attn_list[-1]  # (N, N)
-                    attn_dict = {
-                        agent_order[i]: float(attn_matrix[i].sum())
-                        for i in range(N)
-                    }
-                    comm_info = {
-                        "edges": [[agent_order[i], agent_order[j]]
-                                  for i in range(N) for j in range(N) if i != j],
-                        "attention_weights": attn_dict,
-                        "attention_matrix_shape": list(attn_matrix.shape),
-                        "adjacency_type": "fully_connected",
-                    }
+                    # A node refinement plugin can operate independently on nodes.
+                    # Absence of attention means no inter-agent communication.
+                    comm_info = None
+                    if attn_list is not None and len(attn_list):
+                        attn_matrix = np.asarray(attn_list[-1])
+                        if attn_matrix.shape != (N, N) or not np.isfinite(attn_matrix).all():
+                            raise ValueError("Invalid graph attention matrix")
+                        comm_info = {
+                            "edges": [[agent_order[i], agent_order[j]]
+                                      for i in range(N) for j in range(N)
+                                      if i != j and attn_matrix[i, j] > 0],
+                            "attention_weights": {agent_order[i]: float(attn_matrix[i].sum())
+                                                  for i in range(N)},
+                            "attention_matrix_shape": list(attn_matrix.shape),
+                            "adjacency_type": "provided_adjacency",
+                        }
 
                     gnn_status = ModuleStatus(
-                        executed=True, method="epistemic_gat",
+                        executed=True, method=_optional_method(graph_result, "method", "epistemic_gat"),
                         duration_ms=_ms(t), failure_reason=None,
                         inputs_validated=True, outputs_validated=True,
                     )
@@ -507,6 +522,7 @@ class CognixPipeline:
         """
         uncertainties: dict[str, dict[str, float]] = {}
         used_fallback = False
+        agent_uq_methods: set[str] = set()
 
         for agent in agents:
             agent_id = self._agent_id(agent)
@@ -523,6 +539,7 @@ class CognixPipeline:
                             "aleatoric": float(est.aleatoric),
                             "total": float(est.total),
                         }
+                        agent_uq_methods.add(_optional_method(agent, "uq_method", "mc_dropout"))
                         continue
                 except Exception as exc:
                     logger.debug(
@@ -573,7 +590,8 @@ class CognixPipeline:
 
         status = ModuleStatus(
             executed=True,
-            method="mc_dropout" if not used_fallback else "confidence_heuristic_fallback",
+            method=("confidence_heuristic_fallback" if used_fallback else
+                    "+".join(sorted(agent_uq_methods)) or "mc_dropout"),
             duration_ms=0,  # set by caller
             failure_reason="confidence_heuristic_used" if used_fallback else None,
             inputs_validated=True,

@@ -1,0 +1,366 @@
+{
+  "status": "PASS_HTTP_REPLAY",
+  "source_status": {
+    "mode": "DATASET",
+    "busy": false,
+    "error": null,
+    "source": {
+      "mode": "DATASET",
+      "domain": "autonomous_driving",
+      "source_id": "CarlAnomaly Base",
+      "dataset": "CarlAnomaly Base",
+      "split": "TEST",
+      "archive": "E:\\carlanomaly-base-test.tar.gz",
+      "replay_window_limit": 2,
+      "agent_order": [
+        "Camera",
+        "IMU",
+        "Seg"
+      ],
+      "sequence_id": "test/anomaly/Town01/change-weather/scenario-1",
+      "index": 0,
+      "sample_count": 2,
+      "playing": false,
+      "rate": 2.0,
+      "error": null
+    },
+    "runtime": {
+      "artifact_id": "StandardGAT_101",
+      "checkpoint_sha256": "41265ba58736b3951cc1c7bf61995d8745449bab9370106b8efcd973092a6d88",
+      "checkpoint_epoch": 40,
+      "seed": 101,
+      "graph_strategy": "StandardGAT",
+      "artifact_bindings_sha256": "d772113b690a082819634b3beb410eff04d6bc51088ad6e548af20d027761b54",
+      "upstream_health_sha256": "8cbb80b10464bd38eb6ef567857d071c11313a8bda937c1ded4e27f20bfca320",
+      "source_hashes": {
+        "cognix/adapters/carla/real_features.py": "66f3e6a59b42f65679642be137a0fadd081f61251cfe8728cd22e089e9110232",
+        "cognix/adapters/carla/cache_builder.py": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+        "cognix/adapters/carla/normality.py": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "cognix/adapters/carla/real_agents.py": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+        "reports/carla_train_full_v1/gate1_execution_bundle_v8/segmentation_oov.py": "22b8712257391c4f415c72992fa3369d7408efcc9c69c27abc8257746038f4d9",
+        "reports/carla_train_full_v1/gate2_execution_bundle_v3/gate2_science.py": "c2aba1c4e4587a983b4d00cfa972e2f04d055cff50fd134ecc4bd68c6232412a",
+        "reports/carla_train_full_v1/graph_development_bundle_v3/current_restore.py": "dfe962d6fd509417626e4ae9a398a2a68081241a0f1946d699e87d825ff2835f",
+        "reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/kaggle_models.py": "9972c26ea427952309e77e0e5c5a4ccabf7647cd5599e9c1ad440cb75d02bdd2",
+        "reports/carla_train_full_v1/graph_development_bundle_v3/graph_common.py": "77ba5b669416b03a32e75aeafa05186e14e5869fd8d1d8c9357585068b24aae0",
+        "reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/kaggle_common.py": "fbbaa60dab01a831296dd092c42c6c587827bfa06aa4893cc603dde6cf90e0f3"
+      },
+      "configuration_role": "demonstration configuration, no TEST performance selection",
+      "node_feature_order": [
+        "prob_normal",
+        "epistemic",
+        "aleatoric"
+      ],
+      "agent_order": [
+        "Camera",
+        "IMU",
+        "Seg"
+      ],
+      "fusion": "runtime epistemic-weighted fusion; different from benchmark mean pooling",
+      "calibration_unavailable_reason": "No collective conformal artifact is bound to frozen upstream + node refinement + runtime epistemic-weighted fusion",
+      "full_calibrated_chain": false,
+      "uq_method": "bootstrap one-class ensemble entropy decomposition",
+      "probability_label": "Constructed-task normality probability",
+      "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo task",
+      "decision_semantics": "Framework demonstration policy; not a physical driving command"
+    },
+    "calibration_available": false,
+    "connections": 1
+  },
+  "controls": [
+    "mode",
+    "scenarios",
+    "select",
+    "next",
+    "previous",
+    "rate",
+    "play",
+    "pause",
+    "restart"
+  ],
+  "payload": {
+    "timestamp": 1791683458.2239635,
+    "observation_timestamp": null,
+    "tick": 1,
+    "sample_id": "1",
+    "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+    "mode": "DATASET",
+    "domain": "autonomous_driving",
+    "source_id": "CarlAnomaly Base",
+    "active_agents": [
+      "Camera",
+      "IMU",
+      "Seg"
+    ],
+    "scenario_details": {
+      "severity": null,
+      "affected": "Unavailable",
+      "expected": null
+    },
+    "research_meta": {
+      "data_source": "CarlAnomaly Base",
+      "dataset": "CarlAnomaly Base",
+      "experiment": "Engineering replay demonstration",
+      "run_id": "REPLAY_997250b5ae66468b8cc0c1238c6682aa",
+      "model": "StandardGAT_101",
+      "seed": 101
+    },
+    "provenance": {
+      "archive_path": "E:\\carlanomaly-base-test.tar.gz",
+      "archive_bytes": 91538225599,
+      "archive_mtime_ns": 1791610528567268700,
+      "bytes": 91538225599,
+      "historical_archive_sha256": "267e48f2249deb0269ad950aa81bca57dc02e3bbdf2d73acc172af267b18254a",
+      "archive_hash_verification": "historical inventory binding and current size/stat; full archive not rehashed",
+      "member_sha256": {
+        "test/anomaly/Town01/change-weather/scenario-1/rgb-front/000001.jpg": "45716a32069dd35b2e0284893ed96a26a8aec5efaf608805498173ac0d1a8a4d",
+        "test/anomaly/Town01/change-weather/scenario-1/rgb-front/000002.jpg": "6a4d6654d01587df3f64ae6b60e144d91eb130950b0c88e5eb69aefc4b776b24",
+        "test/anomaly/Town01/change-weather/scenario-1/segmentation-front/000001.png": "3b388a4544993e78ef9c81ef89c6228c2c631d98ca7617883f5bca6f2f4e32b2",
+        "test/anomaly/Town01/change-weather/scenario-1/segmentation-front/000002.png": "a8e3bd781fe32c209c86ca4311fd45f93137f5edbc08ce23c07eb79fdd0e38e7",
+        "test/anomaly/Town01/change-weather/scenario-1/imu.feather": "14d3362e3c5ff8e9f5e0969be1a2a13f7a3bc65ca5b58ab3f63e630332a49b5e"
+      },
+      "read_members": 5,
+      "label_payloads_opened": false,
+      "anomaly_front_payloads_opened": false,
+      "imu_window": "causal, up to 12 rows",
+      "timestamp_source": "unavailable; no physical sampling rate inferred",
+      "prepared_sample_count": 2,
+      "archive_prepare_ms": 503.2116000074893,
+      "mode": "DATASET",
+      "domain": "autonomous_driving",
+      "source_id": "CarlAnomaly Base",
+      "dataset": "CarlAnomaly Base",
+      "split": "TEST",
+      "archive": "E:\\carlanomaly-base-test.tar.gz",
+      "replay_window_limit": 2,
+      "agent_order": [
+        "Camera",
+        "IMU",
+        "Seg"
+      ],
+      "label_visible_to_inference": false,
+      "artifact_id": "StandardGAT_101",
+      "checkpoint_sha256": "41265ba58736b3951cc1c7bf61995d8745449bab9370106b8efcd973092a6d88",
+      "checkpoint_epoch": 40,
+      "seed": 101,
+      "graph_strategy": "StandardGAT",
+      "artifact_bindings_sha256": "d772113b690a082819634b3beb410eff04d6bc51088ad6e548af20d027761b54",
+      "upstream_health_sha256": "8cbb80b10464bd38eb6ef567857d071c11313a8bda937c1ded4e27f20bfca320",
+      "source_hashes": {
+        "cognix/adapters/carla/real_features.py": "66f3e6a59b42f65679642be137a0fadd081f61251cfe8728cd22e089e9110232",
+        "cognix/adapters/carla/cache_builder.py": "f507791ce7720721111c228c357d6e7b5e72473558214c053ed07b8b812a8d34",
+        "cognix/adapters/carla/normality.py": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78",
+        "cognix/adapters/carla/real_agents.py": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2",
+        "reports/carla_train_full_v1/gate1_execution_bundle_v8/segmentation_oov.py": "22b8712257391c4f415c72992fa3369d7408efcc9c69c27abc8257746038f4d9",
+        "reports/carla_train_full_v1/gate2_execution_bundle_v3/gate2_science.py": "c2aba1c4e4587a983b4d00cfa972e2f04d055cff50fd134ecc4bd68c6232412a",
+        "reports/carla_train_full_v1/graph_development_bundle_v3/current_restore.py": "dfe962d6fd509417626e4ae9a398a2a68081241a0f1946d699e87d825ff2835f",
+        "reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/kaggle_models.py": "9972c26ea427952309e77e0e5c5a4ccabf7647cd5599e9c1ad440cb75d02bdd2",
+        "reports/carla_train_full_v1/graph_development_bundle_v3/graph_common.py": "77ba5b669416b03a32e75aeafa05186e14e5869fd8d1d8c9357585068b24aae0",
+        "reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/kaggle_common.py": "fbbaa60dab01a831296dd092c42c6c587827bfa06aa4893cc603dde6cf90e0f3"
+      },
+      "configuration_role": "demonstration configuration, no TEST performance selection",
+      "node_feature_order": [
+        "prob_normal",
+        "epistemic",
+        "aleatoric"
+      ],
+      "fusion": "runtime epistemic-weighted fusion; different from benchmark mean pooling",
+      "calibration_unavailable_reason": "No collective conformal artifact is bound to frozen upstream + node refinement + runtime epistemic-weighted fusion",
+      "full_calibrated_chain": false,
+      "uq_method": "bootstrap one-class ensemble entropy decomposition",
+      "probability_label": "Constructed-task normality probability",
+      "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo task",
+      "decision_semantics": "Framework demonstration policy; not a physical driving command",
+      "run_id": "REPLAY_997250b5ae66468b8cc0c1238c6682aa",
+      "pipeline": "COGNIX DecisionEngine",
+      "reliability_source": "explicit uniform demonstration assumption",
+      "sequence_id": "test/anomaly/Town01/change-weather/scenario-1",
+      "sample_id": "1"
+    },
+    "probability_label": "Constructed-task normality probability",
+    "prediction_semantics": "P(target=normal) under TRAIN-derived clean-vs-pseudo task",
+    "decision_semantics": "Framework demonstration policy; not a physical driving command",
+    "comparison_table": {},
+    "comparison_table_note": "No scientific metrics computed during replay",
+    "decision": "REQUEST_INFORMATION",
+    "risk_level": "MODERATE",
+    "confidence": 0.6733284835738085,
+    "collective_probability": 0.6733284835738085,
+    "calibrated_confidence": null,
+    "calibration_available": false,
+    "calibration_unavailable_reason": "No collective conformal artifact is bound to frozen upstream + node refinement + runtime epistemic-weighted fusion",
+    "conformal_set": null,
+    "conformal_target_coverage": null,
+    "graph_executed": true,
+    "graph_strategy": "StandardGAT",
+    "graph_communication_executed": true,
+    "communication_statistics": {
+      "edges": [
+        [
+          "Camera",
+          "IMU"
+        ],
+        [
+          "Camera",
+          "Seg"
+        ],
+        [
+          "IMU",
+          "Camera"
+        ],
+        [
+          "IMU",
+          "Seg"
+        ],
+        [
+          "Seg",
+          "Camera"
+        ],
+        [
+          "Seg",
+          "IMU"
+        ]
+      ],
+      "attention_weights": {
+        "Camera": 1.0,
+        "IMU": 1.0,
+        "Seg": 1.0
+      },
+      "attention_matrix_shape": [
+        3,
+        3
+      ],
+      "adjacency_type": "provided_adjacency"
+    },
+    "epistemic": 6.750592811996668e-08,
+    "aleatoric": 0.3386561517332368,
+    "total_unc": 0.33865621923916495,
+    "dominant_unc": "ALEATORIC",
+    "escalation": false,
+    "abstained": false,
+    "requested_information": true,
+    "agents": [
+      {
+        "name": "Camera",
+        "prediction": 0.6492547988891602,
+        "upstream_prediction": 0.8728065784332053,
+        "epistemic": 2.00475112066556e-08,
+        "aleatoric": 0.38101645819071994,
+        "weight": 0.8598152837230538,
+        "healthy": null
+      },
+      {
+        "name": "IMU",
+        "prediction": 0.6264623403549194,
+        "upstream_prediction": 0.7790178082968555,
+        "epistemic": 7.329477150597175e-05,
+        "aleatoric": 0.528074985767514,
+        "weight": 0.0003524369402231553,
+        "healthy": null
+      },
+      {
+        "name": "Seg",
+        "prediction": 0.7017945051193237,
+        "upstream_prediction": 0.9850413435081744,
+        "epistemic": 1.7475926657184448e-07,
+        "aleatoric": 0.07770927106516738,
+        "weight": 0.139832279336723,
+        "healthy": null
+      }
+    ],
+    "shapley": {
+      "Camera": -0.3000147616055294,
+      "IMU": -0.36997283884091375,
+      "Seg": -0.3300123320476285
+    },
+    "top_agent": "Camera",
+    "module_status": {
+      "uq": {
+        "executed": true,
+        "method": "bootstrap_oneclass_ensemble",
+        "duration_ms": 0.007800001185387373,
+        "failure_reason": null,
+        "inputs_validated": true,
+        "outputs_validated": true
+      },
+      "gnn": {
+        "executed": true,
+        "method": "StandardGAT",
+        "duration_ms": 0.8527999743819237,
+        "failure_reason": null,
+        "inputs_validated": true,
+        "outputs_validated": true
+      },
+      "belief": {
+        "executed": true,
+        "method": "epistemic_weighted",
+        "duration_ms": 0.052499992307275534,
+        "failure_reason": null,
+        "inputs_validated": true,
+        "outputs_validated": true
+      },
+      "calibration": {
+        "executed": false,
+        "method": "",
+        "duration_ms": 0,
+        "failure_reason": null,
+        "inputs_validated": false,
+        "outputs_validated": false
+      },
+      "attribution": {
+        "executed": true,
+        "method": "epistemic_shapley",
+        "duration_ms": 6.887600000482053,
+        "failure_reason": null,
+        "inputs_validated": true,
+        "outputs_validated": true
+      }
+    },
+    "module_methods": {
+      "uq": "bootstrap one-class ensemble entropy decomposition",
+      "gnn": "StandardGAT",
+      "belief": "runtime epistemic-weighted fusion; different from benchmark mean pooling",
+      "attribution": "collective epistemic uncertainty Shapley"
+    },
+    "module_failure_reasons": {
+      "uq": null,
+      "gnn": null,
+      "belief": null,
+      "calibration": "No collective conformal artifact is bound to frozen upstream + node refinement + runtime epistemic-weighted fusion",
+      "attribution": null
+    },
+    "latency": {
+      "collect_predictions": 0.0029999646358191967,
+      "estimate_uncertainty": 0.007800001185387373,
+      "compute_trust": 0.002700020559132099,
+      "graph_refinement": 0.8546999888494611,
+      "belief_fusion": 0.05360000068321824,
+      "aggregation": 0.02659996971487999,
+      "calibration": null,
+      "risk_assessment": 0.003600027412176132,
+      "decision": 0.0015999539755284786,
+      "attribution": 6.890900025609881,
+      "explanation": 0.023600005079060793,
+      "source_read_ms": 0.000600004568696022,
+      "agent_inference_ms": 0.7194000063464046,
+      "runtime_ms": 8.636699989438057,
+      "total": 8.636699989438057,
+      "uncertainty": 0.7194000063464046,
+      "fusion": 0.05360000068321824,
+      "p50": 8.636699989438057,
+      "p95": 8.636699989438057,
+      "p99": 8.636699989438057,
+      "measured_timer": "time.perf_counter"
+    },
+    "decision_trace": [
+      "uq: executed",
+      "gnn: executed",
+      "belief: executed",
+      "calibration: unavailable",
+      "attribution: executed",
+      "Calibration unavailable: No collective conformal artifact is bound to frozen upstream + node refinement + runtime epistemic-weighted fusion"
+    ],
+    "reasoning": "COGNIX decided REQUEST_INFORMATION with 67.3% confidence (risk: MODERATE, epistemic: 0.0000). Pipeline: uq \u2192 gnn \u2192 belief \u2192 attribution.",
+    "explanation": "COGNIX decided REQUEST_INFORMATION with 67.3% confidence (risk: MODERATE, epistemic: 0.0000). Pipeline: uq \u2192 gnn \u2192 belief \u2192 attribution.",
+    "ground_truth": null
+  }
+}

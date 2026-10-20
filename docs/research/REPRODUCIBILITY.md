@@ -22,3 +22,17 @@ Benchmark results (e.g., "37% communication reduction") must never be hardcoded 
 The `DecisionEngine` uses `_safe_call` to handle agent failures. If an agent fails non-deterministically (e.g., network timeout), the pipeline handles it gracefully, but it breaks exact numerical reproducibility. 
 - For formal evaluation: Use offline datasets where agent outputs are pre-computed or executed deterministically.
 - For live simulation: Report aggregated statistics (e.g., mean/std over 5 runs) rather than single-run numbers.
+
+## 5. Closed Experiment 2B: reproduce reporting only
+
+Experiment 2B is finished, closed, and immutable. Reproducibility here means authenticating and presenting its stored outputs; it does not authorize TEST reruns, Phase A/B reruns, retraining, threshold selection, recalibration, checkpoint reselection, or fitting on TEST. Historical failed and superseded evidence must remain intact, including the superseded prelabel scoring bundle and its failure/supersession records.
+
+Verify the final Phase-B result seal `ec5ea056cb53050c284816c470845f233d4fe8c566917195658639d20bdee15e`, conclusion bundle seal `cff86433be91a3fdabd3b43568b7fb2c24c0760fa78fddeb298b9ae9cbb0cad8`, and conclusion JSON SHA-256 `6abef23828dd6a05fa05ab7e56e8be74072d5674417aafe9e321ee959b0e2f33`. Use the [comprehensive report](COGNIX_FINAL_STATUS.md#6-experiment-2b-closed-held-out-graph-evaluation) and [metric provenance](METRIC_PROVENANCE.md#closed-experiment-2b-provenance) for interpretation.
+
+To regenerate the two report figures from authenticated stored values, run this report-only command from the repository root:
+
+```powershell
+python docs/research/scripts/plot_experiment_2b.py
+```
+
+The script verifies source seals and the conclusion digest, reads the frozen paired differences, and writes SVG/PNG assets plus a full-precision figure-data record under `docs/research/figures/experiment_2b/`. It performs no model execution or metric recomputation and never opens raw TEST labels. The five seeds remain descriptive, and the undefined macro-AUROC is retained. Static report tables are rounded renderings of those authenticated results, consistent with the provenance requirement in Section 3.
