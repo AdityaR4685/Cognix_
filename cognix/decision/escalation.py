@@ -30,10 +30,17 @@ class EscalationEngine:
     Supports Point-estimate Confidence, Epistemic Uncertainty, and Conformal Set Sizes.
     Shapley Attribution is informational (explanation-only).
     """
-    def __init__(self, high_conf_thresh: float = 0.7, low_conf_thresh: float = 0.4, high_unc_thresh: float = 0.5):
+    def __init__(
+        self,
+        high_conf_thresh: float = 0.7,
+        low_conf_thresh: float = 0.4,
+        high_unc_thresh: float = 0.5,
+        max_conformal_set_size: int = 3,
+    ):
         self.high_conf_thresh = high_conf_thresh
         self.low_conf_thresh = low_conf_thresh
         self.high_unc_thresh = high_unc_thresh
+        self.max_conformal_set_size = max_conformal_set_size
         
     def evaluate(self, 
                  confidence: float, 
@@ -48,7 +55,7 @@ class EscalationEngine:
         is explanation-only).
         """
         # Conformal Prediction Thresholding
-        if conformal_set_size >= 3:
+        if conformal_set_size >= self.max_conformal_set_size:
             return EscalationResult(DecisionOutcome.ESCALATE, True, f"Conformal set size ({conformal_set_size}) exceeds safe limit.", RiskLevel.HIGH)
             
         # Three-Tier Point Estimate Logic

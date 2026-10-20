@@ -792,6 +792,9 @@ class CognixPipeline:
             except Exception as exc:
                 logger.debug("Escalation engine failed: %s", exc)
 
+        max_set_size = getattr(getattr(self.config, "decision", None), "max_conformal_set_size", 3)
+        if conformal_set_size >= max_set_size:
+            return DecisionOutcome.ESCALATE, True, False, False
         if risk_level == RiskLevel.HIGH:
             return DecisionOutcome.ESCALATE, True, False, False
         if risk_level == RiskLevel.MODERATE:
