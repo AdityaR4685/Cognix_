@@ -1,0 +1,2707 @@
+{
+  "carla_macro_summary": {
+    "NoGraph": {
+      "Arm1_Baseline": {
+        "mean_strict_f1": 0.16236559139784945,
+        "mean_strict_recall": 0.13869158878504673,
+        "mean_combined_f1": 0.28224401495535123,
+        "mean_combined_recall": 0.6721028037383178,
+        "mean_act_rate": 0.34030100334448155,
+        "mean_escalation_rate": 0.06605351170568562,
+        "mean_normal_false_alarm_rate": 0.6817552920827278,
+        "mean_anomaly_miss_rate": 0.32789719626168223
+      },
+      "Arm2_SensorLoss": {
+        "mean_strict_f1": 0.16236559139784945,
+        "mean_strict_recall": 0.13869158878504673,
+        "mean_combined_f1": 0.28224401495535123,
+        "mean_combined_recall": 0.6721028037383178,
+        "mean_act_rate": 0.34030100334448155,
+        "mean_escalation_rate": 0.06605351170568562,
+        "mean_normal_false_alarm_rate": 0.6817552920827278,
+        "mean_anomaly_miss_rate": 0.32789719626168223
+      },
+      "Arm3_Disagreement": {
+        "mean_strict_f1": 0.17783094098883573,
+        "mean_strict_recall": 0.16869158878504673,
+        "mean_combined_f1": 0.2646160899388046,
+        "mean_combined_recall": 0.7021028037383178,
+        "mean_act_rate": 0.25418060200668896,
+        "mean_escalation_rate": 0.15217391304347827,
+        "mean_normal_false_alarm_rate": 0.7788635695505759,
+        "mean_anomaly_miss_rate": 0.2978971962616822
+      },
+      "Arm4_Both": {
+        "mean_strict_f1": 0.17783094098883573,
+        "mean_strict_recall": 0.16869158878504673,
+        "mean_combined_f1": 0.2646160899388046,
+        "mean_combined_recall": 0.7021028037383178,
+        "mean_act_rate": 0.25418060200668896,
+        "mean_escalation_rate": 0.15217391304347827,
+        "mean_normal_false_alarm_rate": 0.7788635695505759,
+        "mean_anomaly_miss_rate": 0.2978971962616822
+      }
+    },
+    "StandardGAT": {
+      "Arm1_Baseline": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      },
+      "Arm2_SensorLoss": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      },
+      "Arm3_Disagreement": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      },
+      "Arm4_Both": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      }
+    },
+    "EpistemicGAT": {
+      "Arm1_Baseline": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      },
+      "Arm2_SensorLoss": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      },
+      "Arm3_Disagreement": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      },
+      "Arm4_Both": {
+        "mean_strict_f1": 0.09089478983136169,
+        "mean_strict_recall": 0.10668224299065421,
+        "mean_combined_f1": 0.13752279283015742,
+        "mean_combined_recall": 0.24037383177570096,
+        "mean_act_rate": 0.6998327759197325,
+        "mean_escalation_rate": 0.16722408026755853,
+        "mean_normal_false_alarm_rate": 0.3110740017462848,
+        "mean_anomaly_miss_rate": 0.7596261682242991
+      }
+    }
+  },
+  "carla_per_scenario": {
+    "test/anomaly/Town01/change-weather/scenario-1__NoGraph_101": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+      "method": "NoGraph",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 249,
+      "corrupt_samples": 50,
+      "diagnostics": {
+        "mean_min_p_normal": 0.19316525208243884,
+        "mean_min_p_corrupt": 0.0845418388210237,
+        "mean_var_p_normal": 0.09520816888221366,
+        "mean_var_p_corrupt": 0.09046225573111645,
+        "s_loss_rate_normal": 0.3132530120481928,
+        "s_loss_rate_corrupt": 0.7,
+        "s_diss_rate_normal": 0.5381526104417671,
+        "s_diss_rate_corrupt": 0.7,
+        "latency_p50_ms": 7.770800031721592,
+        "latency_p95_ms": 9.29980002110824
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 24,
+            "fp": 19,
+            "fn": 26,
+            "tn": 230,
+            "precision": 0.5581395348837209,
+            "recall": 0.48,
+            "f1": 0.5161290322580645,
+            "accuracy": 0.8494983277591973
+          },
+          "combined_detection": {
+            "tp": 50,
+            "fp": 235,
+            "fn": 0,
+            "tn": 14,
+            "precision": 0.17543859649122806,
+            "recall": 1.0,
+            "f1": 0.29850746268656714,
+            "accuracy": 0.2140468227424749
+          },
+          "proportions": {
+            "act_rate": 0.046822742474916385,
+            "request_info_rate": 0.8093645484949833,
+            "escalation_rate": 0.14381270903010032
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.9437751004016064,
+            "normal_false_alarm_count": 235,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 24,
+            "fp": 19,
+            "fn": 26,
+            "tn": 230,
+            "precision": 0.5581395348837209,
+            "recall": 0.48,
+            "f1": 0.5161290322580645,
+            "accuracy": 0.8494983277591973
+          },
+          "combined_detection": {
+            "tp": 50,
+            "fp": 235,
+            "fn": 0,
+            "tn": 14,
+            "precision": 0.17543859649122806,
+            "recall": 1.0,
+            "f1": 0.29850746268656714,
+            "accuracy": 0.2140468227424749
+          },
+          "proportions": {
+            "act_rate": 0.046822742474916385,
+            "request_info_rate": 0.8093645484949833,
+            "escalation_rate": 0.14381270903010032
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.9437751004016064,
+            "normal_false_alarm_count": 235,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 24,
+            "fp": 21,
+            "fn": 26,
+            "tn": 228,
+            "precision": 0.5333333333333333,
+            "recall": 0.48,
+            "f1": 0.5052631578947369,
+            "accuracy": 0.842809364548495
+          },
+          "combined_detection": {
+            "tp": 50,
+            "fp": 237,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.17421602787456447,
+            "recall": 1.0,
+            "f1": 0.29673590504451036,
+            "accuracy": 0.20735785953177258
+          },
+          "proportions": {
+            "act_rate": 0.04013377926421405,
+            "request_info_rate": 0.8093645484949833,
+            "escalation_rate": 0.1505016722408027
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.9518072289156626,
+            "normal_false_alarm_count": 237,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 24,
+            "fp": 21,
+            "fn": 26,
+            "tn": 228,
+            "precision": 0.5333333333333333,
+            "recall": 0.48,
+            "f1": 0.5052631578947369,
+            "accuracy": 0.842809364548495
+          },
+          "combined_detection": {
+            "tp": 50,
+            "fp": 237,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.17421602787456447,
+            "recall": 1.0,
+            "f1": 0.29673590504451036,
+            "accuracy": 0.20735785953177258
+          },
+          "proportions": {
+            "act_rate": 0.04013377926421405,
+            "request_info_rate": 0.8093645484949833,
+            "escalation_rate": 0.1505016722408027
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.9518072289156626,
+            "normal_false_alarm_count": 237,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/change-weather/scenario-1__StandardGAT_101": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+      "method": "StandardGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 249,
+      "corrupt_samples": 50,
+      "diagnostics": {
+        "mean_min_p_normal": 0.5484527381787817,
+        "mean_min_p_corrupt": 0.41411604553461073,
+        "mean_var_p_normal": 0.0014863700940584861,
+        "mean_var_p_corrupt": 0.0034612821414882504,
+        "s_loss_rate_normal": 0.04417670682730924,
+        "s_loss_rate_corrupt": 0.16,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 12.325100018642843,
+        "latency_p95_ms": 15.992169961100442
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/change-weather/scenario-1__EpistemicGAT_101": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+      "method": "EpistemicGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 249,
+      "corrupt_samples": 50,
+      "diagnostics": {
+        "mean_min_p_normal": 0.5484460318184282,
+        "mean_min_p_corrupt": 0.4141097769141197,
+        "mean_var_p_normal": 0.0014883697201189617,
+        "mean_var_p_corrupt": 0.003463938066394564,
+        "s_loss_rate_normal": 0.04417670682730924,
+        "s_loss_rate_corrupt": 0.16,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 12.347799958661199,
+        "latency_p95_ms": 16.21201002271846
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 68,
+            "fn": 31,
+            "tn": 181,
+            "precision": 0.21839080459770116,
+            "recall": 0.38,
+            "f1": 0.2773722627737226,
+            "accuracy": 0.6688963210702341
+          },
+          "combined_detection": {
+            "tp": 40,
+            "fp": 143,
+            "fn": 10,
+            "tn": 106,
+            "precision": 0.2185792349726776,
+            "recall": 0.8,
+            "f1": 0.34334763948497854,
+            "accuracy": 0.4882943143812709
+          },
+          "proportions": {
+            "act_rate": 0.3879598662207358,
+            "request_info_rate": 0.3210702341137124,
+            "escalation_rate": 0.2909698996655518
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5742971887550201,
+            "normal_false_alarm_count": 143,
+            "anomaly_miss_rate": 0.2,
+            "anomaly_miss_count": 10
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/change-weather/scenario-10__NoGraph_101": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-10",
+      "method": "NoGraph",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 249,
+      "corrupt_samples": 50,
+      "diagnostics": {
+        "mean_min_p_normal": 0.14234217815101147,
+        "mean_min_p_corrupt": 0.19654131501913072,
+        "mean_var_p_normal": 0.11802892076643307,
+        "mean_var_p_corrupt": 0.11315403244405738,
+        "s_loss_rate_normal": 0.46987951807228917,
+        "s_loss_rate_corrupt": 0.1,
+        "s_diss_rate_normal": 0.9317269076305221,
+        "s_diss_rate_corrupt": 1.0,
+        "latency_p50_ms": 7.373499975074083,
+        "latency_p95_ms": 8.868259994778782
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 23,
+            "fn": 50,
+            "tn": 226,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.7558528428093646
+          },
+          "combined_detection": {
+            "tp": 44,
+            "fp": 163,
+            "fn": 6,
+            "tn": 86,
+            "precision": 0.21256038647342995,
+            "recall": 0.88,
+            "f1": 0.3424124513618677,
+            "accuracy": 0.43478260869565216
+          },
+          "proportions": {
+            "act_rate": 0.3076923076923077,
+            "request_info_rate": 0.6153846153846154,
+            "escalation_rate": 0.07692307692307693
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.6546184738955824,
+            "normal_false_alarm_count": 163,
+            "anomaly_miss_rate": 0.12,
+            "anomaly_miss_count": 6
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 23,
+            "fn": 50,
+            "tn": 226,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.7558528428093646
+          },
+          "combined_detection": {
+            "tp": 44,
+            "fp": 163,
+            "fn": 6,
+            "tn": 86,
+            "precision": 0.21256038647342995,
+            "recall": 0.88,
+            "f1": 0.3424124513618677,
+            "accuracy": 0.43478260869565216
+          },
+          "proportions": {
+            "act_rate": 0.3076923076923077,
+            "request_info_rate": 0.6153846153846154,
+            "escalation_rate": 0.07692307692307693
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.6546184738955824,
+            "normal_false_alarm_count": 163,
+            "anomaly_miss_rate": 0.12,
+            "anomaly_miss_count": 6
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 6,
+            "fp": 109,
+            "fn": 44,
+            "tn": 140,
+            "precision": 0.05217391304347826,
+            "recall": 0.12,
+            "f1": 0.07272727272727272,
+            "accuracy": 0.4882943143812709
+          },
+          "combined_detection": {
+            "tp": 50,
+            "fp": 249,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.16722408026755853,
+            "recall": 1.0,
+            "f1": 0.28653295128939826,
+            "accuracy": 0.16722408026755853
+          },
+          "proportions": {
+            "act_rate": 0.0,
+            "request_info_rate": 0.6153846153846154,
+            "escalation_rate": 0.38461538461538464
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 1.0,
+            "normal_false_alarm_count": 249,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 6,
+            "fp": 109,
+            "fn": 44,
+            "tn": 140,
+            "precision": 0.05217391304347826,
+            "recall": 0.12,
+            "f1": 0.07272727272727272,
+            "accuracy": 0.4882943143812709
+          },
+          "combined_detection": {
+            "tp": 50,
+            "fp": 249,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.16722408026755853,
+            "recall": 1.0,
+            "f1": 0.28653295128939826,
+            "accuracy": 0.16722408026755853
+          },
+          "proportions": {
+            "act_rate": 0.0,
+            "request_info_rate": 0.6153846153846154,
+            "escalation_rate": 0.38461538461538464
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 1.0,
+            "normal_false_alarm_count": 249,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/change-weather/scenario-10__StandardGAT_101": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-10",
+      "method": "StandardGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 249,
+      "corrupt_samples": 50,
+      "diagnostics": {
+        "mean_min_p_normal": 0.4996508508023009,
+        "mean_min_p_corrupt": 0.69709144115448,
+        "mean_var_p_normal": 0.0014842766302362788,
+        "mean_var_p_corrupt": 0.0008492862564331303,
+        "s_loss_rate_normal": 0.08835341365461848,
+        "s_loss_rate_corrupt": 0.0,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 11.019799974747002,
+        "latency_p95_ms": 15.66326000029221
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/change-weather/scenario-10__EpistemicGAT_101": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-10",
+      "method": "EpistemicGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 249,
+      "corrupt_samples": 50,
+      "diagnostics": {
+        "mean_min_p_normal": 0.49965818806824436,
+        "mean_min_p_corrupt": 0.6970933121442795,
+        "mean_var_p_normal": 0.0014855613565076605,
+        "mean_var_p_corrupt": 0.0008492104420922944,
+        "s_loss_rate_normal": 0.08835341365461848,
+        "s_loss_rate_corrupt": 0.0,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 11.316099960822612,
+        "latency_p95_ms": 17.27404003613628
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 100,
+            "fn": 50,
+            "tn": 149,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.4983277591973244
+          },
+          "combined_detection": {
+            "tp": 2,
+            "fp": 127,
+            "fn": 48,
+            "tn": 122,
+            "precision": 0.015503875968992248,
+            "recall": 0.04,
+            "f1": 0.0223463687150838,
+            "accuracy": 0.41471571906354515
+          },
+          "proportions": {
+            "act_rate": 0.568561872909699,
+            "request_info_rate": 0.09698996655518395,
+            "escalation_rate": 0.33444816053511706
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.5100401606425703,
+            "normal_false_alarm_count": 127,
+            "anomaly_miss_rate": 0.96,
+            "anomaly_miss_count": 48
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/running-pedestrian/scenario-1__NoGraph_101": {
+      "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+      "method": "NoGraph",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 192,
+      "corrupt_samples": 107,
+      "diagnostics": {
+        "mean_min_p_normal": 0.2760802473203512,
+        "mean_min_p_corrupt": 0.28993374043118175,
+        "mean_var_p_normal": 0.07768435381733448,
+        "mean_var_p_corrupt": 0.07379477488271136,
+        "s_loss_rate_normal": 0.06770833333333333,
+        "s_loss_rate_corrupt": 0.12149532710280374,
+        "s_diss_rate_normal": 0.2760416666666667,
+        "s_diss_rate_corrupt": 0.11214953271028037,
+        "latency_p50_ms": 7.458900043275207,
+        "latency_p95_ms": 8.765360014513135
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 8,
+            "fp": 5,
+            "fn": 99,
+            "tn": 187,
+            "precision": 0.6153846153846154,
+            "recall": 0.07476635514018691,
+            "f1": 0.13333333333333333,
+            "accuracy": 0.6521739130434783
+          },
+          "combined_detection": {
+            "tp": 33,
+            "fp": 139,
+            "fn": 74,
+            "tn": 53,
+            "precision": 0.19186046511627908,
+            "recall": 0.308411214953271,
+            "f1": 0.23655913978494625,
+            "accuracy": 0.28762541806020064
+          },
+          "proportions": {
+            "act_rate": 0.42474916387959866,
+            "request_info_rate": 0.5317725752508361,
+            "escalation_rate": 0.043478260869565216
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.7239583333333334,
+            "normal_false_alarm_count": 139,
+            "anomaly_miss_rate": 0.6915887850467289,
+            "anomaly_miss_count": 74
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 8,
+            "fp": 5,
+            "fn": 99,
+            "tn": 187,
+            "precision": 0.6153846153846154,
+            "recall": 0.07476635514018691,
+            "f1": 0.13333333333333333,
+            "accuracy": 0.6521739130434783
+          },
+          "combined_detection": {
+            "tp": 33,
+            "fp": 139,
+            "fn": 74,
+            "tn": 53,
+            "precision": 0.19186046511627908,
+            "recall": 0.308411214953271,
+            "f1": 0.23655913978494625,
+            "accuracy": 0.28762541806020064
+          },
+          "proportions": {
+            "act_rate": 0.42474916387959866,
+            "request_info_rate": 0.5317725752508361,
+            "escalation_rate": 0.043478260869565216
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.7239583333333334,
+            "normal_false_alarm_count": 139,
+            "anomaly_miss_rate": 0.6915887850467289,
+            "anomaly_miss_count": 74
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 8,
+            "fp": 5,
+            "fn": 99,
+            "tn": 187,
+            "precision": 0.6153846153846154,
+            "recall": 0.07476635514018691,
+            "f1": 0.13333333333333333,
+            "accuracy": 0.6521739130434783
+          },
+          "combined_detection": {
+            "tp": 33,
+            "fp": 139,
+            "fn": 74,
+            "tn": 53,
+            "precision": 0.19186046511627908,
+            "recall": 0.308411214953271,
+            "f1": 0.23655913978494625,
+            "accuracy": 0.28762541806020064
+          },
+          "proportions": {
+            "act_rate": 0.42474916387959866,
+            "request_info_rate": 0.5317725752508361,
+            "escalation_rate": 0.043478260869565216
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.7239583333333334,
+            "normal_false_alarm_count": 139,
+            "anomaly_miss_rate": 0.6915887850467289,
+            "anomaly_miss_count": 74
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 8,
+            "fp": 5,
+            "fn": 99,
+            "tn": 187,
+            "precision": 0.6153846153846154,
+            "recall": 0.07476635514018691,
+            "f1": 0.13333333333333333,
+            "accuracy": 0.6521739130434783
+          },
+          "combined_detection": {
+            "tp": 33,
+            "fp": 139,
+            "fn": 74,
+            "tn": 53,
+            "precision": 0.19186046511627908,
+            "recall": 0.308411214953271,
+            "f1": 0.23655913978494625,
+            "accuracy": 0.28762541806020064
+          },
+          "proportions": {
+            "act_rate": 0.42474916387959866,
+            "request_info_rate": 0.5317725752508361,
+            "escalation_rate": 0.043478260869565216
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.7239583333333334,
+            "normal_false_alarm_count": 139,
+            "anomaly_miss_rate": 0.6915887850467289,
+            "anomaly_miss_count": 74
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/running-pedestrian/scenario-1__StandardGAT_101": {
+      "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+      "method": "StandardGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 192,
+      "corrupt_samples": 107,
+      "diagnostics": {
+        "mean_min_p_normal": 0.6827905783429742,
+        "mean_min_p_corrupt": 0.6795200459728731,
+        "mean_var_p_normal": 0.0010241962940570428,
+        "mean_var_p_corrupt": 0.0009734489015372831,
+        "s_loss_rate_normal": 0.010416666666666666,
+        "s_loss_rate_corrupt": 0.018691588785046728,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 11.380799987819046,
+        "latency_p95_ms": 16.551049990812313
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/running-pedestrian/scenario-1__EpistemicGAT_101": {
+      "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+      "method": "EpistemicGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 192,
+      "corrupt_samples": 107,
+      "diagnostics": {
+        "mean_min_p_normal": 0.6827835544245318,
+        "mean_min_p_corrupt": 0.6795147026532165,
+        "mean_var_p_normal": 0.0010245057105470767,
+        "mean_var_p_corrupt": 0.0009739676765410808,
+        "s_loss_rate_normal": 0.010416666666666666,
+        "s_loss_rate_corrupt": 0.018691588785046728,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 10.771999950520694,
+        "latency_p95_ms": 15.662169968709348
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 5,
+            "fp": 4,
+            "fn": 102,
+            "tn": 188,
+            "precision": 0.5555555555555556,
+            "recall": 0.04672897196261682,
+            "f1": 0.08620689655172414,
+            "accuracy": 0.6454849498327759
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 21,
+            "fn": 94,
+            "tn": 171,
+            "precision": 0.38235294117647056,
+            "recall": 0.12149532710280374,
+            "f1": 0.18439716312056736,
+            "accuracy": 0.6153846153846154
+          },
+          "proportions": {
+            "act_rate": 0.8862876254180602,
+            "request_info_rate": 0.08361204013377926,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.109375,
+            "normal_false_alarm_count": 21,
+            "anomaly_miss_rate": 0.8785046728971962,
+            "anomaly_miss_count": 94
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/spawn-props/scenario-1__NoGraph_101": {
+      "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+      "method": "NoGraph",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 257,
+      "corrupt_samples": 42,
+      "diagnostics": {
+        "mean_min_p_normal": 0.2739435176107786,
+        "mean_min_p_corrupt": 0.29783914309172405,
+        "mean_var_p_normal": 0.08604191785723302,
+        "mean_var_p_corrupt": 0.08129997673575551,
+        "s_loss_rate_normal": 0.05058365758754864,
+        "s_loss_rate_corrupt": 0.0,
+        "s_diss_rate_normal": 0.4046692607003891,
+        "s_diss_rate_corrupt": 0.5,
+        "latency_p50_ms": 7.141900015994906,
+        "latency_p95_ms": 8.552099991356952
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 42,
+            "tn": 257,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8595317725752508
+          },
+          "combined_detection": {
+            "tp": 21,
+            "fp": 104,
+            "fn": 21,
+            "tn": 153,
+            "precision": 0.168,
+            "recall": 0.5,
+            "f1": 0.25149700598802394,
+            "accuracy": 0.5819397993311036
+          },
+          "proportions": {
+            "act_rate": 0.5819397993311036,
+            "request_info_rate": 0.4180602006688963,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.4046692607003891,
+            "normal_false_alarm_count": 104,
+            "anomaly_miss_rate": 0.5,
+            "anomaly_miss_count": 21
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 42,
+            "tn": 257,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8595317725752508
+          },
+          "combined_detection": {
+            "tp": 21,
+            "fp": 104,
+            "fn": 21,
+            "tn": 153,
+            "precision": 0.168,
+            "recall": 0.5,
+            "f1": 0.25149700598802394,
+            "accuracy": 0.5819397993311036
+          },
+          "proportions": {
+            "act_rate": 0.5819397993311036,
+            "request_info_rate": 0.4180602006688963,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.4046692607003891,
+            "normal_false_alarm_count": 104,
+            "anomaly_miss_rate": 0.5,
+            "anomaly_miss_count": 21
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 9,
+            "fn": 42,
+            "tn": 248,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8294314381270903
+          },
+          "combined_detection": {
+            "tp": 21,
+            "fp": 113,
+            "fn": 21,
+            "tn": 144,
+            "precision": 0.15671641791044777,
+            "recall": 0.5,
+            "f1": 0.23863636363636365,
+            "accuracy": 0.5518394648829431
+          },
+          "proportions": {
+            "act_rate": 0.5518394648829431,
+            "request_info_rate": 0.4180602006688963,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.4396887159533074,
+            "normal_false_alarm_count": 113,
+            "anomaly_miss_rate": 0.5,
+            "anomaly_miss_count": 21
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 9,
+            "fn": 42,
+            "tn": 248,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8294314381270903
+          },
+          "combined_detection": {
+            "tp": 21,
+            "fp": 113,
+            "fn": 21,
+            "tn": 144,
+            "precision": 0.15671641791044777,
+            "recall": 0.5,
+            "f1": 0.23863636363636365,
+            "accuracy": 0.5518394648829431
+          },
+          "proportions": {
+            "act_rate": 0.5518394648829431,
+            "request_info_rate": 0.4180602006688963,
+            "escalation_rate": 0.030100334448160536
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.4396887159533074,
+            "normal_false_alarm_count": 113,
+            "anomaly_miss_rate": 0.5,
+            "anomaly_miss_count": 21
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/spawn-props/scenario-1__StandardGAT_101": {
+      "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+      "method": "StandardGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 257,
+      "corrupt_samples": 42,
+      "diagnostics": {
+        "mean_min_p_normal": 0.7040671534865283,
+        "mean_min_p_corrupt": 0.7259204813412258,
+        "mean_var_p_normal": 0.0007796707691689066,
+        "mean_var_p_corrupt": 0.0005233522628996502,
+        "s_loss_rate_normal": 0.007782101167315175,
+        "s_loss_rate_corrupt": 0.0,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 11.07649999903515,
+        "latency_p95_ms": 16.210470016812895
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        }
+      }
+    },
+    "test/anomaly/Town01/spawn-props/scenario-1__EpistemicGAT_101": {
+      "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+      "method": "EpistemicGAT",
+      "seed": 101,
+      "n_samples": 299,
+      "normal_samples": 257,
+      "corrupt_samples": 42,
+      "diagnostics": {
+        "mean_min_p_normal": 0.7040636417988674,
+        "mean_min_p_corrupt": 0.7259156618799482,
+        "mean_var_p_normal": 0.0007797293538594438,
+        "mean_var_p_corrupt": 0.0005233140697087145,
+        "s_loss_rate_normal": 0.007782101167315175,
+        "s_loss_rate_corrupt": 0.0,
+        "s_diss_rate_normal": 0.0,
+        "s_diss_rate_corrupt": 0.0,
+        "latency_p50_ms": 10.751300025731325,
+        "latency_p95_ms": 15.110099990852175
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 42,
+            "tn": 253,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8461538461538461
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 13,
+            "fn": 42,
+            "tn": 244,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.8160535117056856
+          },
+          "proportions": {
+            "act_rate": 0.9565217391304348,
+            "request_info_rate": 0.030100334448160536,
+            "escalation_rate": 0.013377926421404682
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.05058365758754864,
+            "normal_false_alarm_count": 13,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 42
+          }
+        }
+      }
+    }
+  },
+  "synthetic_per_scenario": {
+    "NORMAL": {
+      "scenario": "NORMAL",
+      "n_frames": 20,
+      "diagnostics": {
+        "mean_min_p": 0.6748681121071349,
+        "mean_var_p": 0.011987949152337361,
+        "s_loss_rate": 0.0,
+        "s_diss_rate": 0.0,
+        "latency_p50_ms": 1.4699999883305281
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 20,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 1.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        }
+      }
+    },
+    "CAMERA_BLACKOUT": {
+      "scenario": "CAMERA_BLACKOUT",
+      "n_frames": 20,
+      "diagnostics": {
+        "mean_min_p": 0.11642172314045732,
+        "mean_var_p": 0.08917903632171782,
+        "s_loss_rate": 0.75,
+        "s_diss_rate": 0.75,
+        "latency_p50_ms": 1.2368000170681626
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 20
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 5,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "accuracy": 0.75
+          },
+          "combined_detection": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 5,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "accuracy": 0.75
+          },
+          "proportions": {
+            "act_rate": 0.25,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.75
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.25,
+            "anomaly_miss_count": 5
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 5,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "accuracy": 0.75
+          },
+          "combined_detection": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 5,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "accuracy": 0.75
+          },
+          "proportions": {
+            "act_rate": 0.25,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.75
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.25,
+            "anomaly_miss_count": 5
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 5,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "accuracy": 0.75
+          },
+          "combined_detection": {
+            "tp": 15,
+            "fp": 0,
+            "fn": 5,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1": 0.8571428571428571,
+            "accuracy": 0.75
+          },
+          "proportions": {
+            "act_rate": 0.25,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.75
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.25,
+            "anomaly_miss_count": 5
+          }
+        }
+      }
+    },
+    "GPS_DRIFT": {
+      "scenario": "GPS_DRIFT",
+      "n_frames": 20,
+      "diagnostics": {
+        "mean_min_p": 0.170705139655827,
+        "mean_var_p": 0.08154633470340568,
+        "s_loss_rate": 0.6,
+        "s_diss_rate": 0.65,
+        "latency_p50_ms": 1.230849971761927
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 20
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 12,
+            "fp": 0,
+            "fn": 8,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.6,
+            "f1": 0.75,
+            "accuracy": 0.6
+          },
+          "combined_detection": {
+            "tp": 12,
+            "fp": 0,
+            "fn": 8,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.6,
+            "f1": 0.75,
+            "accuracy": 0.6
+          },
+          "proportions": {
+            "act_rate": 0.4,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.6
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.4,
+            "anomaly_miss_count": 8
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 13,
+            "fp": 0,
+            "fn": 7,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.65,
+            "f1": 0.7878787878787878,
+            "accuracy": 0.65
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 0,
+            "fn": 7,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.65,
+            "f1": 0.7878787878787878,
+            "accuracy": 0.65
+          },
+          "proportions": {
+            "act_rate": 0.35,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.65
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.35,
+            "anomaly_miss_count": 7
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 13,
+            "fp": 0,
+            "fn": 7,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.65,
+            "f1": 0.7878787878787878,
+            "accuracy": 0.65
+          },
+          "combined_detection": {
+            "tp": 13,
+            "fp": 0,
+            "fn": 7,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.65,
+            "f1": 0.7878787878787878,
+            "accuracy": 0.65
+          },
+          "proportions": {
+            "act_rate": 0.35,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.65
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.35,
+            "anomaly_miss_count": 7
+          }
+        }
+      }
+    },
+    "HEAVY_RAIN": {
+      "scenario": "HEAVY_RAIN",
+      "n_frames": 20,
+      "diagnostics": {
+        "mean_min_p": 0.06988397533597543,
+        "mean_var_p": 0.10773524872215301,
+        "s_loss_rate": 0.85,
+        "s_diss_rate": 0.9,
+        "latency_p50_ms": 1.3112500309944153
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 20
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 17,
+            "fp": 0,
+            "fn": 3,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.85,
+            "f1": 0.918918918918919,
+            "accuracy": 0.85
+          },
+          "combined_detection": {
+            "tp": 17,
+            "fp": 0,
+            "fn": 3,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.85,
+            "f1": 0.918918918918919,
+            "accuracy": 0.85
+          },
+          "proportions": {
+            "act_rate": 0.15,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.85
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.15,
+            "anomaly_miss_count": 3
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 18,
+            "fp": 0,
+            "fn": 2,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "accuracy": 0.9
+          },
+          "combined_detection": {
+            "tp": 18,
+            "fp": 0,
+            "fn": 2,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "accuracy": 0.9
+          },
+          "proportions": {
+            "act_rate": 0.1,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.9
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.1,
+            "anomaly_miss_count": 2
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 18,
+            "fp": 0,
+            "fn": 2,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "accuracy": 0.9
+          },
+          "combined_detection": {
+            "tp": 18,
+            "fp": 0,
+            "fn": 2,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "accuracy": 0.9
+          },
+          "proportions": {
+            "act_rate": 0.1,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.9
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.1,
+            "anomaly_miss_count": 2
+          }
+        }
+      }
+    },
+    "MULTI_FAILURE": {
+      "scenario": "MULTI_FAILURE",
+      "n_frames": 20,
+      "diagnostics": {
+        "mean_min_p": 0.015623054978339473,
+        "mean_var_p": 0.13607431227972416,
+        "s_loss_rate": 0.95,
+        "s_diss_rate": 1.0,
+        "latency_p50_ms": 1.537549978820607
+      },
+      "arms": {
+        "Arm1_Baseline": {
+          "strict_escalation": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "combined_detection": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 20,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "accuracy": 0.0
+          },
+          "proportions": {
+            "act_rate": 1.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 1.0,
+            "anomaly_miss_count": 20
+          }
+        },
+        "Arm2_SensorLoss": {
+          "strict_escalation": {
+            "tp": 19,
+            "fp": 0,
+            "fn": 1,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.95,
+            "f1": 0.9743589743589743,
+            "accuracy": 0.95
+          },
+          "combined_detection": {
+            "tp": 19,
+            "fp": 0,
+            "fn": 1,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.95,
+            "f1": 0.9743589743589743,
+            "accuracy": 0.95
+          },
+          "proportions": {
+            "act_rate": 0.05,
+            "request_info_rate": 0.0,
+            "escalation_rate": 0.95
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.05,
+            "anomaly_miss_count": 1
+          }
+        },
+        "Arm3_Disagreement": {
+          "strict_escalation": {
+            "tp": 20,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "accuracy": 1.0
+          },
+          "combined_detection": {
+            "tp": 20,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "accuracy": 1.0
+          },
+          "proportions": {
+            "act_rate": 0.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 1.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        },
+        "Arm4_Both": {
+          "strict_escalation": {
+            "tp": 20,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "accuracy": 1.0
+          },
+          "combined_detection": {
+            "tp": 20,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "accuracy": 1.0
+          },
+          "proportions": {
+            "act_rate": 0.0,
+            "request_info_rate": 0.0,
+            "escalation_rate": 1.0
+          },
+          "operational_costs": {
+            "normal_false_alarm_rate": 0.0,
+            "normal_false_alarm_count": 0,
+            "anomaly_miss_rate": 0.0,
+            "anomaly_miss_count": 0
+          }
+        }
+      }
+    }
+  }
+}

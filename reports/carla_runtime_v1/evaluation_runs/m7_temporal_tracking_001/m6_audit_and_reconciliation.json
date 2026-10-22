@@ -1,0 +1,33 @@
+{
+  "audit_timestamp_utc": "2026-10-20T04:51:11.546830+00:00",
+  "weight_file_integrity": {
+    "path": "C:\\Cognix_ModelCache\\torchvision_m6\\hub\\checkpoints\\fasterrcnn_mobilenet_v3_large_fpn-fb6a3cc7.pth",
+    "file_size_bytes": 77844807,
+    "recorded_sha256": "fb6a3cc702b1df54c18a44b26708cd083614211062d0c36d2ca7bf9270df3533",
+    "independently_verified_sha256": "fb6a3cc702b1df54c18a44b26708cd083614211062d0c36d2ca7bf9270df3533",
+    "hash_matches_official": true
+  },
+  "frame_count_reconciliation": {
+    "reported_total_frames": 960,
+    "reported_scenario_counts": {
+      "test/anomaly/Town01/change-weather/scenario-1": 480,
+      "test/anomaly/Town01/change-weather/scenario-10": 0,
+      "test/anomaly/Town01/running-pedestrian/scenario-1": 60,
+      "test/anomaly/Town01/spawn-props/scenario-1": 420
+    },
+    "root_cause_of_discrepancy": "In M6, the tar member matching used string prefix checking without a trailing slash ('/'). Because 'change-weather/scenario-10' through 'scenario-16' start with 'change-weather/scenario-1', all 8 weather variants were grouped under scenario-1 (8 x 60 = 480 frames), and 7 spawn-props variants were grouped under scenario-1 (7 x 60 = 420 frames). 'running-pedestrian/scenario-1' had exactly 60 frames. Total = 480 + 420 + 60 = 960 frames. Ticks in per_frame_detections.json for weather and props were therefore interleaved 60-tick sequences across multiple scenario subdirectories.",
+    "temporal_tracking_prerequisite": "For temporal object tracking, frames must not be interleaved across distinct scenarios. Milestone 7 strictly uses exact scenario prefixes with trailing slashes ('.../scenario-1/') to isolate individual continuous recordings."
+  },
+  "latency_semantics_clarification": {
+    "m6_recorded_latency_mean_ms": 265.0,
+    "measurement_boundary": "Torch model forward pass alone (model([tensor_img])) on CPU (8 cores).",
+    "end_to_end_frame_latency_ms": 607.75,
+    "difference_explanation": "The ~608 ms/frame end-to-end pipeline includes on-the-fly Gzip tar stream extraction, PIL JPEG decode, and tensor transforms, whereas 265 ms is pure model inference."
+  },
+  "licensing_status_correction": {
+    "torchvision_code": "BSD-3-Clause",
+    "coco_annotations": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    "flickr_images_copyright": "Individual Flickr photographer licenses; not owned by COCO consortium.",
+    "unresolved_terms_statement": "UNRESOLVED FOR REDISTRIBUTION. While local non-commercial academic evaluation is widely recognized under fair-use research provisions, PyTorch models.rst explicitly disclaims weight licensing guarantees. The composite weights inherit terms from the underlying Flickr dataset, meaning legal permission for open public redistribution of the weights remains UNRESOLVED."
+  }
+}

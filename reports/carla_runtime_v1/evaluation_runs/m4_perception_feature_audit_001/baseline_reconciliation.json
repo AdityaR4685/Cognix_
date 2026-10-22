@@ -1,0 +1,41 @@
+{
+  "status": "RECONCILED",
+  "authoritative_baseline_directory": "reports/carla_runtime_v1/evaluation_runs/e2e_dataset_evaluation_v1",
+  "authoritative_baseline_manifest": "reports/carla_runtime_v1/evaluation_runs/e2e_dataset_evaluation_v1/manifest.json",
+  "authoritative_metrics": {
+    "NoGraph": {
+      "mean_bce": 0.607163,
+      "mean_brier": 0.205179,
+      "mean_ece": 0.234457,
+      "strict_f1": 0.162366,
+      "combined_f1": 0.282244,
+      "strict_recall": 0.138692,
+      "combined_recall": 0.672103,
+      "escalation_rate": 0.066054,
+      "normal_false_alarm_rate": 0.681755
+    },
+    "StandardGAT": {
+      "mean_bce": 0.677565,
+      "mean_brier": 0.234125,
+      "mean_ece": 0.208275,
+      "strict_f1": 0.090895,
+      "combined_f1": 0.137523,
+      "strict_recall": 0.106682,
+      "combined_recall": 0.240374,
+      "escalation_rate": 0.167224,
+      "normal_false_alarm_rate": 0.311074
+    },
+    "EpistemicGAT": {
+      "mean_bce": 0.677538,
+      "mean_brier": 0.234115,
+      "mean_ece": 0.208601,
+      "strict_f1": 0.090895,
+      "combined_f1": 0.137523,
+      "strict_recall": 0.106682,
+      "combined_recall": 0.240374,
+      "escalation_rate": 0.167224,
+      "normal_false_alarm_rate": 0.311074
+    }
+  },
+  "discrepancy_explanation": "The discrepancy between earlier reports (NoGraph BCE ~0.607, StandardGAT BCE ~0.678) and narrative Milestone 3 mentions (~0.656 and ~0.505) was an in-chat narrative reporting transcription error. The machine-readable artifacts in e2e_dataset_evaluation_v1 and m2_exp_01 contain exactly BCE 0.607163 and 0.677565. No model retraining or population re-weighting occurred."
+}

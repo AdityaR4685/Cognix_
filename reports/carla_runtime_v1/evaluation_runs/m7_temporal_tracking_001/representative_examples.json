@@ -1,0 +1,45 @@
+{
+  "dynamic_crossing_pedestrian": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "track_id": 12,
+    "class_name": "person",
+    "total_hits": 6,
+    "duration_ticks": 26,
+    "mean_displacement_px": 22.78,
+    "total_displacement_px": 71.31,
+    "start_tick": 15,
+    "last_tick": 40,
+    "analysis": "Dynamic pedestrian successfully tracked for 6 frames with mean motion of 22.78 px/frame through the roadway corridor. Temporal tracking confirms object persistence and trajectory across the lane."
+  },
+  "persistent_sidewalk_pedestrian": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "track_id": 7,
+    "class_name": "person",
+    "total_hits": 1,
+    "duration_ticks": 1,
+    "mean_displacement_px": 0.0,
+    "ever_in_corridor": false,
+    "analysis": "Roadside/sidewalk pedestrian tracked for 1 observations. Corridor gating successfully discriminates this pedestrian from roadway obstacles, suppressing normal false alarms."
+  },
+  "ego_vehicle_hood_track": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "track_id": 1,
+    "class_name": "car",
+    "total_hits": 60,
+    "latest_box": {
+      "x1": 467.86,
+      "y1": 883.91,
+      "x2": 1499.63,
+      "y2": 1070.18,
+      "score": 0.9848,
+      "class_id": 3,
+      "class_name": "car"
+    },
+    "ever_in_corridor": false,
+    "analysis": "Ego vehicle hood continuously detected by Faster R-CNN as a 'car'. Corridor y_max cut (880px) cleanly excludes the hood from hazard evaluation."
+  },
+  "static_props_limitation": {
+    "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+    "analysis": "In spawn-props/scenario-1, custom road obstacles (trash cans, wooden crates) produced zero object tracks. The tracker successfully suppressed transient noise, but cannot track objects that the closed-ontology detector fails to detect in the first place."
+  }
+}

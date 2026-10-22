@@ -1,0 +1,123 @@
+{
+  "successful_pedestrian_crossing": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "tick": 40,
+    "finding": "High-confidence pedestrian detected directly inside the forward driving corridor.",
+    "detections": [
+      {
+        "x1": 1249.6,
+        "y1": 594.5,
+        "x2": 1296.88,
+        "y2": 714.11,
+        "score": 0.9917,
+        "class_id": 1,
+        "class_name": "person"
+      },
+      {
+        "x1": 1161.95,
+        "y1": 593.94,
+        "x2": 1198.3,
+        "y2": 696.5,
+        "score": 0.9563,
+        "class_id": 1,
+        "class_name": "person"
+      },
+      {
+        "x1": 1121.43,
+        "y1": 534.25,
+        "x2": 1150.25,
+        "y2": 592.16,
+        "score": 0.3731,
+        "class_id": 1,
+        "class_name": "person"
+      },
+      {
+        "x1": 1121.38,
+        "y1": 518.1,
+        "x2": 1164.97,
+        "y2": 603.69,
+        "score": 0.3637,
+        "class_id": 1,
+        "class_name": "person"
+      },
+      {
+        "x1": 631.53,
+        "y1": 572.93,
+        "x2": 648.17,
+        "y2": 615.8,
+        "score": 0.3412,
+        "class_id": 1,
+        "class_name": "person"
+      }
+    ]
+  },
+  "ambient_sidewalk_pedestrian": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "tick": 90,
+    "finding": "Pedestrian detected on roadside sidewalk, successfully excluded from driving corridor.",
+    "sidewalk_detections": [
+      {
+        "x1": 1627.98,
+        "y1": 692.2,
+        "x2": 1785.54,
+        "y2": 968.42,
+        "score": 0.9994,
+        "class_id": 1,
+        "class_name": "person"
+      }
+    ],
+    "corridor_detections": []
+  },
+  "missed_hazard_static_props": {
+    "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+    "tick": 20,
+    "finding": "Static roadway props (trash cans, crates) produce 0 detections in COCO model because generic debris and custom simulator props are not present in COCO's 80 object classes.",
+    "num_detections": 2,
+    "detections": [
+      {
+        "x1": 448.48,
+        "y1": 891.99,
+        "x2": 1466.33,
+        "y2": 1066.61,
+        "score": 0.9616,
+        "class_id": 3,
+        "class_name": "car"
+      },
+      {
+        "x1": 1614.36,
+        "y1": 583.66,
+        "x2": 1679.75,
+        "y2": 626.87,
+        "score": 0.5555,
+        "class_id": 64,
+        "class_name": "potted plant"
+      }
+    ]
+  },
+  "weather_degraded_detections": {
+    "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+    "tick": 40,
+    "finding": "Heavy rain/fog reduces detection confidence; distant vehicles become undetectable.",
+    "num_detections": 2,
+    "detections": [
+      {
+        "x1": 324.64,
+        "y1": 531.97,
+        "x2": 391.64,
+        "y2": 644.98,
+        "score": 0.9604,
+        "class_id": 1,
+        "class_name": "person"
+      },
+      {
+        "x1": 416.19,
+        "y1": 872.12,
+        "x2": 1492.91,
+        "y2": 1067.85,
+        "score": 0.9434,
+        "class_id": 3,
+        "class_name": "car"
+      }
+    ]
+  }
+}

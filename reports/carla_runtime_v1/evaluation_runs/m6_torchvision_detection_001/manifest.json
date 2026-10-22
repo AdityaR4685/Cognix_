@@ -1,0 +1,20 @@
+{
+  "experiment_id": "PROTOCOL_M6_PRETRAINED_DETECTION_001",
+  "timestamp_utc": "2026-10-20T04:14:40.203214+00:00",
+  "git_commit": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "model_architecture": "Faster R-CNN with MobileNetV3-Large FPN backbone",
+  "weight_identifier": "FasterRCNN_MobileNet_V3_Large_FPN_Weights.COCO_V1",
+  "weight_sha256": "fb6a3cc702b1df54c18a44b26708cd083614211062d0c36d2ca7bf9270df3533",
+  "scenarios": [
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10",
+    "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "test/anomaly/Town01/spawn-props/scenario-1"
+  ],
+  "stride": 5,
+  "max_ticks_per_scenario": 299,
+  "total_frames_evaluated": 960,
+  "mean_latency_ms": 265.0,
+  "throughput_fps": 1.65
+}

@@ -1,0 +1,33 @@
+{
+  "experiment_id": "PROTOCOL_M7_TEMPORAL_TRACKING_001",
+  "timestamp_utc": "2026-10-20T04:52:33.154126+00:00",
+  "git_commit": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "scenarios": [
+    "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "test/anomaly/Town01/spawn-props/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10"
+  ],
+  "stride": 5,
+  "max_ticks": 299,
+  "total_frames_evaluated": 240,
+  "tracker_config": {
+    "iou_threshold": 0.2,
+    "max_missed_frames": 2,
+    "min_hits_to_confirm": 2,
+    "max_center_distance_px": 350.0
+  },
+  "corridor_config": {
+    "y_min_frac": 0.46,
+    "y_max_frac": 0.82,
+    "x_min_frac": 0.26,
+    "x_max_frac": 0.74
+  },
+  "variants_evaluated": [
+    "Variant 1: Raw Detector Boxes",
+    "Variant 2: Temporal Association (IoU Tracker)",
+    "Variant 3: Temporal Association + Roadway Corridor RoI",
+    "Variant 4: Temporal Association + Roadway Corridor + Motion Gating"
+  ]
+}

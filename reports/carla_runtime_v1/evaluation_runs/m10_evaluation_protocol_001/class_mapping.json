@@ -1,0 +1,73 @@
+{
+  "protocol_version": "1.0.0",
+  "created_at_utc": "2026-10-20T12:35:00Z",
+  "detector_model": "Faster R-CNN ResNet-50 FPN V2 (Pretrained on MS COCO 80 categories)",
+  "evaluation_taxonomy": [
+    {
+      "category": "person",
+      "description": "Pedestrians, runners, children, and dismounted vehicle occupants in the driving environment.",
+      "is_dynamic_traffic_participant": true
+    },
+    {
+      "category": "vehicle",
+      "description": "Four-wheeled or multi-wheeled motor vehicles, including passenger cars, vans, trucks, and buses.",
+      "is_dynamic_traffic_participant": true
+    },
+    {
+      "category": "bicycle_or_motorcycle",
+      "description": "Two-wheeled traffic participants including bicycles and motorcycles, with or without riders.",
+      "is_dynamic_traffic_participant": true
+    },
+    {
+      "category": "road_debris_or_prop",
+      "description": "Stationary or tumbling road obstacles, construction barriers, fallen cargo, traffic cones, and debris.",
+      "is_dynamic_traffic_participant": false
+    },
+    {
+      "category": "ignore_ambiguous",
+      "description": "Regions where object presence or identity is fundamentally undecidable by a human auditor (e.g., severe distant occlusion, motion blur). Unmatched predictions overlapping these regions with IoU >= 0.50 are absorbed without FP penalty.",
+      "is_dynamic_traffic_participant": false
+    }
+  ],
+  "coco_detector_mappings": {
+    "person": {
+      "target_category": "person",
+      "description": "Standard COCO person detection directly maps to evaluation taxonomy person."
+    },
+    "car": {
+      "target_category": "vehicle",
+      "description": "COCO car maps to vehicle taxonomy."
+    },
+    "truck": {
+      "target_category": "vehicle",
+      "description": "COCO truck maps to vehicle taxonomy."
+    },
+    "bus": {
+      "target_category": "vehicle",
+      "description": "COCO bus maps to vehicle taxonomy."
+    },
+    "bicycle": {
+      "target_category": "bicycle_or_motorcycle",
+      "description": "COCO bicycle maps to bicycle_or_motorcycle taxonomy."
+    },
+    "motorcycle": {
+      "target_category": "bicycle_or_motorcycle",
+      "description": "COCO motorcycle maps to bicycle_or_motorcycle taxonomy."
+    }
+  },
+  "structural_blindspots": {
+    "road_debris_or_prop": {
+      "mapped_coco_classes": [],
+      "rationale": "MS COCO contains 80 standard categories, none of which correspond to road debris, spilled cargo, fallen tree limbs, or generic highway obstacles. By formally mapping zero COCO classes to road_debris_or_prop, the evaluation framework ensures that the pretrained detector's inherent blindness to obstacles is accurately penalized as structural False Negatives (FN), preventing unearned safety claims."
+    }
+  },
+  "unsupported_coco_classes": {
+    "handling": "unsupported_or_other",
+    "description": "COCO categories outside traffic participants (e.g., traffic light, bench, fire hydrant, cat, dog) map to unsupported_or_other. If predicted by the model, they cannot match any ground truth traffic targets and will be evaluated as False Positives (FP) unless absorbed by an ignore_ambiguous box."
+  },
+  "matching_rules": {
+    "spatial_iou_threshold": 0.50,
+    "strict_class_agreement": true,
+    "mismatch_policy": "Spatial IoU overlap >= 0.50 between a prediction and a ground truth object of differing taxonomy classes is strictly rejected as a match. The prediction is evaluated as an FP for its predicted class; the ground truth object remains unmatched as an FN for its true class."
+  }
+}

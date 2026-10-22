@@ -131,6 +131,45 @@ python -m cognix.evaluation.run \
     --output-dir results/gat_ablation/
 ```
 
+### CARLA Live Demonstration V2
+
+COGNIX includes a real-time, closed-loop demonstration in the CARLA autonomous driving simulator (`cognix/evaluation/cognix_live_demo_v2.py`). It connects to a running CARLA simulator (Town10HD_Opt), deploys multi-agent epistemic belief fusion, runs inductive conformal prediction, and performs risk escalation and route recovery under interactive or automated sensor faults.
+
+#### Launching the Live Demonstration
+
+Ensure CARLA 0.9.15+ is running on the target machine:
+
+```bash
+# Launch the live demonstration runner
+python -m cognix.evaluation.cognix_live_demo_v2 --host 127.0.0.1 --port 2000
+
+# Automated scenario cycling and telemetry capture
+python -m cognix.evaluation.cognix_live_demo_v2 --host 127.0.0.1 --port 2000 --cycle-scenarios --duration 120 --output reports/carla_runtime_v1/evaluation_runs/live_agent_uncertainty_demo_001/telemetry_route_efficiency_120s.json
+```
+
+#### Interactive Controls
+
+| Key | Mode / Action | Description |
+|---|---|---|
+| `N` | Nominal Driving | Clear faults and navigate nominal route |
+| `P` | Pedestrian Crossing | Spawn crossing pedestrian hazard ahead |
+| `W` | Adverse Weather | Shift weather to heavy rain, fog, and low sun |
+| `B` | Road Obstacle / Props | Spawn dynamic obstacle ahead |
+| `0` | Fault: NONE | Restore nominal sensor feeds |
+| `1` | Fault: Darkness | Simulate optical blackout / underexposure |
+| `2` | Fault: Occlusion | Simulate 60% camera lens occlusion |
+| `3` | Fault: Seg Corruption | Corrupt semantic segmentation feed |
+| `4` | Fault: IMU Disturbance | Inject Gaussian accelerometer/gyroscope disturbance |
+| `R` | Road Recovery | Stabilize and align ego vehicle to safe lane waypoint |
+| `Q` / `ESC` | Quit | Safe shutdown and actor cleanup |
+
+#### Verification Artifacts & Telemetry
+
+Full evaluation reports, multi-sensor telemetry traces, and efficiency audits for the live demonstration are archived in:
+`reports/carla_runtime_v1/evaluation_runs/live_agent_uncertainty_demo_001/`
+See [`COGNIX_LIVE_DEMO_V2_ROUTE_EFFICIENCY_REPORT.md`](reports/carla_runtime_v1/evaluation_runs/live_agent_uncertainty_demo_001/COGNIX_LIVE_DEMO_V2_ROUTE_EFFICIENCY_REPORT.md) for the benchmarked route completion, speed profiles, and conformal set size dynamics.
+
+
 ## 🤝 Contributing
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) for details on how to get started.
 

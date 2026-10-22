@@ -1,0 +1,29 @@
+{
+  "experiment_id": "PROTOCOL_M4_PERCEPTION_FEATURE_AUDIT_001",
+  "timestamp_utc": "2026-10-20T02:45:24.905974+00:00",
+  "git_commit": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "python_version": "3.12.10",
+  "platform": "Windows-11",
+  "scenarios_carla": [
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10",
+    "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "test/anomaly/Town01/spawn-props/scenario-1"
+  ],
+  "scenarios_synthetic": [
+    "NORMAL",
+    "CAMERA_BLACKOUT",
+    "GPS_DRIFT",
+    "HEAVY_RAIN",
+    "MULTI_FAILURE"
+  ],
+  "total_carla_ticks": 1196,
+  "total_synthetic_frames": 100,
+  "variants": {
+    "Variant1_Baseline": "Status quo 3-tier scalar policy on (q, E)",
+    "Variant2_PerceptionHazard": "Baseline + Spatial Corridor Hazard Occupancy Gating (hazard_occ > 0.05 -> ESCALATE)",
+    "Variant3_SensorHealth": "Baseline + Sensor-Health Gating (min_sensor_p < 0.10 -> ESCALATE)",
+    "Variant4_Combined": "Baseline + (hazard_occ > 0.05 OR min_sensor_p < 0.10 -> ESCALATE)"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "manifest_version": "1.1.0",
+  "created_at_utc": "2026-10-20T19:23:00+00:00",
+  "milestone": "M14_carla_live_demo_001",
+  "repository": "C:\\Users\\Aditya\\Cognix2_recovered",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "git_head": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "annotation_backups": {
+    "anomaly_pilot_reconciled": {
+      "source_path": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/working_human_review_pilot_annotations_reconciled.json",
+      "backup_path": "reports/carla_runtime_v1/evaluation_runs/m13_carla_demo_001/backup_annotations/working_human_review_pilot_annotations_reconciled_20261020_184215.json",
+      "sha256": "56457c5927e65f5d7e871423f2d2693dc6d02c419b931052efd22c4274ace481",
+      "file_size_bytes": 49400
+    },
+    "normal_control": {
+      "source_path": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/working_human_review_normal_control_annotations.json",
+      "backup_path": "reports/carla_runtime_v1/evaluation_runs/m13_carla_demo_001/backup_annotations/working_human_review_normal_control_annotations_20261020_184215.json",
+      "sha256": "08a89ab430d35d0fd5a38fe206b271caf05560f56beaf01a133e0a23bc6f6e3a",
+      "file_size_bytes": 19880
+    }
+  },
+  "reference_sandbox_scripts": {
+    "cognix_live_demo": {
+      "path": "C:\\Users\\Aditya\\cognix_carla_demo_sandbox\\cognix_live_demo.py",
+      "sha256": "41e186b1824c8a11306382552cb8a32566c1a49b9e64d7e7249fe0eac5f7e879",
+      "status": "preserved_unchanged_reference"
+    }
+  },
+  "code_artifacts": {
+    "carla_demo_runner": {
+      "path": "cognix/evaluation/carla_demo_runner.py",
+      "sha256": "73911551a71594de44d2a246d7364723ff38efbc1521fd5383deebfe980c38aa"
+    },
+    "unit_tests": {
+      "path": "tests/unit/test_carla_demo_runner.py",
+      "sha256": "13ec40a7df56c2faf64ea4a10a89163a24093fb0c53590d2b5d331c9188c7dbd"
+    }
+  },
+  "documentation": {
+    "demo_report": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m13_carla_demo_001/M13_CARLA_DEMO_REPORT.md",
+      "sha256": "c6f88af2477e099dbbc91c4a5dddfdc999d5fd092e8a064e778dbb3b77d66503"
+    }
+  },
+  "demonstration_artifacts": {
+    "execution_summary_replay": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m13_carla_demo_001/demo_artifacts/demo_execution_summary.json",
+      "sha256": "8d5a3ecedc34a5e1812b92e391fe9a431a13ee712494bdfae47a7b3985e467ed"
+    },
+    "execution_summary_live": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m13_carla_demo_001/demo_artifacts/demo_execution_summary_live.json",
+      "sha256": "3b91aab33a609cb42e7fce09079c94d17f392cb91760e3ffa3abadb041ec01dd"
+    },
+    "rendered_scenarios": {
+      "normal_frames": 10,
+      "pedestrian_frames": 10,
+      "weather_frames": 10,
+      "props_frames": 10,
+      "live_frames": 10
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "test/anomaly/Town01/change-weather/scenario-1": {
+    "representative_false_negative_missed_hazard": {
+      "tick": 208,
+      "q_normal": 0.7566696272684855,
+      "hazard_occupancy": 0.0,
+      "camera_p": 0.8599400622221196,
+      "seg_p": 0.9790413759231382,
+      "baseline_decision": "ACT",
+      "failure_reason": "Upstream camera and segmentation agents output high normal confidence (~0.75-0.97), masking localized obstacle from decision engine."
+    },
+    "representative_false_positive_normal_false_alarm": {
+      "tick": 1,
+      "hazard_occupancy": 0.015529465146616754,
+      "perception_decision": "REQUEST_INFORMATION",
+      "failure_reason": "Ambient pedestrian or roadside prop on sidewalk entered corridor bounding bounds during normal driving, triggering false escalation."
+    }
+  },
+  "test/anomaly/Town01/change-weather/scenario-10": {
+    "representative_false_negative_missed_hazard": {
+      "tick": 166,
+      "q_normal": 0.7563191594615235,
+      "hazard_occupancy": 0.01575633826782372,
+      "camera_p": 0.8385344417445862,
+      "seg_p": 0.986570143075198,
+      "baseline_decision": "ACT",
+      "failure_reason": "Upstream camera and segmentation agents output high normal confidence (~0.75-0.97), masking localized obstacle from decision engine."
+    },
+    "representative_false_positive_normal_false_alarm": {
+      "tick": 1,
+      "hazard_occupancy": 0.0,
+      "perception_decision": "REQUEST_INFORMATION",
+      "failure_reason": "Ambient pedestrian or roadside prop on sidewalk entered corridor bounding bounds during normal driving, triggering false escalation."
+    }
+  },
+  "test/anomaly/Town01/running-pedestrian/scenario-1": {
+    "representative_false_negative_missed_hazard": {
+      "tick": 17,
+      "q_normal": 0.7347517808078676,
+      "hazard_occupancy": 0.02638534399637003,
+      "camera_p": 0.8496224182924961,
+      "seg_p": 0.9393456662214426,
+      "baseline_decision": "ACT",
+      "failure_reason": "Upstream camera and segmentation agents output high normal confidence (~0.75-0.97), masking localized obstacle from decision engine."
+    },
+    "representative_false_positive_normal_false_alarm": {
+      "tick": 57,
+      "hazard_occupancy": 0.021754296409732858,
+      "perception_decision": "REQUEST_INFORMATION",
+      "failure_reason": "Ambient pedestrian or roadside prop on sidewalk entered corridor bounding bounds during normal driving, triggering false escalation."
+    }
+  },
+  "test/anomaly/Town01/spawn-props/scenario-1": {
+    "representative_false_negative_missed_hazard": {
+      "tick": 25,
+      "q_normal": 0.7547226373836173,
+      "hazard_occupancy": 0.02265611706653054,
+      "camera_p": 0.8408257840204298,
+      "seg_p": 0.9841398014414457,
+      "baseline_decision": "ACT",
+      "failure_reason": "Upstream camera and segmentation agents output high normal confidence (~0.75-0.97), masking localized obstacle from decision engine."
+    },
+    "representative_false_positive_normal_false_alarm": {
+      "tick": 111,
+      "hazard_occupancy": 0.0,
+      "perception_decision": "ESCALATE",
+      "failure_reason": "Ambient pedestrian or roadside prop on sidewalk entered corridor bounding bounds during normal driving, triggering false escalation."
+    }
+  }
+}

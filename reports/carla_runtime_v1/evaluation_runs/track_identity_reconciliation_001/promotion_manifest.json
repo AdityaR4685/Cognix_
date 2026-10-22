@@ -1,0 +1,22 @@
+{
+  "manifest_type": "track_identity_candidate_promotion_manifest",
+  "purpose": "Promote validated track-reconciled candidate annotations to the active human review queue for the 40-frame anomaly pilot, establishing continuous physical trajectories and retiring duplicate AI proposals without modifying original baselines or pre-reconciliation files.",
+  "timestamp_utc": "2026-10-20T18:03:00Z",
+  "source_candidate_file": "reports/carla_runtime_v1/evaluation_runs/track_identity_reconciliation_001/proposed_reconciled_pilot_annotations.json",
+  "source_candidate_sha256": "8f7a25becdd497063dc914947813b16fb699f0cd2adbaa131763ad9556e424d1",
+  "destination_review_queue_file": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/working_human_review_pilot_annotations_reconciled.json",
+  "destination_review_queue_sha256": "8f7a25becdd497063dc914947813b16fb699f0cd2adbaa131763ad9556e424d1",
+  "original_unreconciled_working_file": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/working_human_review_pilot_annotations.json",
+  "original_unreconciled_working_file_sha256": "d745e1729920da98aa3d9f009ce5706f307dad68ffc9d51dea087071c819eb06",
+  "frames_count": 40,
+  "retained_target_objects_count": 76,
+  "retired_duplicate_ai_proposals_count": 5,
+  "duplicate_retirement_ledger": "reports/carla_runtime_v1/evaluation_runs/track_identity_reconciliation_001/duplicate_retirement_ledger.json",
+  "duplicate_retirement_ledger_sha256": "ffbd0d8d3a4e8823331833b8765ccbb4a9d003539d43199bdf078f1c156b3b6d",
+  "ego_hood_exclusions_count": 40,
+  "ego_hood_exclusion_ledger": "reports/carla_runtime_v1/evaluation_runs/ego_hood_correction_001/ego_hood_exclusion_ledger.json",
+  "ego_hood_exclusion_ledger_sha256": "1335f2c4a1dd5ebc239ab32351a27141ee773c6a6e2ae4dfb9a0bc76085b8a86",
+  "visual_adjudication_ledger": "reports/carla_runtime_v1/evaluation_runs/track_identity_reconciliation_001/visual_adjudication_ledger.json",
+  "visual_adjudication_ledger_sha256": "21c40873bcd33f7efeeb3d5acae16e477a6c84a45ea3d2108952832ba18bb702",
+  "status": "PROMOTED_TO_ACTIVE_QUEUE_PENDING_HUMAN_CONFIRMATION"
+}
