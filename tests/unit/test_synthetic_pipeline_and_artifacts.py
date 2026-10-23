@@ -50,7 +50,7 @@ ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / "artifacts" / "s
 
 @pytest.fixture
 def synthetic_agents():
-    return [
+    agents = [
         CameraAgent(),
         DepthAgent(),
         LiDARAgent(),
@@ -58,6 +58,9 @@ def synthetic_agents():
         IMUAgent(),
         SegAgent(),
     ]
+    for index, agent in enumerate(agents):
+        agent.rng = np.random.default_rng(42 + index)
+    return agents
 
 
 @pytest.fixture
