@@ -7,7 +7,7 @@ from .ood import OODDetector
 try:
     from .heteroscedastic import HeteroscedasticLoss
 except ImportError:
-    HeteroscedasticLoss = None
+    HeteroscedasticLoss = None  # type: ignore[assignment,misc]
 
 __all__ = [
     "UncertaintyEstimator",

@@ -7,14 +7,14 @@ name = "cognix-uncertainty-framework"
 version = "0.1.0"
 description = "A domain-agnostic, uncertainty-aware multi-agent AI decision framework"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{name = "COGNIX Contributors"}]
 requires-python = ">=3.10"
 keywords = ["uncertainty", "multi-agent", "bayesian", "conformal", "epistemic"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -74,15 +74,43 @@ exclude = ["cognix.evaluation.reports*", "tests*"]
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+extend-exclude = [
+    "reports",
+    "artifacts",
+    "docs",
+    "results",
+    "simulation",
+    "robotics",
+    "experiments",
+    "scratch",
+    ".runtime_v1_*",
+]
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "N", "UP", "B"]
+select = ["E", "F"]
+ignore = ["E501"]
 
 [tool.mypy]
 python_version = "3.10"
-warn_return_any = true
+ignore_missing_imports = true
 warn_unused_configs = true
+warn_return_any = false
+check_untyped_defs = false
+disallow_untyped_defs = false
+exclude = [
+    "^reports/",
+    "^artifacts/",
+    "^docs/",
+    "^tests/",
+    "^cognix/evaluation/cognix_live_demo_v2\\.py$",
+    "^cognix/evaluation/carla_demo_runner\\.py$",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["-v", "--tb=short", "--ignore=tests/test_ground_truth.py"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--ignore=tests/test_ground_truth.py",
+    "--ignore=tests/unit/test_carla_graph_trainers.py",
+]

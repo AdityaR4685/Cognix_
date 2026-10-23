@@ -106,26 +106,22 @@ pip install -e ".[dev]"
 ```python
 from cognix.engine.decision_engine import DecisionEngine
 from cognix.config.schema import CognixConfig
-from cognix.graph.epistemic_gat import EpistemicGAT
 from cognix.belief.fusion import EpistemicWeightedFusion
 from cognix.calibration.conformal import ConformalPredictor
 
-# Initialize explicit strategies
+# Initialize base domain-agnostic strategies (pure Python / NumPy)
 config = CognixConfig()
-gat = EpistemicGAT(input_dim=3, hidden_dim=8, output_dim=1)
 fuser = EpistemicWeightedFusion()
-calibrator = ConformalPredictor()
 
-# Inject into the DecisionEngine
+# Inject into the DecisionEngine (uses graph="no_graph" by default on base installs)
 engine = DecisionEngine(
     config=config,
     belief=fuser,
-    graph=gat,
-    calibrator=calibrator,
-    mode="research" # Fails loud on mathematically invalid states
+    graph="no_graph",
+    mode="production"  # Use mode="research" for strict mathematical assertion checks
 )
 
-# Agents must implement the AgentInterface
+# Agents must implement the AgentInterface (or use cognix.agents.adapters)
 agents = [radar_agent, camera_agent, lidar_agent]
 
 # Evaluate the pipeline
@@ -133,6 +129,48 @@ result = engine.decide(agents, input_data)
 
 print(f"Fused Prediction: {result.confidence}")
 print(f"Total Uncertainty: {result.total_uncertainty}")
+print(f"Decision Outcome: {result.decision}")
+```
+
+#### Conformal Calibration (Optional Plug-in)
+
+To add distribution-free uncertainty calibration, provide a fitted `ConformalPredictor`:
+
+```python
+from cognix.calibration.conformal import ConformalPredictor
+
+calibrator = ConformalPredictor()
+# Fit on calibration split: probabilities shape (N, C), labels shape (N,)
+calibrator.fit(cal_outputs=val_probs, cal_labels=val_labels)
+
+engine = DecisionEngine(
+    config=config,
+    belief=fuser,
+    graph="no_graph",
+    calibrator=calibrator,
+    mode="research"
+)
+```
+
+#### Graph Attention Networks (Optional Extra)
+
+To utilize relational message passing and Epistemic Graph Attention Networks:
+
+```bash
+pip install "cognix-uncertainty-framework[graph]"
+```
+
+```python
+from cognix.graph.epistemic_gat import EpistemicGAT
+
+gat = EpistemicGAT(input_dim=3, hidden_dim=8, output_dim=1)
+engine = DecisionEngine(
+    config=config,
+    belief=fuser,
+    graph=gat,
+    calibrator=calibrator,
+    mode="research"
+)
 ```
 
 ### Running Automated Benchmarks
