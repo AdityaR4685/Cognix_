@@ -26,16 +26,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e .[dev]
+        pip install -e .[dev,dashboard]
     - name: Test Core Library with pytest
       run: |
-        pytest tests/
+        pytest tests/ -m "not research_assets"
     - name: Run Ground Truth Mathematical Verification
       run: |
         python tests/test_ground_truth.py
 
   demo-and-dashboard-validation:
-    name: Demo and Dashboard Application Validation
+    name: Portable Demo and Dashboard Validation
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -50,9 +50,30 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .[dev,dashboard]
         pip install opencv-python-headless flask
-    - name: Test Demo and Dashboard Modules
+    - name: Test Portable Demo and Dashboard Modules
       run: |
-        pytest tests/unit/test_annotation_app_smoke.py tests/unit/test_dashboard.py tests/unit/test_pedestrian_safety_audit.py tests/unit/test_cognix_live_demo_v2.py tests/unit/test_carla_demo_runner.py
+        pytest tests/unit/test_annotation_app_smoke.py tests/unit/test_dashboard.py tests/unit/test_pedestrian_safety_audit.py
+
+  carla-live-demo-validation:
+    name: CARLA Live Demo and Runner Validation (Environment-Dependent)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,dashboard]
+        pip install opencv-python-headless flask
+    - name: Test CARLA Live Demo and Runner (Requires Live Simulator and Sensor Frames)
+      run: |
+        pytest tests/unit/test_cognix_live_demo_v2.py tests/unit/test_carla_demo_runner.py
 
   carla-graph-validation:
     name: CARLA Graph Training Protocol Validation

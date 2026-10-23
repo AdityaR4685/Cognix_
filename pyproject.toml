@@ -55,6 +55,7 @@ dev = [
     "pettingzoo>=1.24",
     "rich>=13.0",
     "click>=8.1",
+    "pyarrow>=12.0.0",
 ]
 all = [
     "cognix-uncertainty-framework[graph,vision,explainability,llm,dashboard,marl]",
@@ -133,4 +134,7 @@ addopts = [
     "--ignore=tests/unit/test_pedestrian_safety_audit.py",
     "--ignore=tests/unit/test_cognix_live_demo_v2.py",
     "--ignore=tests/unit/test_carla_demo_runner.py",
+]
+markers = [
+    "research_assets: tests requiring uncommitted local research evidence or calibration bundles",
 ]

@@ -99,6 +99,7 @@ def compute_sha256(filepath: Path) -> str:
     return h.hexdigest()
 
 
+@pytest.mark.research_assets
 class TestTrackIdentityCandidateValidation:
     """Validates the proposed reconciled candidate annotations and duplicate retirement ledger."""
 

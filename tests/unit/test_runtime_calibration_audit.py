@@ -218,6 +218,7 @@ def test_unavailable_real_collective_calibration_fails_closed_for_every_strategy
         load_runtime_artifacts(ROOT, strategy, 101, require_calibration=True)
 
 
+@pytest.mark.research_assets
 @pytest.mark.parametrize("name", ["Camera", "IMU", "Seg"])
 def test_frozen_cal_partition_was_consumed_by_upstream_probability_mapping(name):
     report = ROOT / "reports/carla_train_full_v1"
