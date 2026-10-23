@@ -27,14 +27,37 @@ jobs:
         pip install -e .[dev]
     - name: Test Core Library with pytest
       run: |
-        pytest tests/ --ignore=tests/unit/test_carla_graph_trainers.py
+        pytest tests/
     - name: Run Ground Truth Mathematical Verification
       run: |
         python tests/test_ground_truth.py
 
+  lint-core:
+    name: Core Generic Framework Lint and Type Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff mypy
+    - name: Lint Generic Core with Ruff
+      run: |
+        ruff check cognix/ tests/unit/test_pipeline_contract.py
+    - name: Type check Generic Core with mypy
+      run: |
+        mypy cognix/
+
   publish-pypi:
     name: Build and Publish to PyPI
-    needs: [test-core]
+    needs: [test-core, lint-core]
     runs-on: ubuntu-latest
     environment:
       name: pypi

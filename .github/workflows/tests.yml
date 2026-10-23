@@ -29,10 +29,30 @@ jobs:
         pip install -e .[dev]
     - name: Test Core Library with pytest
       run: |
-        pytest tests/ --ignore=tests/unit/test_carla_graph_trainers.py
+        pytest tests/
     - name: Run Ground Truth Mathematical Verification
       run: |
         python tests/test_ground_truth.py
+
+  demo-and-dashboard-validation:
+    name: Demo and Dashboard Application Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,dashboard]
+        pip install opencv-python-headless flask
+    - name: Test Demo and Dashboard Modules
+      run: |
+        pytest tests/unit/test_annotation_app_smoke.py tests/unit/test_dashboard.py tests/unit/test_pedestrian_safety_audit.py tests/unit/test_cognix_live_demo_v2.py tests/unit/test_carla_demo_runner.py
 
   carla-graph-validation:
     name: CARLA Graph Training Protocol Validation
@@ -40,6 +60,8 @@ jobs:
     permissions:
       contents: read
     continue-on-error: true
+    env:
+      TEMP: /tmp
     steps:
     - uses: actions/checkout@v7
     - name: Set up Python 3.12

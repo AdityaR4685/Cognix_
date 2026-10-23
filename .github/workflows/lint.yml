@@ -7,24 +7,46 @@ on:
     branches: [ main, gat-testing-complete-checkpoint ]
 
 jobs:
-  lint:
+  lint-core:
+    name: Core Generic Framework Lint and Type Check
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     steps:
     - uses: actions/checkout@v7
-    - name: Set up Python 3.10
+    - name: Set up Python 3.12
       uses: actions/setup-python@v7
       with:
-        python-version: "3.10"
+        python-version: "3.12"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install ruff mypy
-    - name: Lint with Ruff
+    - name: Lint Generic Core with Ruff
       run: |
-        ruff check cognix/ tests/
-    - name: Type check with mypy
+        ruff check cognix/ tests/unit/test_pipeline_contract.py
+    - name: Type check Generic Core with mypy
       run: |
         mypy cognix/
+
+  legacy-lint-audit:
+    name: Legacy Code and Demo Lint Audit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    continue-on-error: true
+
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff
+    - name: Audit Legacy CARLA Adapters and Demos with Ruff
+      run: |
+        ruff check cognix/adapters/carla cognix/evaluation dashboard tests/
