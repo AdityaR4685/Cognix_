@@ -1,5 +1,4 @@
 from typing import Any, Optional
-import numpy as np
 
 from cognix.core.interfaces import AgentInterface, UncertaintyEstimator
 from cognix.core.types import PredictionResult, UncertaintyResult

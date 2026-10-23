@@ -2,7 +2,6 @@
 Temperature Scaling for Probability Calibration.
 """
 import numpy as np
-from typing import Optional
 
 class TemperatureScaling:
     """

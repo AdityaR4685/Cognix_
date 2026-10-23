@@ -2,7 +2,7 @@
 SHAP and Tree SHAP Adapter for COGNIX.
 Reference: Lundberg & Lee (2017). A Unified Approach to Interpreting Model Predictions.
 """
-from typing import Any, Callable
+from typing import Any
 import numpy as np
 
 try:

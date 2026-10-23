@@ -15,20 +15,17 @@ Validates the generic COGNIX pipeline orchestration contracts:
 from __future__ import annotations
 
 import json
-import math
 import numpy as np
 import pytest
 
-from cognix.config.schema import CognixConfig
 from cognix.core.interfaces import AgentInterface, BeliefFuser, UncertaintyEstimator
-from cognix.core.types import FusionResult, PredictionResult, UncertaintyResult
+from cognix.core.types import PredictionResult, UncertaintyResult
 from cognix.decision.escalation import EscalationEngine
 from cognix.engine.decision_engine import DecisionEngine
 from cognix.engine.pipeline import CognixPipeline, PRODUCTION_MODE, RESEARCH_MODE
 from cognix.engine.result import DecisionOutcome, DecisionResult, RiskLevel
-from cognix.belief.fusion import EpistemicWeightedFusion, AverageFusion
+from cognix.belief.fusion import EpistemicWeightedFusion
 from cognix.calibration.conformal import ConformalPredictor
-from cognix.attribution.epistemic_shapley import EpistemicShapley
 
 
 # ── Minimal Fake Agents for Domain-Neutral Testing ─────────────────────────────

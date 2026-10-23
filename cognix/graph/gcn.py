@@ -22,7 +22,7 @@ class GCNLayer:
         A: Adjacency matrix, shape (num_nodes, num_nodes)
         """
         # A_hat = A + I
-        I = np.eye(A.shape[0])
+        I = np.eye(A.shape[0])  # noqa: E741
         A_hat = A + I
         
         # Degree matrix D

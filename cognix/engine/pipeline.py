@@ -30,7 +30,6 @@ from typing import Any
 import numpy as np
 
 from cognix.engine.result import DecisionResult, DecisionOutcome, RiskLevel
-from cognix.core.types import PredictionResult
 from cognix.engine.provenance import ModuleStatus
 
 logger = logging.getLogger(__name__)
@@ -328,7 +327,7 @@ class CognixPipeline:
         )
         # Fused confidence takes priority if belief_fuser ran
         if belief_status.executed and self.belief_fuser is not None:
-            agg_confidence = fused_confidence
+            _agg_confidence = fused_confidence
         latencies["aggregation"] = _ms(t)
 
         # ── Step 8: Calibration (M3: CCL) ─────────────────────────────

@@ -44,7 +44,7 @@ class DirichletLoss(nn.Module):
             alphas: (N, C) predicted concentration parameters
             labels: (N,) true integer labels
         """
-        N = alphas.size(0)
+        N = alphas.size(0)  # noqa: F841
         y = F.one_hot(labels, num_classes=self.num_classes).float()
         
         S = torch.sum(alphas, dim=1, keepdim=True)

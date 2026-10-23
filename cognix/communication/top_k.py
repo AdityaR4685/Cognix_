@@ -2,7 +2,6 @@
 Bandwidth-Constrained Top-K Routing.
 """
 from typing import Dict, List
-import numpy as np
 
 class TopKCommunication:
     """

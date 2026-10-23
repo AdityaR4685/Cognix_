@@ -1,7 +1,7 @@
 """
 Decision Council profiles for multi-agent coordination.
 """
-from typing import Any, Dict
+from typing import Any
 
 class DecisionCouncil:
     """
