@@ -1,0 +1,18 @@
+include README.md
+include LICENSE
+include pyproject.toml
+recursive-include cognix *.py
+recursive-exclude cognix/evaluation/reports *
+prune reports
+prune artifacts
+prune results
+prune tests
+prune configs
+prune simulation
+prune robotics
+prune experiments
+prune docs
+prune dashboard
+prune scratch
+global-exclude *.py[cod] __pycache__ *.so *.dylib *.dll
+global-exclude .runtime_v1_*

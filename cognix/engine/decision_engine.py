@@ -77,12 +77,19 @@ def _resolve_module(category: str, value: Any) -> Any:
 
     elif category == "graph" and isinstance(value, str):
         val = value.lower().strip()
-        if val == "epistemic_gat":
-            from cognix.graph.epistemic_gat import EpistemicGAT
-            return EpistemicGAT()
-        elif val == "standard_gat":
-            from cognix.graph.standard_gat import StandardGAT
-            return StandardGAT()
+        if val in ("epistemic_gat", "standard_gat"):
+            try:
+                if val == "epistemic_gat":
+                    from cognix.graph.epistemic_gat import EpistemicGAT
+                    return EpistemicGAT()
+                elif val == "standard_gat":
+                    from cognix.graph.standard_gat import StandardGAT
+                    return StandardGAT()
+            except ImportError as e:
+                raise ImportError(
+                    f"Graph module '{val}' requires PyTorch. "
+                    "Install with: pip install 'cognix-uncertainty-framework[graph]'"
+                ) from e
         elif val == "no_graph":
             from cognix.graph.no_graph import NoGraph
             return NoGraph()

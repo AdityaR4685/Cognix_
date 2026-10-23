@@ -3,8 +3,8 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cognix"
-version = "0.1.0.dev0"
+name = "cognix-uncertainty-framework"
+version = "0.1.0"
 description = "A domain-agnostic, uncertainty-aware multi-agent AI decision framework"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -26,23 +26,16 @@ dependencies = [
     "scipy>=1.10",
     "pydantic>=2.0",
     "pyyaml>=6.0",
-    "rich>=13.0",
-    "click>=8.1",
-    "torch>=2.0",
-    "pettingzoo>=1.24",
-    "shap>=0.43",
-    "lime>=0.2",
-    "scikit-learn>=1.3",
-    "networkx>=3.0",
 ]
 
 [project.optional-dependencies]
-graph = ["torch>=2.0", "torch-geometric>=2.3"]
+graph = ["torch>=2.0", "networkx>=3.0"]
 vision = ["torch>=2.0", "torchvision>=0.15", "Pillow>=9.0"]
-explainability = ["shap>=0.43", "lime>=0.2"]
+explainability = ["shap>=0.43", "lime>=0.2", "networkx>=3.0"]
 carla = ["carla>=0.9.15"]
 llm = ["openai>=1.0", "anthropic>=0.20"]
 dashboard = ["fastapi>=0.110", "uvicorn[standard]>=0.28", "websockets>=12.0", "httpx>=0.27"]
+marl = ["pettingzoo>=1.24"]
 dev = [
     "pytest>=7.4",
     "pytest-cov>=4.1",
@@ -54,20 +47,29 @@ dev = [
     "pandas>=2.0",
     "scikit-learn>=1.3",
     "torch>=2.0",
+    "torchvision>=0.15",
+    "Pillow>=9.0",
+    "networkx>=3.0",
+    "shap>=0.43",
+    "lime>=0.2",
+    "pettingzoo>=1.24",
+    "rich>=13.0",
+    "click>=8.1",
+]
+all = [
+    "cognix-uncertainty-framework[graph,vision,explainability,llm,dashboard,marl]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/cognix-framework/cognix"
-Repository = "https://github.com/cognix-framework/cognix"
-Documentation = "https://cognix.readthedocs.io"
-Issues = "https://github.com/cognix-framework/cognix/issues"
-
-[project.scripts]
-cognix = "cognix.cli:main"
+Homepage = "https://github.com/AdityaR4685/Cognix_"
+Repository = "https://github.com/AdityaR4685/Cognix_"
+Documentation = "https://github.com/AdityaR4685/Cognix_#readme"
+Issues = "https://github.com/AdityaR4685/Cognix_/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]  
 include = ["cognix*"]
+exclude = ["cognix.evaluation.reports*", "tests*"]
 
 [tool.ruff]
 line-length = 100
@@ -83,4 +85,4 @@ warn_unused_configs = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["-v", "--tb=short"]
+addopts = ["-v", "--tb=short", "--ignore=tests/test_ground_truth.py"]

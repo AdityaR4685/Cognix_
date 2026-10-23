@@ -3,7 +3,11 @@ from .mc_dropout import MCDropout as MonteCarloDropout
 from .deep_ensemble import DeepEnsemble
 from .decomposition import UncertaintyDecomposition
 from .ood import OODDetector
-from .heteroscedastic import HeteroscedasticLoss
+
+try:
+    from .heteroscedastic import HeteroscedasticLoss
+except ImportError:
+    HeteroscedasticLoss = None
 
 __all__ = [
     "UncertaintyEstimator",
@@ -12,5 +16,6 @@ __all__ = [
     "DeepEnsemble",
     "UncertaintyDecomposition",
     "OODDetector",
-    "HeteroscedasticLoss",
 ]
+if HeteroscedasticLoss is not None:
+    __all__.append("HeteroscedasticLoss")

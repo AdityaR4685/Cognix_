@@ -7,16 +7,19 @@ Research hypothesis:
     and risk-aware decision making under agent disagreement, sensor degradation,
     and distribution shift?
 
-Version: 0.1.0.dev0
+Version: 0.1.0
 License: MIT
 """
 
 from importlib.metadata import version, PackageNotFoundError
 
 try:
-    __version__ = version("cognix")
+    __version__ = version("cognix-uncertainty-framework")
 except PackageNotFoundError:
-    __version__ = "0.1.0.dev0"
+    try:
+        __version__ = version("cognix")
+    except PackageNotFoundError:
+        __version__ = "0.1.0"
 
 __author__ = "COGNIX Contributors"
 __description__ = "A domain-agnostic, uncertainty-aware multi-agent AI decision framework"

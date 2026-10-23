@@ -78,13 +78,27 @@ COGNIX is an early-stage research framework. Users must be aware of the followin
 
 ### Installation
 
+Install the generic framework from PyPI:
+
+```bash
+pip install cognix-uncertainty-framework
+```
+
+To include optional feature extras (such as Graph Attention Networks, explainability, or vision):
+
+```bash
+pip install "cognix-uncertainty-framework[graph,explainability]"
+```
+
+Or clone and install from the actual source repository:
+
 ```bash
 # Clone the repository
-git clone https://github.com/zaidshaikh987/Cognix.git
-cd Cognix
+git clone https://github.com/AdityaR4685/Cognix_.git
+cd Cognix_
 
-# Install the framework
-pip install -e .
+# Install in editable mode (with development dependencies)
+pip install -e ".[dev]"
 ```
 
 ### Dependency Injection Pipeline
