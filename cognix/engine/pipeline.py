@@ -30,6 +30,7 @@ from typing import Any
 import numpy as np
 
 from cognix.engine.result import DecisionResult, DecisionOutcome, RiskLevel
+from cognix.core.types import PredictionResult
 from cognix.engine.provenance import ModuleStatus
 
 logger = logging.getLogger(__name__)
@@ -128,6 +129,8 @@ class CognixPipeline:
         latencies["collect_predictions"] = _ms(t)
 
         if not predictions:
+            if self.mode == RESEARCH_MODE:
+                raise RuntimeError("RESEARCH MODE: No agent predictions collected.")
             logger.error("No predictions collected from agents. Returning ABSTAIN.")
             return self._emergency_result(latencies, pipeline_start)
 
@@ -489,6 +492,42 @@ class CognixPipeline:
     # Pipeline stage implementations
     # ------------------------------------------------------------------
 
+    @staticmethod
+    def _validate_prediction_finite(agent_id: str, pred: Any) -> None:
+        """Validate that agent prediction and confidence do not contain non-finite numbers (NaN, Inf)."""
+        if pred is None:
+            return
+        if isinstance(pred, (float, np.floating)):
+            if not np.isfinite(float(pred)):
+                raise ValueError(f"Agent '{agent_id}' returned non-finite scalar prediction: {pred}")
+        elif hasattr(pred, "confidence") or hasattr(pred, "value"):
+            if hasattr(pred, "confidence") and pred.confidence is not None:
+                try:
+                    c = float(pred.confidence)
+                except (TypeError, ValueError) as exc:
+                    raise ValueError(f"Agent '{agent_id}' returned non-numeric confidence in PredictionResult: {pred.confidence}") from exc
+                if not np.isfinite(c):
+                    raise ValueError(f"Agent '{agent_id}' returned non-finite confidence in PredictionResult: {pred.confidence}")
+            if hasattr(pred, "value") and pred.value is not None:
+                if isinstance(pred.value, (float, np.floating)):
+                    if not np.isfinite(float(pred.value)):
+                        raise ValueError(f"Agent '{agent_id}' returned non-finite value in PredictionResult: {pred.value}")
+                elif isinstance(pred.value, np.ndarray) and pred.value.size > 0:
+                    if not np.all(np.isfinite(pred.value)):
+                        raise ValueError(f"Agent '{agent_id}' returned non-finite array in PredictionResult.value")
+        elif isinstance(pred, dict):
+            for key in ("confidence", "prob", "prediction", "value"):
+                if key in pred and isinstance(pred[key], (float, np.floating)):
+                    if not np.isfinite(float(pred[key])):
+                        raise ValueError(f"Agent '{agent_id}' returned non-finite {key} in dict: {pred[key]}")
+            if "probabilities" in pred and pred["probabilities"] is not None:
+                probs = np.asarray(pred["probabilities"], dtype=float)
+                if not np.all(np.isfinite(probs)):
+                    raise ValueError(f"Agent '{agent_id}' returned non-finite probabilities in dict")
+        elif isinstance(pred, np.ndarray) and pred.size > 0:
+            if not np.all(np.isfinite(pred)):
+                raise ValueError(f"Agent '{agent_id}' returned non-finite array prediction")
+
     def _collect_predictions(
         self, agents: list[Any], input_data: Any
     ) -> dict[str, Any]:
@@ -502,12 +541,34 @@ class CognixPipeline:
                 elif callable(agent):
                     pred = agent(input_data)
                 else:
+                    if self.mode == RESEARCH_MODE:
+                        raise RuntimeError(f"RESEARCH MODE: Agent '{agent_id}' has no predict method and is not callable.")
                     logger.warning("Agent %s has no predict method; skipping.", agent_id)
                     continue
+
+                self._validate_prediction_finite(agent_id, pred)
                 predictions[agent_id] = pred
             except Exception as exc:
+                if self.mode == RESEARCH_MODE:
+                    raise RuntimeError(f"RESEARCH MODE: Agent '{agent_id}' predict failed: {exc}") from exc
                 logger.warning("Agent %s predict failed: %s", agent_id, exc)
         return predictions
+
+    @staticmethod
+    def _extract_uncertainty_values(est: Any) -> dict[str, float] | None:
+        if est is None:
+            return None
+        if hasattr(est, "epistemic"):
+            ep = float(est.epistemic)
+            al = float(getattr(est, "aleatoric", 0.0))
+            tot = float(getattr(est, "total", ep + al))
+            return {"epistemic": ep, "aleatoric": al, "total": tot}
+        if isinstance(est, dict) and "epistemic" in est:
+            ep = float(est["epistemic"])
+            al = float(est.get("aleatoric", 0.0))
+            tot = float(est.get("total", ep + al))
+            return {"epistemic": ep, "aleatoric": al, "total": tot}
+        return None
 
     def _estimate_uncertainties(
         self,
@@ -529,37 +590,52 @@ class CognixPipeline:
             if agent_id not in predictions:
                 continue
 
+            extracted_uq: dict[str, float] | None = None
             # Try agent's own uncertainty estimate
             if hasattr(agent, "estimate_uncertainty"):
                 try:
                     est = agent.estimate_uncertainty(input_data)
-                    if hasattr(est, "epistemic"):
-                        uncertainties[agent_id] = {
-                            "epistemic": float(est.epistemic),
-                            "aleatoric": float(est.aleatoric),
-                            "total": float(est.total),
-                        }
+                    extracted_uq = self._extract_uncertainty_values(est)
+                    if extracted_uq is not None:
                         agent_uq_methods.add(_optional_method(agent, "uq_method", "mc_dropout"))
-                        continue
                 except Exception as exc:
+                    if self.mode == RESEARCH_MODE:
+                        raise RuntimeError(
+                            f"RESEARCH MODE: Agent '{agent_id}' estimate_uncertainty failed: {exc}"
+                        ) from exc
                     logger.debug(
                         "Agent %s estimate_uncertainty failed: %s", agent_id, exc
                     )
 
             # Try the configured uncertainty estimator
-            if self.uncertainty_estimator is not None:
+            if extracted_uq is None and self.uncertainty_estimator is not None:
                 try:
                     est = self.uncertainty_estimator.estimate(
                         getattr(agent, "model", getattr(agent, "_model", agent)), input_data
                     )
-                    uncertainties[agent_id] = {
-                        "epistemic": float(est.epistemic),
-                        "aleatoric": float(est.aleatoric),
-                        "total": float(est.total),
-                    }
-                    continue
+                    extracted_uq = self._extract_uncertainty_values(est)
                 except Exception as exc:
+                    if self.mode == RESEARCH_MODE:
+                        raise RuntimeError(
+                            f"RESEARCH MODE: Uncertainty estimator failed for agent '{agent_id}': {exc}"
+                        ) from exc
                     logger.debug("UQ estimator for %s failed: %s", agent_id, exc)
+
+            if extracted_uq is not None:
+                ep = extracted_uq["epistemic"]
+                al = extracted_uq["aleatoric"]
+                tot = extracted_uq["total"]
+                import numpy as np
+                if not (np.isfinite(ep) and np.isfinite(al) and np.isfinite(tot)):
+                    if self.mode == RESEARCH_MODE:
+                        raise ValueError(
+                            f"RESEARCH MODE: Non-finite uncertainty in agent '{agent_id}': {extracted_uq}"
+                        )
+                    extracted_uq = None
+
+            if extracted_uq is not None:
+                uncertainties[agent_id] = extracted_uq
+                continue
 
             # ── RESEARCH MODE: no fallback ────────────────────────────
             if self.mode == RESEARCH_MODE:
@@ -834,7 +910,7 @@ class CognixPipeline:
         ]
 
         if failed_modules:
-            reasoning_steps.append(f"9. ⚠ Failed modules: {failed_modules}.")
+            reasoning_steps.append(f"9. [WARNING] Failed modules: {failed_modules}.")
 
         if contributions:
             top_contrib = max(contributions, key=contributions.get)
@@ -867,20 +943,38 @@ class CognixPipeline:
     def _extract_confidence(pred: Any) -> float:
         if pred is None:
             return 0.5
-        if isinstance(pred, float):
-            return float(np.clip(pred, 0.0, 1.0))
         if hasattr(pred, "confidence") and getattr(pred, "confidence") is not None:
-            return float(np.clip(pred.confidence, 0.0, 1.0))
+            c = float(pred.confidence)
+            if not np.isfinite(c):
+                raise ValueError(f"Non-finite confidence in PredictionResult: {pred.confidence}")
+            return float(np.clip(c, 0.0, 1.0))
         if hasattr(pred, "probabilities") and pred.probabilities is not None:
-            return float(np.clip(np.max(pred.probabilities), 0.0, 1.0))
+            probs = np.asarray(pred.probabilities, dtype=float)
+            if not np.all(np.isfinite(probs)):
+                raise ValueError("Non-finite probabilities in prediction object")
+            return float(np.clip(float(np.max(probs)), 0.0, 1.0))
         if isinstance(pred, dict):
             for key in ("confidence", "prob"):
-                if key in pred:
-                    return float(np.clip(pred[key], 0.0, 1.0))
+                if key in pred and isinstance(pred[key], (float, int, np.floating, np.integer)):
+                    c = float(pred[key])
+                    if not np.isfinite(c):
+                        raise ValueError(f"Non-finite {key} in dict: {pred[key]}")
+                    return float(np.clip(c, 0.0, 1.0))
             if "probabilities" in pred:
-                return float(np.clip(np.max(np.array(pred["probabilities"])), 0.0, 1.0))
+                probs = np.asarray(pred["probabilities"], dtype=float)
+                if not np.all(np.isfinite(probs)):
+                    raise ValueError("Non-finite probabilities in dict")
+                return float(np.clip(float(np.max(probs)), 0.0, 1.0))
+        if isinstance(pred, (float, np.floating)):
+            c = float(pred)
+            if not np.isfinite(c):
+                raise ValueError(f"Non-finite scalar confidence: {pred}")
+            return float(np.clip(c, 0.0, 1.0))
         if isinstance(pred, np.ndarray):
-            return float(np.clip(np.max(pred), 0.0, 1.0))
+            if pred.size > 0:
+                if not np.all(np.isfinite(pred)):
+                    raise ValueError("Non-finite values in prediction ndarray")
+                return float(np.clip(float(np.max(pred)), 0.0, 1.0))
         return 0.5
 
     @staticmethod
@@ -889,14 +983,25 @@ class CognixPipeline:
         if pred is None:
             return 0.5
         if isinstance(pred, (float, int, np.floating, np.integer)):
-            return float(np.clip(float(pred), 0.0, 1.0))
+            val = float(pred)
+            if not np.isfinite(val):
+                raise ValueError(f"Non-finite prediction value: {pred}")
+            return float(np.clip(val, 0.0, 1.0))
         if hasattr(pred, "value") and isinstance(pred.value, (float, int, np.floating, np.integer)):
-            return float(np.clip(float(pred.value), 0.0, 1.0))
+            val = float(pred.value)
+            if not np.isfinite(val):
+                raise ValueError(f"Non-finite prediction value in PredictionResult: {pred.value}")
+            return float(np.clip(val, 0.0, 1.0))
         if isinstance(pred, dict):
             if "prob" in pred and isinstance(pred["prob"], (float, int, np.floating, np.integer)):
-                return float(np.clip(float(pred["prob"]), 0.0, 1.0))
+                val = float(pred["prob"])
+                if not np.isfinite(val):
+                    raise ValueError(f"Non-finite prediction probability in dict: {pred['prob']}")
+                return float(np.clip(val, 0.0, 1.0))
             if "probabilities" in pred:
-                probs = np.array(pred["probabilities"])
+                probs = np.array(pred["probabilities"], dtype=float)
+                if not np.all(np.isfinite(probs)):
+                    raise ValueError(f"Non-finite probabilities in dict: {pred['probabilities']}")
                 if probs.ndim == 1 and len(probs) == 2:
                     return float(np.clip(float(probs[1]), 0.0, 1.0))
         return CognixPipeline._extract_confidence(pred)
@@ -921,10 +1026,10 @@ class CognixPipeline:
             communication_statistics=None,
             calibration_metrics=None,
             explanation="COGNIX abstained: no agent predictions were available.",
-            reasoning_steps=["0. No agent predictions — defaulting to safe ABSTAIN."],
+            reasoning_steps=["0. No agent predictions -- defaulting to safe ABSTAIN."],
             latency_ms=latencies,
             total_latency_ms=_ms(pipeline_start),
             timestamp=time.time(),
             session_id=None,
-            metadata={"emergency": True},
+            metadata={"emergency": True, "mode": self.mode, "module_status": {}},
         )

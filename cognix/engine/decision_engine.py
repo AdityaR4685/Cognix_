@@ -25,7 +25,71 @@ from cognix.engine.result import DecisionResult
 logger = logging.getLogger(__name__)
 
 
+def _resolve_module(category: str, value: Any) -> Any:
+    """Resolve module shorthand strings or booleans to canonical COGNIX instances."""
+    if value is None:
+        return None
 
+    if category == "uncertainty" and isinstance(value, str):
+        val = value.lower().strip()
+        if val == "mc_dropout":
+            from cognix.uncertainty.mc_dropout import MCDropout
+            return MCDropout()
+        elif val == "deep_ensemble":
+            from cognix.uncertainty.deep_ensemble import DeepEnsemble
+            return DeepEnsemble()
+        elif val == "none":
+            return None
+
+    elif category == "belief" and isinstance(value, str):
+        val = value.lower().strip()
+        if val == "epistemic_weighted":
+            from cognix.belief.fusion import EpistemicWeightedFusion
+            return EpistemicWeightedFusion()
+        elif val in ("average", "uniform"):
+            from cognix.belief.fusion import AverageFusion
+            return AverageFusion()
+        elif val == "none":
+            return None
+
+    elif category == "calibrator" and isinstance(value, str):
+        val = value.lower().strip()
+        if val == "conformal":
+            from cognix.calibration.conformal import ConformalPredictor
+            return ConformalPredictor()
+        elif val == "none":
+            return None
+
+    elif category == "attribution" and isinstance(value, str):
+        val = value.lower().strip()
+        if val in ("epistemic_shapley", "shapley"):
+            from cognix.attribution.epistemic_shapley import EpistemicShapley
+            return EpistemicShapley()
+        elif val == "none":
+            return None
+
+    elif category == "escalation":
+        if value is True or (isinstance(value, str) and value.lower().strip() in ("true", "escalation", "default")):
+            from cognix.decision.escalation import EscalationEngine
+            return EscalationEngine()
+        elif value is False or (isinstance(value, str) and value.lower().strip() in ("false", "none")):
+            return None
+
+    elif category == "graph" and isinstance(value, str):
+        val = value.lower().strip()
+        if val == "epistemic_gat":
+            from cognix.graph.epistemic_gat import EpistemicGAT
+            return EpistemicGAT()
+        elif val == "standard_gat":
+            from cognix.graph.standard_gat import StandardGAT
+            return StandardGAT()
+        elif val == "no_graph":
+            from cognix.graph.no_graph import NoGraph
+            return NoGraph()
+        elif val == "none":
+            return None
+
+    return value
 
 
 class DecisionEngine:
@@ -63,13 +127,13 @@ class DecisionEngine:
         self.config = config or CognixConfig()
         self.mode = mode
 
-        self.uncertainty = uncertainty
-        self.belief = belief
-        self.calibrator = calibrator
+        self.uncertainty = _resolve_module("uncertainty", uncertainty)
+        self.belief = _resolve_module("belief", belief)
+        self.calibrator = _resolve_module("calibrator", calibrator)
         self.communication = communication
-        self.attribution = attribution
-        self.escalation_module = escalation
-        self.graph = graph
+        self.attribution = _resolve_module("attribution", attribution)
+        self.escalation_module = _resolve_module("escalation", escalation)
+        self.graph = _resolve_module("graph", graph)
 
         self.pipeline = CognixPipeline(
             config=self.config,
