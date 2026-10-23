@@ -10,10 +10,15 @@ _DIAG_PREFIXES = ['geometry_materialization', 'mapper_sentinel_replay', 'geometr
 
 def _strip_diag_prefix(path_str, work_root):
     """Strip a diagnostic subdirectory prefix if present; return original string otherwise."""
+    p = pathlib.Path(path_str)
+    root = pathlib.Path(work_root)
     for prefix in _DIAG_PREFIXES:
-        diag = str(work_root / prefix) + '\\'
-        if path_str.startswith(diag):
-            return str(work_root) + path_str[len(str(work_root / prefix)):]
+        diag_dir = root / prefix
+        try:
+            rel = p.relative_to(diag_dir)
+            return str(root / rel)
+        except ValueError:
+            continue
     return path_str
 
 
