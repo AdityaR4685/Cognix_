@@ -1,0 +1,87 @@
+site_name: COGNIX
+site_description: "A domain-agnostic, uncertainty-aware multi-agent AI decision framework (v0.1.0)"
+site_author: "COGNIX Contributors"
+site_url: "https://adityar4685.github.io/Cognix_/"
+repo_url: "https://github.com/AdityaR4685/Cognix_"
+repo_name: "AdityaR4685/Cognix_"
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+validation:
+  nav:
+    omitted_files: info
+  links:
+    not_found: info
+    absolute_links: info
+    unrecognized_links: info
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AdityaR4685/Cognix_
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/cognix-uncertainty-framework/0.1.0/
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Overview: index.md
+  - Getting Started:
+      - Installation: installation.md
+      - Quickstart: quickstart.md
+  - Architecture:
+      - Concepts & Terminology: concepts.md
+      - Architecture & Data Flow: architecture.md
+  - Reference:
+      - API Reference: api-reference.md
+      - Runnable Examples: examples.md
+      - Troubleshooting: troubleshooting.md
+      - Limitations & Caveats: limitations.md
+  - Research & Provenance:
+      - Research Overview: research.md
+      - Statistical Methodology: STATISTICAL_METHODOLOGY.md
+      - Baseline Audit: PHASE_B_BASELINE_AUDIT.md
+      - Final Status Report: research/COGNIX_FINAL_STATUS.md
