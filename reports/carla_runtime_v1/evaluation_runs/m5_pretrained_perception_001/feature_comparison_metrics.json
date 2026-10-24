@@ -1,0 +1,154 @@
+{
+  "scenario_comparisons": {
+    "test/anomaly/Town01/change-weather/scenario-1": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+      "scenario_type": "weather",
+      "n_ticks_total": 299,
+      "n_ticks_normal": 249,
+      "n_ticks_corrupt": 50,
+      "camera_18dim_agent": {
+        "mean_p_normal": 0.7779424685263626,
+        "mean_p_corrupt": 0.722649369601667,
+        "separation": 0.05529309892469558,
+        "responds_to_hazard": true
+      },
+      "seg_29dim_agent": {
+        "mean_p_normal": 0.9531015337993984,
+        "mean_p_corrupt": 0.9038690706437338,
+        "separation": 0.04923246315566465,
+        "responds_to_hazard": false
+      },
+      "corridor_hazard_occupancy": {
+        "mean_occupancy_normal": 0.011069893549582597,
+        "mean_occupancy_corrupt": 0.005734047983665136,
+        "separation": -0.005335845565917461,
+        "max_occupancy_normal": 0.024351993647552608,
+        "max_occupancy_corrupt": 0.01921048153819976
+      },
+      "standard_gat_fused_q": {
+        "mean_q_normal": 0.5827094733526046,
+        "mean_q_corrupt": 0.45870867436422413,
+        "separation": 0.12400079898838046
+      }
+    },
+    "test/anomaly/Town01/change-weather/scenario-10": {
+      "scenario": "test/anomaly/Town01/change-weather/scenario-10",
+      "scenario_type": "weather",
+      "n_ticks_total": 299,
+      "n_ticks_normal": 249,
+      "n_ticks_corrupt": 50,
+      "camera_18dim_agent": {
+        "mean_p_normal": 0.7228593428514617,
+        "mean_p_corrupt": 0.7996246875684476,
+        "separation": -0.07676534471698593,
+        "responds_to_hazard": true
+      },
+      "seg_29dim_agent": {
+        "mean_p_normal": 0.962937469514145,
+        "mean_p_corrupt": 0.9865847936050166,
+        "separation": -0.023647324090871558,
+        "responds_to_hazard": false
+      },
+      "corridor_hazard_occupancy": {
+        "mean_occupancy_normal": 0.012916825261456466,
+        "mean_occupancy_corrupt": 0.01575645170438432,
+        "separation": 0.0028396264429278537,
+        "max_occupancy_normal": 0.019908116385911178,
+        "max_occupancy_corrupt": 0.015759174181838805
+      },
+      "standard_gat_fused_q": {
+        "mean_q_normal": 0.535029013877036,
+        "mean_q_corrupt": 0.737074907440658,
+        "separation": -0.2020458935636219
+      }
+    },
+    "test/anomaly/Town01/running-pedestrian/scenario-1": {
+      "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+      "scenario_type": "pedestrian",
+      "n_ticks_total": 299,
+      "n_ticks_normal": 192,
+      "n_ticks_corrupt": 107,
+      "camera_18dim_agent": {
+        "mean_p_normal": 0.8496108093039124,
+        "mean_p_corrupt": 0.8585268457037473,
+        "separation": -0.008916036399834848,
+        "responds_to_hazard": false
+      },
+      "seg_29dim_agent": {
+        "mean_p_normal": 0.9551641553940201,
+        "mean_p_corrupt": 0.9727021516992429,
+        "separation": -0.01753799630522279,
+        "responds_to_hazard": false
+      },
+      "corridor_hazard_occupancy": {
+        "mean_occupancy_normal": 0.015999636057701393,
+        "mean_occupancy_corrupt": 0.017505911688047333,
+        "separation": 0.00150627563034594,
+        "max_occupancy_normal": 0.027355226589529807,
+        "max_occupancy_corrupt": 0.02638534399637003
+      },
+      "standard_gat_fused_q": {
+        "mean_q_normal": 0.7160508365377286,
+        "mean_q_corrupt": 0.7106830732677513,
+        "separation": 0.005367763269977344
+      }
+    },
+    "test/anomaly/Town01/spawn-props/scenario-1": {
+      "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+      "scenario_type": "static_props",
+      "n_ticks_total": 299,
+      "n_ticks_normal": 257,
+      "n_ticks_corrupt": 42,
+      "camera_18dim_agent": {
+        "mean_p_normal": 0.8453467838070958,
+        "mean_p_corrupt": 0.8503018919508891,
+        "separation": -0.0049551081437932964,
+        "responds_to_hazard": false
+      },
+      "seg_29dim_agent": {
+        "mean_p_normal": 0.9820306241733618,
+        "mean_p_corrupt": 0.9831226822958805,
+        "separation": -0.0010920581225186687,
+        "responds_to_hazard": false
+      },
+      "corridor_hazard_occupancy": {
+        "mean_occupancy_normal": 0.0036675209719703554,
+        "mean_occupancy_corrupt": 0.009928805053868863,
+        "separation": 0.006261284081898508,
+        "max_occupancy_normal": 0.022695819862741762,
+        "max_occupancy_corrupt": 0.02265611706653054
+      },
+      "standard_gat_fused_q": {
+        "mean_q_normal": 0.7389359683763935,
+        "mean_q_corrupt": 0.7575793311204935,
+        "separation": -0.018643362744099945
+      }
+    }
+  },
+  "hog_feasibility": {
+    "descriptor": "Scikit-Image Spatial Histogram of Oriented Gradients (HOG)",
+    "spatial_crop": "Forward driving corridor (270 x 320 downscaled)",
+    "orientations": 8,
+    "pixels_per_cell": [
+      32,
+      32
+    ],
+    "latency_p50_ms": 9.63,
+    "euclidean_distance_normal_ticks": [
+      2.3455,
+      2.5479,
+      2.3377
+    ],
+    "euclidean_distance_corrupt_ticks": [
+      2.2136,
+      2.2087,
+      2.5558,
+      2.3976,
+      2.6686,
+      2.7007
+    ],
+    "cosine_similarity_normal_mean": 0.964,
+    "cosine_similarity_corrupt_mean": 0.962,
+    "separation_verdict": "INCONCLUSIVE / NO SEPARATION. The global visual flow of moving scenery (trees, buildings, road texture) induces gradient shifts of magnitude ~2.3-2.5 on normal driving frames. Localized pedestrian features are completely drowned out without object-level bounding box proposals."
+  }
+}

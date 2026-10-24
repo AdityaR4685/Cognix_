@@ -54,7 +54,23 @@ class DecisionResult:
     timestamp: float
     session_id: Optional[str]
     metadata: dict[str, Any]
-    
+
+    def __post_init__(self):
+        if isinstance(self.decision, str):
+            self.decision = DecisionOutcome(self.decision)
+        if isinstance(self.risk_level, str):
+            self.risk_level = RiskLevel(self.risk_level)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "DecisionResult":
+        """Deserialize from dict (e.g. loaded from JSON storage)."""
+        d = dict(data)
+        if isinstance(d.get("decision"), str):
+            d["decision"] = DecisionOutcome(d["decision"])
+        if isinstance(d.get("risk_level"), str):
+            d["risk_level"] = RiskLevel(d["risk_level"])
+        return cls(**d)
+
     @property
     def is_safe_decision(self) -> bool:
         return not self.escalation_required and not self.abstained

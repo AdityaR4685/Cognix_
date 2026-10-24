@@ -1,0 +1,87 @@
+{
+  "run_id": "live_agent_uncertainty_demo_001",
+  "updated_at": "2026-10-22T09:05:00+05:30",
+  "git": {
+    "branch": "gat-testing-complete-checkpoint",
+    "head": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+    "diff_stat": "0 files changed (clean)"
+  },
+  "original_baseline": {
+    "path": "C:/Users/Aditya/cognix_carla_demo_sandbox/cognix_live_demo.py",
+    "size_bytes": 52002,
+    "sha256": "41e186b1824c8a11306382552cb8a32566c1a49b9e64d7e7249fe0eac5f7e879",
+    "status": "UNTOUCHED_READ_ONLY_BASELINE"
+  },
+  "upgraded_source": {
+    "path": "cognix/evaluation/cognix_live_demo_v2.py",
+    "size_bytes": 141131,
+    "sha256": "95414333d18e96a3d99f4f419256c40a2071200d43d86f8a60ba51d322e32893"
+  },
+  "test_suite": {
+    "path": "tests/unit/test_cognix_live_demo_v2.py",
+    "size_bytes": 57379,
+    "sha256": "be79937ba474e740eef6882c082c4e54ddf9a1c7e276a8470f6bc22794f3280b",
+    "passed": 38,
+    "failed": 0
+  },
+  "regression_tests": {
+    "suites": [
+      "tests/unit/test_carla_demo_runner.py",
+      "tests/unit/test_pedestrian_safety_audit.py"
+    ],
+    "passed": 16,
+    "failed": 0
+  },
+  "total_unit_tests": {
+    "passed": 54,
+    "failed": 0
+  },
+  "live_carla_verification": {
+    "simulator": "CARLA 0.9.16",
+    "map": "Carla/Maps/Town10HD_Opt",
+    "host": "127.0.0.1",
+    "port": 2000,
+    "tm_port": 8000,
+    "duration_sec": 120.0,
+    "total_frames": 8116,
+    "average_fps": 67.6,
+    "telemetry_samples": 811,
+    "telemetry_file": "reports/carla_runtime_v1/evaluation_runs/live_agent_uncertainty_demo_001/telemetry_route_efficiency_120s.json",
+    "telemetry_sha256": "5841eae8ea67f3d10b6f007b237ef916d41e3fc922905b042b8f4a2193ee1589",
+    "baseline_telemetry_file": "reports/carla_runtime_v1/evaluation_runs/live_agent_uncertainty_demo_001/telemetry_baseline_nominal_120s.json",
+    "baseline_telemetry_sha256": "032de3363dac0c9d8233eb77271e0dd997f863e455794c3911a875556f2a6d46",
+    "cumulative_distance_m": 495.9,
+    "net_displacement_m": 163.8,
+    "route_efficiency_ratio": 0.821,
+    "average_speed_kmh": 16.9,
+    "max_speed_kmh": 31.0,
+    "stopped_percentage": 0.1,
+    "collision_count": 0,
+    "total_collision_impulse": 0.0,
+    "circling_events": 0,
+    "circular_movement_events": 0,
+    "revisit_events": 0,
+    "excessive_steering_events": 0,
+    "wrong_direction_events": 2,
+    "immobilized_events": 0,
+    "average_nominal_confidence": 0.960,
+    "decisions_act_count": 802,
+    "decisions_wait_count": 6,
+    "decisions_escalate_count": 3,
+    "scenarios_exercised": [
+      "NORMAL",
+      "PEDESTRIAN",
+      "WEATHER",
+      "PROPS"
+    ],
+    "faults_exercised": [
+      "RGB_OCCLUSION",
+      "RGB_DARKNESS",
+      "SEG_CORRUPTION",
+      "IMU_DISTURBANCE",
+      "NONE"
+    ],
+    "recovery_exercised": true,
+    "residual_actors_leaked": 0
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "AUROC": {
+    "macro_rule": "if any of 627 scenario AUROCs is undefined, prespecified macro-AUROC is undefined; no scenario exclusion",
+    "score": "p_corruption = 1 - q_normal",
+    "single_class": "return undefined for that scenario",
+    "target": "target_corruption = 1 - target_normal",
+    "tie_handling": "half credit for tied positive-negative score pairs, matching frozen auroc implementation"
+  },
+  "BCE": {
+    "aggregation": "mean within each official TEST scenario, then arithmetic mean across all 627 scenarios",
+    "dtype": "float64",
+    "input": "q_normal versus target_normal",
+    "probability_clip": 1e-07,
+    "sample_formula": "negative Bernoulli log likelihood using clipped q"
+  },
+  "F1": {
+    "aggregation": "mean within metric sense per scenario, then arithmetic mean of 627 scenario F1 values",
+    "formula": "2TP divided by 2TP plus FP plus FN",
+    "prediction": "sealed predicted_corruption from Phase A",
+    "target": "target_corruption",
+    "zero_denominator": 0.0
+  },
+  "current_state": {
+    "label_payload_opened": false,
+    "metrics_computed": false
+  },
+  "kaggle_metrics_sha256": "41c0a6123771618ec0bc8059b1c690e7a25dee399eec8a88dea6a04d053dc5b3",
+  "paired_comparisons": {
+    "differences": [
+      "StandardGAT - NoGraph",
+      "EpistemicGAT - StandardGAT"
+    ],
+    "inferential_test": null,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "summary": [
+      "five paired differences",
+      "mean",
+      "sample standard deviation with ddof 1",
+      "minimum",
+      "maximum"
+    ]
+  },
+  "prohibitions": {
+    "call_select_threshold_on_TEST": true,
+    "checkpoint_selection": true,
+    "drop_undefined_AUROC_scenario": true,
+    "model_execution": true,
+    "recalibration": true,
+    "threshold_tuning": true,
+    "training": true
+  },
+  "schema": "COGNIX-TEST-phase-B-metric-contract-v1",
+  "status": "FROZEN_PRE_LABEL_METRIC_CONTRACT",
+  "threshold_policy": {
+    "TEST_threshold_selection_allowed": false,
+    "decision": "p_corruption greater than or equal to frozen threshold",
+    "recompute_predicted_corruption": "verification only; sealed Phase-A predicted_corruption is authoritative prediction artifact",
+    "source": "15 already-sealed GRAPH_VAL thresholds in Phase-A predictions"
+  },
+  "threshold_spec_sha256": "4685dfa8f3f0e9fd5d805fed84b44cd001e6cb564e17f9e38411a4dfffc9d5d1"
+}

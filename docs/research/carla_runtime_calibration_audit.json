@@ -1,0 +1,536 @@
+{
+  "CARLA_vocabulary_in_pipeline": [],
+  "TEST_metrics_computed": false,
+  "TEST_sensor_or_label_payloads_decoded": false,
+  "TRAIN_features_or_labels_decoded": false,
+  "agent_calibration_parent_overlap": [
+    {
+      "CAL_overlap_count": 25,
+      "CAL_parent_scenarios": [
+        "Town01/scenario-5",
+        "Town01/scenario-7",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4",
+        "Town03/scenario-1",
+        "Town03/scenario-13",
+        "Town03/scenario-15",
+        "Town03/scenario-4",
+        "Town05/scenario-10",
+        "Town05/scenario-12",
+        "Town05/scenario-13",
+        "Town05/scenario-14",
+        "Town05/scenario-17",
+        "Town05/scenario-20",
+        "Town05/scenario-6",
+        "Town10HD/scenario-11",
+        "Town10HD/scenario-14",
+        "Town10HD/scenario-15",
+        "Town10HD/scenario-16",
+        "Town10HD/scenario-17",
+        "Town10HD/scenario-24",
+        "Town10HD/scenario-28",
+        "Town10HD/scenario-30",
+        "Town10HD/scenario-7"
+      ],
+      "agent": "Camera",
+      "feature_dimension": 18,
+      "fit_unit_seal": "53d2d845a815d3e44e92de45a34a2e6f8d797d4b45218488e30c1549415065a9",
+      "member_artifacts": [
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_0.npz",
+          "sha256": "34106bfc48608964b3ad387f72eb271176dd7f828260173c7c7407c96f4c2880"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_1.npz",
+          "sha256": "735409bc950f7a310e36a5a9935224dec50a2fc0a346238259df7dde93457605"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_2.npz",
+          "sha256": "0f21a49e989be876e7bcb1ed48bc84c15dceff8b3dbaa788ab8bdb79606bd342"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_3.npz",
+          "sha256": "20d890781125862f9fc66bd856b9df0295959aa85b08e6d972b75f0e910676c5"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Camera/member_4.npz",
+          "sha256": "6699faeadd29960ef8b03ec3e5d0e1276ee10ddbec6899f70debc72f69834b6c"
+        }
+      ],
+      "probability_mapping_class": "EnsemblePredictiveCalibrator (unchanged production agent)",
+      "probability_mapping_fitted_on_CAL": true,
+      "probability_mapping_parameters_source": {
+        "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-Camera/audit_arrays.npz",
+        "sha256": "1143306ff90c8fc6d6532c6bf3902128094bfdce33d7c89bf256dd9089983e08"
+      },
+      "probability_mapping_unit_seal": "f5bbfc5c58638ea467a497f763c5781b6c9af9299cc9198d84f1dd0c9d6054de",
+      "sample_counts": {
+        "CAL_clean": 74975,
+        "CAL_combined": 96400,
+        "CAL_pseudo": 21425,
+        "FIT_clean": 227924
+      },
+      "untouched_CAL_parent_count": 0
+    },
+    {
+      "CAL_overlap_count": 25,
+      "CAL_parent_scenarios": [
+        "Town01/scenario-5",
+        "Town01/scenario-7",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4",
+        "Town03/scenario-1",
+        "Town03/scenario-13",
+        "Town03/scenario-15",
+        "Town03/scenario-4",
+        "Town05/scenario-10",
+        "Town05/scenario-12",
+        "Town05/scenario-13",
+        "Town05/scenario-14",
+        "Town05/scenario-17",
+        "Town05/scenario-20",
+        "Town05/scenario-6",
+        "Town10HD/scenario-11",
+        "Town10HD/scenario-14",
+        "Town10HD/scenario-15",
+        "Town10HD/scenario-16",
+        "Town10HD/scenario-17",
+        "Town10HD/scenario-24",
+        "Town10HD/scenario-28",
+        "Town10HD/scenario-30",
+        "Town10HD/scenario-7"
+      ],
+      "agent": "IMU",
+      "feature_dimension": 10,
+      "fit_unit_seal": "b98f82f0e38cea714b49910e9209a5da41244480f0ad7678ff917347f816446e",
+      "member_artifacts": [
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_0.npz",
+          "sha256": "b24a1690f73c293b1e96559a7a87a1d8a26db58ad9c921d59f12355cf1060bea"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_1.npz",
+          "sha256": "f66bdf4a8a47f7466ec371fdd29ccff407d45b1fa91844b7e8f394627222813c"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_2.npz",
+          "sha256": "611519a9d7086164110d534fae8379d75461569148885ef0987ed6eae1ca62aa"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_3.npz",
+          "sha256": "1bcc296956a2c871932e0cfeee090fc2f80b94603848a610727f1946249a9e77"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-IMU/member_4.npz",
+          "sha256": "f279102d0392252a7e4e5307b3a6a09fa585e1c9a235db276ae4cd336a52be9b"
+        }
+      ],
+      "probability_mapping_class": "EnsemblePredictiveCalibrator (unchanged production agent)",
+      "probability_mapping_fitted_on_CAL": true,
+      "probability_mapping_parameters_source": {
+        "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-IMU/audit_arrays.npz",
+        "sha256": "549517868c7ea8f39481a0e5f1b61e2bc435f161437d326b26cd657e3320e5e2"
+      },
+      "probability_mapping_unit_seal": "77dfbcb6f6c2f350c1c7e01559590c0d159b64f9bc3bcf652e230540e2298b1a",
+      "sample_counts": {
+        "CAL_clean": 74975,
+        "CAL_combined": 96375,
+        "CAL_pseudo": 21400,
+        "FIT_clean": 227924
+      },
+      "untouched_CAL_parent_count": 0
+    },
+    {
+      "CAL_overlap_count": 25,
+      "CAL_parent_scenarios": [
+        "Town01/scenario-5",
+        "Town01/scenario-7",
+        "Town02/scenario-10",
+        "Town02/scenario-2",
+        "Town02/scenario-4",
+        "Town03/scenario-1",
+        "Town03/scenario-13",
+        "Town03/scenario-15",
+        "Town03/scenario-4",
+        "Town05/scenario-10",
+        "Town05/scenario-12",
+        "Town05/scenario-13",
+        "Town05/scenario-14",
+        "Town05/scenario-17",
+        "Town05/scenario-20",
+        "Town05/scenario-6",
+        "Town10HD/scenario-11",
+        "Town10HD/scenario-14",
+        "Town10HD/scenario-15",
+        "Town10HD/scenario-16",
+        "Town10HD/scenario-17",
+        "Town10HD/scenario-24",
+        "Town10HD/scenario-28",
+        "Town10HD/scenario-30",
+        "Town10HD/scenario-7"
+      ],
+      "agent": "Seg",
+      "feature_dimension": 29,
+      "fit_unit_seal": "cd315bcd4062e38b6227d4ce9c07a7576c6e30a8bd5a5903cedab176c069a379",
+      "member_artifacts": [
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_0.npz",
+          "sha256": "51281493a33aa4823a69afe94b1814e968ececd72424a87f50f0f74e80ecb132"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_1.npz",
+          "sha256": "a8ba934a64c79bcce54070a4657a2a69310c2c80f252262376ff52ce906613e8"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_2.npz",
+          "sha256": "957f16204d057f98764c49f8e8cebf9d163f70479c6059312c7b84eb85156faa"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_3.npz",
+          "sha256": "2781c59028fa0ad9fc21e78714a2e5f63f722d292ff72a902a10b7a6d3821a1a"
+        },
+        {
+          "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/fit-Seg/member_4.npz",
+          "sha256": "02733ce6a8d92a494362668fb56581407fbd82c941c4b5d22a4065b8001c623a"
+        }
+      ],
+      "probability_mapping_class": "EnsemblePredictiveCalibrator (unchanged production agent)",
+      "probability_mapping_fitted_on_CAL": true,
+      "probability_mapping_parameters_source": {
+        "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-Seg/audit_arrays.npz",
+        "sha256": "543942f83b543e9c8b1d4c18c3b80d72e08991eeea3ed653d6bde9a48beee2f2"
+      },
+      "probability_mapping_unit_seal": "19a9c9fcc8332929fe11a9c2d78d05d02ac531634b8d3e9044fc2006b16b9805",
+      "sample_counts": {
+        "CAL_clean": 74975,
+        "CAL_combined": 85700,
+        "CAL_pseudo": 10725,
+        "FIT_clean": 227924
+      },
+      "untouched_CAL_parent_count": 0
+    }
+  ],
+  "base_commit": "b5899cd53408b88f0bf4ee5b5c204d12188ae8d8",
+  "base_pipeline_sha256": "96b62025232c11f2235afaf78e7a248659f7a1fbed318fa39440d3b81ec3bbfc",
+  "calibration_generation_started": false,
+  "changed_pipeline_methods_vs_base": [
+    "run",
+    "_estimate_uncertainties"
+  ],
+  "contract_path": "docs/research/carla_runtime_calibration_contract.json",
+  "contract_sha256": "46a07306c8a52e8d4dcb1ccbca28ba00b92aa442f0727308d90e5225615355a3",
+  "core_fix_in_this_task": "Isolate optional method metadata errors from successful numeric UQ/graph execution",
+  "current_pipeline_sha256": "be57eda85b07e91eb531478766282cdca885fd7b72d31fc0c1df9c487a85cfe3",
+  "historical_conformal_bundle_audit": [
+    {
+      "NoGraph_101_checkpoint": {
+        "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_101/nograph/seed_101/checkpoint_epoch_004.pt",
+        "file_sha256": "06119d7d10878cebe9a71dde39dfdc4296c167242df443f25766e8ca6c261942",
+        "selected_epoch": 4
+      },
+      "bundle": "reports/carla_final_conformal_cal_bundle_v1",
+      "compatible": false,
+      "n_cal_scenarios": 125,
+      "rejection_reasons": [
+        "TEST-derived official-label calibration, not TRAIN-only",
+        "different upstream artifacts and graph checkpoint",
+        "benchmark pooling, not current runtime epistemic-weighted fusion",
+        "class 0 normal/class 1 anomaly, not current constructed target ordering",
+        "scenario-max score, not current row-wise ConformalPredictor"
+      ],
+      "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+      "source_archive_split": "TEST",
+      "unit": "scenario maximum over synchronized tick scores",
+      "upstream_package_agent_order": [
+        "Camera",
+        "Seg",
+        "GNSS",
+        "IMU"
+      ],
+      "upstream_protocol": "carla_train_expand20_v1"
+    },
+    {
+      "NoGraph_101_checkpoint": {
+        "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_101/nograph/seed_101/checkpoint_epoch_004.pt",
+        "file_sha256": "06119d7d10878cebe9a71dde39dfdc4296c167242df443f25766e8ca6c261942",
+        "selected_epoch": 4
+      },
+      "bundle": "reports/carla_final_conformal_cal_bundle_v2",
+      "compatible": false,
+      "n_cal_scenarios": 125,
+      "rejection_reasons": [
+        "TEST-derived official-label calibration, not TRAIN-only",
+        "different upstream artifacts and graph checkpoint",
+        "benchmark pooling, not current runtime epistemic-weighted fusion",
+        "class 0 normal/class 1 anomaly, not current constructed target ordering",
+        "scenario-max score, not current row-wise ConformalPredictor"
+      ],
+      "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+      "source_archive_split": "TEST",
+      "unit": "scenario maximum over synchronized tick scores",
+      "upstream_package_agent_order": [
+        "Camera",
+        "Seg",
+        "GNSS",
+        "IMU"
+      ],
+      "upstream_protocol": "carla_train_expand20_v1"
+    },
+    {
+      "NoGraph_101_checkpoint": {
+        "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_101/nograph/seed_101/checkpoint_epoch_004.pt",
+        "file_sha256": "06119d7d10878cebe9a71dde39dfdc4296c167242df443f25766e8ca6c261942",
+        "selected_epoch": 4
+      },
+      "bundle": "reports/carla_final_conformal_cal_bundle_v3",
+      "compatible": false,
+      "n_cal_scenarios": 125,
+      "rejection_reasons": [
+        "TEST-derived official-label calibration, not TRAIN-only",
+        "different upstream artifacts and graph checkpoint",
+        "benchmark pooling, not current runtime epistemic-weighted fusion",
+        "class 0 normal/class 1 anomaly, not current constructed target ordering",
+        "scenario-max score, not current row-wise ConformalPredictor"
+      ],
+      "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+      "source_archive_split": "TEST",
+      "unit": "scenario maximum over synchronized tick scores",
+      "upstream_package_agent_order": [
+        "Camera",
+        "Seg",
+        "GNSS",
+        "IMU"
+      ],
+      "upstream_protocol": "carla_train_expand20_v1"
+    },
+    {
+      "NoGraph_101_checkpoint": {
+        "checkpoint": "reports/carla_gat_paired_raw_runs_v1/nograph_101/nograph/seed_101/checkpoint_epoch_004.pt",
+        "file_sha256": "06119d7d10878cebe9a71dde39dfdc4296c167242df443f25766e8ca6c261942",
+        "selected_epoch": 4
+      },
+      "bundle": "reports/carla_final_conformal_cal_bundle_v4",
+      "compatible": false,
+      "n_cal_scenarios": 100,
+      "rejection_reasons": [
+        "TEST-derived official-label calibration, not TRAIN-only",
+        "different upstream artifacts and graph checkpoint",
+        "benchmark pooling, not current runtime epistemic-weighted fusion",
+        "class 0 normal/class 1 anomaly, not current constructed target ordering",
+        "scenario-max score, not current row-wise ConformalPredictor"
+      ],
+      "score": "s_method,seed,j,t(y)=1-P_method,seed,j,t(y); P(0)=q_normal, P(1)=1-q_normal",
+      "source_archive_split": "TEST",
+      "unit": "scenario maximum over synchronized tick scores",
+      "upstream_package_agent_order": [
+        "Camera",
+        "Seg",
+        "GNSS",
+        "IMU"
+      ],
+      "upstream_protocol": "carla_train_expand20_v1"
+    }
+  ],
+  "inputs_access_ledger": [
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_train_full_v1/graph_partition_freeze_v1/partition.json",
+      "sha256": "78cad27a586a7e1cb675b242c7f57b7a11465da3916f7e0afc9e04df7da58724"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_train_full_v1/partition_freeze_v1/partition.json",
+      "sha256": "706c819ec568fd2dd2a1a89d9d7cc13eed7ba86466d8b5aa4ad4de277a863230"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_train_full_v1/gate2_train_health_v3/FINAL.json",
+      "sha256": "8cbb80b10464bd38eb6ef567857d071c11313a8bda937c1ded4e27f20bfca320"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-Camera/audit.json",
+      "sha256": "9f385d69fd9c5d740ebcfeb8365fff500dbec9d32129d1c0fdfc661cbdde802e"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-IMU/audit.json",
+      "sha256": "516137a100aa58db4afcf7db4975ee319b6730d9bafa0cb1f1593232446b34e0"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_train_full_v1/gate2_train_health_v3/units/audit-Seg/audit.json",
+      "sha256": "4f65b961e8f7d04415faef66364d5e4de7e3a132592ad11d126ff5d810520461"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v1/conformal_specification.json",
+      "sha256": "27d8ab09c69863885882e573c3a58a29635234b43168d5c63dea527c749caf34"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v1/model_registry.json",
+      "sha256": "bab2749c6fe12260a015cb9b6fb2ff03e0d9a6e5b3176a4f49dde623bc21e320"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v1/upstream/manifest.json",
+      "sha256": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4"
+    },
+    {
+      "access": "code_only_not_executed",
+      "path": "reports/carla_final_conformal_cal_bundle_v1/runner.py",
+      "sha256": "9ee5fccf3250be5fe7edf4afbff2e6a6f3805b279cac289dac6919c12fbac869"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v2/conformal_specification.json",
+      "sha256": "27d8ab09c69863885882e573c3a58a29635234b43168d5c63dea527c749caf34"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v2/model_registry.json",
+      "sha256": "bab2749c6fe12260a015cb9b6fb2ff03e0d9a6e5b3176a4f49dde623bc21e320"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v2/upstream/manifest.json",
+      "sha256": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4"
+    },
+    {
+      "access": "code_only_not_executed",
+      "path": "reports/carla_final_conformal_cal_bundle_v2/runner.py",
+      "sha256": "4b99cd4a493961ef82721d8f59979882ab69f4fcfcd3e6e8e6e95eb55492b039"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v3/conformal_specification.json",
+      "sha256": "27d8ab09c69863885882e573c3a58a29635234b43168d5c63dea527c749caf34"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v3/model_registry.json",
+      "sha256": "bab2749c6fe12260a015cb9b6fb2ff03e0d9a6e5b3176a4f49dde623bc21e320"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v3/upstream/manifest.json",
+      "sha256": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4"
+    },
+    {
+      "access": "code_only_not_executed",
+      "path": "reports/carla_final_conformal_cal_bundle_v3/runner.py",
+      "sha256": "e81d746b939f0176fb32ff7ccb68a5c360a25a75e4be20aa7b1fe1c911bbf3e5"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v4/conformal_specification.json",
+      "sha256": "c55f5b953a90a8d55380aead80992db5e89b2fca97de970f3650781f804d53a6"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v4/model_registry.json",
+      "sha256": "bab2749c6fe12260a015cb9b6fb2ff03e0d9a6e5b3176a4f49dde623bc21e320"
+    },
+    {
+      "access": "metadata_only",
+      "path": "reports/carla_final_conformal_cal_bundle_v4/upstream/manifest.json",
+      "sha256": "8abba8c7c746b1b6308a6b10b85b0995ed88de7cfb634dc31c95f20be3d96ac4"
+    },
+    {
+      "access": "code_only_not_executed",
+      "path": "reports/carla_final_conformal_cal_bundle_v4/runner.py",
+      "sha256": "88ad6c1675981e9ae2dba11cb0cc26901fb0527d2fe4ae609eee722a124f1abf"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/engine/pipeline.py",
+      "sha256": "be57eda85b07e91eb531478766282cdca885fd7b72d31fc0c1df9c487a85cfe3"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/engine/decision_engine.py",
+      "sha256": "a0c75bb8aa75bc30c15e1a546e3827affe1a0f08d578982ba548a1dcb417dfa3"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/engine/result.py",
+      "sha256": "7311b6c9f650045c48a309bcac171ab321e62b8b4154423093b6bd114088a6b5"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/core/types.py",
+      "sha256": "0d1f0565034d8802b1158fd5b19eb7f635841de9488ea15767e8cbe825ff5dcc"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/core/interfaces.py",
+      "sha256": "18db110e7323f5b79c97bee5a7ba2bff40c71a02cdf2dd49c334c4addc86c031"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/config/schema.py",
+      "sha256": "6cea5e8c87f6423caf36273260618a1c01ee5804589c0fb89d0d1c7faad2b8c4"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/runtime/bridge.py",
+      "sha256": "7f12599ba691732a087907a1befae25476cf105e7d463e07698e21d72478ea68"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/adapters/carla/runtime_artifacts.py",
+      "sha256": "b1e81e921279fab8aeef32dabc091b13357074219e7351e8ea4f559dc96bd088"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/adapters/carla/real_agents.py",
+      "sha256": "673d0f41be088efc68229a19aef02465aba2e79bc8d5560430908e44525425c2"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/adapters/carla/normality.py",
+      "sha256": "8b2876fc0bc8a22cf93e1d229a84c3569eab88e03c294c8c677adea945c47b78"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/adapters/carla/real_features.py",
+      "sha256": "66f3e6a59b42f65679642be137a0fadd081f61251cfe8728cd22e089e9110232"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/adapters/carla/replay_source.py",
+      "sha256": "9971bb62af6332caa4a43031176ddd199a2bb050143c679f6509c8355b1ed483"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/belief/fusion.py",
+      "sha256": "3ee89834ed804ffb34a1f7c4ebc7b6b3789952b0166b23f04e7460ba3a1a52d8"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/calibration/conformal.py",
+      "sha256": "1e873f4198898ceb8409db59003fc3c26c4346f8309e45085ca1be7d0a4c927f"
+    },
+    {
+      "access": "code_only",
+      "path": "cognix/artifacts/persistence.py",
+      "sha256": "a150bc0ccb7277fc98c3e7e05ecd39ea6968d364cc78ced0be838e26c57d8d41"
+    },
+    {
+      "access": "code_only",
+      "path": "reports/carla_train_full_v1/kaggle_graph_training_bundle_v1/kaggle_models.py",
+      "sha256": "9972c26ea427952309e77e0e5c5a4ccabf7647cd5599e9c1ad440cb75d02bdd2"
+    }
+  ],
+  "interpreter": "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "new_artifact_seal": null,
+  "new_model_fitting_or_threshold_tuning": false,
+  "next_separate_task": "Specify untouched TRAIN-only calibration scenarios and a scenario-aware constructed-task protocol, or separately authorize a new runtime artifact training/partition task. Preserve the closed Experiment 2B chain.",
+  "pre_task_pipeline_diff": "diff --git a/cognix/engine/pipeline.py b/cognix/engine/pipeline.py\nindex 51c943b5..20d8dc4b 100644\n--- a/cognix/engine/pipeline.py\n+++ b/cognix/engine/pipeline.py\n@@ -224,22 +224,25 @@ class CognixPipeline:\n                             np.clip(refined_probs[idx], 1e-7, 1 - 1e-7)\n                         )\n \n-                    # Build communication info from last layer attention\n-                    attn_matrix = attn_list[-1]  # (N, N)\n-                    attn_dict = {\n-                        agent_order[i]: float(attn_matrix[i].sum())\n-                        for i in range(N)\n-                    }\n-                    comm_info = {\n-                        \"edges\": [[agent_order[i], agent_order[j]]\n-                                  for i in range(N) for j in range(N) if i != j],\n-                        \"attention_weights\": attn_dict,\n-                        \"attention_matrix_shape\": list(attn_matrix.shape),\n-                        \"adjacency_type\": \"fully_connected\",\n-                    }\n+                    # A node refinement plugin can operate independently on nodes.\n+                    # Absence of attention means no inter-agent communication.\n+                    comm_info = None\n+                    if attn_list is not None and len(attn_list):\n+                        attn_matrix = np.asarray(attn_list[-1])\n+                        if attn_matrix.shape != (N, N) or not np.isfinite(attn_matrix).all():\n+                            raise ValueError(\"Invalid graph attention matrix\")\n+                        comm_info = {\n+                            \"edges\": [[agent_order[i], agent_order[j]]\n+                                      for i in range(N) for j in range(N)\n+                                      if i != j and attn_matrix[i, j] > 0],\n+                            \"attention_weights\": {agent_order[i]: float(attn_matrix[i].sum())\n+                                                  for i in range(N)},\n+                            \"attention_matrix_shape\": list(attn_matrix.shape),\n+                            \"adjacency_type\": \"provided_adjacency\",\n+                        }\n \n                     gnn_status = ModuleStatus(\n-                        executed=True, method=\"epistemic_gat\",\n+                        executed=True, method=graph_result.metadata.get(\"method\", \"epistemic_gat\"),\n                         duration_ms=_ms(t), failure_reason=None,\n                         inputs_validated=True, outputs_validated=True,\n                     )\n@@ -507,6 +510,7 @@ class CognixPipeline:\n         \"\"\"\n         uncertainties: dict[str, dict[str, float]] = {}\n         used_fallback = False\n+        agent_uq_methods: set[str] = set()\n \n         for agent in agents:\n             agent_id = self._agent_id(agent)\n@@ -523,6 +527,8 @@ class CognixPipeline:\n                             \"aleatoric\": float(est.aleatoric),\n                             \"total\": float(est.total),\n                         }\n+                        meta = agent.metadata() if hasattr(agent, \"metadata\") else {}\n+                        agent_uq_methods.add(str(meta.get(\"uq_method\", \"mc_dropout\")))\n                         continue\n                 except Exception as exc:\n                     logger.debug(\n@@ -573,7 +579,8 @@ class CognixPipeline:\n \n         status = ModuleStatus(\n             executed=True,\n-            method=\"mc_dropout\" if not used_fallback else \"confidence_heuristic_fallback\",\n+            method=(\"confidence_heuristic_fallback\" if used_fallback else\n+                    \"+\".join(sorted(agent_uq_methods)) or \"mc_dropout\"),\n             duration_ms=0,  # set by caller\n             failure_reason=\"confidence_heuristic_used\" if used_fallback else None,\n             inputs_validated=True,\n",
+  "pre_task_pipeline_sha256": "ea08b29100770cfcaee439a826f9ef842c8e6e6f929cdb9a9b951871d71ad1c7",
+  "status": "BLOCKED_NO_INDEPENDENT_TRAIN_CALIBRATION_SOURCE",
+  "stop_reason": "All 25 CAL scenarios fitted frozen upstream probability mappings; all remaining 76 TRAIN scenarios fitted upstream models. No independent scenario remains in the frozen 101-scenario TRAIN catalogue. Historical conformal bundles are TEST-derived and incompatible."
+}

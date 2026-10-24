@@ -12,7 +12,6 @@ Note: Standard Shapley values (Shapley, 1953) are an established game-theoretic 
 The specific application to epistemic uncertainty in multi-agent systems is a proposed mechanism.
 """
 
-import numpy as np
 import random
 from typing import Callable, Any
 

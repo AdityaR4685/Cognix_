@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COGNIX Live Framework</title>
+    <title>COGNIX Research Replay</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -173,6 +173,16 @@
                 "trac trac trac trac trac trac trac trac trac trac trac trac";
         }
     }
+    .source-controls { margin: 20px 24px 0; padding: 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; }
+    .source-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+    .source-row label { display: grid; gap: 5px; font-size: 12px; }
+    .source-row select, .source-row input, .source-row button { padding: 8px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 5px; }
+    #archive-path { width: min(420px, 75vw); }
+    #source-status, #runtime-status { margin-top: 10px; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+    #source-error { color: var(--red); margin-top: 8px; }
+    #provenance { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; max-height: 260px; overflow: auto; }
+    .pending .card:not(.card-control) { visibility: hidden; }
+    .dec-large { font-size: clamp(20px, 2vw, 32px); overflow-wrap: anywhere; white-space: normal; }
 </style>
 </head>
 <body>
@@ -180,11 +190,11 @@
 <header>
   <div class="logo-container">
     <div class="logo-text">COGNIX</div>
-    <div class="logo-badge">v0.2.0-SYNTHETIC</div>
+    <div class="logo-badge">v0.3.0 REPLAY</div>
   </div>
   <div class="hdr-metrics">
-    <div class="hdr-pill">Domain: <span style="color:var(--text)">Autonomous Driving</span></div>
-    <div class="hdr-pill">Data Mode: <span style="color:var(--cyan)">SYNTHETIC SIMULATION</span></div>
+    <div class="hdr-pill">Domain: <span id="hdr-domain" style="color:var(--text)">—</span></div>
+    <div class="hdr-pill">Data Mode: <span id="hdr-mode" style="color:var(--cyan)">SYNTHETIC</span></div>
     <div class="hdr-pill">Tick: <span id="hdr-tick" style="color:var(--purple)">#0</span></div>
     <div class="live-badge">
       <div class="live-dot" id="live-dot"></div>
@@ -192,6 +202,28 @@
     </div>
   </div>
 </header>
+
+<section class="source-controls" aria-label="Replay source controls">
+  <div class="source-row">
+    <label>Source mode<select id="source-mode"><option>SYNTHETIC</option><option>DATASET</option></select></label>
+    <label>Split<select id="dataset-split"><option>TEST</option><option>TRAIN</option></select></label>
+    <label>Archive path (or configured environment)<input id="archive-path" placeholder="Path to CarlAnomaly .tar.gz"></label>
+    <label>Graph strategy<select id="graph-strategy"><option>NoGraph</option><option>StandardGAT</option><option>EpistemicGAT</option></select></label>
+    <label>Frozen seed<select id="frozen-seed"><option>101</option><option>202</option><option>303</option><option>404</option><option>505</option></select></label>
+    <button id="apply-source">Apply source</button>
+  </div>
+  <div class="source-row" style="margin-top:10px">
+    <button data-control="play">Play</button><button data-control="pause">Pause</button>
+    <button id="previous-sample">Previous</button><button id="next-sample">Next</button>
+    <button data-control="restart">Restart</button>
+    <label>Samples / second<input id="playback-rate" type="number" min="0.1" max="10" step="0.1" value="1"></label>
+    <button id="apply-rate">Set rate</button>
+  </div>
+  <div id="source-status" role="status">Connecting to source…</div>
+  <div id="source-error" role="alert"></div>
+  <div id="runtime-status">Select a source and scenario to inspect runtime stages.</div>
+  <details><summary>Observation and artifact provenance</summary><pre id="provenance">Unavailable</pre></details>
+</section>
 
 <main class="dashboard">
 
@@ -241,7 +273,7 @@
 
   <!-- EPISTEMIC GRAPH -->
   <section class="card card-graph">
-    <div class="card-title">EPISTEMIC AGENT GRAPH <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Edge = Belief fusion weight)</span></div>
+    <div class="card-title">AGENT TRUST <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(Edge = trust weight; communication status above)</span></div>
     <div class="graph-container" style="position:relative">
       <canvas id="graph-canvas" class="graph-edges"></canvas>
       <div class="graph-nodes" id="graph-nodes">
@@ -260,10 +292,11 @@
       <thead>
         <tr>
           <th>Agent</th>
-          <th>Prediction</th>
+          <th>Upstream</th>
+          <th>After refinement</th>
           <th>Epistemic</th>
           <th>Aleatoric</th>
-          <th>Fusion Wt.</th>
+          <th>Trust Wt.</th>
         </tr>
       </thead>
       <tbody id="agent-body">
@@ -289,7 +322,7 @@
         <div class="fus-stat-val" id="fus-set-size">—</div>
       </div>
     </div>
-    <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:8px; font-weight:600">WEIGHT DISTRIBUTION</div>
+    <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:8px; font-weight:600">TRUST WEIGHT DISTRIBUTION</div>
     <div id="fus-dist-list">
       <!-- JS -->
     </div>
@@ -314,12 +347,12 @@
 
   <!-- LATENCY -->
   <section class="card card-lat">
-    <div class="card-title">LIVE MEASURED LATENCY <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(High-res timer)</span></div>
+    <div class="card-title">MEASURED RUNTIME LATENCY <span style="font-size:0.6rem;font-weight:400;text-transform:none;color:var(--text-dim)">(I/O listed separately)</span></div>
     <div id="lat-rows"></div>
     <div class="lat-divider"></div>
     <div class="lat-row"><span class="lat-name">CURRENT CYCLE</span><span class="lat-total" id="lat-tot">—</span></div>
     
-    <div style="font-size:0.6rem; color:var(--text-muted); text-transform:uppercase; margin:12px 0 6px 0">LATENCY DISTRIBUTION (Live measured)</div>
+    <div style="font-size:0.6rem; color:var(--text-muted); text-transform:uppercase; margin:12px 0 6px 0">RUNTIME LATENCY DISTRIBUTION</div>
     <div class="lat-percentiles">
       <div class="lat-pct"><div class="lat-pct-l">P50</div><div class="lat-pct-v" id="lat-p50">—</div></div>
       <div class="lat-pct"><div class="lat-pct-l">P95</div><div class="lat-pct-v" id="lat-p95">—</div></div>
@@ -366,14 +399,15 @@ const MAX_HIST = 50;
 const historyData = [];
 
 function pct(v, max=1) { return Math.min(100, Math.max(0, (v/max)*100)).toFixed(1) + '%'; }
-function n(v, fix=3) { return parseFloat(v).toFixed(fix); }
+function n(v, fix=3) { return v == null || !Number.isFinite(Number(v)) ? 'Unavailable' : Number(v).toFixed(fix); }
+function esc(v) { return String(v ?? 'Unavailable').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function drawGraph(agents) {
     const container = document.getElementById('graph-nodes');
-    container.innerHTML = agents.map(a => `
-        <div class="graph-node ${a.healthy ? '' : 'degraded'}" id="node-${a.name}">
-            <div class="n-name">${a.name}</div>
-            <div class="n-epi">Ep=${a.epistemic.toFixed(3)}</div>
+    container.innerHTML = agents.map((a,i) => `
+        <div class="graph-node ${a.healthy !== false ? '' : 'degraded'}" id="node-${i}">
+            <div class="n-name">${esc(a.name)}</div>
+            <div class="n-epi">Ep=${n(a.epistemic)}</div>
         </div>
     `).join('');
     
@@ -390,8 +424,8 @@ function drawGraph(agents) {
     
     ctx.clearRect(0,0, canvas.width, canvas.height);
     
-    agents.forEach(a => {
-        const nodeEl = document.getElementById(`node-${a.name}`);
+    agents.forEach((a,i) => {
+        const nodeEl = document.getElementById(`node-${i}`);
         if(!nodeEl) return;
         const nRect = nodeEl.getBoundingClientRect();
         const nX = nRect.left - rect.left + nRect.width/2;
@@ -405,7 +439,7 @@ function drawGraph(agents) {
         const weightRaw = a.weight;
         const lineWidth = Math.max(1, weightRaw * 15);
         ctx.lineWidth = lineWidth;
-        ctx.strokeStyle = a.healthy ? `rgba(0, 212, 255, ${Math.max(0.2, weightRaw)})` : `rgba(239, 68, 68, ${Math.max(0.2, weightRaw)})`;
+        ctx.strokeStyle = a.healthy !== false ? `rgba(0, 212, 255, ${Math.max(0.2, weightRaw)})` : `rgba(239, 68, 68, ${Math.max(0.2, weightRaw)})`;
         ctx.stroke();
         
         // Draw weight text halfway
@@ -470,6 +504,15 @@ function drawHistory() {
 }
 
 function updateDashboard(d) {
+    if(d.error || !d.agents) { showError(d.error || d.detail || 'No sample available'); return; }
+    if(lastTimestamp === d.timestamp) return;
+    lastTimestamp = d.timestamp;
+    document.querySelector('main').classList.remove('pending');
+    document.getElementById('source-error').textContent = '';
+    document.getElementById('hdr-mode').textContent = d.mode;
+    document.getElementById('hdr-domain').textContent = d.domain;
+    document.getElementById('runtime-status').textContent = `${d.probability_label}. ${d.prediction_semantics || ''} Graph: ${d.graph_strategy}; refinement ${d.graph_executed ? 'executed' : 'unavailable'}; communication ${d.graph_communication_executed ? 'executed' : 'not executed'}. Calibration: ${d.calibration_available ? 'available' : 'unavailable — ' + (d.calibration_unavailable_reason || 'no calibrator')}. ${d.decision_semantics || ''}`;
+    document.getElementById('provenance').textContent = JSON.stringify({provenance:d.provenance, module_status:d.module_status, module_methods:d.module_methods, failure_reasons:d.module_failure_reasons, ground_truth:d.ground_truth}, null, 2);
     document.getElementById('hdr-tick').textContent = `#${d.tick}`;
     const sel = document.getElementById('scenario-select');
     if (sel.value !== d.scenario && document.activeElement !== sel) sel.value = d.scenario;
@@ -483,17 +526,17 @@ function updateDashboard(d) {
     
     // Decision
     const decEl = document.getElementById('dec-action');
-    decEl.textContent = d.decision;
+    decEl.textContent = d.decision.replaceAll('_', ' ');
     decEl.style.color = d.decision === 'ESCALATE' ? 'var(--red)' : 'var(--green)';
-    // Use calibrated_confidence when genuinely available; otherwise collective P(ACT/safe)
+    // Probability semantics are supplied by the configured runtime.
     const dispProb = d.calibration_available ? d.calibrated_confidence : d.collective_probability;
     document.getElementById('dec-conf').textContent = (dispProb * 100).toFixed(1);
     const labelEl = document.getElementById('dec-conf-label');
     if (d.calibration_available) {
-        labelEl.textContent = 'Calibrated Probability';
+        labelEl.textContent = d.probability_label + ' (conformal stage available)';
         labelEl.style.color = '';
     } else {
-        labelEl.textContent = 'Collective ACT Probability (UNCALIBRATED)';
+        labelEl.textContent = d.probability_label + ' (collective, uncalibrated)';
         labelEl.style.color = 'var(--text-dim)';
     }
     document.getElementById('dec-risk').textContent = d.risk_level + " RISK";
@@ -506,11 +549,11 @@ function updateDashboard(d) {
         const t = d.comparison_table;
         document.getElementById('comp-body').innerHTML = Object.keys(t).map(sc => `
             <tr class="${sc === d.scenario ? 'active-col' : ''}">
-                <td>${sc}</td>
-                <td>${t[sc].ece.toFixed(3)}</td>
-                <td>${t[sc].cov}%</td>
-                <td>${t[sc].epi.toFixed(3)}</td>
-                <td>${t[sc].esc}%</td>
+                <td>${esc(sc)}</td>
+                <td>${n(t[sc].ece)}</td>
+                <td>${n(t[sc].cov,1)}</td>
+                <td>${n(t[sc].epi)}</td>
+                <td>${n(t[sc].esc,1)}</td>
             </tr>
         `).join('');
     }
@@ -518,9 +561,10 @@ function updateDashboard(d) {
     // Agent Evidence
     document.getElementById('agent-body').innerHTML = d.agents.map(a => `
         <tr>
-            <td style="font-weight:600; color:${a.healthy ? 'var(--text)' : 'var(--red)'}">${a.name}</td>
+            <td style="font-weight:600; color:${a.healthy !== false ? 'var(--text)' : 'var(--red)'}">${esc(a.name)}</td>
+            <td class="font-mono">${n(a.upstream_prediction)}</td>
             <td class="font-mono">${n(a.prediction)}</td>
-            <td class="font-mono" style="color:${a.healthy ? 'var(--purple)' : 'var(--red)'}">${n(a.epistemic)}</td>
+            <td class="font-mono" style="color:${a.healthy !== false ? 'var(--purple)' : 'var(--red)'}">${n(a.epistemic)}</td>
             <td class="font-mono" style="color:var(--orange)">${n(a.aleatoric)}</td>
             <td class="font-mono w-bar-container">
                 <span>${n(a.weight*100,1)}%</span>
@@ -543,7 +587,7 @@ function updateDashboard(d) {
     const sortedAgents = [...d.agents].sort((a,b) => b.weight - a.weight);
     document.getElementById('fus-dist-list').innerHTML = sortedAgents.map(a => `
         <div class="fus-dist-row">
-            <div class="fus-dist-name" style="color:${a.healthy?'var(--text)':'var(--red)'}">${a.name}</div>
+            <div class="fus-dist-name" style="color:${a.healthy !== false?'var(--text)':'var(--red)'}">${esc(a.name)}</div>
             <div class="fus-dist-track"><div class="fus-dist-fill" style="width:${a.weight*100}%"></div></div>
             <div class="fus-dist-val">${n(a.weight*100, 1)}%</div>
         </div>
@@ -559,7 +603,7 @@ function updateDashboard(d) {
     
     // Latency
     if(d.latency) {
-        document.getElementById('lat-rows').innerHTML = ['uncertainty','fusion','calibration','decision','attribution'].map(k => `
+        document.getElementById('lat-rows').innerHTML = ['source_read_ms','agent_inference_ms','graph_refinement','fusion','calibration','decision','attribution'].map(k => `
             <div class="lat-row"><span class="lat-name">${k}</span><span>${n(d.latency[k],2)} ms</span></div>
         `).join('');
         document.getElementById('lat-tot').textContent = n(d.latency.total, 2) + ' ms';
@@ -581,7 +625,7 @@ function updateDashboard(d) {
             const sign = v > 0 ? '+' : '';
             return `
             <div class="shapley-row">
-                <div class="shapley-name">${k}</div>
+                <div class="shapley-name">${esc(k)}</div>
                 <div class="shapley-bar-c">
                     <div class="shapley-bar" style="left:${left}%; width:${w}%; background:${clr}"></div>
                 </div>
@@ -598,12 +642,12 @@ function updateDashboard(d) {
     
     // Trace
     if(d.decision_trace) {
-        document.getElementById('trace-list').innerHTML = d.decision_trace.map(t => `<div class="done">${t}</div>`).join('');
+        document.getElementById('trace-list').innerHTML = d.decision_trace.map(t => `<div class="${t.includes('unavailable') ? '' : 'done'}">${esc(t)}</div>`).join('');
     }
     
     const whyEl = document.getElementById('trace-why-title');
-    if (whyEl) whyEl.textContent = d.decision === 'ESCALATE' ? 'WHY ESCALATE?' : 'WHY ACT?';
-    document.getElementById('trace-reasoning').innerHTML = (d.explanation || "") + "<br><br>" + (d.reasoning || "");
+    if (whyEl) whyEl.textContent = 'DECISION EXPLANATION';
+    document.getElementById('trace-reasoning').textContent = d.explanation || 'Unavailable';
     
     // History
     historyData.push(d);
@@ -611,13 +655,59 @@ function updateDashboard(d) {
     drawHistory();
 }
 
-let ws, reconnectTimer;
+let ws, reconnectTimer, lastTimestamp = null, sourceKey = null;
+function clearResult() {
+    historyData.length = 0;
+    lastTimestamp = null;
+    document.querySelector('main').classList.add('pending');
+    document.getElementById('hdr-tick').textContent = '—';
+    document.getElementById('runtime-status').textContent = 'Awaiting a replay sample. Use Next or Play.';
+    document.getElementById('provenance').textContent = 'Unavailable';
+}
+function showError(message) { clearResult(); document.getElementById('source-error').textContent = message; }
+async function api(path, body) {
+    const response = await fetch(path, body === undefined ? {} : {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    const data = await response.json();
+    if(!response.ok) throw new Error(typeof data.detail === 'string' ? data.detail : JSON.stringify(data.detail));
+    return data;
+}
+async function refreshStatus(reloadScenarios=false) {
+    const state = await api('/api/source/status');
+    document.getElementById('hdr-mode').textContent = state.mode;
+    const s = state.source;
+    const key = [state.mode, s?.source_id, s?.archive, s?.split, state.runtime?.artifact_id].join('|');
+    if(key !== sourceKey) {
+        clearResult();
+        reloadScenarios = true;
+        sourceKey = key;
+        document.getElementById('source-mode').value = state.mode;
+        if(s?.split) document.getElementById('dataset-split').value = s.split;
+        if(s?.archive) document.getElementById('archive-path').value = s.archive;
+        if(state.runtime?.graph_strategy) document.getElementById('graph-strategy').value = state.runtime.graph_strategy;
+        if(state.runtime?.seed) document.getElementById('frozen-seed').value = state.runtime.seed;
+        if(s?.rate) document.getElementById('playback-rate').value = s.rate;
+    }
+    document.getElementById('source-status').textContent = s ? `${s.mode} · ${s.source_id} · ${s.sequence_id || 'select a scenario'} · sample index ${s.index} / ${s.sample_count ?? '—'} · ${state.busy ? 'reading / processing' : s.playing ? 'playing' : 'paused'} · ${s.rate} samples/s` : `${state.mode} source unavailable`;
+    document.getElementById('live-text').textContent = state.busy ? 'PROCESSING' : s?.playing ? 'PLAYING' : 'PAUSED';
+    if(state.error) showError(state.error);
+    if(reloadScenarios) {
+        const data = s ? await api('/api/dataset/scenarios') : {scenarios:[]};
+        const select = document.getElementById('scenario-select');
+        select.replaceChildren(new Option('Select scenario…',''), ...data.scenarios.map(v => new Option(v,v)));
+        select.value = s?.sequence_id || '';
+    }
+    if(s?.index >= 0 && !state.error) updateDashboard(await api('/api/latest'));
+}
+async function control(path, body={}, reset=false) {
+    try { const data = await api(path, body); if(reset) clearResult(); if(data.agents) updateDashboard(data); await refreshStatus(); }
+    catch(error) { document.getElementById('source-error').textContent = error.message; }
+}
 function connect() {
     const proto = location.protocol === 'https:' ? 'wss' : 'ws';
     ws = new WebSocket(`${proto}://${location.host}/ws`);
     ws.onopen = () => {
         document.getElementById('live-dot').className = 'live-dot';
-        document.getElementById('live-text').textContent = 'LIVE SIMULATION';
+        document.getElementById('live-text').textContent = 'CONNECTED';
     };
     ws.onclose = () => {
         document.getElementById('live-dot').className = 'live-dot offline';
@@ -629,16 +719,24 @@ function connect() {
 }
 
 window.addEventListener('load', () => {
-    fetch('/api/latest').then(r=>r.json()).then(updateDashboard).catch(()=>{});
+    clearResult();
+    refreshStatus(true).catch(e => showError(e.message));
     connect();
     
     document.getElementById('scenario-select').addEventListener('change', e => {
-        fetch('/api/set_scenario', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({scenario: e.target.value})
-        });
+        control('/api/dataset/select', {scenario:e.target.value}, true);
     });
+    document.getElementById('apply-source').onclick = async () => {
+        clearResult();
+        try { await api('/api/source/mode', {mode:document.getElementById('source-mode').value, split:document.getElementById('dataset-split').value, archive:document.getElementById('archive-path').value || null, graph_strategy:document.getElementById('graph-strategy').value, seed:Number(document.getElementById('frozen-seed').value)}); }
+        catch(e) { showError(e.message); }
+        await refreshStatus(true).catch(e=>showError(e.message));
+    };
+    document.querySelectorAll('[data-control]').forEach(button => button.onclick = () => control('/api/dataset/'+button.dataset.control, {}, button.dataset.control === 'restart'));
+    document.getElementById('next-sample').onclick = () => control('/api/dataset/step', {delta:1});
+    document.getElementById('previous-sample').onclick = () => control('/api/dataset/step', {delta:-1});
+    document.getElementById('apply-rate').onclick = () => control('/api/dataset/rate', {rate:Number(document.getElementById('playback-rate').value)});
+    setInterval(() => refreshStatus().catch(()=>{}), 2000);
 });
 window.addEventListener('resize', drawHistory);
 </script>

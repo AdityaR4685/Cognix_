@@ -1,0 +1,73 @@
+{
+  "variant_summary": {
+    "V1_raw_detections": {
+      "total_candidates": 1005,
+      "person": 140,
+      "car": 458,
+      "other": 407,
+      "corridor_candidates": 348
+    },
+    "V2_temporal_association": {
+      "total_tracks": 337,
+      "confirmed_tracks": 81,
+      "tentative_tracks": 256,
+      "person_tracks": 18,
+      "car_tracks": 33
+    },
+    "V3_temporal_and_corridor": {
+      "confirmed_corridor_tracks": 47,
+      "person_corridor_tracks": 18,
+      "car_corridor_tracks": 13
+    },
+    "V4_temporal_corridor_motion": {
+      "active_dynamic_hazard_tracks": 35,
+      "stationary_suppressed_tracks": 12
+    }
+  },
+  "per_scenario_metrics": {
+    "test/anomaly/Town01/running-pedestrian/scenario-1": {
+      "evaluated_frames": 60,
+      "tracking_overhead_ms_total": 4.11,
+      "tracking_overhead_ms_per_frame": 0.068,
+      "raw_detections": 277,
+      "confirmed_tracks": 18,
+      "corridor_confirmed_tracks": 9,
+      "dynamic_corridor_hazards": 6,
+      "total_track_identities_created": 91
+    },
+    "test/anomaly/Town01/spawn-props/scenario-1": {
+      "evaluated_frames": 60,
+      "tracking_overhead_ms_total": 4.41,
+      "tracking_overhead_ms_per_frame": 0.074,
+      "raw_detections": 387,
+      "confirmed_tracks": 38,
+      "corridor_confirmed_tracks": 18,
+      "dynamic_corridor_hazards": 16,
+      "total_track_identities_created": 110
+    },
+    "test/anomaly/Town01/change-weather/scenario-1": {
+      "evaluated_frames": 60,
+      "tracking_overhead_ms_total": 1.57,
+      "tracking_overhead_ms_per_frame": 0.026,
+      "raw_detections": 139,
+      "confirmed_tracks": 5,
+      "corridor_confirmed_tracks": 4,
+      "dynamic_corridor_hazards": 4,
+      "total_track_identities_created": 72
+    },
+    "test/anomaly/Town01/change-weather/scenario-10": {
+      "evaluated_frames": 60,
+      "tracking_overhead_ms_total": 2.48,
+      "tracking_overhead_ms_per_frame": 0.041,
+      "raw_detections": 202,
+      "confirmed_tracks": 20,
+      "corridor_confirmed_tracks": 16,
+      "dynamic_corridor_hazards": 9,
+      "total_track_identities_created": 64
+    }
+  },
+  "tracker_overhead_profile": {
+    "mean_tracking_overhead_ms_per_frame": 0.052,
+    "conclusion": "Tracking adds < 0.1 ms/frame overhead, representing negligible compute (< 0.05% of model inference)."
+  }
+}

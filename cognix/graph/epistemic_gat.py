@@ -40,7 +40,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from typing import Optional
 
 from cognix.core.interfaces import GraphRefinement
 from cognix.core.types import GraphResult

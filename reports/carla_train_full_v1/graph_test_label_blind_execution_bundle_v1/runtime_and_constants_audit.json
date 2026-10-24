@@ -1,0 +1,72 @@
+{
+  "adjacency": [
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "constants_cross_source_match": true,
+  "current_dependencies": {
+    "Pillow": "12.3.0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.3",
+    "pyarrow": "25.0.1"
+  },
+  "current_python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "dependency_variants": 1,
+  "dimensions": {
+    "Camera": 18,
+    "IMU": 10,
+    "Seg": 29
+  },
+  "exact_feature_runtime_match": true,
+  "feature_order": [
+    "prob_normal",
+    "epistemic",
+    "aleatoric"
+  ],
+  "frozen_clean_manifests_examined": 175,
+  "graph_common_sha256": "77ba5b669416b03a32e75aeafa05186e14e5869fd8d1d8c9357585068b24aae0",
+  "kaggle_common_sha256": "fbbaa60dab01a831296dd092c42c6c587827bfa06aa4893cc603dde6cf90e0f3",
+  "methods": [
+    "NoGraph",
+    "StandardGAT",
+    "EpistemicGAT"
+  ],
+  "node_order": [
+    "Camera",
+    "IMU",
+    "Seg"
+  ],
+  "predictions_generated": false,
+  "python_variants": 1,
+  "recorded_dependencies": {
+    "Pillow": "12.3.0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.3",
+    "pyarrow": "25.0.1"
+  },
+  "recorded_python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "schema": "COGNIX-label-blind-TEST-runtime-and-constants-audit-v1",
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "status": "PASS",
+  "test_labels_opened": false,
+  "test_payload_access": false
+}

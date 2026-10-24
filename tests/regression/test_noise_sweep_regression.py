@@ -75,3 +75,14 @@ def test_noise_sweep_run_evaluation_pipeline():
     assert results[5.0]["injected_noise_mean"] > results[3.0]["injected_noise_mean"], (
         "noise_level=5.0 should have higher corruption than 3.0"
     )
+
+
+def test_selective_risk_trapezoid_compatibility():
+    """Verify that compute_selective_risk runs and computes finite AURC across NumPy versions."""
+    from experiments.universal_evaluation.metrics_extended import compute_selective_risk
+    probs = np.array([0.9, 0.8, 0.7, 0.4, 0.2, 0.1])
+    labels = np.array([1, 1, 1, 0, 0, 0])
+    res = compute_selective_risk(probs, labels)
+    assert "aurc" in res
+    assert not np.isnan(res["aurc"])
+    assert 0.0 <= res["aurc"] <= 1.0

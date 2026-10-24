@@ -17,11 +17,17 @@ from pathlib import Path
 from typing import Any, Tuple
 
 import numpy as np
-import torch
 
 from cognix.calibration.conformal import ConformalPredictor
-from cognix.graph.epistemic_gat import EpistemicGAT
-from cognix.graph.standard_gat import StandardGAT
+
+try:
+    import torch
+    from cognix.graph.epistemic_gat import EpistemicGAT
+    from cognix.graph.standard_gat import StandardGAT
+except ImportError:
+    torch = None
+    EpistemicGAT = Any  # type: ignore
+    StandardGAT = Any   # type: ignore
 
 logger = logging.getLogger(__name__)
 

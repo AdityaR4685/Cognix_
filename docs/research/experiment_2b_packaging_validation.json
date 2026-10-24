@@ -1,0 +1,98 @@
+{
+  "checks": {
+    "AUROC_fail_closed_structure": true,
+    "SVG_seed_labels_legends_dimensions": true,
+    "full_precision_figure_data": true,
+    "local_links": 54,
+    "probability_semantics": true,
+    "report_tables_and_directions": true,
+    "required_sections_and_limitations": true,
+    "source_seals": true,
+    "stored_paired_summaries": true,
+    "stored_seed_means": true
+  },
+  "compilation": {
+    "format": "Markdown",
+    "latexmk_available": false,
+    "pdflatex_available": false,
+    "status": "not_applicable_no_LaTeX_source"
+  },
+  "created_files": [
+    "docs/research/EXPERIMENT_2B_PACKAGING_AUDIT.md",
+    "docs/research/experiment_2b_packaging_validation.json",
+    "docs/research/scripts/plot_experiment_2b.py",
+    "docs/research/scripts/validate_experiment_2b_packaging.py",
+    "docs/research/figures/experiment_2b/figure_data.json",
+    "docs/research/figures/experiment_2b/paired_bce_differences.svg",
+    "docs/research/figures/experiment_2b/paired_bce_differences.png",
+    "docs/research/figures/experiment_2b/paired_f1_differences.svg",
+    "docs/research/figures/experiment_2b/paired_f1_differences.png"
+  ],
+  "execution": {
+    "Phase_A_or_B_rerun": false,
+    "TEST_metrics_recomputed_from_raw_labels": false,
+    "TEST_rerun": false,
+    "checkpoint_reselection": false,
+    "figures_use_only_authenticated_frozen_numbers": true,
+    "recalibration": false,
+    "threshold_tuning": false,
+    "training": false
+  },
+  "modified_files": [
+    "CONTINUE_FROM_HERE.md",
+    "README.md",
+    "docs/STATISTICAL_METHODOLOGY.md",
+    "docs/architecture/overview.md",
+    "docs/research/ABLATION_PLAN.md",
+    "docs/research/COGNIX_FINAL_STATUS.md",
+    "docs/research/METRIC_PROVENANCE.md",
+    "docs/research/REPRODUCIBILITY.md"
+  ],
+  "preservation": {
+    "baseline_sha256": "30de275aebb2da2b41b738236c1ada3992f5aa9e47c77248cecfaf9dd19b6e7f",
+    "byte_count": 5915955631,
+    "content_sizes_and_modification_times_unchanged": true,
+    "file_count": 18255,
+    "historical_failed_and_superseded_evidence_preserved": true,
+    "protected_roots": [
+      "reports",
+      "cognix",
+      "experiments",
+      "configs",
+      "tests",
+      "examples",
+      "artifacts"
+    ],
+    "rebuilt_baseline_sha256": "30de275aebb2da2b41b738236c1ada3992f5aa9e47c77248cecfaf9dd19b6e7f",
+    "status": "all_protected_files_unchanged",
+    "verification_method": "canonical inventory rebuilt byte-identically to authenticated pre-edit digest"
+  },
+  "report_file_sha256": {
+    "CONTINUE_FROM_HERE.md": "691b386b46dcb5471796ca0cf21999c620424bccab1c077fd1f79843487a21cb",
+    "README.md": "f937d1831ccab5d0a42573186d518bc2d66e696781a2f433f70166903fca39b3",
+    "docs/STATISTICAL_METHODOLOGY.md": "62fcaf323fc73b393cb3e3b31b3891fb0734b36a00177cd3de612d65fc16e7df",
+    "docs/architecture/overview.md": "6848022bd7a6b508c7c205cea30a8320603250081d4704223e45b2c7b49f673f",
+    "docs/research/ABLATION_PLAN.md": "5f94845a35c91858918220f3d39fa7eb2e3ead9a5f3f0981c9b7389674d37300",
+    "docs/research/COGNIX_FINAL_STATUS.md": "1c98863da031a5e185741d207c4dd6015fbea73dca037eb6f99786c6ae4f3e64",
+    "docs/research/EXPERIMENT_2B_PACKAGING_AUDIT.md": "0e4f68fc5982fac16d6d187fd7eecc373e76be801186ed2068f32443a8466402",
+    "docs/research/METRIC_PROVENANCE.md": "e7830630676e89bd2ad83691e8a6cfc8f5ba58ba0f9a2183737df94f1fc637dd",
+    "docs/research/REPRODUCIBILITY.md": "1feb82c184d12a1e5be00573f91739b5fd7a5b6827370531595e3e15dfc5fea4",
+    "docs/research/figures/experiment_2b/figure_data.json": "f2da8ac7e8480e5669084cf3cad00d164f413188743d68504f4f323c9d0cdced",
+    "docs/research/figures/experiment_2b/paired_bce_differences.png": "1a9cae0c2db654b612361ebb8908419e8ac75e0e5cb29fb01861eeacc687f2de",
+    "docs/research/figures/experiment_2b/paired_bce_differences.svg": "f911cbe9ef53ff1a4a3ddcad02f609ba48c6ae287fbe524e3f3700194c4d3a6f",
+    "docs/research/figures/experiment_2b/paired_f1_differences.png": "1efcc0e9636e7e83602bbf011e7895e76ae371822407ff2f75396365dc0e896e",
+    "docs/research/figures/experiment_2b/paired_f1_differences.svg": "c22a69b5c01d402aa95187e1bb9c882ad1ff0ef07a44430951582b882c667022",
+    "docs/research/scripts/plot_experiment_2b.py": "04c11758b6cbe68f345036670a615807de1859eb0b707b2a8f1b7418b6821e3e",
+    "docs/research/scripts/validate_experiment_2b_packaging.py": "1c298beb040942a206b3fde9425c46b43b1cc3e1dc85236cd2270c3900911fb5"
+  },
+  "schema": "COGNIX-Experiment-2B-report-packaging-validation-v1",
+  "source_identities": {
+    "conclusion": "reports/carla_train_full_v1/graph_test_final_conclusion_bundle_v1/final_conclusion.json",
+    "conclusion_bundle_seal": "cff86433be91a3fdabd3b43568b7fb2c24c0760fa78fddeb298b9ae9cbb0cad8",
+    "conclusion_sha256": "6abef23828dd6a05fa05ab7e56e8be74072d5674417aafe9e321ee959b0e2f33",
+    "phase_B_metrics": "reports/carla_train_full_v1/graph_test_phase_B_results_v1/metrics.json",
+    "phase_B_metrics_sha256": "249765854ccc9b5ec4432dfc7f91738ba43e176fa2af44ac583cafddc7f38c90",
+    "phase_B_result_seal": "ec5ea056cb53050c284816c470845f233d4fe8c566917195658639d20bdee15e"
+  },
+  "status": "PASS"
+}

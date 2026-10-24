@@ -1,0 +1,18 @@
+{
+  "findings": [
+    "scorer PHASE_B_PREP points to graph_test_phase_B_scoring_bundle_v1_staging",
+    "scorer does not authenticate the Phase-B preparation bundle seal before label access"
+  ],
+  "metrics_changed": false,
+  "metrics_on_TEST_computed": false,
+  "phase_B_preparation_bundle_v1_seal": "94ecf47fe04752629df1b81b8f0e4fb39b9f107647a43c7358a4b505d9627a82",
+  "planned_correction": "Create separate v2 preparation bundle; scorer will point to final immutable v2 path and require an externally supplied --prep-seal that is verified before any label payload access.",
+  "predictions_changed": false,
+  "schema": "COGNIX-TEST-phase-B-scorer-v1-supersession-v1",
+  "scientific_protocol_changed": false,
+  "scorer_v1_sha256": "7409379626f7836909b428088b53d5fbab92d2f4d0b8b6f68d5a4b7f12fa5ddd",
+  "status": "PRELABEL_SCORER_V1_SUPERSEDED_BEFORE_TEST_LABEL_ACCESS",
+  "test_archive_opened_during_supersession": false,
+  "test_label_payload_opened": false,
+  "thresholds_changed": false
+}

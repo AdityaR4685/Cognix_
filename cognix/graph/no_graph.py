@@ -23,9 +23,12 @@ class NoGraph(GraphRefinement):
         # return LOGITS (not probabilities) to avoid a double-sigmoid.
         # logit(p) = log(p / (1 - p))  maps p -> logit space.
         # sigmoid(logit(p)) == p  (identity round-trip).
-        import torch
-        if isinstance(node_features, torch.Tensor):
-            node_features = node_features.detach().cpu().numpy()
+        try:
+            import torch
+            if isinstance(node_features, torch.Tensor):
+                node_features = node_features.detach().cpu().numpy()
+        except ImportError:
+            pass
 
         N = node_features.shape[0]
         probs = np.clip(node_features[:, 0], 1e-7, 1 - 1e-7)

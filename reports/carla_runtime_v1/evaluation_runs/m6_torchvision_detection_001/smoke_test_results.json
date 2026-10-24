@@ -1,0 +1,191 @@
+{
+  "weather_change": {
+    "scenario": "test/anomaly/Town01/change-weather/scenario-1",
+    "tick": 50,
+    "image_dimensions": [
+      1920,
+      1080
+    ],
+    "latency_ms": 352.1127999993041,
+    "total_detections": 1,
+    "corridor_detections": 1,
+    "detected_classes": [
+      "car"
+    ],
+    "detections": [
+      {
+        "x1": 433.49,
+        "y1": 880.08,
+        "x2": 1481.66,
+        "y2": 1077.2,
+        "score": 0.9445,
+        "class_id": 3,
+        "class_name": "car",
+        "seg_proxy_overlap": 0.0
+      }
+    ],
+    "smoke_test_pass": true
+  },
+  "normal_driving": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "tick": 10,
+    "image_dimensions": [
+      1920,
+      1080
+    ],
+    "latency_ms": 315.78730000182986,
+    "total_detections": 5,
+    "corridor_detections": 3,
+    "detected_classes": [
+      "car",
+      "person"
+    ],
+    "detections": [
+      {
+        "x1": 440.93,
+        "y1": 879.5,
+        "x2": 1491.08,
+        "y2": 1072.14,
+        "score": 0.991,
+        "class_id": 3,
+        "class_name": "car",
+        "seg_proxy_overlap": 0.0
+      },
+      {
+        "x1": 298.55,
+        "y1": 525.27,
+        "x2": 349.93,
+        "y2": 671.02,
+        "score": 0.9903,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.0
+      },
+      {
+        "x1": 447.46,
+        "y1": 532.18,
+        "x2": 486.11,
+        "y2": 633.09,
+        "score": 0.99,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.0
+      },
+      {
+        "x1": 1112.76,
+        "y1": 530.54,
+        "x2": 1148.22,
+        "y2": 605.97,
+        "score": 0.919,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.171
+      },
+      {
+        "x1": 1108.79,
+        "y1": 530.04,
+        "x2": 1129.14,
+        "y2": 605.44,
+        "score": 0.796,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.107
+      }
+    ],
+    "smoke_test_pass": true
+  },
+  "pedestrian_hazard": {
+    "scenario": "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "tick": 50,
+    "image_dimensions": [
+      1920,
+      1080
+    ],
+    "latency_ms": 319.52310004271567,
+    "total_detections": 4,
+    "corridor_detections": 3,
+    "detected_classes": [
+      "car",
+      "person"
+    ],
+    "detections": [
+      {
+        "x1": 1446.71,
+        "y1": 628.25,
+        "x2": 1520.21,
+        "y2": 788.79,
+        "score": 0.999,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.0
+      },
+      {
+        "x1": 433.07,
+        "y1": 883.5,
+        "x2": 1463.52,
+        "y2": 1078.65,
+        "score": 0.9959,
+        "class_id": 3,
+        "class_name": "car",
+        "seg_proxy_overlap": 0.0
+      },
+      {
+        "x1": 1189.45,
+        "y1": 596.63,
+        "x2": 1231.32,
+        "y2": 701.34,
+        "score": 0.9846,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.022
+      },
+      {
+        "x1": 560.79,
+        "y1": 567.74,
+        "x2": 579.31,
+        "y2": 636.54,
+        "score": 0.325,
+        "class_id": 1,
+        "class_name": "person",
+        "seg_proxy_overlap": 0.0
+      }
+    ],
+    "smoke_test_pass": true
+  },
+  "static_props": {
+    "scenario": "test/anomaly/Town01/spawn-props/scenario-1",
+    "tick": 25,
+    "image_dimensions": [
+      1920,
+      1080
+    ],
+    "latency_ms": 304.667399963364,
+    "total_detections": 2,
+    "corridor_detections": 2,
+    "detected_classes": [
+      "car",
+      "bench"
+    ],
+    "detections": [
+      {
+        "x1": 446.08,
+        "y1": 893.12,
+        "x2": 1467.79,
+        "y2": 1062.58,
+        "score": 0.9735,
+        "class_id": 3,
+        "class_name": "car"
+      },
+      {
+        "x1": 1210.73,
+        "y1": 587.58,
+        "x2": 1278.99,
+        "y2": 637.9,
+        "score": 0.5004,
+        "class_id": 15,
+        "class_name": "bench"
+      }
+    ],
+    "smoke_test_pass": true
+  }
+}

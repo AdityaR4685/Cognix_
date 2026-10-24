@@ -5,8 +5,7 @@ Contains mathematically rigorous, centralized metric calculations
 for evaluating calibration, accuracy, and out-of-distribution detection.
 """
 import numpy as np
-from typing import List, Tuple, Dict, Optional
-import time
+from typing import List, Dict
 
 try:
     from sklearn.metrics import roc_auc_score, average_precision_score, brier_score_loss

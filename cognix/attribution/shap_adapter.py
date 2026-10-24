@@ -2,13 +2,13 @@
 SHAP and Tree SHAP Adapter for COGNIX.
 Reference: Lundberg & Lee (2017). A Unified Approach to Interpreting Model Predictions.
 """
-from typing import Any, Callable
+from typing import Any
 import numpy as np
 
 try:
     import shap
 except ImportError:
-    pass
+    shap = None
 
 class SHAPAdapter:
     """
@@ -22,6 +22,11 @@ class SHAPAdapter:
         """
         Initialize the appropriate SHAP explainer based on model type.
         """
+        if shap is None:
+            raise ImportError(
+                "SHAPAdapter requires 'shap'. "
+                "Install with: pip install 'cognix-uncertainty-framework[explainability]'"
+            )
         if self.model_type == "tree":
             # For XGBoost, LightGBM, RandomForest, etc.
             self.explainer = shap.TreeExplainer(model)

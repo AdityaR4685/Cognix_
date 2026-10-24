@@ -1,5 +1,4 @@
 import numpy as np
-from typing import Optional
 from .base import BeliefState
 
 class BeliefPropagator:

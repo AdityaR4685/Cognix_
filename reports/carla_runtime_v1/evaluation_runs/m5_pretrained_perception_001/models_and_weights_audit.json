@@ -1,0 +1,121 @@
+{
+  "audit_timestamp_utc": "2026-10-20T03:26:51.965222+00:00",
+  "platform": "Windows 11 (AMD64)",
+  "python_interpreter": "C:\\Users\\Aditya\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "python_version": "3.12.10",
+  "installed_vision_packages": {
+    "torch": "2.14.0+cpu",
+    "torchvision": "not_installed",
+    "ultralytics": "not_installed",
+    "timm": "not_installed",
+    "transformers": "not_installed",
+    "cv2": "5.0.0",
+    "skimage": "0.26.0",
+    "PIL": "12.3.0",
+    "sklearn": "1.9.0"
+  },
+  "has_offline_deep_detector": false,
+  "primary_blocker": "No pretrained object detection libraries (torchvision, ultralytics) or weight files exist locally.",
+  "evaluated_candidates": [
+    {
+      "name": "Torchvision FasterRCNN-ResNet50-FPN",
+      "architecture": "Faster R-CNN with ResNet-50-FPN backbone",
+      "version": null,
+      "weight_path": null,
+      "sha256": null,
+      "source_license": "BSD-3-Clause",
+      "dependencies": [
+        "torch",
+        "torchvision"
+      ],
+      "supported_classes": [
+        "person",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "traffic light",
+        "stop sign"
+      ],
+      "available_locally": false,
+      "limitations": "Package torchvision is not installed in the local environment; weights not cached."
+    },
+    {
+      "name": "Ultralytics YOLOv8 (yolov8n.pt)",
+      "architecture": "YOLOv8 nano anchor-free object detector",
+      "version": null,
+      "weight_path": null,
+      "sha256": null,
+      "source_license": "AGPL-3.0",
+      "dependencies": [
+        "torch",
+        "ultralytics"
+      ],
+      "supported_classes": [
+        "person",
+        "bicycle",
+        "car",
+        "motorcycle",
+        "bus",
+        "truck",
+        "traffic light",
+        "stop sign"
+      ],
+      "available_locally": false,
+      "limitations": "Package ultralytics is not installed; no weight checkpoint cached locally."
+    },
+    {
+      "name": "HuggingFace DetrForObjectDetection",
+      "architecture": "DETR (DEtection TRansformer) with ResNet-50",
+      "version": null,
+      "weight_path": null,
+      "sha256": null,
+      "source_license": "Apache-2.0",
+      "dependencies": [
+        "torch",
+        "transformers"
+      ],
+      "supported_classes": [
+        "person",
+        "vehicle",
+        "traffic sign"
+      ],
+      "available_locally": false,
+      "limitations": "Package transformers is not installed; no cached weights."
+    },
+    {
+      "name": "Scikit-Image Spatial HOG Feature Extractor",
+      "architecture": "Histogram of Oriented Gradients (Dalal & Triggs 2005)",
+      "version": "0.26.0",
+      "weight_path": null,
+      "sha256": "algorithmic_deterministic_feature",
+      "source_license": "BSD-3-Clause",
+      "dependencies": [
+        "skimage",
+        "numpy"
+      ],
+      "supported_classes": [
+        "spatial_gradient_orientations"
+      ],
+      "available_locally": true,
+      "limitations": "Handcrafted visual feature; lacks semantic object classification or bounding-box localization."
+    }
+  ],
+  "local_weights_search": {
+    "torch_hub_checkpoints": "C:\\Users\\Aditya\\.cache\\torch\\hub\\checkpoints (DOES NOT EXIST)",
+    "huggingface_hub_cache": "C:\\Users\\Aditya\\.cache\\huggingface (DOES NOT EXIST)",
+    "repo_weights_scanned": 114,
+    "repo_weights_type": "GAT graph neural network state checkpoints (NoGraph, StandardGAT, EpistemicGAT); zero pretrained visual object detection weights."
+  },
+  "proposed_integration_plan": {
+    "recommended_model": "Ultralytics YOLOv8n (ONNX format) or Torchvision FasterRCNN MobileNetV3-Large",
+    "weight_size_mb": 6.5,
+    "license": "AGPL-3.0 (Ultralytics) / BSD-3-Clause (Torchvision)",
+    "required_dependency": "torchvision or onnxruntime",
+    "prerequisite_steps": [
+      "1. User explicit approval for package installation / offline weight placement.",
+      "2. Acquire single frozen ONNX or PyTorch weight file (e.g. yolov8n.onnx) with cryptographic SHA-256 verification.",
+      "3. Place weight file into artifacts/perception/yolov8n.onnx.",
+      "4. Implement isolated YoloBoundingBoxAdapter producing image-space bounding boxes and confidence scores."
+    ]
+  }
+}

@@ -522,6 +522,53 @@ def test_gnss_without_numeric_columns_raises(root):
         loader.load_frame(CarlAnomalySplit.TEST_NORMAL, "Town03/scenario-nognum", tick=0)
 
 
+def test_gnss_with_pandas_string_extension_dtype_ignores_string_column(root):
+    """Regression: pd.StringDtype columns must not raise TypeError in _sensor_values.
+
+    When pyarrow-backed Feather files are read by pandas 2.x, string columns may
+    be inferred as StringDtype (an ExtensionDtype).  The original np.issubdtype
+    check raised ``TypeError: Cannot interpret '<StringDtype>' as a data type``
+    on such columns.  pd.api.types.is_numeric_dtype handles ExtensionDtypes safely.
+    """
+    scen = _make_scenario(root, "test/normal/Town03/scenario-strdtype", 3, labels=None)
+    # Build a frame where 'lat'/'lon' are float64 and 'tag' is explicitly StringDtype.
+    df = pd.DataFrame(
+        {
+            "lat": pd.array([0.0, 3.0, 3.0], dtype="float64"),
+            "lon": pd.array([0.0, 0.0, 4.0], dtype="float64"),
+            "tag": pd.array(["x", "y", "z"], dtype="string"),
+        }
+    )
+    _write_feather(scen / "gnss.feather", df)
+    loader = _loader(root)
+    # Must not raise; 'tag' column must be silently excluded; jump = |(3,0)-(0,0)| = 3
+    f = loader.load_frame(CarlAnomalySplit.TEST_NORMAL, "Town03/scenario-strdtype", tick=1)
+    assert f.gnss[0, 0] == pytest.approx(3.0)
+
+
+def test_gnss_with_nullable_int_extension_dtype_recognized_as_numeric(root):
+    """Regression: nullable Int64 and Float64 extension columns must be treated as numeric.
+
+    pd.api.types.is_numeric_dtype returns True for nullable integer and float
+    extension dtypes, preserving their intended numeric semantics.
+    """
+    scen = _make_scenario(root, "test/normal/Town03/scenario-extnum", 3, labels=None)
+    # 'lat' / 'lon' are nullable Float64 (pandas extension type, not np.float64)
+    df = pd.DataFrame(
+        {
+            "lat": pd.array([0.0, 3.0, 3.0], dtype="Float64"),
+            "lon": pd.array([0.0, 0.0, 4.0], dtype="Float64"),
+        }
+    )
+    _write_feather(scen / "gnss.feather", df)
+    loader = _loader(root)
+    # Nullable Float64 columns must be recognised and used; jump = 3.0
+    f = loader.load_frame(CarlAnomalySplit.TEST_NORMAL, "Town03/scenario-extnum", tick=1)
+    assert f.gnss[0, 0] == pytest.approx(3.0)
+
+
+
+
 # ── 8. split isolation ──────────────────────────────────────────────────────
 
 def _relative_parts(loader, split, scen_id):

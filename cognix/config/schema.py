@@ -11,7 +11,7 @@ from __future__ import annotations
 import yaml
 from pathlib import Path
 from typing import Literal, Optional, Union
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 
 class UncertaintyConfig(BaseModel):

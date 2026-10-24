@@ -2,7 +2,7 @@
 Bayesian Belief Networks (BBN) exact inference for Directed Acyclic Graphs (DAGs).
 """
 import numpy as np
-from typing import Dict, List, Any
+from typing import Dict
 
 class BayesianBeliefNetwork:
     """

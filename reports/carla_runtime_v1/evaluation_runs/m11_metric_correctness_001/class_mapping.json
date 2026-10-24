@@ -1,0 +1,84 @@
+{
+  "protocol_version": "1.1.0",
+  "audit_version": "m11_metric_correctness_001",
+  "created_at_utc": "2026-10-20T12:55:00Z",
+  "detector_model": "Faster R-CNN ResNet-50 FPN V2 (Pretrained on MS COCO 80 categories)",
+  "evaluation_scope": {
+    "primary_objective": "Benchmarking autonomous vehicle collision safety and road hazard perception on CARLA driving sequences.",
+    "target_hazard_taxonomy": [
+      {
+        "category": "person",
+        "description": "Pedestrians, runners, children, road workers, and dismounted vehicle occupants in the roadway environment.",
+        "is_primary_target": true
+      },
+      {
+        "category": "vehicle",
+        "description": "Four-wheeled and multi-wheeled motor vehicles, including passenger cars, vans, trucks, and buses.",
+        "is_primary_target": true
+      },
+      {
+        "category": "bicycle_or_motorcycle",
+        "description": "Two-wheeled traffic participants including bicycles and motorcycles, with or without riders.",
+        "is_primary_target": true
+      },
+      {
+        "category": "road_debris_or_prop",
+        "description": "Stationary or tumbling road obstacles, construction barriers, fallen cargo, traffic cones, and debris.",
+        "is_primary_target": true
+      },
+      {
+        "category": "ignore_ambiguous",
+        "description": "Regions where object identity or boundary is fundamentally undecidable by human review (e.g. heavy distant occlusion, severe motion blur).",
+        "is_primary_target": false
+      }
+    ]
+  },
+  "coco_detector_mappings": {
+    "person": {
+      "target_category": "person",
+      "scope": "target_hazard",
+      "description": "Direct mapping to evaluation taxonomy person."
+    },
+    "car": {
+      "target_category": "vehicle",
+      "scope": "target_hazard",
+      "description": "Maps to standardized vehicle target."
+    },
+    "truck": {
+      "target_category": "vehicle",
+      "scope": "target_hazard",
+      "description": "Maps to standardized vehicle target."
+    },
+    "bus": {
+      "target_category": "vehicle",
+      "scope": "target_hazard",
+      "description": "Maps to standardized vehicle target."
+    },
+    "bicycle": {
+      "target_category": "bicycle_or_motorcycle",
+      "scope": "target_hazard",
+      "description": "Maps to standardized two-wheeler target."
+    },
+    "motorcycle": {
+      "target_category": "bicycle_or_motorcycle",
+      "scope": "target_hazard",
+      "description": "Maps to standardized two-wheeler target."
+    }
+  },
+  "structural_blindspots": {
+    "road_debris_or_prop": {
+      "mapped_coco_classes": [],
+      "rationale": "MS COCO contains zero classes corresponding to fallen cargo, highway debris, or construction props. By mapping zero COCO classes to road_debris_or_prop, the evaluation framework ensures detector blindness to obstacles is penalized as structural False Negatives (FN), preventing unearned safety claims."
+    }
+  },
+  "out_of_scope_coco_categories": {
+    "scope_treatment": "out_of_scope",
+    "rationale": "Categories outside road traffic collision hazards (e.g., traffic light, bench, fire hydrant, cat, dog, chair) are not collision hazards. Correctly detecting an overhead traffic light or a sidewalk bench must not be penalized as a target collision false alarm (ghost obstacle). Conversely, out-of-scope detections are not silently discarded: they are logged in a dedicated out_of_scope_detections metric with per-class counts.",
+    "strict_rejection": "Out-of-scope detections are strictly barred from matching any ground-truth traffic targets (even if overlapping with IoU >= 0.50)."
+  },
+  "matching_rules": {
+    "spatial_iou_threshold": 0.50,
+    "strict_class_agreement": true,
+    "mismatch_policy": "Spatial IoU overlap >= 0.50 with mismatched taxonomy class is strictly rejected as a match. Counted as False Positive for the predicted class and False Negative for the ground truth class."
+  }
+}

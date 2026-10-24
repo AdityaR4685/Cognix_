@@ -1,0 +1,123 @@
+{
+  "current_state": {
+    "metrics_computed": false,
+    "predictions_generated": false,
+    "test_labels_opened": false,
+    "test_payload_opened": false
+  },
+  "failure_policy": {
+    "fail_closed": true,
+    "preserve_failure_evidence": true,
+    "replacement_seed": false,
+    "result_dependent_retry": false,
+    "silent_row_drop": false,
+    "silent_scenario_drop": false
+  },
+  "feature_pipeline": {
+    "Camera": "frozen camera_embedding_features",
+    "IMU": "frozen imu_window_features over acceleration_x/y/z with causal max(0,t-11)..t window",
+    "Seg": "frozen channel-0 sanitization IDs above 28 to bin 22 followed by frozen 29-bin normalized histogram",
+    "dimensions": {
+      "Camera": 18,
+      "IMU": 10,
+      "Seg": 29
+    },
+    "emitted_ticks": "1 through 299 inclusive for the observed 300-frame TEST structure",
+    "feature_order": [
+      "prob_normal",
+      "epistemic",
+      "aleatoric"
+    ],
+    "feature_runtime_exactly_matches_175_frozen_clean_manifests": true,
+    "node_order": [
+      "Camera",
+      "IMU",
+      "Seg"
+    ],
+    "tick_zero": "decode and validate Camera and Seg only; never emit prediction row"
+  },
+  "graph_inference": {
+    "checkpoint_count": 15,
+    "checkpoint_selection_allowed": false,
+    "checkpoint_source": "graph_test_checkpoint_freeze_bundle_v1",
+    "epistemic_prior_input_dtype": "float64",
+    "inference_device": "CPU recorded as final-evaluation environment, not claimed to be Kaggle training environment",
+    "methods": [
+      "NoGraph",
+      "StandardGAT",
+      "EpistemicGAT"
+    ],
+    "model_definitions": "authenticated kaggle_models.py frozen architecture",
+    "model_mode": "eval",
+    "node_model_dtype": "float32",
+    "optimizer_allowed": false,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "threshold_tuning_allowed": false,
+    "training_allowed": false
+  },
+  "member_policy": {
+    "allowed_to_open_during_phase_A": [
+      "rgb-front/*.jpg",
+      "segmentation-front/*.png",
+      "imu.feather"
+    ],
+    "directory_metadata_may_be_read": true,
+    "explicitly_forbidden_to_open_during_phase_A": [
+      "anomaly-observation.feather",
+      "anomaly-front/*"
+    ],
+    "unused_and_not_opened": [
+      "actions.feather",
+      "collisions.feather",
+      "gnss.feather",
+      "weather.feather"
+    ]
+  },
+  "phase_A_outputs": {
+    "canonical_TEST_nodes": "save scenario identity, tick and 3x3 float64 node tensor once",
+    "labels_in_outputs": false,
+    "run_predictions": "save all 15 q_normal, p_corruption and frozen-threshold predicted_corruption outputs",
+    "segmentation_OOV_evidence": "preserve descriptive per-frame remap counts or an equivalently lossless sealed representation",
+    "target_columns_in_outputs": false
+  },
+  "phase_boundary": {
+    "phase_A_completion_record_must_state_test_labels_opened_false": true,
+    "phase_B_label_reader_may_not_run_until_phase_A_seal_verifies": true,
+    "predictions_and_node_artifacts_must_be_cryptographically_sealed": true,
+    "predictions_must_be_durably_written": true
+  },
+  "preexisting_TEST_knowledge_limitation": {
+    "claim_boundary": "Do not claim TEST was historically never inspected. Defensible claim is that the 15 checkpoints and final evaluation protocol were frozen before this final scientific TEST evaluation and no result-dependent adaptation is permitted after the current source inspection.",
+    "fact": "Frozen CARLA feature source contains comments documenting a historical byte-range probe of carlanomaly-base-test.tar.gz for schema verification.",
+    "recorded_before_phase_A_predictions": true
+  },
+  "purpose": "Generate and seal label-blind TEST graph inputs and predictions for all 15 frozen runs before any TEST label payload is opened.",
+  "schema": "COGNIX-label-blind-TEST-phase-A-design-v1",
+  "source": {
+    "archive": {
+      "bytes": 91538225599,
+      "path": "E:\\carlanomaly-base-test.tar.gz",
+      "sha256": "267e48f2249deb0269ad950aa81bca57dc02e3bbdf2d73acc172af267b18254a"
+    },
+    "expected_emitted_ticks_per_scenario": 299,
+    "expected_rgb_frames_per_scenario": 300,
+    "expected_scenarios": 627,
+    "expected_seg_frames_per_scenario": 300,
+    "expected_total_prediction_rows": 187473
+  },
+  "status": "FROZEN_DESIGN_PRE_EXECUTION_NO_TEST_PAYLOAD_ACCESS",
+  "upstream_UQ": {
+    "bootstrap_members": 5,
+    "bootstrap_seed": 42,
+    "fit_allowed": false,
+    "implementation": "load exact authenticated scientific definitions through gate2_science.load_science; restore five sealed TRAIN-derived Mahalanobis members and accepted calibrator state without fit or calibration",
+    "output": "[mean member calibrated probability, epistemic, aleatoric] float64",
+    "recalibration_allowed": false
+  }
+}

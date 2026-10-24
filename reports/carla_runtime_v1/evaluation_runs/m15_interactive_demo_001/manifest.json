@@ -1,0 +1,37 @@
+{
+  "manifest_version": "1.0.0",
+  "created_at_utc": "2026-10-20T19:45:00+00:00",
+  "milestone": "M15_interactive_carla_demo_001",
+  "repository": "C:\\Users\\Aditya\\Cognix2_recovered",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "git_head": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "code_artifacts": {
+    "carla_demo_runner": {
+      "path": "cognix/evaluation/carla_demo_runner.py",
+      "sha256": "989d1fb01c9c3d1ee72f28fc8979e507479893ee49d72fa3b44b0626bf9bf269"
+    },
+    "unit_tests": {
+      "path": "tests/unit/test_carla_demo_runner.py",
+      "sha256": "e89de9791f9c4a1ab21c07468a10da72712318a90c983cdf0c27baa1cc6bc660"
+    }
+  },
+  "documentation": {
+    "demo_report": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m15_interactive_demo_001/M15_INTERACTIVE_DEMO_REPORT.md",
+      "sha256": "4b1bee40ca6ca95c889ae2ddd3dad6faa2ab6c25a37f023f19e0b83264933a11"
+    }
+  },
+  "demonstration_artifacts": {
+    "execution_summary_live": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m15_interactive_demo_001/demo_artifacts/demo_execution_summary_live.json",
+      "sha256": "91d683a8182aa017a80ab04133fcb86a42a1da7eb71bf55527db5bb308be05d7"
+    },
+    "rendered_scenarios": {
+      "normal_frames": 5,
+      "pedestrian_frames": 5,
+      "weather_frames": 5,
+      "props_frames": 5,
+      "total_live_frames": 20
+    }
+  }
+}

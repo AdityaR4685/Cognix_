@@ -7,7 +7,9 @@ try:
     import gymnasium as gym
     import numpy as np
 except ImportError:
-    pass
+    agent_selector = None
+    AECEnv = object
+    import numpy as np
 
 class CognixAECEnv:
     """
@@ -17,6 +19,11 @@ class CognixAECEnv:
     metadata = {"render_modes": ["human"], "name": "cognix_nav_v0"}
 
     def __init__(self, num_agents: int = 3):
+        if agent_selector is None:
+            raise ImportError(
+                "CognixAECEnv requires 'pettingzoo' and 'gymnasium'. "
+                "Install with: pip install 'cognix-uncertainty-framework[marl]'"
+            )
         self.num_agents = num_agents
         self.possible_agents = [f"agent_{i}" for i in range(num_agents)]
         self.agents = self.possible_agents[:]

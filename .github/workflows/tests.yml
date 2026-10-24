@@ -2,27 +2,97 @@ name: Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, gat-testing-complete-checkpoint ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, gat-testing-complete-checkpoint ]
 
 jobs:
-  test:
+  test-core:
+    name: Core Framework Tests (${{ matrix.python-version }})
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v7
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e .[dev]
-    - name: Test with pytest
+        pip install -e .[dev,dashboard]
+    - name: Test Core Library with pytest
       run: |
-        pytest tests/
+        pytest tests/ -m "not research_assets"
+    - name: Run Ground Truth Mathematical Verification
+      run: |
+        python tests/test_ground_truth.py
+
+  demo-and-dashboard-validation:
+    name: Portable Demo and Dashboard Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,dashboard]
+        pip install opencv-python-headless flask
+    - name: Test Portable Demo and Dashboard Modules
+      run: |
+        pytest tests/unit/test_annotation_app_smoke.py tests/unit/test_dashboard.py tests/unit/test_pedestrian_safety_audit.py
+
+  carla-live-demo-validation:
+    name: CARLA Live Demo and Runner Validation (Environment-Dependent)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,dashboard]
+        pip install opencv-python-headless flask
+    - name: Test CARLA Live Demo and Runner (Requires Live Simulator and Sensor Frames)
+      run: |
+        pytest tests/unit/test_cognix_live_demo_v2.py tests/unit/test_carla_demo_runner.py
+
+  carla-graph-validation:
+    name: CARLA Graph Training Protocol Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    continue-on-error: true
+    env:
+      TEMP: /tmp
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+    - name: Test CARLA Graph Trainers
+      run: |
+        pytest tests/unit/test_carla_graph_trainers.py

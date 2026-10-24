@@ -1,7 +1,6 @@
 """
 Regulatory Compliance Engine (ISO 26262 & EU AI Act).
 """
-import json
 from typing import Dict, Any
 
 class ComplianceEngine:

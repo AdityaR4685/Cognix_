@@ -1,0 +1,24 @@
+{
+  "dataset_name": "Cognix M9 Annotation Provenance and Queue Separation Manifest",
+  "timestamp_utc": "2026-10-20T06:36:25.568816+00:00",
+  "git_commit": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "original_m8_queue": {
+    "path": "reports\\carla_runtime_v1\\evaluation_runs\\m8_ground_truth_tracking_001\\pilot_annotations.json",
+    "sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+    "status": "IMMUTABLE_PRESERVED",
+    "frames_count": 40
+  },
+  "m9_baseline_copy": {
+    "path": "reports\\carla_runtime_v1\\evaluation_runs\\m9_annotation_readiness_001\\baseline_pilot_annotations_immutable.json",
+    "sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+    "purpose": "Permanent offline baseline reference. Never modified by annotation server."
+  },
+  "m9_working_copy": {
+    "path": "reports\\carla_runtime_v1\\evaluation_runs\\m9_annotation_readiness_001\\working_human_review_pilot_annotations.json",
+    "sha256_at_creation": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+    "purpose": "Active working target for human annotation and review.",
+    "server_target_flag": "--annotations reports\\carla_runtime_v1\\evaluation_runs\\m9_annotation_readiness_001\\working_human_review_pilot_annotations.json"
+  },
+  "separation_invariant": "The annotation server MUST be launched targeting the working copy. Neither the original M8 queue nor the M9 baseline copy may ever be overwritten."
+}

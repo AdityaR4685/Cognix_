@@ -346,7 +346,8 @@ def compute_selective_risk(
                  if not np.isnan(pt["risk"]) and pt["coverage"] > 0]
     if len(valid_pts) > 1:
         covs, risks = zip(*valid_pts)
-        aurc = float(np.trapz(list(risks), list(covs)) * (-1))  # negate since coverage decreases
+        _trapezoid = getattr(np, "trapezoid", getattr(np, "trapz", None))
+        aurc = float(_trapezoid(list(risks), list(covs)) * (-1))  # negate since coverage decreases
     else:
         aurc = float("nan")
 

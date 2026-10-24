@@ -1,0 +1,100 @@
+{
+  "protocol_name": "Cognix Perception and Tracking Pre-Registered Evaluation Protocol",
+  "protocol_version": "1.0.0",
+  "frozen_at_utc": "2026-10-20T12:35:00Z",
+  "status": "PRE_REGISTERED_FROZEN",
+  "authors": [
+    "Cognix Autonomy Research Team",
+    "Independent Qualification & Verification Auditor"
+  ],
+  "reference_queues": {
+    "m8_pilot_anomaly_queue": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m8_ground_truth_tracking_001/pilot_annotations.json",
+      "sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+      "frames_count": 40,
+      "scenarios_count": 4,
+      "purpose": "Anomaly pilot evaluation queue (Town01)"
+    },
+    "m9_baseline_immutable_queue": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/baseline_pilot_annotations_immutable.json",
+      "sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+      "frames_count": 40,
+      "scenarios_count": 4,
+      "purpose": "Immutable benchmark baseline preserved for regression comparison"
+    },
+    "m9_normal_control_queue": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/normal_control_annotations.json",
+      "sha256": "3d8733b4fd3b187daf7ce8a1aeebbf003ee67cc82cd28fe7d03f248fc2e451ad",
+      "frames_count": 10,
+      "scenarios_count": 1,
+      "purpose": "Normal control evaluation queue for false alarm quantification (Town01)"
+    }
+  },
+  "qualification_backup_reference": {
+    "path": "C:\\Cognix_Backups\\Cognix2_recovered_qualification_014_20261020_063301",
+    "verification_status": "VERIFIED_OFFLINE_IMMUTABLE",
+    "qualification_state": "Runtime V1 qualified (596 candidate checks, 21 component checks, NO_REAL_DATA_ACCESS)"
+  },
+  "matching_and_metric_specifications": {
+    "spatial_iou_threshold": 0.50,
+    "bipartite_matching": {
+      "algorithm": "Greedy descending IoU pairing",
+      "class_constraint": "Exact taxonomy match required (COCO detector class -> Evaluation taxonomy).",
+      "mismatch_rule": "IoU >= 0.50 with mismatched taxonomy class is rejected as a match. Counted as FP for predicted class and FN for true GT class."
+    },
+    "ignore_region_semantics": {
+      "category": "ignore_ambiguous",
+      "absorption_threshold_iou": 0.50,
+      "rule": "Unmatched predictions overlapping an ignore_ambiguous box with IoU >= 0.50 are absorbed as ignored_matches with 0 FP penalty. Background false alarms on clear pavement or sky do not overlap ignore boxes and strictly increment FP."
+    },
+    "detection_metrics": {
+      "true_positive_tp": "Number of successfully matched (GT, prediction) pairs satisfying class agreement and IoU >= 0.50.",
+      "false_negative_fn": "Active ground truth objects without a matching prediction: FN = num_gt - TP.",
+      "false_positive_fp": "Predictions not matched to any active GT and not absorbed by an ignore_ambiguous region.",
+      "ignored_prediction": "Predictions not matched to active GT but absorbed by an ignore_ambiguous region.",
+      "precision": "TP / (TP + FP) if (TP + FP) > 0 else 0.0",
+      "recall": "TP / (TP + FN) = TP / num_gt if num_gt > 0 else 0.0",
+      "f1_score": "2 * Precision * Recall / (Precision + Recall) if (Precision + Recall) > 0 else 0.0",
+      "reviewed_empty_frame_handling": "When num_gt == 0, if FP == 0, clean performance; if FP > 0, precision = 0.0."
+    },
+    "tracking_metrics": {
+      "identity_switch_idsw": "Count of times a tracked GT object's associated predicted track ID changes across successive frames.",
+      "fragmentation_frag": "Count of times a tracked GT object is undetected after being tracked in the preceding tick.",
+      "mostly_tracked_mt": "GT tracks detected for >= 80% of their ground truth lifespan.",
+      "partially_tracked_pt": "GT tracks detected for 20% to 80% of their ground truth lifespan.",
+      "mostly_lost_ml": "GT tracks detected for < 20% of their ground truth lifespan.",
+      "mota": "Multiple Object Tracking Accuracy: 1.0 - (FN + IDSW) / num_gt_detections."
+    }
+  },
+  "annotation_quality_safeguards": {
+    "frame_states": {
+      "UNREVIEWED": "Frame has not undergone human review (reviewer_id is null or unconfirmed drafts exist).",
+      "CONFIRMED_WITH_OBJECTS": "Frame has been human-audited; all contained objects are confirmed by reviewer.",
+      "CONFIRMED_EMPTY": "Frame has been human-audited and confirmed to contain zero traffic targets or ignore regions.",
+      "REQUIRES_ADJUDICATION": "Frame contains inter-annotator conflict, unresolved ambiguity, or supervisor escalation flag."
+    },
+    "gating_rules": {
+      "default_behavior": "Strict refusal: IncompleteAnnotationError is raised if any frame in dataset is UNREVIEWED or REQUIRES_ADJUDICATION.",
+      "exploratory_bypass": "Requires explicit exploratory=True (CLI flag --exploratory); outputs are watermarked with provisional research disclaimers."
+    }
+  },
+  "stratification_schema": {
+    "strata": [
+      {
+        "name": "anomaly_pilot_package",
+        "description": "4 recorded CARLA anomaly scenarios under varying weather conditions (Town01)."
+      },
+      {
+        "name": "normal_control_package",
+        "description": "1 recorded CARLA normal driving scenario with no intentional anomalies (Town01)."
+      }
+    ],
+    "class_partitions": [
+      "person",
+      "vehicle",
+      "bicycle_or_motorcycle",
+      "road_debris_or_prop",
+      "overall"
+    ]
+  }
+}

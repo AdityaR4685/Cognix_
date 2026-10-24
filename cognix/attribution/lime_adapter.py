@@ -8,13 +8,18 @@ import numpy as np
 try:
     from lime.lime_tabular import LimeTabularExplainer
 except ImportError:
-    pass
+    LimeTabularExplainer = None
 
 class LIMEAdapter:
     """
     Adapter for integrating LIME explanations into the COGNIX pipeline.
     """
     def __init__(self, training_data: np.ndarray, feature_names: list[str] = None, class_names: list[str] = None, mode: str = "classification"):
+        if LimeTabularExplainer is None:
+            raise ImportError(
+                "LIMEAdapter requires 'lime'. "
+                "Install with: pip install 'cognix-uncertainty-framework[explainability]'"
+            )
         self.explainer = LimeTabularExplainer(
             training_data=training_data,
             feature_names=feature_names,

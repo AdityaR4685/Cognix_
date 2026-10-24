@@ -1,0 +1,36 @@
+{
+  "milestone": "Milestone 8 \u2014 Ground-Truth Annotation and Object-Tracking Validation",
+  "timestamp_utc": "2026-10-20T06:21:05.601994+00:00",
+  "git_commit": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "source_archive": "E:/carlanomaly-base-test.tar.gz",
+  "source_archive_size_bytes": 91538225599,
+  "annotation_protocol_version": "1.0.0",
+  "coordinate_convention": "2D image-space (x1, y1, x2, y2) in 1920x1080 pixels",
+  "scenarios_evaluated": [
+    "test/anomaly/Town01/running-pedestrian/scenario-1",
+    "test/anomaly/Town01/spawn-props/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-1",
+    "test/anomaly/Town01/change-weather/scenario-10"
+  ],
+  "pilot_frame_count": 40,
+  "pilot_ticks_per_scenario": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45
+  ],
+  "pilot_annotations_file": "reports\\carla_runtime_v1\\evaluation_runs\\m8_ground_truth_tracking_001\\pilot_annotations.json",
+  "pilot_annotations_sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+  "annotation_confirmation_status": "PENDING_HUMAN_REVIEW",
+  "human_verified_count": 0,
+  "unreviewed_count": 40,
+  "annotation_tool_entrypoint": "cognix.evaluation.annotation_app",
+  "server_command": "python -m cognix.evaluation.annotation_app --port 5050"
+}

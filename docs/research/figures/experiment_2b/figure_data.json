@@ -1,0 +1,111 @@
+{
+  "metric_directions": {
+    "BCE": "lower is better; negative delta favorable",
+    "F1": "higher is better; positive delta favorable"
+  },
+  "metric_recomputation": false,
+  "paired_effects": {
+    "EpistemicGAT_minus_StandardGAT": {
+      "BCE": {
+        "max": 0.002826245008037964,
+        "mean": 0.0008787385831743987,
+        "min": -2.3221944662754623e-05,
+        "per_seed": {
+          "101": -1.4986599089050756e-05,
+          "202": 0.002826245008037964,
+          "303": 0.0016153843495765319,
+          "404": -2.3221944662754623e-05,
+          "505": -9.727897990696732e-06
+        },
+        "sample_SD": 0.0012977941326906448
+      },
+      "F1": {
+        "max": 8.7404304953409e-06,
+        "mean": -0.00011101555978350053,
+        "min": -0.0004860423766597649,
+        "per_seed": {
+          "101": 8.7404304953409e-06,
+          "202": -0.0004860423766597649,
+          "303": 6.454945626871433e-06,
+          "404": -8.423079837995007e-05,
+          "505": 0.0
+        },
+        "sample_SD": 0.0002132063602374859
+      }
+    },
+    "StandardGAT_minus_NoGraph": {
+      "BCE": {
+        "max": -0.007901189043396206,
+        "mean": -0.02322439907354108,
+        "min": -0.03517769125355363,
+        "per_seed": {
+          "101": -0.020331152640387984,
+          "202": -0.033371084885932656,
+          "303": -0.01934087754443492,
+          "404": -0.03517769125355363,
+          "505": -0.007901189043396206
+        },
+        "sample_SD": 0.011225972195472141
+      },
+      "F1": {
+        "max": -0.02240304604008185,
+        "mean": -0.03285481410862031,
+        "min": -0.03891524306559557,
+        "per_seed": {
+          "101": -0.037231219855158676,
+          "202": -0.03891524306559557,
+          "303": -0.028032088962285817,
+          "404": -0.03769247261997964,
+          "505": -0.02240304604008185
+        },
+        "sample_SD": 0.007276379592026053
+      }
+    }
+  },
+  "plot": {
+    "png_dpi": 600,
+    "size_inches": [
+      3.5,
+      2.8
+    ],
+    "y_limits": [
+      -0.045,
+      0.009
+    ],
+    "zero_reference_line": true
+  },
+  "raw_TEST_labels_opened": false,
+  "schema": "COGNIX-Experiment-2B-report-figure-data-v1",
+  "seed_mean_metrics": {
+    "EpistemicGAT": {
+      "AUROC": null,
+      "BCE": 0.6086469877124665,
+      "F1": 0.09167084469764761
+    },
+    "NoGraph": {
+      "AUROC": null,
+      "BCE": 0.6309926482028332,
+      "F1": 0.12463667436605144
+    },
+    "StandardGAT": {
+      "AUROC": null,
+      "BCE": 0.6077682491292922,
+      "F1": 0.09178186025743111
+    }
+  },
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "source": {
+    "conclusion": "reports/carla_train_full_v1/graph_test_final_conclusion_bundle_v1/final_conclusion.json",
+    "conclusion_bundle_seal": "cff86433be91a3fdabd3b43568b7fb2c24c0760fa78fddeb298b9ae9cbb0cad8",
+    "conclusion_sha256": "6abef23828dd6a05fa05ab7e56e8be74072d5674417aafe9e321ee959b0e2f33",
+    "phase_B_metrics": "reports/carla_train_full_v1/graph_test_phase_B_results_v1/metrics.json",
+    "phase_B_metrics_sha256": "249765854ccc9b5ec4432dfc7f91738ba43e176fa2af44ac583cafddc7f38c90",
+    "phase_B_result_seal": "ec5ea056cb53050c284816c470845f233d4fe8c566917195658639d20bdee15e"
+  }
+}

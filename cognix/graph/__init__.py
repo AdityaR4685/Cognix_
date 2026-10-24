@@ -1,12 +1,19 @@
 from .gcn import GCNNetwork
 from .gat import GATNetwork
-from .epistemic_gat import EpistemicGAT
 from .routing import build_fully_connected_graph, top_k_routing
+from .no_graph import NoGraph
+
+try:
+    from .epistemic_gat import EpistemicGAT
+except ImportError:
+    EpistemicGAT = None  # type: ignore[assignment,misc]
 
 __all__ = [
     "GCNNetwork",
     "GATNetwork",
-    "EpistemicGAT",
+    "NoGraph",
     "build_fully_connected_graph",
-    "top_k_routing"
+    "top_k_routing",
 ]
+if EpistemicGAT is not None:
+    __all__.append("EpistemicGAT")

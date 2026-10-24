@@ -1,6 +1,5 @@
 import numpy as np
-from datetime import datetime
-from typing import Any, Callable, Optional, Dict
+from typing import Any, Callable, Optional
 from cognix.core.interfaces import AgentInterface
 from cognix.core.types import PredictionResult, UncertaintyResult
 

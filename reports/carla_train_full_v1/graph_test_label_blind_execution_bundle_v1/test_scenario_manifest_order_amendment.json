@@ -1,0 +1,23 @@
+{
+  "amended_manifest_sha256": "6c724deb4e0dbec31781948adec4f153e318c34e4693251bebe01c0ffaf03601",
+  "amends": "test_scenario_manifest.json",
+  "checkpoint_or_threshold_changed": false,
+  "feature_pipeline_changed": false,
+  "finding": "scenario_file_counts keys are lexicographically ordered in the serialized metadata inventory; their enumeration is not evidence of original TAR traversal ordinal",
+  "invalid_interpretation": "archive_scenario_ordinal in test_scenario_manifest.json must not be used or reported as TAR member/scenario traversal order",
+  "model_changed": false,
+  "phase_A_execution_rule": "stream scenarios in the order encountered during actual TAR traversal while requiring membership in the frozen 627-root set, exactly-once scenario coverage, no unknown scenarios, no duplicate scenarios, and complete final set equality",
+  "predictions_generated": false,
+  "retained_valid_information": [
+    "exact set of 627 scenario roots",
+    "520 anomaly-path scenario roots",
+    "107 normal-path scenario roots",
+    "907 metadata entries per scenario"
+  ],
+  "schema": "COGNIX-TEST-scenario-manifest-order-amendment-v1",
+  "scientific_protocol_changed": false,
+  "source_inventory_sha256": "8aa1afac7b8042b83560207def8a887c760eb9cfd53f2c2413757a33f0bd2651",
+  "status": "FROZEN_PRE_EXECUTION_PROVENANCE_CORRECTION_NO_TEST_PAYLOAD_ACCESS",
+  "test_labels_opened": false,
+  "test_payload_opened": false
+}

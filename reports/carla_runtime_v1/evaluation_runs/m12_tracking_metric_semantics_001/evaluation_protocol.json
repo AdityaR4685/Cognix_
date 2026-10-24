@@ -1,0 +1,112 @@
+{
+  "protocol_name": "Cognix Perception and Tracking Pre-Registered Evaluation Protocol (Audit Revision 1.2 — Final Semantics)",
+  "protocol_version": "1.2.0",
+  "audit_version": "m12_tracking_metric_semantics_001",
+  "frozen_at_utc": "2026-10-20T13:25:00Z",
+  "status": "PRE_REGISTERED_FROZEN_FINAL_AUDITED",
+  "authors": [
+    "Cognix Autonomy Research Team",
+    "Independent Qualification & Metric Correctness Auditor"
+  ],
+  "reference_queues": {
+    "m8_pilot_anomaly_queue": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m8_ground_truth_tracking_001/pilot_annotations.json",
+      "sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+      "frames_count": 40,
+      "scenarios_count": 4,
+      "purpose": "Anomaly pilot evaluation queue (Town01)"
+    },
+    "m9_baseline_immutable_queue": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/baseline_pilot_annotations_immutable.json",
+      "sha256": "bb20dd466a2e518d19e44e8ec0d54eb5b5632a7dcb6a42c32db3f833b6989f15",
+      "frames_count": 40,
+      "scenarios_count": 4,
+      "purpose": "Immutable benchmark baseline preserved for regression comparison"
+    },
+    "m9_normal_control_queue": {
+      "path": "reports/carla_runtime_v1/evaluation_runs/m9_annotation_readiness_001/normal_control_annotations.json",
+      "sha256": "3d8733b4fd3b187daf7ce8a1aeebbf003ee67cc82cd28fe7d03f248fc2e451ad",
+      "frames_count": 10,
+      "scenarios_count": 1,
+      "purpose": "Normal control evaluation queue for false alarm quantification (Town01)"
+    }
+  },
+  "qualification_backup_reference": {
+    "path": "C:\\Cognix_Backups\\Cognix2_recovered_qualification_014_20261020_063301",
+    "verification_status": "VERIFIED_OFFLINE_IMMUTABLE",
+    "qualification_state": "Runtime V1 qualified (596 candidate checks, 21 component checks, NO_REAL_DATA_ACCESS)"
+  },
+  "matching_and_metric_specifications": {
+    "spatial_iou_threshold": 0.50,
+    "sampling_stride_ticks": 5,
+    "sampling_stride_disclosure": "Evaluated frames are sampled every 5 simulation ticks (e.g. tick 0, 5, 10, 15). All detection matching, track continuity, identity switches, and fragmentations are evaluated over this 5-tick sampled sequence; this does not evaluate or imply evaluation of un-sampled intermediate ticks.",
+    "bipartite_matching": {
+      "algorithm": "Priority 1: continuity match from immediately preceding evaluated frame if IoU >= 0.50 and class matches. Priority 2: greedy bipartite matching by descending IoU.",
+      "class_constraint": "Exact taxonomy match required (COCO detector category -> Evaluation taxonomy).",
+      "mismatch_rule": "IoU >= 0.50 with mismatched taxonomy class is strictly rejected as a match. Counted as False Positive for the predicted class and False Negative for the true GT class."
+    },
+    "ignore_region_semantics": {
+      "category": "ignore_ambiguous",
+      "absorption_threshold_iou": 0.50,
+      "rule": "Unmatched predictions overlapping an ignore_ambiguous box with IoU >= 0.50 are absorbed as ignored_matches with 0 FP penalty. Background false alarms on clear roadway or sky do not overlap ignore boxes and strictly increment FP."
+    },
+    "detection_metrics": {
+      "true_positive_tp": "Number of successfully matched (GT, prediction) pairs satisfying class agreement and IoU >= 0.50.",
+      "false_negative_fn": "Active ground truth objects without a matching prediction: FN = num_gt - TP.",
+      "target_false_positive_fp": "Target-class predictions not matched to any active GT and not absorbed by an ignore_ambiguous region (ghost hazards).",
+      "out_of_scope_detections": "Predictions belonging to out-of-scope COCO categories (e.g. traffic light, bench). Segregated from target FP, strictly rejected from matching targets, and reported transparently.",
+      "ignored_prediction": "Predictions not matched to active GT but absorbed by an ignore_ambiguous region.",
+      "target_precision": "TP / (TP + FP_target) if (TP + FP_target) > 0 else 0.0",
+      "target_recall": "TP / (TP + FN) = TP / num_gt if num_gt > 0 else 0.0",
+      "target_f1_score": "2 * Precision * Recall / (Precision + Recall) if (Precision + Recall) > 0 else 0.0",
+      "all_detections_precision": "TP / (TP + FP_target + out_of_scope_detections) if denominator > 0 else 0.0",
+      "reviewed_empty_frame_handling": "When num_gt == 0, if FP == 0, clean performance (0 FP); if FP > 0, precision = 0.0."
+    },
+    "tracking_metrics": {
+      "clear_mota_formula": "1.0 - (total_fn_detections + total_fp_detections + identity_switches) / total_gt_detections",
+      "mota_components": {
+        "total_gt_detections": "Total ground-truth target object instances across all evaluated frames.",
+        "total_fn_detections": "Total missed ground-truth target instances across all evaluated frames.",
+        "total_fp_detections": "Total target-class false positive detections across all evaluated frames (excluding ignore regions).",
+        "identity_switches": "Total number of times a tracked GT object's associated predicted track identity changes across frames."
+      },
+      "zero_gt_handling_policy": "When total_gt_detections == 0, the CLEAR MOTA formula is mathematically undefined due to division by zero. Rather than labeling an arbitrary convention (such as 1.0 or 0.0) as standard MOTA, the evaluator explicitly outputs mota as null (None in Python) with mota_status = 'UNDEFINED_ZERO_GROUND_TRUTH'. The false alarm count (total_fp_detections) and false negative count (total_fn_detections) are reported separately in machine-readable output.",
+      "multi_scenario_aggregation_rule": "When aggregating multiple scenarios into an overall evaluation benchmark (e.g. evaluating 4 anomaly sequences and 1 empty normal control sequence together), aggregate counts sum across all scenarios: sum(GT), sum(FN), sum(FP), sum(IDSW). If sum(GT) > 0, the aggregate MOTA is mathematically well-defined and computed directly from the aggregate sums.",
+      "fragmentation_frag": "Count of interruptions where an active ground-truth trajectory was tracked, becomes untracked in a subsequent evaluated frame, and is later tracked again (statuses[k-1]==True, statuses[k]==False, and any(statuses[k+1:])==True). Trailing misses at the end of a trajectory do NOT count as fragmentations (they represent track termination or loss, not fragmentation).",
+      "mostly_tracked_mt": "GT tracks detected for >= 80% of their ground truth lifespan.",
+      "partially_tracked_pt": "GT tracks detected for 20% to 80% of their ground truth lifespan.",
+      "mostly_lost_ml": "GT tracks detected for < 20% of their ground truth lifespan."
+    }
+  },
+  "annotation_quality_safeguards": {
+    "frame_states": {
+      "UNREVIEWED": "Frame has not undergone human review (reviewer_id is null or unconfirmed drafts exist).",
+      "CONFIRMED_WITH_OBJECTS": "Frame has been human-audited; all contained objects are confirmed by reviewer.",
+      "CONFIRMED_EMPTY": "Frame has been human-audited and confirmed to contain zero traffic targets or ignore regions.",
+      "REQUIRES_ADJUDICATION": "Frame contains inter-annotator conflict, unresolved ambiguity, or supervisor escalation flag."
+    },
+    "gating_rules": {
+      "default_behavior": "Strict refusal: IncompleteAnnotationError is raised if any frame in dataset is UNREVIEWED or REQUIRES_ADJUDICATION.",
+      "exploratory_bypass": "Requires explicit exploratory=True (CLI flag --exploratory); outputs are watermarked with provisional research disclaimers."
+    }
+  },
+  "stratification_schema": {
+    "strata": [
+      {
+        "name": "anomaly_pilot_package",
+        "description": "4 recorded CARLA anomaly scenarios under varying weather conditions (Town01)."
+      },
+      {
+        "name": "normal_control_package",
+        "description": "1 recorded CARLA normal driving scenario with no intentional anomalies (Town01)."
+      }
+    ],
+    "class_partitions": [
+      "person",
+      "vehicle",
+      "bicycle_or_motorcycle",
+      "road_debris_or_prop",
+      "overall"
+    ]
+  }
+}

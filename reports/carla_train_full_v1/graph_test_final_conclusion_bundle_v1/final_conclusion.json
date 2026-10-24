@@ -1,0 +1,132 @@
+{
+  "AUROC_contract_outcome": {
+    "anomaly_all_have_both_classes": true,
+    "anomaly_corruption_count_range": [
+      1,
+      107
+    ],
+    "anomaly_normal_count_range": [
+      192,
+      298
+    ],
+    "anomaly_scenarios": 520,
+    "normal_all_299_normal_zero_corruption": true,
+    "normal_scenarios": 107,
+    "prespecified_macro_AUROC": null,
+    "reason": "107 normal TEST scenarios are single-class over scored ticks, so their per-scenario AUROC is undefined",
+    "undefined_scenarios_dropped_for_rescue": false
+  },
+  "paired_effects": {
+    "EpistemicGAT_minus_StandardGAT": {
+      "AUROC": {
+        "metric": "AUROC",
+        "reason": "paired comparison unavailable because macro-AUROC is undefined"
+      },
+      "BCE": {
+        "max": 0.002826245008037964,
+        "mean": 0.0008787385831743987,
+        "min": -2.3221944662754623e-05,
+        "per_seed": {
+          "101": -1.4986599089050756e-05,
+          "202": 0.002826245008037964,
+          "303": 0.0016153843495765319,
+          "404": -2.3221944662754623e-05,
+          "505": -9.727897990696732e-06
+        },
+        "sample_SD": 0.0012977941326906448
+      },
+      "F1": {
+        "max": 8.7404304953409e-06,
+        "mean": -0.00011101555978350053,
+        "min": -0.0004860423766597649,
+        "per_seed": {
+          "101": 8.7404304953409e-06,
+          "202": -0.0004860423766597649,
+          "303": 6.454945626871433e-06,
+          "404": -8.423079837995007e-05,
+          "505": 0.0
+        },
+        "sample_SD": 0.0002132063602374859
+      }
+    },
+    "StandardGAT_minus_NoGraph": {
+      "AUROC": {
+        "metric": "AUROC",
+        "reason": "paired comparison unavailable because macro-AUROC is undefined"
+      },
+      "BCE": {
+        "max": -0.007901189043396206,
+        "mean": -0.02322439907354108,
+        "min": -0.03517769125355363,
+        "per_seed": {
+          "101": -0.020331152640387984,
+          "202": -0.033371084885932656,
+          "303": -0.01934087754443492,
+          "404": -0.03517769125355363,
+          "505": -0.007901189043396206
+        },
+        "sample_SD": 0.011225972195472141
+      },
+      "F1": {
+        "max": -0.02240304604008185,
+        "mean": -0.03285481410862031,
+        "min": -0.03891524306559557,
+        "per_seed": {
+          "101": -0.037231219855158676,
+          "202": -0.03891524306559557,
+          "303": -0.028032088962285817,
+          "404": -0.03769247261997964,
+          "505": -0.02240304604008185
+        },
+        "sample_SD": 0.007276379592026053
+      }
+    }
+  },
+  "phase_B_result_seal": "ec5ea056cb53050c284816c470845f233d4fe8c566917195658639d20bdee15e",
+  "protocol_integrity": {
+    "checkpoint_selection_on_TEST": false,
+    "negative_or_null_results_retained": true,
+    "recalibration_on_TEST": false,
+    "result_dependent_retry": false,
+    "threshold_selection_on_TEST": false,
+    "training_on_TEST": false
+  },
+  "schema": "COGNIX-Experiment-2B-final-TEST-conclusion-v1",
+  "scientific_conclusion": {
+    "auroc": "The prespecified 627-scenario macro-AUROC is undefined and paired AUROC comparisons are unavailable under the frozen fail-closed protocol.",
+    "epistemic_sender_prior": "EpistemicGAT showed no descriptive evidence of improvement over StandardGAT on held-out TEST; BCE was mixed and slightly worse on average, while F1 was essentially neutral to slightly worse.",
+    "graph_communication": "StandardGAT improved held-out TEST BCE relative to NoGraph in all five seeds, but reduced frozen-threshold corruption F1 in all five seeds; graph communication therefore did not uniformly improve TEST performance across metrics.",
+    "inference_scope": "Five-seed summaries are descriptive; no inferential significance test was prespecified or performed.",
+    "probability_semantics": "q_normal is P(target = normal) under the TRAIN-derived constructed clean-vs-pseudo task, not a probability of physical driving safety."
+  },
+  "seed_mean_metrics": {
+    "EpistemicGAT": {
+      "AUROC": null,
+      "BCE": 0.6086469877124665,
+      "F1": 0.09167084469764761
+    },
+    "NoGraph": {
+      "AUROC": null,
+      "BCE": 0.6309926482028332,
+      "F1": 0.12463667436605144
+    },
+    "StandardGAT": {
+      "AUROC": null,
+      "BCE": 0.6077682491292922,
+      "F1": 0.09178186025743111
+    }
+  },
+  "status": "FINAL_TEST_CONCLUSION_STAGED_FOR_FREEZE",
+  "test_scope": {
+    "runs": 15,
+    "scenarios": 627,
+    "scored_rows": 187473,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ]
+  }
+}

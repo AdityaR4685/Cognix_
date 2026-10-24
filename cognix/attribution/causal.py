@@ -1,8 +1,7 @@
 """
 Structural Causal Models (SCMs) and Counterfactual Reasoning.
 """
-from typing import Dict, List, Any, Callable
-import numpy as np
+from typing import Dict, Any, Callable
 
 class StructuralCausalModel:
     """

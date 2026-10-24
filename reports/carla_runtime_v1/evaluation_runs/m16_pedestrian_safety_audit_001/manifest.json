@@ -1,0 +1,41 @@
+{
+  "run_id": "m16_pedestrian_safety_audit_001",
+  "date": "2026-10-21T07:13:00+05:30",
+  "git_branch": "gat-testing-complete-checkpoint",
+  "git_head": "b4606b91ef2fe77719bdbe5c02ec501bd184a7f8",
+  "closeout_status": "CLOSED WITH DOCUMENTED LIMITATIONS",
+  "files": {
+    "cognix/evaluation/carla_demo_runner.py": {
+      "sha256": "843f3d9c01fcd5f96e5401f459ecccca1d1d21997f0f7a255d3cbd63082fd6de",
+      "description": "Working demo runner with explicit rule-based score semantics"
+    },
+    "tests/unit/test_pedestrian_safety_audit.py": {
+      "sha256": "3cbb60439e2efb9479b38154b03f72f89ad9387df10e0441f98decce5f5cf688",
+      "description": "Working 7-case focused unit audit suite"
+    },
+    "reports/carla_runtime_v1/evaluation_runs/m16_pedestrian_safety_audit_001/M16_PEDESTRIAN_SAFETY_AUDIT_REPORT.md": {
+      "sha256": "016b02ddb543f17f63f764a46a676136f02641fce390b5d97127155c176f131f",
+      "description": "Historical M16 audit documentation"
+    },
+    "reports/carla_runtime_v1/evaluation_runs/m16_pedestrian_safety_audit_001/M16_FOLLOWUP_INTEGRITY_AND_SCORE_SEMANTICS.md": {
+      "sha256": "e2bac88028487a74636273ff2d3cfd3e53c7c19e282db73a7c93b135bc932cf3",
+      "description": "Follow-up integrity & score semantics report"
+    },
+    "reports/carla_runtime_v1/evaluation_runs/m16_pedestrian_safety_audit_001/M16_FINAL_CLOSEOUT.md": {
+      "sha256": "0b85e9ca1bbda438af47e2494f06cb31a629b7eec7a3cbd47cb2796d512c0e02",
+      "description": "Final closeout report"
+    },
+    "reports/carla_runtime_v1/evaluation_runs/m16_pedestrian_safety_audit_001/demo_artifacts/demo_execution_summary_live.json": {
+      "sha256": "9350b334595258e783299cc884b38e14986a93c623efdfc9b33dea9e9de813dc",
+      "description": "Initial live CARLA pedestrian scenario execution telemetry"
+    },
+    "reports/carla_runtime_v1/evaluation_runs/m16_pedestrian_safety_audit_001/replay_artifacts/demo_execution_summary_replay.json": {
+      "sha256": "284ccbece39ddb2e782fc6ef27646a785dbef3f1b5ce7bc8677b9e564a81b29d",
+      "description": "Recorded replay pedestrian scenario execution telemetry"
+    },
+    "reports/carla_runtime_v1/evaluation_runs/m16_pedestrian_safety_audit_001/final_live_artifacts/demo_execution_summary_live.json": {
+      "sha256": "8d18fc35f54ccaa7a144eb51724e5000d1dd7fb89b8a181453e506a168592a08",
+      "description": "Final post-change live CARLA execution telemetry"
+    }
+  }
+}

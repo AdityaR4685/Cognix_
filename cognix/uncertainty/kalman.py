@@ -1,7 +1,6 @@
 """
 Kalman Filtering for Uncertainty Tracking over time.
 """
-import numpy as np
 
 class LinearKalmanFilter:
     """
