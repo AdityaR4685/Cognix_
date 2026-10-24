@@ -662,9 +662,10 @@ class CarlAnomalyLoader:
         explicitly, not silently mixed into the measurement.
         """
         index_col, index = cls._sensor_index(df, path)
+        import pandas as pd  # noqa: PLC0415  (local import for optional heavy dependency)
         value_cols = [
             c for c in df.columns
-            if c not in cls._INDEX_COLUMNS and np.issubdtype(df[c].dtype, np.number)
+            if c not in cls._INDEX_COLUMNS and pd.api.types.is_numeric_dtype(df[c])
         ]
         if not value_cols:
             raise CarlAnomalyLoaderError(

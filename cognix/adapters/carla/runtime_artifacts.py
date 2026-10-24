@@ -76,6 +76,21 @@ def verify_unit(path, expected_seal):
         authenticated(target, expected)
 
 
+def validate_checkpoint_tensor_schema(model: nn.Module, model_state: dict, checkpoint_path=None) -> nn.Module:
+    """Validate and load state_dict into model with strict schema enforcement.
+
+    Fails closed with SourceError if tensor names or dimensions mismatch,
+    or if nonfinite values are detected.
+    """
+    path_label = str(checkpoint_path) if checkpoint_path is not None else "<checkpoint>"
+    try:
+        model.load_state_dict(model_state, strict=True)
+    except RuntimeError as exc:
+        raise SourceError(f"Checkpoint tensor schema mismatch: {path_label}: {exc}") from exc
+    require(all(torch.isfinite(t).all().item() for t in model.state_dict().values()), "Nonfinite graph state")
+    return model
+
+
 class FrozenNodeRefinement(GraphRefinement):
     """Expose the sealed node logits to the ordinary generic pipeline."""
     def __init__(self, model, strategy):
@@ -169,11 +184,7 @@ def load_runtime_artifacts(repo: Path, strategy="NoGraph", seed=101, require_cal
                                    {"torch": torch, "nn": nn, "F": F, "require": require,
                                     "ADJACENCY": [[0, 1, 1], [1, 0, 1], [1, 1, 0]]})
     model = definitions["NoGraph"]() if strategy == "NoGraph" else definitions["BatchedGAT"](strategy == "EpistemicGAT")
-    try:
-        model.load_state_dict(state["model_state"], strict=True)
-    except RuntimeError as exc:
-        raise SourceError(f"Checkpoint tensor schema mismatch: {checkpoint_path}: {exc}") from exc
-    require(all(torch.isfinite(t).all().item() for t in model.state_dict().values()), "Nonfinite graph state")
+    validate_checkpoint_tensor_schema(model, state["model_state"], checkpoint_path)
     for parameter in model.parameters():
         parameter.requires_grad_(False)
     provenance = {"artifact_id": selected["run_id"], "checkpoint_sha256": selected["sha256"],

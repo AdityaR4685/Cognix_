@@ -17,7 +17,7 @@ from cognix.core.types import PredictionResult, UncertaintyResult, GraphResult
 from cognix.runtime.replay import ObservationEnvelope, ReplayController, SourceError
 from cognix.runtime.bridge import RuntimeBridge
 from cognix.adapters.carla.replay_source import ArchiveConfig, CarlAnomalyReplaySource, SyntheticReplaySource
-from cognix.adapters.carla.runtime_artifacts import load_runtime_artifacts, load_sanitizer, ORDER
+from cognix.adapters.carla.runtime_artifacts import load_runtime_artifacts, load_sanitizer, validate_checkpoint_tensor_schema, ORDER
 from cognix.adapters.carla.dataset import CarlAnomalyDataset
 from dashboard.payload import build_payload
 
@@ -175,6 +175,7 @@ def tiny_archive(tmp_path):
     return path, scenario
 
 
+@pytest.mark.research_assets
 def test_real_format_archive_is_bounded_and_label_blind(tiny_archive, monkeypatch):
     path, scenario = tiny_archive
     opened = []
@@ -204,7 +205,14 @@ def test_missing_archive_is_explicit(tmp_path):
 def test_missing_required_sensor_fails_closed(tiny_archive, monkeypatch):
     path, scenario = tiny_archive
     # Asking for another missing tick never zero-fills inputs or enters a model.
-    source = CarlAnomalyReplaySource(ArchiveConfig(path, max_samples=3), {scenario: 3}, load_sanitizer(ROOT))
+    # A synthetic no-op sanitizer is injected: the IMU causal-window check fires
+    # before any segmentation member is decoded, so the sanitizer is never called.
+    # This isolates the fail-closed contract without requiring the local research bundle.
+    def _synthetic_sanitizer(img):
+        arr = np.asarray(img)[..., 0].copy()
+        arr[arr > 28] = 22
+        return arr, {}
+    source = CarlAnomalyReplaySource(ArchiveConfig(path, max_samples=3), {scenario: 3}, _synthetic_sanitizer)
     with pytest.raises(SourceError, match="causal replay windows"):
         source.read(scenario, 0)
     assert source._cache == []
@@ -218,6 +226,7 @@ def test_synthetic_source_still_has_six_agents():
     assert "label" not in observation.agent_inputs
 
 
+@pytest.mark.research_assets
 @pytest.mark.parametrize("method", ["NoGraph", "StandardGAT", "EpistemicGAT"])
 def test_frozen_graph_restores_exact_node_semantics(method):
     agents, graph, provenance = load_runtime_artifacts(ROOT, method, 101)
@@ -246,7 +255,65 @@ def test_full_calibration_requirement_and_unfrozen_config_fail_closed():
             load_runtime_artifacts(ROOT, **config)
 
 
+def test_checkpoint_schema_validation_valid():
+    """Portable unit test: compatible tensor names and shapes load cleanly."""
+    model = torch.nn.Sequential(torch.nn.Linear(3, 4), torch.nn.Linear(4, 2))
+    state = model.state_dict()
+    modified_state = {k: v + 0.5 for k, v in state.items()}
+    loaded_model = validate_checkpoint_tensor_schema(model, modified_state, "test_checkpoint.pt")
+    assert loaded_model is model
+    for k, v in model.state_dict().items():
+        assert torch.allclose(v, modified_state[k])
+
+
+def test_checkpoint_schema_validation_dimension_mismatch():
+    """Portable unit test: mismatched tensor dimension fails closed with SourceError."""
+    model = torch.nn.Sequential(torch.nn.Linear(3, 4), torch.nn.Linear(4, 2))
+    state = model.state_dict()
+    corrupted_state = {k: v.clone() for k, v in state.items()}
+    corrupted_state["0.weight"] = torch.zeros((12, 4))
+    with pytest.raises(SourceError, match="tensor schema mismatch"):
+        validate_checkpoint_tensor_schema(model, corrupted_state, "bad_dim_checkpoint.pt")
+
+
+def test_checkpoint_schema_validation_missing_key():
+    """Portable unit test: missing tensor key fails closed with SourceError."""
+    model = torch.nn.Sequential(torch.nn.Linear(3, 4), torch.nn.Linear(4, 2))
+    state = model.state_dict()
+    missing_state = {k: v.clone() for k, v in state.items() if k != "0.bias"}
+    with pytest.raises(SourceError, match="tensor schema mismatch"):
+        validate_checkpoint_tensor_schema(model, missing_state, "missing_key_checkpoint.pt")
+
+
+def test_checkpoint_schema_validation_unexpected_key():
+    """Portable unit test: unexpected tensor key fails closed with SourceError."""
+    model = torch.nn.Sequential(torch.nn.Linear(3, 4), torch.nn.Linear(4, 2))
+    state = model.state_dict()
+    extra_state = {k: v.clone() for k, v in state.items()}
+    extra_state["unexpected.weight"] = torch.zeros((4, 4))
+    with pytest.raises(SourceError, match="tensor schema mismatch"):
+        validate_checkpoint_tensor_schema(model, extra_state, "unexpected_key_checkpoint.pt")
+
+
+def test_checkpoint_schema_validation_nonfinite_fails_closed():
+    """Portable unit test: nonfinite tensor values fail closed with SourceError."""
+    model = torch.nn.Sequential(torch.nn.Linear(3, 4), torch.nn.Linear(4, 2))
+    state = model.state_dict()
+    nan_state = {k: v.clone() for k, v in state.items()}
+    nan_state["0.weight"][0, 0] = float("nan")
+    with pytest.raises(SourceError, match="Nonfinite graph state"):
+        validate_checkpoint_tensor_schema(model, nan_state, "nan_checkpoint.pt")
+
+
+@pytest.mark.research_assets
 def test_wrong_checkpoint_tensor_dimensions_fail_closed(monkeypatch):
+    """Full integration test: verifies load_runtime_artifacts fails closed on bad state.
+
+    This test exercises the full production loader path including source bindings,
+    cryptographic seals, and historical training bundle verification. For portable
+    unit verification of the checkpoint schema validation contract on clean CI runners,
+    see test_checkpoint_schema_validation_*.
+    """
     original = torch.load
     def incompatible(*args, **kwargs):
         state = original(*args, **kwargs)

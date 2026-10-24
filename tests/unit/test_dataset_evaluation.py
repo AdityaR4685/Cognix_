@@ -231,6 +231,7 @@ class TestCalibrationInvariants:
         with pytest.raises(SourceError, match="No collective conformal artifact is bound"):
             load_runtime_artifacts(ROOT, "StandardGAT", 101, require_calibration=True)
 
+    @pytest.mark.research_assets
     def test_runtime_artifacts_loads_uncalibrated_cleanly(self):
         agents, graph, prov = load_runtime_artifacts(ROOT, "StandardGAT", 101, require_calibration=False)
         assert len(agents) == 3
