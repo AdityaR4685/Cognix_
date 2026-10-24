@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.0] - Unreleased
+## [0.1.0] - 2026-10-24
 
 ### Added
 - Initial distribution packaging for `cognix-uncertainty-framework` on PyPI/TestPyPI
